@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solomon Thiong Garang Leek - Portfolio</title>
+    <meta name="description" content="Professional portfolio of Solomon Thiong Garang Leek - Graphic Designer, Frontend Developer & Python Programmer">
+        <meta name="keywords" content="software engineer South Sudan, ALU student, African developer, frontend developer portfolio, graphic designer, Python programmer, scholarship candidate">
+        <meta name="author" content="Solomon Thiong Garang Leek">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Solomon Thiong Garang Leek - Portfolio">
+        <meta property="og:description" content="Software Engineering student at ALU showcasing leadership, design, development, and community impact projects.">
+        <meta property="og:url" content="https://solomonleek.tech">
+        <meta property="og:image" content="https://solomonleek.tech/images/photo.jpg">
+        <meta property="og:image:alt" content="Professional portrait of Solomon Thiong Garang Leek">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Solomon Thiong Garang Leek - Portfolio">
+        <meta name="twitter:description" content="Software Engineering student at ALU showcasing leadership, design, development, and community impact projects.">
+        <meta name="twitter:image" content="https://solomonleek.tech/images/photo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f4c81'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Sora,sans-serif' font-weight='800' font-size='13' fill='white'>SK</text></svg>">
+    <link rel="canonical" href="https://solomonleek.tech/">
+    <meta name="theme-color" content="#ea580c">
+    <script>document.documentElement.classList.add('js');</script>
+    <link rel="stylesheet" href="../css/styles.css?v=20260412">
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Solomon Thiong Garang Leek",
+            "url": "https://solomonleek.tech",
+            "image": "https://solomonleek.tech/images/photo.jpg",
+            "jobTitle": "Software Engineering Student",
+            "description": "Software Engineering student at ALU focused on leadership, community impact, and technology solutions for Africa.",
+            "alumniOf": {
+                "@type": "CollegeOrUniversity",
+                "name": "African Leadership University"
+            },
+            "sameAs": [
+                "https://github.com/solomon-211",
+                "https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+            ]
+        }
+        </script>
+    <!-- NOTE: All styles are in css/styles.css -->
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Page transition overlay -->
+    <div class="page-transition" id="pageTransition"></div>
+
+<!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab tooltip" id="fabBtn" role="button" tabindex="0" aria-label="Back to top" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+        <span class="tooltiptext">Back to Top</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon">SK</div>
+                <span class="logo-text">Sleek</span>
+            </a>
+            <button class="menu-toggle" id="menuToggleBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" title="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link nav-home">Home</a></li>
+                <li><a href="#about" class="nav-link nav-about">About</a></li>
+                <li><a href="#projects" class="nav-link nav-projects">Projects</a></li>
+                <li><a href="#timeline" class="nav-link">Journey</a></li>
+                <li><a href="#skills" class="nav-link nav-skills">Skills</a></li>
+                <li><a href="#contact" class="nav-link nav-contact">Contact</a></li>
+                <li class="nav-more" id="navMore">
+                    <button class="nav-more-toggle" id="navMoreToggle" type="button" aria-expanded="false" aria-controls="navMoreMenu">
+                        More <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="nav-more-menu" id="navMoreMenu">
+                        <li><a href="#academics" class="nav-link nav-academics">Academics</a></li>
+                        <li><a href="#awards" class="nav-link nav-awards">Awards</a></li>
+                        <li><a href="#leadership" class="nav-link nav-leadership">Leadership</a></li>
+                        <li><a href="#community" class="nav-link nav-community">Community</a></li>
+                        <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="parallax-bg" id="parallaxBg"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title reveal-left">
+                    <span class="hero-intro">Hi, I'm <span class="highlight">Solomon</span></span>
+                    <span class="hero-surname">Thiong Garang Leek</span>
+                </h1>
+                <p class="subtitle reveal-left">Software Engineer in Training at <span class="text-emphasis-white">African Leadership University</span></p>
+                <p class="hero-roles reveal-left">
+                    <span class="role-text" id="roleText">Software Engineer</span>
+                </p>
+                <p class="description reveal-left">
+                    I am a software engineering student at ALU, Kigali, building practical digital solutions for real challenges in education, healthcare, and community development across Africa. I blend software engineering, design, and leadership to create products that are useful, human-centered, and built for impact.
+                </p>
+                <!-- Hero stats -->
+                <div class="hero-stats reveal-left">
+                    <div class="hero-stat">
+                        <span class="hero-stat-icon"><i class="fas fa-globe-africa"></i></span>
+                        <span class="hero-stat-label">Social Impact</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-icon"><i class="fas fa-code"></i></span>
+                        <span class="hero-stat-label">Web Development</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-icon"><i class="fas fa-pen-nib"></i></span>
+                        <span class="hero-stat-label">Design & Branding</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-icon"><i class="fas fa-microphone-alt"></i></span>
+                        <span class="hero-stat-label">Public Speaking</span>
+                    </div>
+                </div>
+
+                <div class="mission-focus reveal-left" aria-label="Mission priorities">
+                    <article class="mission-card mission-card--primary">
+                        <span class="mission-badge">Primary Mission</span>
+                        <h3 class="mission-title"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Education</h3>
+                        <p class="mission-text">Designing technology and learning initiatives that expand access to quality education and unlock student potential.</p>
+                        <div class="mission-priority" aria-label="Priority level">
+                            <span class="mission-priority-label">Priority</span>
+                            <strong class="mission-priority-value">1 · Core Focus</strong>
+                        </div>
+                        <div class="mission-meter" aria-hidden="true">
+                            <span class="mission-meter-fill mission-meter-fill--primary"></span>
+                        </div>
+                        <ul class="mission-points" aria-label="Education focus areas">
+                            <li>Expanding digital learning access</li>
+                            <li>Accelerating student mentorship and growth</li>
+                        </ul>
+                        <a class="mission-link" href="#academics">Explore Education Impact <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                    </article>
+                    <article class="mission-card mission-card--secondary">
+                        <span class="mission-badge">Secondary Mission</span>
+                        <h3 class="mission-title"><i class="fas fa-heartbeat" aria-hidden="true"></i> Healthcare</h3>
+                        <p class="mission-text">Advancing healthcare access through digital tools that improve discovery, guidance, and response speed.</p>
+                        <div class="mission-priority" aria-label="Priority level">
+                            <span class="mission-priority-label">Priority</span>
+                            <strong class="mission-priority-value">2 · Strategic Support</strong>
+                        </div>
+                        <div class="mission-meter" aria-hidden="true">
+                            <span class="mission-meter-fill mission-meter-fill--secondary"></span>
+                        </div>
+                        <ul class="mission-points" aria-label="Healthcare focus areas">
+                            <li>Smarter healthcare discovery tools</li>
+                            <li>Faster, clearer care decision support</li>
+                        </ul>
+                        <a class="mission-link" href="#projects">View Healthcare Work <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                    </article>
+                </div>
+
+            </div>
+            <div class="hero-image">
+                <img src="../images/photo.jpg" alt="Solomon Thiong Garang Leek" width="300" height="300" loading="eager" decoding="async">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">
+                    Building meaningful digital solutions through thoughtful design, strong engineering, and purposeful leadership
+                </p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I am a Software Engineering student at <strong><span class="text-emphasis-white">African Leadership University (ALU)</span></strong> in Kigali, Rwanda, originally from <strong><span class="text-emphasis-white">South Sudan</span></strong>. My work sits at the intersection of software engineering, visual communication, and social impact.
+                    </p>
+                    <p>
+                        I began with graphic design, which sharpened my eye for clarity, structure, and storytelling. That creative foundation naturally evolved into frontend development and Python, where I learned to transform ideas into scalable, usable solutions. Today, every project I take on follows one principle: deliver work that performs, communicates clearly, and creates measurable value.
+                    </p>
+                    <p class="about-seeking">
+                        <i class="fas fa-search"></i> Open to <strong>internships</strong>, <strong>collaborative projects</strong>, and <strong>opportunities</strong> where I can contribute, learn, and grow.
+                    </p>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Based in Kigali, Rwanda</h3>
+                            <p>Software Engineering student at ALU</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h3>Student Leader</h3>
+                            <p>Student Government President & program graduate</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <h3>Builder & Designer</h3>
+                            <p>From concept to code to finished product</p>
+                        </div>
+                    </div>
+
+                    <!-- Currently Learning widget -->
+                    <div class="learning-widget">
+                        <div class="learning-widget-header">
+                            <span class="learning-pulse"></span>
+                            <span class="learning-title">Currently Learning</span>
+                        </div>
+                        <div class="learning-items">
+                            <div class="learning-item">
+                                <i class="fas fa-gears"></i>
+                                <span>Software Engineering Principles &amp; Best Practices</span>
+                            </div>
+                            <div class="learning-item">
+                                <i class="fas fa-laptop-code"></i>
+                                <span>Python Application Development &amp; Modern Web Engineering</span>
+                            </div>
+                            <div class="learning-item">
+                                <i class="fas fa-users"></i>
+                                <span>Leadership Strategy &amp; Social Impact Execution</span>
+                            </div>
+                            <div class="learning-item">
+                                <i class="fas fa-pen-ruler"></i>
+                                <span>Visual Communication, Graphic Design &amp; Brand Systems</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Excellence Section -->
+    <section id="academics" class="section-bg-white">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Academic Excellence</h2>
+                <p class="section-subtitle">
+                    A high-performance academic journey shaped by discipline, curiosity, and continuous growth
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h3 class="skill-title">Current Studies</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-item">Software Engineering - ALU</span>
+                        <span class="skill-item">Expected Graduation: 2028</span>
+                        <span class="skill-item">Kigali, Rwanda Campus</span>
+                        <span class="skill-item">Full Scholarship Recipient</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-award"></i></div>
+                        <h3 class="skill-title">Academic Achievements</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-item">Academic Excellence Award</span>
+                        <span class="skill-item">Programming Competition Winner</span>
+                        <span class="skill-item">Research Project Recognition</span>
+                        <span class="skill-item">Peer Tutoring Certification</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-book"></i></div>
+                        <h3 class="skill-title">Key Coursework</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-item">Data Structures & Algorithms</span>
+                        <span class="skill-item">Software Engineering Principles</span>
+                        <span class="skill-item">Database Management Systems</span>
+                        <span class="skill-item">Human-Computer Interaction</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-certificate"></i></div>
+                        <h3 class="skill-title">Certifications</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-item">Google IT Support Certificate</span>
+                        <span class="skill-item">Adobe Certified Expert</span>
+                        <span class="skill-item">Python Programming Certificate</span>
+                        <span class="skill-item">Web Development Bootcamp</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="section-bg-secondary">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Awards & Recognition</h2>
+                <p class="section-subtitle">
+                    Honors earned through excellence, leadership, and meaningful community contribution
+                </p>
+            </div>
+            <div class="awards-grid">
+                <article class="award-card">
+                    <div class="award-badge"><i class="fas fa-trophy"></i></div>
+                    <h3 class="award-title">Academic Excellence Award</h3>
+                    <p class="award-meta">ALU • 2025</p>
+                    <p class="award-description">Awarded for maintaining one of the highest GPAs in the cohort while actively supporting peers through tutoring and collaborative learning.</p>
+                </article>
+                <article class="award-card">
+                    <div class="award-badge"><i class="fas fa-users"></i></div>
+                    <h3 class="award-title">Leadership Impact Recognition</h3>
+                    <p class="award-meta">Student Leadership • 2025</p>
+                    <p class="award-description">Recognized for leading student initiatives that strengthened campus engagement, improved academic support structures, and elevated the student experience.</p>
+                </article>
+                <article class="award-card">
+                    <div class="award-badge"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3 class="award-title">Community Service Distinction</h3>
+                    <p class="award-meta">Community Programs • 2024</p>
+                    <p class="award-description">Acknowledged for delivering measurable impact through digital literacy training and youth mentorship programs across underserved communities.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership & Extracurricular Section -->
+    <section id="leadership" class="section-bg-secondary">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Leadership & Impact</h2>
+                <p class="section-subtitle">
+                    Leadership roles and programs that strengthened how I communicate, execute, and deliver impact
+                </p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Student Government President</h3>
+                        <p class="project-description">Elected to represent a student body of 500+ at ALU. Drove policy changes that improved access to academic resources, strengthened student welfare systems, and built a more engaged campus community.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Leadership</span>
+                            <span class="tech-tag">Policy Development</span>
+                            <span class="tech-tag">Public Speaking</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">ALU Marketing & Outreach Team</h3>
+                        <p class="project-description">Produced visual content and managed social media campaigns as part of ALU's official Marketing & Outreach Team — supporting student recruitment efforts and strengthening the university's brand presence across digital platforms.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Marketing</span>
+                            <span class="tech-tag">Content Creation</span>
+                            <span class="tech-tag">Brand Communication</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Global Leadership Program (Aspire Leaders)</h3>
+                        <p class="project-description">Selected for and completed the Aspire Leaders Program — a globally competitive leadership initiative that develops emerging leaders through intensive training in strategic thinking, ethical decision-making, and social impact design.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Global Leadership</span>
+                            <span class="tech-tag">Social Impact</span>
+                            <span class="tech-tag">Program Graduate</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="section-bg-white">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My Journey</h2>
+                <p class="section-subtitle">The defining milestones that shaped my leadership, craft, and purpose</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Feb 2019</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Student Leadership</span>
+                        <h3 class="timeline-title">Student Government President</h3>
+                        <p class="timeline-desc">Elected to lead student government, representing 500+ students and advancing policy improvements that strengthened academic support systems and campus welfare.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2019-2022</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Secondary Education</span>
+                        <h3 class="timeline-title">Darling Wisdom Academy &mdash; Secondary School</h3>
+                        <p class="timeline-desc">Completed secondary school with a strong academic foundation, disciplined study habits, and early leadership exposure that prepared me for university-level engineering studies.</p>
+                        <p class="timeline-quote-lead">Inspired by the quote:</p>
+                        <blockquote class="timeline-quote">"One minute on a book does not lie."</blockquote>
+                        <p class="timeline-quote-author">&mdash; Noble Arem Riak</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2023-2024</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Teaching Experience</span>
+                        <h3 class="timeline-title">Mission Garden Nursery and Primary School &mdash; Teacher</h3>
+                        <p class="timeline-desc">Served as a teacher supporting foundational learning and student development, while strengthening my communication, mentorship, and classroom leadership capabilities.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Jan 2025</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Higher Education</span>
+                        <h3 class="timeline-title">African Leadership University (ALU) &mdash; Software Engineering</h3>
+                        <p class="timeline-desc">Began undergraduate Software Engineering studies at ALU, Kigali, Rwanda, on a full scholarship &mdash; a defining step toward building impactful technology solutions for Africa.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Jan 2025</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Design and Branding</span>
+                        <h3 class="timeline-title">Started Graphic Design</h3>
+                        <p class="timeline-desc">Began creating professional visual content &mdash; posters, branding, and social media graphics &mdash; combining creativity with communication to serve communities and organizations.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">May 2025</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Global Leadership Program</span>
+                        <h3 class="timeline-title">Aspire Leaders Program</h3>
+                        <p class="timeline-desc">Selected for this globally competitive leadership initiative, completing intensive training in strategic thinking, ethical decision-making, and social impact design.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">May 2025</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Global Learning Experience (SIE)</span>
+                        <h3 class="timeline-title">ALU Marketing &amp; Outreach Team</h3>
+                        <p class="timeline-desc">Joined ALU's official marketing team, producing visual content and managing campaigns that strengthened the university's brand across digital platforms.</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-item--future">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Jul 2028</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag timeline-tag--future">Graduation Milestone</span>
+                        <h3 class="timeline-title">Expected Graduation &mdash; BSc Software Engineering, ALU</h3>
+                        <p class="timeline-desc">Expected to graduate with a Bachelor of Science in Software Engineering, prepared to build high-impact technology solutions for real challenges across Africa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Service Section -->
+    <section id="community" class="section-bg-white">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Community Service</h2>
+                <p class="section-subtitle">
+                    Turning skills, time, and leadership into tangible progress for underserved communities
+                </p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 class="section-heading-primary">Digital Literacy Initiative</h3>
+                    <p>
+                        I designed and led a digital literacy initiative in rural South Sudan, training more than 200 people in essential computer and internet skills. The program equipped participants to access online learning, apply for opportunities, and engage with digital services confidently, many for the first time.
+                    </p>
+                    <h3 class="section-heading-primary section-heading-spaced">Youth Mentorship Program</h3>
+                    <p>
+                        I mentored over 50 secondary school students in STEM, university preparation, and career planning. Through practical coaching on applications, study systems, and goal-setting, 85% of mentees progressed into higher education pathways.
+                    </p>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div>
+                            <h3>200+ Hours</h3>
+                            <p>Community volunteer service completed</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h3>300+ Lives</h3>
+                            <p>Directly impacted through various initiatives</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-globe-africa"></i>
+                        </div>
+                        <div>
+                            <h3>5 Communities</h3>
+                            <p>Served across East African communities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-bg-secondary">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Design Portfolio</h2>
+                <p class="section-subtitle">
+                    A curated body of campaign, branding, and digital design work crafted for clarity and engagement
+                </p>
+                <div class="case-study-banner">
+                    <div class="case-study-banner-left">
+                        <span class="case-study-badge"><i class="fas fa-star"></i> Featured Case Study</span>
+                        <p class="case-study-banner-title">Independence Day Campaign — Strategy, Craft, and Results</p>
+                        <p class="case-study-banner-desc">A complete breakdown of the creative process behind one of the highest-performing pieces in this portfolio, from brief to final delivery.</p>
+                        <div class="case-study-stats">
+                            <div class="case-study-stat">
+                                <span class="cs-stat-value">3</span>
+                                <span class="cs-stat-label">Design Iterations</span>
+                            </div>
+                            <div class="case-study-stat">
+                                <span class="cs-stat-value">2 Tools</span>
+                                <span class="cs-stat-label">Photoshop &amp; Illustrator</span>
+                            </div>
+                            <div class="case-study-stat">
+                                <span class="cs-stat-value">High</span>
+                                <span class="cs-stat-label">Public Engagement</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="case-study.html" class="case-study-banner-btn">
+                        Read Full Case Study <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All Work</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="../images/Independence-day.jpg" alt="Independence Day Poster" width="1200" height="800" loading="lazy" decoding="async">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="../images/Independence-day.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Independence Day Poster" title="Open Independence Day Poster">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Independence Day Campaign Poster</h3>
+                        <p class="project-description">A patriotic campaign poster designed for Independence Day communication, combining bold national colors, strong hierarchy, and clear event messaging across print and social formats.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Poster Design</span>
+                            <span class="tech-tag">Campaign Visual</span>
+                            <span class="tech-tag">Adobe Photoshop</span>
+                            <span class="tech-tag">Adobe Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="../images/back from school.jpg" alt="Back from School Campaign" width="1200" height="800" loading="lazy" decoding="async">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="../images/back from school.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Back from School Campaign" title="Open Back from School Campaign">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Back to School Awareness Flyer</h3>
+                        <p class="project-description">An education-focused flyer created to encourage school enrollment and attendance, using friendly typography, clear call-to-action sections, and balanced layout.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Flyer Design</span>
+                            <span class="tech-tag">Education Campaign</span>
+                            <span class="tech-tag">Canva</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="../images/VICTORY CELEBRATION FOR BCYA CHAIRMANSHIP 2025-2027.jpg" alt="Victory Celebration Poster" width="1200" height="800" loading="lazy" decoding="async">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="../images/VICTORY CELEBRATION FOR BCYA CHAIRMANSHIP 2025-2027.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Victory Celebration Poster" title="Open Victory Celebration Poster">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Victory Celebration Event Poster</h3>
+                        <p class="project-description">A commemorative celebration poster designed for leadership victory events, combining energetic composition, celebratory visual cues, and readable event details.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Event Branding</span>
+                            <span class="tech-tag">Poster Layout</span>
+                            <span class="tech-tag">Adobe Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="../images/Rise leadership Academy.png" alt="Rise Leadership Academy" width="1200" height="800" loading="lazy" decoding="async">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="../images/Rise leadership Academy.png" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Rise Leadership Academy Logo" title="Open Rise Leadership Academy Logo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Rise Leadership Academy</h3>
+                        <p class="project-description">Professional logo and branding design for leadership academy with modern and inspiring aesthetics.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Logo Design</span>
+                            <span class="tech-tag">Branding</span>
+                            <span class="tech-tag">Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="../images/POSTER-FOR-BIRTHDAY.jpg" alt="Birthday Celebration Poster" width="1200" height="800" loading="lazy" decoding="async">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="../images/POSTER-FOR-BIRTHDAY.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Birthday Celebration Poster" title="Open Birthday Celebration Poster">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Birthday Celebration Poster</h3>
+                        <p class="project-description">Festive birthday poster design with colorful elements and celebratory theme for special occasions.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Digital Art</span>
+                            <span class="tech-tag">Celebration</span>
+                            <span class="tech-tag">Creative</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="../images/Social media.jpg" alt="Social Media Graphics" width="1200" height="800" loading="lazy" decoding="async">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="../images/Social media.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Social Media Graphics" title="Open Social Media Graphics">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Social Media Graphics — ALU Outreach</h3>
+                        <p class="project-description">Designed and produced social media content for ALU's Marketing & Outreach Team, driving brand visibility and student engagement across Instagram, LinkedIn, and X.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Social Media</span>
+                            <span class="tech-tag">Digital Marketing</span>
+                            <span class="tech-tag">Canva</span>
+                            <span class="tech-tag">Adobe Photoshop</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web">
+                    <div class="project-image project-image--code">
+                        <div class="project-code-preview" aria-hidden="true">
+                            <span class="code-line"><span class="code-tag">&lt;html&gt;</span></span>
+                            <span class="code-line"><span class="code-tag">&nbsp;&nbsp;&lt;head&gt;</span></span>
+                            <span class="code-line"><span class="code-attr">&nbsp;&nbsp;&nbsp;&nbsp;meta</span> <span class="code-val">charset</span></span>
+                            <span class="code-line"><span class="code-tag">&nbsp;&nbsp;&lt;/head&gt;</span></span>
+                            <span class="code-line"><span class="code-tag">&nbsp;&nbsp;&lt;body&gt;</span></span>
+                            <span class="code-line"><span class="code-attr">&nbsp;&nbsp;&nbsp;&nbsp;nav</span> <span class="code-val">section</span></span>
+                            <span class="code-line"><span class="code-attr">&nbsp;&nbsp;&nbsp;&nbsp;footer</span></span>
+                            <span class="code-line"><span class="code-tag">&nbsp;&nbsp;&lt;/body&gt;</span></span>
+                            <span class="code-line"><span class="code-tag">&lt;/html&gt;</span></span>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://solomonleek.tech" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Visit live portfolio site" title="Visit live site">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View source on GitHub" title="View source">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Personal Portfolio Website</h3>
+                        <p class="project-description">This portfolio — built from scratch with semantic HTML5, custom CSS3, and vanilla JavaScript. Features scroll animations, IntersectionObserver, responsive layout, and accessibility best practices.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Nginx</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web">
+                    <div class="project-image project-image--code">
+                        <div class="project-code-preview" aria-hidden="true">
+                            <span class="code-line"><span class="code-tag">HealthHub Bridge</span></span>
+                            <span class="code-line"><span class="code-attr">findNearbyFacilities()</span></span>
+                            <span class="code-line"><span class="code-attr">map.render()</span></span>
+                            <span class="code-line"><span class="code-attr">hospital</span> <span class="code-val">clinic pharmacy</span></span>
+                            <span class="code-line"><span class="code-tag">distance: 2.4 km</span></span>
+                            <span class="code-line"><span class="code-tag">openNow: true</span></span>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://www.solomonleek.tech" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Visit HealthHub Bridge live site" title="Visit live site">
+                                    <i class="fas fa-paper-plane"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">HealthHub Bridge</h3>
+                        <p class="project-description">A healthcare discovery platform I built to help users quickly locate nearby medical facilities, view essential service details, and make faster care decisions during urgent situations.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Healthcare</span>
+                            <span class="tech-tag">Location Search</span>
+                            <span class="tech-tag">Maps Integration</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-bg-secondary">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Testimonials</h2>
+                <p class="section-subtitle">Feedback from mentors, collaborators, and community leaders</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">Solomon demonstrates exceptional dedication to both academic excellence and community impact. His ability to bridge technology and social good is truly remarkable.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <h4 class="testimonial-name">Faculty Mentor</h4>
+                            <p class="testimonial-role">African Leadership University</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">His leadership in our community digital literacy program transformed lives. Solomon leads with empathy, vision, and technical skill that is rare to find.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <h4 class="testimonial-name">Community Program Lead</h4>
+                            <p class="testimonial-role">South Sudan Youth Initiative</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">Working with Solomon on our branding project was outstanding. He delivered professional, creative work on time and exceeded every expectation.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <h4 class="testimonial-name">Client</h4>
+                            <p class="testimonial-role">Rise Leadership Academy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skills & Expertise</h2>
+                <p class="section-subtitle">
+                    The capabilities I apply across design, software development, and engineering delivery
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+                        <h3 class="skill-title">Graphic Design</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-item">Adobe Photoshop</span>
+                        <span class="skill-item">Adobe Illustrator</span>
+                        <span class="skill-item">Adobe InDesign</span>
+                        <span class="skill-item">Adobe Premiere Pro</span>
+                        <span class="skill-item">Figma</span>
+                        <span class="skill-item">Canva</span>
+                        <span class="skill-item">Brand Identity</span>
+                        <span class="skill-item">Typography</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-code"></i></div>
+                        <h3 class="skill-title">Frontend Development</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-item">HTML5</span>
+                        <span class="skill-item">CSS3</span>
+                        <span class="skill-item">JavaScript</span>
+                        <span class="skill-item">React</span>
+                        <span class="skill-item">Bootstrap</span>
+                        <span class="skill-item">Responsive Design</span>
+                        <span class="skill-item">Cross-Browser Compatibility</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3 class="skill-title">Programming</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">Flask</span>
+                        <span class="skill-item">Django</span>
+                        <span class="skill-item">Git & GitHub</span>
+                        <span class="skill-item">REST API Development</span>
+                        <span class="skill-item">SQL Fundamentals</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3 class="skill-title">UI/UX Design</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-item">User Research</span>
+                        <span class="skill-item">Wireframing</span>
+                        <span class="skill-item">Prototyping</span>
+                        <span class="skill-item">Usability Testing</span>
+                        <span class="skill-item">Information Architecture</span>
+                        <span class="skill-item">Design Systems</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Vision & Opportunities</h2>
+                <p class="section-subtitle">
+                    The future I am building toward and the opportunities I am ready to take on
+                </p>
+            </div>
+            <div class="about-content contact-vision">
+                <div class="about-text">
+                    <h3 class="contact-heading">My Vision</h3>
+                    <p class="contact-muted">
+                        My goal is to build software that solves high-impact problems, starting with the communities I come from.
+                        As an engineer in training, I focus on practical technology for healthcare access, digital education,
+                        and economic inclusion across underserved African communities. Long term, I aim to return to South Sudan and launch
+                        a technology and innovation center that equips the next generation of African engineers to build locally relevant solutions.
+                    </p>
+                    <h3 class="contact-heading section-heading-spaced">What I'm Looking For</h3>
+                    <p class="contact-muted">
+                        I am actively seeking internships, collaborative projects, and mentorship opportunities that accelerate my growth
+                        as an engineer and leader. Whether contributing to a mission-driven product or partnering with experienced teams,
+                        I bring discipline, curiosity, and a strong execution mindset. Every opportunity I take on is a chance to deliver value
+                        while growing my capacity to lead meaningful work.
+                    </p>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-item contact-highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div>
+                            <h3 class="contact-heading">Innovation Hub</h3>
+                            <p class="contact-muted">Establish tech incubator in South Sudan</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item contact-highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="contact-heading">Education Access</h3>
+                            <p class="contact-muted">Expand digital learning opportunities</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item contact-highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div>
+                            <h3 class="contact-heading">Community Impact</h3>
+                            <p class="contact-muted">Mentor 1000+ young African developers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">
+                    Have a project, role, or collaboration in mind? Let's connect and build something meaningful.
+                </p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p><a href="tel:+211925277700" class="contact-link">+211 925 277 700</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:s.leek@alustudent.com" class="contact-link">s.leek@alustudent.com</a></p>
+                            <p><a href="mailto:thionggarang11@gmail.com" class="contact-link">thionggarang11@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+                        <div>
+                            <h3>GitHub</h3>
+                            <p><a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" class="contact-link">solomon-211</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </div>
+                        <div>
+                            <h3>LinkedIn</h3>
+                            <p><a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" class="contact-link">Solomon Thiong Garang Leek</a></p>
+                        </div>
+                    </div>
+
+                    <!-- Follow Me -->
+                    <div class="contact-follow">
+                        <p class="contact-follow-label">Follow Me</p>
+                        <p class="contact-follow-sub">Social handles and platforms</p>
+                        <div class="contact-social-row">
+                            <a class="contact-social-icon contact-social-icon--linkedin" href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+                            <a class="contact-social-icon contact-social-icon--github" href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a class="contact-social-icon contact-social-icon--email" href="mailto:s.leek@alustudent.com?cc=thionggarang11@gmail.com" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a class="contact-social-icon contact-social-icon--twitter" href="https://x.com/teeghee_4?s=21" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                                    <path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/>
+                                </svg>
+                            </a>
+                            <a class="contact-social-icon contact-social-icon--instagram" href="https://www.instagram.com/sleek_tg001?igsh=bzJ4em96dm9zdDBl&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a class="contact-social-icon contact-social-icon--facebook" href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                            <a class="contact-social-icon contact-social-icon--tiktok" href="https://lite.tiktok.com/t/ZS9L6hRUWBdND-pYCDF/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                                <i class="fa-brands fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-honeypot" aria-hidden="true">
+                        <label for="website">Website</label>
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required maxlength="80" autocomplete="name" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required maxlength="120" autocomplete="email" placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required maxlength="120" placeholder="Project Inquiry">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required maxlength="2000" placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                    <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="#home" class="logo footer-logo">
+                        <div class="logo-icon">SK</div>
+                        <span class="logo-text">Sleek</span>
+                    </a>
+                    <p class="footer-tagline">Software Engineer in Training &middot; ALU, Kigali</p>
+                    <p class="footer-bio">Designing and building practical technology solutions for Africa, one meaningful project at a time.</p>
+                </div>
+                <div class="footer-links-group">
+                    <p class="footer-links-title">Quick Links</p>
+                    <ul class="footer-links-list">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#academics">Academics</a></li>
+                        <li><a href="#timeline">Journey</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <p class="footer-links-title">Sections</p>
+                    <ul class="footer-links-list">
+                        <li><a href="#awards">Awards</a></li>
+                        <li><a href="#leadership">Leadership</a></li>
+                        <li><a href="#community">Community</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <p class="footer-links-title">Connect</p>
+                    <ul class="footer-links-list">
+                        <li><a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a></li>
+                        <li><a href="mailto:s.leek@alustudent.com?cc=thionggarang11@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                        <li><a href="../resume.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> Resume</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2025 Solomon Thiong Garang Leek. All rights reserved.</p>
+                <a href="#home" class="footer-top-link">Back to top <i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#contact" class="mobile-sticky-cta" aria-label="Contact me now">
+        <i class="fas fa-paper-plane"></i> Contact Me
+    </a>
+
+    <script src="../js/main.js?v=20260412"></script>
+</body>
+</html>
+
+
