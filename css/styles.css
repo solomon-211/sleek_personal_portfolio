@@ -681,11 +681,11 @@ section {
 }
 
 .section-bg-secondary {
-    background: linear-gradient(180deg, #eef4fb 0%, #e3edf8 100%);
+    background: linear-gradient(180deg, #e5effb 0%, #d9e7f6 100%);
 }
 
 #about {
-    background: linear-gradient(180deg, #fdfefe 0%, #f2f8ff 100%);
+    background: linear-gradient(180deg, #eaf3ff 0%, #dbeafb 100%);
 }
 
 .section-heading-primary {
@@ -2054,11 +2054,11 @@ textarea:focus-visible {
     /* Keep alternating section contrast visible on mobile. */
     #about,
     .section-bg-white {
-        background: linear-gradient(180deg, #ffffff 0%, #f4f9ff 100%);
+        background: linear-gradient(180deg, #f8fcff 0%, #eaf4ff 100%);
     }
 
     .section-bg-secondary {
-        background: linear-gradient(180deg, #e9f2fb 0%, #dde9f6 100%);
+        background: linear-gradient(180deg, #deebf9 0%, #cfe1f4 100%);
     }
 }
 
