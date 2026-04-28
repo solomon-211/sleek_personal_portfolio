@@ -1,200 +1,173 @@
-# Solomon Thiong Garang Leek - Portfolio
+# Solomon Thiong Garang Leek — Portfolio
 
-Professional portfolio website for Solomon Thiong Garang Leek, Software Engineering student at African Leadership University (ALU), showcasing design work, leadership experience, community impact, and software projects.
+Personal portfolio of Solomon Thiong Garang Leek, Software Engineering student at African Leadership University (ALU).
 
-Live site:
-- https://solomonleek.tech
+Live: https://solomonleek.tech
+
+---
 
 ## Table of Contents
 
-1. Project Overview
-2. Features
-3. Tech Stack
-4. Project Structure
-5. Local Development
-6. Hosting Option A: Serve (Node.js)
-7. Hosting Option B: Nginx (Linux VPS)
-8. Optional Contact API (Backend)
-9. Deployment Updates
-10. Troubleshooting
-11. Author
+1. [Project Structure](#1-project-structure)
+2. [Local Development](#2-local-development)
+3. [Server Requirements](#3-server-requirements)
+4. [Step 1 — Point Your Domain DNS](#step-1--point-your-domain-dns)
+5. [Step 2 — SSH Into Your Server](#step-2--ssh-into-your-server)
+6. [Step 3 — Install Required Software](#step-3--install-required-software)
+7. [Step 4 — Upload Project Files](#step-4--upload-project-files)
+8. [Step 5 — Set File Permissions](#step-5--set-file-permissions)
+9. [Step 6 — Configure Nginx](#step-6--configure-nginx)
+10. [Step 7 — Enable HTTPS with Certbot](#step-7--enable-https-with-certbot)
+11. [Step 8 — Deploy the Backend (Contact Form API)](#step-8--deploy-the-backend-contact-form-api)
+12. [Step 9 — Run Backend as a System Service](#step-9--run-backend-as-a-system-service)
+13. [Step 10 — Add Backend Proxy to Nginx](#step-10--add-backend-proxy-to-nginx)
+14. [Updating the Site](#updating-the-site)
+15. [Troubleshooting](#troubleshooting)
 
-## Project Overview
+---
 
-This is a static-first portfolio project built with semantic HTML, modern CSS, and vanilla JavaScript.
+## 1. Project Structure
 
-The project includes:
-- Main portfolio page
-- Dedicated case study page
-- Custom 404 page
-- SEO files (robots.txt, sitemap.xml)
-- Optional Flask backend contact endpoint
-
-## Features
-
-- Responsive design for desktop, tablet, and mobile
-- Scroll and reveal interactions with reduced-motion support
-- Project filtering by category
-- Featured case study section with detailed process narrative
-- Contact form with:
-  - Client-side validation
-  - Honeypot anti-spam field
-  - API-first submission
-  - Mail fallback when API is unavailable
-- Performance-minded image loading and UI behavior
-
-## Tech Stack
-
-- HTML5
-- CSS3 (custom, no framework)
-- Vanilla JavaScript
-- Font Awesome 6
-- Google Fonts: Sora + Plus Jakarta Sans
-- Optional backend: Flask (Python)
-
-## Project Structure
-
-```text
-solomon_leek_portfolio/
-|- 404.html
-|- index.html
-|- robots.txt
-|- sitemap.xml
-|- README.md
-|- backend/
-|  |- app.py
-|  |- requirements.txt
-|  |- README.md
-|- css/
-|  |- styles.css
-|  |- case-study.css
-|  |- 404.css
-|- html/
-|  |- index.html
-|  |- case-study.html
-|- images/
-|- js/
-   |- main.js
+```
+sleek_personal_portfolio/
+├── index.html              ← Root redirect to html/index.html
+├── 404.html                ← Custom 404 page
+├── robots.txt
+├── sitemap.xml
+├── README.md
+├── html/
+│   ├── index.html          ← Main portfolio page
+│   └── case-study.html     ← Case study page
+├── css/
+│   ├── styles.css          ← Main styles (base layout + dark navy theme)
+│   ├── case-study.css      ← Case study page styles
+│   └── 404.css             ← 404 page styles
+├── js/
+│   └── main.js             ← All JavaScript
+├── images/                 ← All portfolio images
+└── backend/
+    ├── app.py              ← FastAPI contact form API
+    ├── requirements.txt
+    ├── .env.example        ← Copy this to .env and fill in values
+    └── README.md
 ```
 
-## Local Development
+---
 
-You can run this project locally with any static server.
+## 2. Local Development
 
-### Option 1: Quick open
+Open directly in browser:
 
-- Open html/index.html in your browser.
+```
+html/index.html
+```
 
-Note:
-- Some features behave better through an HTTP server (recommended), especially routing and asset loading checks.
-
-### Option 2: Use a local static server
-
-Use the serve workflow below or any equivalent static server.
-
-## Hosting Option A: Serve (Node.js)
-
-This option is best for local demos, preview environments, and simple single-server hosting without Nginx.
-
-### Prerequisites
-
-- Node.js 18+ installed
-- npm available
-
-### Install serve globally
+Or use a local server (recommended so asset paths resolve correctly):
 
 ```bash
-npm install -g serve
+# Python
+python -m http.server 8080 --directory sleek_personal_portfolio
+
+# Node.js (install once: npm install -g serve)
+serve sleek_personal_portfolio -l 8080
 ```
 
-### Start the site
+Then open: http://localhost:8080
 
-From the project folder:
+---
+
+## 3. Server Requirements
+
+- Ubuntu 22.04 VPS (DigitalOcean, Linode, Vultr, AWS EC2, etc.)
+- At least 512MB RAM
+- Domain `solomonleek.tech` with DNS control
+- SSH root access
+
+---
+
+## Step 1 — Point Your Domain DNS
+
+At your domain registrar (Namecheap, GoDaddy, etc.), create these DNS records:
+
+| Type | Name | Value          |
+|------|------|----------------|
+| A    | @    | YOUR_SERVER_IP |
+| A    | www  | YOUR_SERVER_IP |
+
+DNS propagation takes 10–30 minutes. You can check with:
 
 ```bash
-cd solomon_leek_portfolio
-serve -s . -l 4173
+nslookup solomonleek.tech
 ```
 
-Then open:
+---
 
-- http://localhost:4173
-
-### Why this command
-
-- -s enables SPA-style fallback so direct routes still resolve
-- . serves from the current folder
-- -l 4173 binds to port 4173
-
-### Run serve as a background service (Linux, optional)
-
-Install pm2:
+## Step 2 — SSH Into Your Server
 
 ```bash
-npm install -g pm2
+ssh root@YOUR_SERVER_IP
 ```
 
-Start service:
+---
+
+## Step 3 — Install Required Software
 
 ```bash
-cd /var/www/solomon_leek_portfolio
-pm2 start "serve -s . -l 4173" --name portfolio-serve
-pm2 save
-pm2 startup
+apt update && apt upgrade -y
+
+# Nginx
+apt install nginx -y
+systemctl enable nginx
+systemctl start nginx
+
+# Python (for backend)
+apt install python3 python3-pip python3-venv -y
+
+# Certbot (free SSL)
+apt install certbot python3-certbot-nginx -y
+
+# Git (optional, for git-based deploys)
+apt install git -y
 ```
 
-Useful commands:
+---
+
+## Step 4 — Upload Project Files
+
+**Option A — SCP from your Windows PC** (run in PowerShell):
+
+```powershell
+scp -r "C:\Users\HP\OneDrive\Desktop\Portfolio\sleek_personal_portfolio" root@YOUR_SERVER_IP:/var/www/solomonleek.tech
+```
+
+**Option B — Git** (if your project is on GitHub):
 
 ```bash
-pm2 status
-pm2 logs portfolio-serve
-pm2 restart portfolio-serve
-pm2 stop portfolio-serve
+mkdir -p /var/www/solomonleek.tech
+git clone https://github.com/solomon-211/YOUR_REPO.git /var/www/solomonleek.tech
 ```
 
-## Hosting Option B: Nginx (Linux VPS)
+---
 
-This option is recommended for production.
-
-### Prerequisites
-
-- Ubuntu/Debian VPS
-- Domain name with DNS control
-- SSH access to server
-
-### 1) Install Nginx
+## Step 5 — Set File Permissions
 
 ```bash
-sudo apt update
-sudo apt install nginx -y
-sudo systemctl enable nginx
-sudo systemctl start nginx
+chown -R www-data:www-data /var/www/solomonleek.tech
+find /var/www/solomonleek.tech -type d -exec chmod 755 {} \;
+find /var/www/solomonleek.tech -type f -exec chmod 644 {} \;
 ```
 
-### 2) Upload project files
+---
+
+## Step 6 — Configure Nginx
+
+Create the Nginx config file:
 
 ```bash
-sudo mkdir -p /var/www/solomonleek.tech
-sudo rsync -av --delete /local/path/solomon_leek_portfolio/ /var/www/solomonleek.tech/
+nano /etc/nginx/sites-available/solomonleek.tech
 ```
 
-Set permissions:
-
-```bash
-sudo chown -R www-data:www-data /var/www/solomonleek.tech
-sudo find /var/www/solomonleek.tech -type d -exec chmod 755 {} \;
-sudo find /var/www/solomonleek.tech -type f -exec chmod 644 {} \;
-```
-
-### 3) Configure Nginx server block
-
-Create config file:
-
-```bash
-sudo nano /etc/nginx/sites-available/solomonleek.tech
-```
-
-Paste:
+Paste this complete configuration:
 
 ```nginx
 server {
@@ -205,152 +178,287 @@ server {
     root /var/www/solomonleek.tech;
     index index.html;
 
-    location / {
-        try_files $uri $uri/ /index.html;
+    # Root redirect goes to html/index.html
+    location = / {
+        return 301 /html/index.html;
     }
 
+    # Main portfolio page
     location /html/ {
         try_files $uri $uri/ /html/index.html;
     }
 
+    # Static assets — long cache
     location ~* \.(css|js|jpg|jpeg|png|gif|svg|webp|ico|woff|woff2|ttf|pdf)$ {
         expires 30d;
         add_header Cache-Control "public, immutable";
+        try_files $uri =404;
     }
 
+    # Block hidden files
     location ~ /\. {
         deny all;
     }
 
+    # Custom 404
     error_page 404 /404.html;
+    location = /404.html {
+        root /var/www/solomonleek.tech;
+        internal;
+    }
 }
 ```
 
-Enable and validate:
+Enable the site and reload Nginx:
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/solomonleek.tech /etc/nginx/sites-enabled/
-sudo rm -f /etc/nginx/sites-enabled/default
-sudo nginx -t
-sudo systemctl reload nginx
+# Enable site
+ln -s /etc/nginx/sites-available/solomonleek.tech /etc/nginx/sites-enabled/
+
+# Remove default site
+rm -f /etc/nginx/sites-enabled/default
+
+# Test config — must say "syntax is ok"
+nginx -t
+
+# Reload
+systemctl reload nginx
 ```
 
-### 4) Point DNS records
+Your site is now live at: http://solomonleek.tech
 
-At your domain provider, create:
+---
 
-- A record: @ -> your_server_ip
-- A record: www -> your_server_ip
-
-### 5) Add HTTPS with Certbot
+## Step 7 — Enable HTTPS with Certbot
 
 ```bash
-sudo apt install certbot python3-certbot-nginx -y
-sudo certbot --nginx -d solomonleek.tech -d www.solomonleek.tech
-sudo certbot renew --dry-run
+certbot --nginx -d solomonleek.tech -d www.solomonleek.tech
 ```
 
-## Optional Contact API (Backend)
+Follow the prompts. Certbot will:
+- Get a free SSL certificate from Let's Encrypt
+- Automatically update your Nginx config for HTTPS
+- Redirect all HTTP traffic to HTTPS
 
-The frontend contact form is API-first and falls back to mail when unavailable.
-
-If you want API delivery:
-
-1. Go to backend folder
-2. Create virtual environment
-3. Install requirements
-4. Run Flask app
-5. Reverse proxy /api/contact through Nginx
-
-Example (Linux):
+Test that auto-renewal works:
 
 ```bash
-cd backend
-python3 -m venv .venv
-source .venv/bin/activate
+certbot renew --dry-run
+```
+
+Your site is now live at: https://solomonleek.tech
+
+---
+
+## Step 8 — Deploy the Backend (Contact Form API)
+
+The contact form sends messages via the FastAPI backend in the `backend/` folder.
+
+```bash
+cd /var/www/solomonleek.tech/backend
+
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
-python app.py
+
+# Create .env from example
+cp .env.example .env
+nano .env
 ```
 
-If backend runs on port 5000, add this location to your Nginx server block:
+Fill in your `.env` file:
+
+```env
+PORT=8000
+ALLOWED_ORIGINS=https://solomonleek.tech,https://www.solomonleek.tech
+CONTACT_TO_EMAIL=s.leek@alustudent.com
+CONTACT_FROM_EMAIL=your-gmail@gmail.com
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-gmail@gmail.com
+SMTP_PASSWORD=your-gmail-app-password
+SMTP_STARTTLS=true
+```
+
+> **Gmail App Password:** Go to myaccount.google.com → Security → 2-Step Verification → App passwords → Create one named "Portfolio". Use the 16-character password as `SMTP_PASSWORD`.
+
+---
+
+## Step 9 — Run Backend as a System Service
+
+```bash
+nano /etc/systemd/system/portfolio-backend.service
+```
+
+Paste:
+
+```ini
+[Unit]
+Description=Portfolio FastAPI Backend
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/var/www/solomonleek.tech/backend
+ExecStart=/var/www/solomonleek.tech/backend/venv/bin/uvicorn app:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=3
+EnvironmentFile=/var/www/solomonleek.tech/backend/.env
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Enable and start:
+
+```bash
+systemctl daemon-reload
+systemctl enable portfolio-backend
+systemctl start portfolio-backend
+
+# Verify it is running
+systemctl status portfolio-backend
+```
+
+---
+
+## Step 10 — Add Backend Proxy to Nginx
+
+Open your Nginx config:
+
+```bash
+nano /etc/nginx/sites-available/solomonleek.tech
+```
+
+Add this `location` block inside the `server {}` block, before the closing `}`:
 
 ```nginx
+# Proxy contact form API to FastAPI backend
 location /api/ {
-    proxy_pass http://127.0.0.1:5000/api/;
+    proxy_pass http://127.0.0.1:8000;
+    proxy_http_version 1.1;
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_read_timeout 30s;
 }
 ```
 
-Then reload Nginx:
+Test and reload:
 
 ```bash
-sudo nginx -t
-sudo systemctl reload nginx
+nginx -t
+systemctl reload nginx
 ```
 
-## Deployment Updates
-
-For manual uploads:
+Test the API is working:
 
 ```bash
-sudo rsync -av --delete /local/path/solomon_leek_portfolio/ /var/www/solomonleek.tech/
-sudo systemctl reload nginx
+curl https://solomonleek.tech/api/health
+# Expected: {"status":"ok"}
 ```
 
-If using Git on server:
+---
+
+## Updating the Site
+
+**If you uploaded via SCP** (run from your Windows PC in PowerShell):
+
+```powershell
+scp -r "C:\Users\HP\OneDrive\Desktop\Portfolio\sleek_personal_portfolio" root@YOUR_SERVER_IP:/var/www/solomonleek.tech
+```
+
+Then on the server:
+
+```bash
+chown -R www-data:www-data /var/www/solomonleek.tech
+systemctl reload nginx
+```
+
+**If you deployed via Git:**
 
 ```bash
 cd /var/www/solomonleek.tech
 git pull origin main
-sudo systemctl reload nginx
+systemctl reload nginx
 ```
+
+**If you updated the backend:**
+
+```bash
+cd /var/www/solomonleek.tech/backend
+source venv/bin/activate
+pip install -r requirements.txt
+systemctl restart portfolio-backend
+```
+
+---
 
 ## Troubleshooting
 
-### CSS/JS/images not loading
-
-- Confirm file paths are correct relative to html/index.html and html/case-study.html
-- Check case-sensitive filenames on Linux
-
-### Nginx config fails
-
+### Site shows Nginx default page
 ```bash
-sudo nginx -t
+rm -f /etc/nginx/sites-enabled/default
+nginx -t && systemctl reload nginx
 ```
 
-Fix syntax errors, then reload.
+### CSS / JS / images not loading
+- Check file paths are correct — Linux filenames are case-sensitive
+- Confirm `chown` and `chmod` permissions are set (Step 5)
+- Check browser console for 404 errors
 
-### Domain does not resolve
-
-- Recheck DNS A records
-- Wait for DNS propagation
-
-### HTTPS issues
-
+### Nginx config error
 ```bash
-sudo certbot renew --dry-run
+nginx -t
+# Fix any errors shown, then:
+systemctl reload nginx
 ```
 
-### Permission denied / 403
+### Domain not resolving
+- Recheck DNS A records at your registrar
+- Wait up to 30 minutes for propagation
+- Test with: `nslookup solomonleek.tech`
 
+### HTTPS certificate error
 ```bash
-sudo chown -R www-data:www-data /var/www/solomonleek.tech
-sudo find /var/www/solomonleek.tech -type d -exec chmod 755 {} \;
-sudo find /var/www/solomonleek.tech -type f -exec chmod 644 {} \;
+certbot renew --dry-run
+certbot --nginx -d solomonleek.tech -d www.solomonleek.tech
 ```
+
+### Contact form not sending
+```bash
+# Check backend is running
+systemctl status portfolio-backend
+
+# Check backend logs
+journalctl -u portfolio-backend -n 50
+
+# Test API directly
+curl https://solomonleek.tech/api/health
+```
+
+### 403 Forbidden
+```bash
+chown -R www-data:www-data /var/www/solomonleek.tech
+find /var/www/solomonleek.tech -type d -exec chmod 755 {} \;
+find /var/www/solomonleek.tech -type f -exec chmod 644 {} \;
+```
+
+---
 
 ## Author
 
-Solomon Thiong Garang Leek
+**Solomon Thiong Garang Leek**
 
 - Website: https://solomonleek.tech
-- LinkedIn: https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345
 - GitHub: https://github.com/solomon-211
+- LinkedIn: https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345
 - Email: s.leek@alustudent.com
 
 ---
 
-Copyright (c) 2026 Solomon Thiong Garang Leek. All rights reserved.
+© 2025 Solomon Thiong Garang Leek. All rights reserved.
