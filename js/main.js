@@ -43,66 +43,98 @@ window.addEventListener('load', function () {
 });
 
 // ── Mobile menu ───────────────────────────────────────────────────────────────
-const menuToggleBtn = document.getElementById('menuToggleBtn');
-const navLinksEl    = document.getElementById('navLinks');
-const navMoreEl = document.getElementById('navMore');
-const navMoreToggle = document.getElementById('navMoreToggle');
+const menuToggleBtn  = document.getElementById('menuToggleBtn');
+const menuIcon       = document.getElementById('menuIcon');
+const navLinksEl     = document.getElementById('navLinks');
+const navCloseBtn    = document.getElementById('navCloseBtn');
+const navMoreToggle  = document.getElementById('navMoreToggle');   // mobile "More Pages" btn
+const navBackBtn     = document.getElementById('navBackBtn');       // mobile "Back" btn
+const navMoreDesktop = document.getElementById('navMoreDesktop');   // desktop More toggle
+const navMoreEl      = document.getElementById('navMore');          // desktop More <li>
+const navDrawerTitle = document.getElementById('navDrawerTitle');
 
-function isMenuOpen() {
-    return !!(navLinksEl && navLinksEl.classList.contains('active'));
-}
+function isMobile() { return window.innerWidth <= 768; }
+function isMenuOpen() { return !!(navLinksEl && navLinksEl.classList.contains('active')); }
 
 function openMenu() {
     if (!navLinksEl || !menuToggleBtn) return;
     navLinksEl.classList.add('active');
     menuToggleBtn.setAttribute('aria-expanded', 'true');
+    showMainView();
 }
 
 function closeMenu() {
     if (!navLinksEl || !menuToggleBtn) return;
     navLinksEl.classList.remove('active');
     menuToggleBtn.setAttribute('aria-expanded', 'false');
-    closeMoreMenu();
+    showMainView();
+    closeDesktopMore();
 }
 
-function toggleMenu() {
-    isMenuOpen() ? closeMenu() : openMenu();
+function toggleMenu() { isMenuOpen() ? closeMenu() : openMenu(); }
+
+// ── Mobile view switching ─────────────────────────────────────────────────────
+function showMainView() {
+    if (!navLinksEl) return;
+    navLinksEl.classList.remove('nav-more-view');
+    if (navDrawerTitle) navDrawerTitle.textContent = 'Menu';
 }
 
-function closeMoreMenu() {
-    if (!navMoreEl || !navMoreToggle) return;
+function showMoreView() {
+    if (!navLinksEl) return;
+    navLinksEl.classList.add('nav-more-view');
+    if (navDrawerTitle) navDrawerTitle.textContent = 'More';
+}
+
+// ── Desktop More dropdown ─────────────────────────────────────────────────────
+function closeDesktopMore() {
+    if (!navMoreEl || !navMoreDesktop) return;
     navMoreEl.classList.remove('open');
-    navMoreToggle.setAttribute('aria-expanded', 'false');
+    navMoreDesktop.setAttribute('aria-expanded', 'false');
 }
 
-function toggleMoreMenu() {
-    if (!navMoreEl || !navMoreToggle) return;
+function toggleDesktopMore() {
+    if (!navMoreEl || !navMoreDesktop) return;
     const willOpen = !navMoreEl.classList.contains('open');
     navMoreEl.classList.toggle('open', willOpen);
-    navMoreToggle.setAttribute('aria-expanded', String(willOpen));
+    navMoreDesktop.setAttribute('aria-expanded', String(willOpen));
 }
 
-if (menuToggleBtn) menuToggleBtn.addEventListener('click', toggleMenu);
-if (navMoreToggle) navMoreToggle.addEventListener('click', toggleMoreMenu);
+// ── Event listeners ───────────────────────────────────────────────────────────
+if (menuToggleBtn)  menuToggleBtn.addEventListener('click', toggleMenu);
+if (navCloseBtn)    navCloseBtn.addEventListener('click', closeMenu);
+if (navMoreToggle)  navMoreToggle.addEventListener('click', showMoreView);
+if (navBackBtn)     navBackBtn.addEventListener('click', showMainView);
+if (navMoreDesktop) navMoreDesktop.addEventListener('click', toggleDesktopMore);
 
+// Close drawer when any nav link is clicked
 document.querySelectorAll('#navLinks a').forEach(link => link.addEventListener('click', closeMenu));
 
+// Close drawer when clicking outside
 document.addEventListener('click', function (e) {
     if (!isMenuOpen()) return;
     if (!navLinksEl.contains(e.target) && !menuToggleBtn.contains(e.target)) closeMenu();
 });
 
+// Close desktop dropdown when clicking outside
 document.addEventListener('click', function (e) {
-    if (!navMoreEl || !navMoreToggle) return;
-    if (!navMoreEl.contains(e.target) && !navMoreToggle.contains(e.target)) {
-        closeMoreMenu();
-    }
+    if (!navMoreEl || !navMoreDesktop) return;
+    if (!isMobile() && !navMoreEl.contains(e.target)) closeDesktopMore();
 });
 
+// Escape key
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
         if (isMenuOpen()) closeMenu();
-        closeMoreMenu();
+        closeDesktopMore();
+    }
+});
+
+// Reset on resize
+window.addEventListener('resize', function () {
+    if (!isMobile()) {
+        showMainView();
+        closeDesktopMore();
     }
 });
 
@@ -298,9 +330,10 @@ function handleScrollEffects() {
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
     if (nav) {
+        // Keep dark navy — only adjust opacity on scroll
         nav.style.background = scrollY > 100
-            ? 'rgba(255,255,255,0.98)'
-            : 'rgba(255,255,255,0.95)';
+            ? 'rgba(6,13,26,0.98)'
+            : 'rgba(6,13,26,0.92)';
     }
 
     if (progressBar) {
@@ -471,3 +504,21 @@ document.querySelectorAll('a[href]').forEach(link => {
         setTimeout(() => { window.location.href = href; }, 350);
     });
 });
+
+// ── Skill bar animations ──────────────────────────────────────────────────────
+if ('IntersectionObserver' in window && !prefersReducedMotion) {
+    const skillBarObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.querySelectorAll('.skill-bar-fill').forEach((bar, i) => {
+                setTimeout(() => bar.classList.add('animated'), i * 120);
+            });
+            skillBarObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.skill-category').forEach(el => skillBarObserver.observe(el));
+} else {
+    // No animation — just set widths immediately
+    document.querySelectorAll('.skill-bar-fill').forEach(bar => bar.classList.add('animated'));
+}
