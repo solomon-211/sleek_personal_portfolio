@@ -47,6 +47,62 @@
   --radius-icon: 12px;
 }
 
+/* ── HERO SUBTITLE ROLE PILLS ─────────────────────── */
+.hero-subtitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.hero-role-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.85);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  cursor: default;
+}
+
+.hero-role-pill i {
+  color: var(--orange-400);
+  font-size: 0.78rem;
+}
+
+.hero-role-pill:hover {
+  background: rgba(234,88,12,0.12);
+  border-color: rgba(234,88,12,0.4);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.hero-role-sep {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .hero-subtitle {
+    gap: 0.4rem;
+  }
+  .hero-role-sep {
+    display: none;
+  }
+}
+
 /* ── GLOBAL BODY & BACKGROUND ──────────────────────── */
 body {
   background: var(--navy-900) !important;
