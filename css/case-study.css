@@ -78,7 +78,7 @@ body {
     border-radius: 999px;
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.15);
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.85) !important;
     text-decoration: none;
     font-size: 0.88rem;
     font-weight: 600;
@@ -88,7 +88,7 @@ body {
 .cs-btn-back:hover {
     background: rgba(255,255,255,0.14);
     border-color: rgba(255,255,255,0.3);
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .cs-btn-view {
@@ -98,7 +98,7 @@ body {
     padding: 0.7rem 1.3rem;
     border-radius: 999px;
     background: linear-gradient(135deg, #ea580c, #f97316);
-    color: #ffffff;
+    color: #ffffff !important;
     text-decoration: none;
     font-size: 0.88rem;
     font-weight: 700;
@@ -109,6 +109,7 @@ body {
 .cs-btn-view:hover {
     opacity: 0.9;
     transform: translateY(-2px);
+    color: #ffffff !important;
 }
 
 /* Overview bar */
@@ -426,6 +427,14 @@ body {
     flex-wrap: wrap;
 }
 
+/* Force button text colours — overrides global a{} from styles.css */
+.cs-next-actions .cs-btn-view,
+.cs-next-actions .cs-btn-back,
+.cs-hero-actions .cs-btn-view,
+.cs-hero-actions .cs-btn-back {
+    color: inherit !important;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .cs-hero { padding: 90px 1.25rem 60px; }
@@ -442,3 +451,277 @@ body {
     .cs-hero-actions { flex-direction: column; }
     .cs-btn-back, .cs-btn-view { justify-content: center; }
 }
+
+/* ── LIKE & SHARE ───────────────────────────────────── */
+.cs-engage {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+}
+
+.cs-like-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.6rem 1.25rem; border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.7) !important;
+    font-size: 0.9rem; font-weight: 600; cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+    font-family: inherit;
+}
+.cs-like-btn:hover {
+    background: rgba(239,68,68,0.1);
+    border-color: rgba(239,68,68,0.35);
+    color: #fca5a5 !important;
+    transform: scale(1.03);
+}
+.cs-like-btn.liked {
+    background: rgba(239,68,68,0.12);
+    border-color: rgba(239,68,68,0.4);
+    color: #f87171 !important;
+}
+.cs-like-btn.liked .cs-like-icon { color: #ef4444; }
+.cs-like-icon { font-size: 1rem; transition: transform 0.2s; }
+.cs-like-btn.liked .cs-like-icon { animation: like-pop 0.35s ease; }
+@keyframes like-pop { 0%{transform:scale(1)} 50%{transform:scale(1.4)} 100%{transform:scale(1)} }
+.cs-like-count {
+    background: rgba(255,255,255,0.08); border-radius: 999px;
+    padding: 0.1rem 0.55rem; font-size: 0.8rem; font-weight: 700;
+}
+
+.cs-engage-right { display: flex; align-items: center; gap: 0.5rem; }
+.cs-share-label { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-right: 0.25rem; }
+.cs-share-btn {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.6) !important;
+    background: rgba(255,255,255,0.04);
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+    font-family: inherit;
+}
+.cs-share-btn svg { display: block; }
+.cs-share-btn:hover { transform: translateY(-2px); }
+.cs-share-btn--twitter:hover { background: #000; border-color: #555; color: #fff !important; }
+.cs-share-btn--linkedin:hover { background: #0A66C2; border-color: #0A66C2; color: #fff !important; }
+.cs-share-btn--copy:hover { background: rgba(234,88,12,0.12); border-color: rgba(234,88,12,0.4); color: #f97316 !important; }
+.cs-share-btn--copy.copied { background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.35); color: #86efac !important; }
+
+/* ── COMMENTS ───────────────────────────────────────── */
+.cs-comments { display: flex; flex-direction: column; gap: 2rem; }
+
+.cs-comments-header { display: flex; flex-direction: column; gap: 0.4rem; }
+.cs-comments-title {
+    font-family: 'Sora', sans-serif; font-size: 1.3rem; font-weight: 800;
+    color: #fff; display: flex; align-items: center; gap: 0.6rem;
+}
+.cs-comments-title i { color: #f97316; font-size: 1.1rem; }
+.cs-comments-count {
+    background: rgba(234,88,12,0.15); border: 1px solid rgba(234,88,12,0.3);
+    color: #fb923c; font-size: 0.78rem; font-weight: 700;
+    padding: 0.1rem 0.55rem; border-radius: 999px;
+}
+.cs-comments-sub { font-size: 0.875rem; color: rgba(255,255,255,0.5); }
+
+/* Form */
+.cs-comment-form {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 1.75rem;
+    display: flex; flex-direction: column; gap: 1.1rem;
+}
+.cs-comment-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.cs-form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.cs-form-group label {
+    font-size: 0.82rem; font-weight: 700;
+    color: rgba(255,255,255,0.65);
+}
+.cs-form-group label span { color: #f97316; }
+.cs-form-group input,
+.cs-form-group textarea {
+    width: 100%; padding: 0.7rem 1rem; border-radius: 9px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff; font-size: 0.9rem; font-family: inherit;
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cs-form-group input:focus,
+.cs-form-group textarea:focus {
+    border-color: #ea580c;
+    box-shadow: 0 0 0 3px rgba(234,88,12,0.12);
+}
+.cs-form-group input::placeholder,
+.cs-form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+.cs-form-group textarea { resize: vertical; min-height: 110px; }
+.cs-char-count { font-size: 0.72rem; color: rgba(255,255,255,0.35); text-align: right; }
+
+.cs-form-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.cs-form-note { font-size: 0.75rem; color: rgba(255,255,255,0.35); display: flex; align-items: center; gap: 0.3rem; }
+.cs-comment-status {
+    font-size: 0.85rem; padding: 0.6rem 1rem; border-radius: 8px;
+    display: none;
+}
+.cs-comment-status.success { display: block; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); color: #86efac; }
+.cs-comment-status.error   { display: block; background: rgba(239,68,68,0.1);  border: 1px solid rgba(239,68,68,0.25);  color: #fca5a5; }
+
+/* Comment list */
+.cs-comment-list { display: flex; flex-direction: column; gap: 1.25rem; }
+.cs-comment-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.25rem; border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    animation: comment-in 0.35s ease;
+}
+@keyframes comment-in { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+.cs-comment-avatar {
+    width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, #ea580c, #f97316);
+    color: #fff; font-weight: 800; font-size: 0.85rem;
+    display: flex; align-items: center; justify-content: center;
+}
+.cs-comment-body { flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+.cs-comment-meta { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.cs-comment-name { font-size: 0.9rem; font-weight: 700; color: #fff; }
+.cs-comment-time { font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+.cs-comment-text { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.7; }
+.cs-comment-like {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.78rem; color: rgba(255,255,255,0.4);
+    background: none; border: none; cursor: pointer;
+    padding: 0.2rem 0.5rem; border-radius: 6px;
+    transition: color 0.2s, background 0.2s; font-family: inherit;
+    margin-top: 0.25rem; width: fit-content;
+}
+.cs-comment-like:hover { color: #f87171; background: rgba(239,68,68,0.08); }
+.cs-comment-like.liked { color: #ef4444; }
+
+.cs-comments-empty {
+    text-align: center; padding: 2.5rem 1rem;
+    color: rgba(255,255,255,0.3); font-size: 0.9rem;
+    border: 1px dashed rgba(255,255,255,0.1); border-radius: 14px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .cs-comment-form-row { grid-template-columns: 1fr; }
+    .cs-engage { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── LIGHTBOX ───────────────────────────────────────── */
+.cs-lightbox {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+    animation: lb-in 0.2s ease;
+}
+@keyframes lb-in { from { opacity: 0; } to { opacity: 1; } }
+
+.cs-lightbox__backdrop {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.88);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    cursor: zoom-out;
+}
+
+.cs-lightbox__close {
+    position: absolute; top: 1.25rem; right: 1.25rem; z-index: 2;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; font-size: 1rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+}
+.cs-lightbox__close:hover { background: rgba(234,88,12,0.3); transform: scale(1.1); }
+
+.cs-lightbox__content {
+    position: relative; z-index: 1;
+    max-width: min(90vw, 900px);
+    display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    animation: lb-scale 0.25s ease;
+}
+@keyframes lb-scale { from { transform: scale(0.92); } to { transform: scale(1); } }
+
+.cs-lightbox__content img {
+    width: 100%; height: auto;
+    border-radius: 12px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.cs-lightbox__download {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.6rem 1.25rem; border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff !important; font-size: 0.875rem; font-weight: 700;
+    transition: background 0.2s;
+}
+.cs-lightbox__download:hover { background: rgba(234,88,12,0.25); border-color: rgba(234,88,12,0.5); }
+
+/* ── LIGHT MODE ─────────────────────────────────────── */
+html.light-mode .cs-overview          { background: #1e293b !important; border-bottom-color: rgba(255,255,255,0.1) !important; }
+html.light-mode .cs-overview-label    { color: rgba(255,255,255,0.5) !important; }
+html.light-mode .cs-overview-value    { color: rgba(255,255,255,0.9) !important; }
+html.light-mode .cs-overview-item     { border-left-color: rgba(255,255,255,0.15) !important; }
+html.light-mode .cs-overview-item:first-child { border-left-color: #ea580c !important; }
+
+html.light-mode .cs-hero              { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important; }
+html.light-mode .cs-hero h1           { color: #0f172a !important; }
+html.light-mode .cs-hero-subtitle     { color: #475569 !important; }
+html.light-mode .cs-badge             { background: rgba(234,88,12,0.1) !important; border-color: rgba(234,88,12,0.3) !important; color: #ea580c !important; }
+
+html.light-mode .cs-body              { background: #f8fafc !important; }
+html.light-mode .cs-section h2        { color: #0f172a !important; }
+html.light-mode .cs-section p         { color: #334155 !important; }
+html.light-mode .cs-section-label     { background: rgba(234,88,12,0.08) !important; color: #ea580c !important; }
+
+html.light-mode .cs-step              { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode .cs-step-content h4   { color: #0f172a !important; }
+html.light-mode .cs-step-content p    { color: #475569 !important; }
+
+html.light-mode .cs-tool              { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode .cs-tool-name         { color: #0f172a !important; }
+html.light-mode .cs-tool-use          { color: #475569 !important; }
+
+html.light-mode .cs-outcome           { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; border-top-color: #ea580c !important; }
+html.light-mode .cs-outcome-title     { color: #0f172a !important; }
+html.light-mode .cs-outcome-desc      { color: #475569 !important; }
+
+html.light-mode .cs-lesson            { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode .cs-lesson p          { color: #334155 !important; }
+html.light-mode .cs-lesson strong     { color: #0f172a !important; }
+
+html.light-mode .cs-next              { background: #f1f5f9 !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode .cs-next h3           { color: #0f172a !important; }
+html.light-mode .cs-next p            { color: #475569 !important; }
+
+html.light-mode .cs-divider           { background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent) !important; }
+html.light-mode .cs-poster-caption    { background: #f1f5f9 !important; color: #64748b !important; border-top-color: rgba(0,0,0,0.08) !important; }
+
+html.light-mode .cs-engage            { background: rgba(0,0,0,0.03) !important; border-color: rgba(0,0,0,0.08) !important; }
+html.light-mode .cs-like-btn          { background: rgba(0,0,0,0.05) !important; border-color: rgba(0,0,0,0.12) !important; color: #334155 !important; }
+html.light-mode .cs-share-btn         { border-color: rgba(0,0,0,0.12) !important; color: #475569 !important; background: rgba(0,0,0,0.04) !important; }
+
+html.light-mode .cs-comments          { background: transparent !important; }
+html.light-mode .cs-comments-title    { color: #0f172a !important; }
+html.light-mode .cs-comments-sub      { color: #475569 !important; }
+html.light-mode .cs-comment-form      { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode .cs-form-group label  { color: #334155 !important; }
+html.light-mode .cs-form-group input,
+html.light-mode .cs-form-group textarea { background: #f1f5f9 !important; border-color: rgba(0,0,0,0.12) !important; color: #0f172a !important; }
+html.light-mode .cs-form-group input::placeholder,
+html.light-mode .cs-form-group textarea::placeholder { color: #94a3b8 !important; }
+html.light-mode .cs-char-count        { color: #94a3b8 !important; }
+html.light-mode .cs-form-note         { color: #94a3b8 !important; }
+html.light-mode .cs-comment-item      { background: #ffffff !important; border-color: rgba(0,0,0,0.08) !important; }
+html.light-mode .cs-comment-name      { color: #0f172a !important; }
+html.light-mode .cs-comment-time      { color: #94a3b8 !important; }
+html.light-mode .cs-comment-text      { color: #334155 !important; }
+html.light-mode .cs-comments-empty    { color: #94a3b8 !important; border-color: rgba(0,0,0,0.1) !important; }

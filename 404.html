@@ -7,17 +7,116 @@
     <meta name="robots" content="noindex">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f4c81'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Sora,sans-serif' font-weight='800' font-size='13' fill='white'>SK</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/404.css?v=20260412">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #060d1a;
+            color: rgba(255,255,255,0.85);
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 2rem;
+            position: relative; overflow: hidden;
+        }
+        /* Background orbs */
+        body::before {
+            content: '';
+            position: fixed; inset: 0; pointer-events: none;
+            background:
+                radial-gradient(600px circle at 20% 30%, rgba(234,88,12,0.08), transparent 55%),
+                radial-gradient(400px circle at 80% 70%, rgba(251,146,60,0.05), transparent 50%);
+        }
+        .wrap { max-width: 520px; position: relative; z-index: 1; }
+        .logo {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.1rem;
+            color: #fff; text-decoration: none; margin-bottom: 3rem;
+        }
+        .logo-icon {
+            width: 36px; height: 36px; border-radius: 8px;
+            background: linear-gradient(135deg, #ea580c, #f97316);
+            color: #fff; font-size: 0.85rem; font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .code {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(5rem, 20vw, 9rem);
+            font-weight: 800; line-height: 1;
+            background: linear-gradient(135deg, #ea580c, #f97316, #fb923c);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            margin-bottom: 1rem;
+            animation: pulse-num 3s ease-in-out infinite alternate;
+        }
+        @keyframes pulse-num { from { opacity: 0.8; } to { opacity: 1; } }
+        h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 800; color: #fff;
+            margin-bottom: 0.75rem;
+        }
+        p {
+            color: rgba(255,255,255,0.55);
+            line-height: 1.7; margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+        .actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem; border-radius: 8px;
+            background: linear-gradient(135deg, #ea580c, #f97316);
+            color: #fff; text-decoration: none;
+            font-weight: 700; font-size: 0.9rem;
+            box-shadow: 0 8px 24px rgba(234,88,12,0.35);
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem; border-radius: 8px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.8); text-decoration: none;
+            font-weight: 700; font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .links {
+            margin-top: 2.5rem; display: flex; gap: 1.5rem;
+            justify-content: center; flex-wrap: wrap;
+        }
+        .links a {
+            font-size: 0.85rem; color: rgba(255,255,255,0.4);
+            text-decoration: none; transition: color 0.2s;
+        }
+        .links a:hover { color: #f97316; }
+    </style>
 </head>
 <body>
-    <div class="container">
+    <div class="wrap">
+        <a href="html/index.html" class="logo">
+            <div class="logo-icon">SK</div>
+            Sleek
+        </a>
         <div class="code">404</div>
         <h1>Page not found</h1>
-        <p>The page you're looking for doesn't exist or may have been moved. Let's get you back on track.</p>
-        <a href="html/index.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+        <p>The page you're looking for doesn't exist or may have been moved.<br>Let's get you back on track.</p>
+        <div class="actions">
+            <a href="html/index.html" class="btn-primary">
+                <i class="fas fa-house"></i> Back to Portfolio
+            </a>
+            <a href="html/blog.html" class="btn-ghost">
+                <i class="fas fa-pen-nib"></i> Read Blog
+            </a>
+        </div>
+        <div class="links">
+            <a href="html/index.html#projects">Projects</a>
+            <a href="html/index.html#about">About</a>
+            <a href="html/index.html#contact">Contact</a>
+            <a href="html/blog.html">Blog</a>
+        </div>
     </div>
 </body>
 </html>
-

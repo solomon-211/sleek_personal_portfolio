@@ -8,6 +8,27 @@ const parallaxBg  = document.getElementById('parallaxBg');
 const formStatus  = document.getElementById('formStatus');
 const fabBtn      = document.getElementById('fabBtn');
 
+// ── Theme toggle ──────────────────────────────────────────────────────────────
+(function () {
+    const btn = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const STORAGE_KEY = 'portfolio-theme';
+
+    // Apply saved or system preference on load
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (saved === 'light' || (!saved && !prefersDark)) {
+        html.classList.add('light-mode');
+    }
+
+    if (btn) {
+        btn.addEventListener('click', function () {
+            const isLight = html.classList.toggle('light-mode');
+            localStorage.setItem(STORAGE_KEY, isLight ? 'light' : 'dark');
+        });
+    }
+})();
+
 // ── Rotating hero roles ──────────────────────────────────────────────────────
 const roleEl = document.getElementById('roleText');
 if (roleEl && !prefersReducedMotion) {
@@ -110,9 +131,10 @@ if (navMoreDesktop) navMoreDesktop.addEventListener('click', toggleDesktopMore);
 // Close drawer when any nav link is clicked
 document.querySelectorAll('#navLinks a').forEach(link => link.addEventListener('click', closeMenu));
 
-// Close drawer when clicking outside
+// ── 4. Close drawer when tapping the dim overlay (::before pseudo) or outside ──
 document.addEventListener('click', function (e) {
     if (!isMenuOpen()) return;
+    // If click is outside the drawer and not on the toggle button — close
     if (!navLinksEl.contains(e.target) && !menuToggleBtn.contains(e.target)) closeMenu();
 });
 
@@ -120,6 +142,20 @@ document.addEventListener('click', function (e) {
 document.addEventListener('click', function (e) {
     if (!navMoreEl || !navMoreDesktop) return;
     if (!isMobile() && !navMoreEl.contains(e.target)) closeDesktopMore();
+});
+
+// ── 2. Smooth scroll for all anchor links (footer, sidebar, etc.) ──────────────
+document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+        const id = this.getAttribute('href').slice(1);
+        if (!id) return;
+        const target = document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+        // Update URL without jumping
+        history.pushState(null, '', '#' + id);
+    });
 });
 
 // Escape key
@@ -198,6 +234,50 @@ function setFormStatus(message, type) {
     if (!formStatus) return;
     formStatus.textContent = message;
     formStatus.className = `form-status ${type} show`;
+
+    // ── 3. Success animation ──────────────────────────────
+    if (type === 'success' && !prefersReducedMotion) {
+        showSuccessAnimation(message);
+    }
+}
+
+function showSuccessAnimation(message) {
+    // Remove any existing overlay
+    const existing = document.getElementById('formSuccessOverlay');
+    if (existing) existing.remove();
+
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'form-success-overlay';
+    overlay.id = 'formSuccessOverlay';
+    overlay.innerHTML =
+        '<div class="form-success-card">' +
+            '<div class="form-success-icon"><i class="fas fa-check"></i></div>' +
+            '<p class="form-success-title">Message Sent!</p>' +
+            '<p class="form-success-sub">' + (message || "I'll get back to you soon.") + '</p>' +
+        '</div>';
+    document.body.appendChild(overlay);
+
+    // Confetti burst
+    const colours = ['#ea580c','#f97316','#fb923c','#22c55e','#3b82f6','#a855f7','#fbbf24'];
+    for (let i = 0; i < 60; i++) {
+        const p = document.createElement('div');
+        p.className = 'confetti-particle';
+        p.style.cssText =
+            'left:' + (20 + Math.random() * 60) + '%;' +
+            'top:-10px;' +
+            'background:' + colours[Math.floor(Math.random() * colours.length)] + ';' +
+            '--dur:' + (1.5 + Math.random() * 2) + 's;' +
+            '--delay:' + (Math.random() * 0.6) + 's;' +
+            'width:' + (6 + Math.random() * 8) + 'px;' +
+            'height:' + (6 + Math.random() * 8) + 'px;' +
+            'border-radius:' + (Math.random() > 0.5 ? '50%' : '2px') + ';';
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 4000);
+    }
+
+    // Auto-remove overlay after animation
+    setTimeout(() => overlay.remove(), 3600);
 }
 
 function setFieldInvalid(inputEl, invalid) {
@@ -222,28 +302,30 @@ function validateForm(name, email, subject, message) {
 }
 
 async function sendViaEmailJS(payload) {
-    // API-first: send to backend endpoint; frontend fallback opens mail client on failure.
-    const apiUrl = window.CONTACT_API_URL || '/api/contact';
+    // POST to backend. Falls back to mailto if backend is unreachable.
+    const apiUrl = window.CONTACT_API_URL || 'http://localhost:8000/api/contact';
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const timeoutId = setTimeout(() => controller.abort(), 12000);
 
     try {
         const response = await fetch(apiUrl, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify(payload),
             signal: controller.signal
         });
 
+        const data = await response.json().catch(() => ({}));
+
         if (!response.ok) {
-            // Preserve backend detail when available for easier debugging.
-            const payload = await response.json().catch(() => null);
-            throw new Error(payload?.detail || 'Contact request failed');
+            // Use backend's detail message if available
+            throw new Error(data?.detail || `Server error (${response.status})`);
         }
 
-        return response.json().catch(() => ({ ok: true }));
+        return data;
+    } catch (err) {
+        if (err.name === 'AbortError') throw new Error('Request timed out. Please try again.');
+        throw err;
     } finally {
         clearTimeout(timeoutId);
     }
@@ -310,13 +392,27 @@ if (contactForm) {
         submitBtn.disabled  = true;
 
         try {
-            await sendViaEmailJS({ name, email, subject, message });
+            const result = await sendViaEmailJS({
+                name,
+                email,
+                subject,
+                message,
+                website: websiteInput ? websiteInput.value : '' // honeypot
+            });
             this.reset();
-            setFormStatus('Message sent! I\'ll get back to you soon.', 'success');
+            setFormStatus(result?.message || 'Message sent! I\'ll get back to you soon.', 'success');
         } catch (err) {
-            // Last-resort delivery path when API or SMTP is temporarily unavailable.
-            openMailtoFallback({ name, email, subject, message });
-            setFormStatus('Live form service is unavailable right now. Your email app has been opened as fallback.', 'error');
+            const errMsg = err.message || '';
+            // If backend saved the message but email failed, show a softer message
+            if (errMsg.toLowerCase().includes('saved') || errMsg.toLowerCase().includes('follow up')) {
+                setFormStatus(errMsg, 'success');
+            } else if (errMsg.toLowerCase().includes('too many')) {
+                setFormStatus('You\'ve sent too many messages recently. Please wait an hour and try again.', 'error');
+            } else {
+                // Last-resort: open mailto fallback
+                openMailtoFallback({ name, email, subject, message });
+                setFormStatus('Could not reach the server. Your email app has been opened as a fallback.', 'error');
+            }
         } finally {
             submitBtn.innerHTML = originalHTML;
             submitBtn.disabled  = false;

@@ -77,9 +77,16 @@
                 <div class="logo-icon">SK</div>
                 <span class="logo-text">Sleek</span>
             </a>
-            <button class="menu-toggle" id="menuToggleBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" title="Toggle menu">
-                <i class="fas fa-bars" id="menuIcon"></i>
-            </button>
+            <div class="nav-right-group">
+                <!-- Theme toggle -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+                    <i class="fas fa-sun theme-icon-light"></i>
+                    <i class="fas fa-moon theme-icon-dark"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggleBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" title="Toggle menu">
+                    <i class="fas fa-bars" id="menuIcon"></i>
+                </button>
+            </div>
             <ul class="nav-links" id="navLinks">
 
                 <!-- Drawer header (mobile only) -->
@@ -97,6 +104,7 @@
                 <li class="nav-main-item"><a href="#timeline" class="nav-link">Journey</a></li>
                 <li class="nav-main-item"><a href="#skills"   class="nav-link">Skills</a></li>
                 <li class="nav-main-item"><a href="#contact"  class="nav-link">Contact</a></li>
+                <li class="nav-main-item"><a href="html/blog.html" class="nav-link">Blog</a></li>
 
                 <!-- More Pages button (mobile only) -->
                 <li class="nav-main-item nav-more-btn-item">
@@ -129,6 +137,7 @@
                         <li><a href="#leadership"  class="nav-link">Leadership</a></li>
                         <li><a href="#community"   class="nav-link">Community</a></li>
                         <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                        <li><a href="html/blog.html" class="nav-link">Blog</a></li>
                     </ul>
                 </li>
             </ul>
@@ -197,7 +206,7 @@
                     <div class="hero-stat-divider"></div>
                     <div class="hero-stat">
                         <span class="hero-stat-num">ALU</span>
-                        <span class="hero-stat-label">Mastercard Foundation Scholar</span>
+                        <span class="hero-stat-label">Mastercard Foundation Reciepint</span>
                     </div>
                 </div>
 
@@ -240,6 +249,12 @@
 
     <!-- About Section -->
     <section id="about" class="section-bg-secondary">
+        <!-- Wave divider from hero -->
+        <div class="section-wave" aria-hidden="true">
+            <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,48 C360,0 1080,0 1440,48 L1440,0 L0,0 Z" fill="var(--wave-fill, #060d1a)"/>
+            </svg>
+        </div>
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">About Me</h2>
@@ -249,6 +264,13 @@
             </div>
             <div class="about-content">
                 <div class="about-text">
+                    <!-- About photo -->
+                    <div class="about-photo-wrap">
+                        <img src="images/photo.jpg" alt="Solomon Thiong Garang Leek" class="about-photo" loading="lazy" width="320" height="320">
+                        <div class="about-photo-badge">
+                            <i class="fas fa-map-marker-alt"></i> Kigali, Rwanda
+                        </div>
+                    </div>
                     <p>
                         I am a Software Engineering student at <strong><span class="text-emphasis-white">African Leadership University (ALU)</span></strong> in Kigali, Rwanda, originally from <strong><span class="text-emphasis-white">South Sudan</span></strong>. My work sits at the intersection of software engineering, visual communication, and social impact.
                     </p>
@@ -314,6 +336,30 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- GitHub activity widget -->
+                    <div class="github-widget">
+                        <div class="github-widget__header">
+                            <i class="fa-brands fa-github github-widget__icon"></i>
+                            <span class="github-widget__title">GitHub Activity</span>
+                            <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" class="github-widget__link">
+                                solomon-211 <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                        <div class="github-widget__stats">
+                            <div class="github-widget__stat">
+                                <i class="fas fa-code-branch"></i>
+                                <span>Active on GitHub</span>
+                            </div>
+                            <div class="github-widget__stat">
+                                <i class="fas fa-star"></i>
+                                <span>Open source projects</span>
+                            </div>
+                        </div>
+                        <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" class="github-widget__cta">
+                            <i class="fa-brands fa-github"></i> View Profile &amp; Repositories
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -371,22 +417,10 @@
                         <h3 class="skill-title">Certifications</h3>
                     </div>
                     <div class="skill-list">
-                        <div class="cert-item">
-                            <span class="cert-item-name">Google IT Support Certificate</span>
-                            <a href="https://grow.google/certificates/it-support/" target="_blank" rel="noopener noreferrer" class="cert-verify">Verify ↗</a>
-                        </div>
-                        <div class="cert-item">
-                            <span class="cert-item-name">Adobe Certified Expert</span>
-                            <a href="https://www.adobe.com/creativecloud/certification.html" target="_blank" rel="noopener noreferrer" class="cert-verify">Verify ↗</a>
-                        </div>
-                        <div class="cert-item">
-                            <span class="cert-item-name">Python Programming Certificate</span>
-                            <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" class="cert-verify">GitHub ↗</a>
-                        </div>
-                        <div class="cert-item">
-                            <span class="cert-item-name">Web Development Bootcamp</span>
-                            <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" class="cert-verify">GitHub ↗</a>
-                        </div>
+                        <span class="skill-item">Google IT Support Certificate</span>
+                        <span class="skill-item">Adobe Certified Expert</span>
+                        <span class="skill-item">Python Programming Certificate</span>
+                        <span class="skill-item">Web Development Bootcamp</span>
                     </div>
                 </div>
             </div>
@@ -621,30 +655,6 @@
                 <p class="section-subtitle">
                     A curated body of campaign, branding, and digital design work crafted for clarity and engagement
                 </p>
-                <div class="case-study-banner">
-                    <div class="case-study-banner-left">
-                        <span class="case-study-badge"><i class="fas fa-star"></i> Featured Case Study</span>
-                        <p class="case-study-banner-title">Independence Day Campaign — Strategy, Craft, and Results</p>
-                        <p class="case-study-banner-desc">A complete breakdown of the creative process behind one of the highest-performing pieces in this portfolio, from brief to final delivery.</p>
-                        <div class="case-study-stats">
-                            <div class="case-study-stat">
-                                <span class="cs-stat-value">3</span>
-                                <span class="cs-stat-label">Design Iterations</span>
-                            </div>
-                            <div class="case-study-stat">
-                                <span class="cs-stat-value">2 Tools</span>
-                                <span class="cs-stat-label">Photoshop &amp; Illustrator</span>
-                            </div>
-                            <div class="case-study-stat">
-                                <span class="cs-stat-value">High</span>
-                                <span class="cs-stat-label">Public Engagement</span>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="case-study.html" class="case-study-banner-btn">
-                        Read Full Case Study <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
             </div>
             <div class="projects-filter">
                 <button class="filter-btn active" data-filter="all">All Work</button>
@@ -812,6 +822,7 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Personal Portfolio Website</h3>
+                        <span class="project-status project-status--live"><i class="fas fa-circle"></i> Live</span>
                         <p class="project-description">This portfolio — built from scratch with semantic HTML5, custom CSS3, and vanilla JavaScript. Features scroll animations, IntersectionObserver, responsive layout, and accessibility best practices.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">HTML5</span>
@@ -842,6 +853,7 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">HealthHub Bridge</h3>
+                        <span class="project-status project-status--wip"><i class="fas fa-hammer"></i> In Progress</span>
                         <p class="project-description">A healthcare discovery platform I built to help users quickly locate nearby medical facilities, view essential service details, and make faster care decisions during urgent situations.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">Healthcare</span>
@@ -1210,6 +1222,7 @@
                         <li><a href="#academics">Academics</a></li>
                         <li><a href="#timeline">Journey</a></li>
                         <li><a href="#projects">Projects</a></li>
+                        <li><a href="html/blog.html">Blog</a></li>
                     </ul>
                 </div>
                 <div class="footer-links-group">

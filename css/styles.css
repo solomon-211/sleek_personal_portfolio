@@ -174,7 +174,7 @@ nav {
 .hero-surname { color: var(--white-50) !important; }
 .hero-roles { color: var(--white-70) !important; }
 .role-text { color: var(--orange-400) !important; border-color: var(--orange-400) !important; }
-.description { color: var(--white-70) !important; }
+.description { color: var(--white-70) !important; max-width: 48ch; line-height: 1.75; }
 .description strong { color: var(--white) !important; }
 
 /* Badge */
@@ -239,10 +239,14 @@ section:nth-child(odd) {
   background: linear-gradient(90deg, var(--orange-500), var(--orange-300)) !important;
 }
 
-/* Keep skills and contact white titles */
+/* Keep skills and contact white titles (dark mode only) */
 #skills .section-title,
 .contact .section-title {
   color: var(--white) !important;
+}
+html.light-mode #skills .section-title,
+html.light-mode .contact .section-title {
+  color: #ea580c !important;
 }
 
 .section-subtitle {
@@ -349,6 +353,32 @@ section:nth-child(odd) {
 .testimonial-text,
 .timeline-desc {
   color: var(--white-70) !important;
+}
+
+/* ── SKILLS GRID LAYOUT ───────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skill-item {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
 
 /* ── SKILLS SECTION ────────────────────────────────── */
@@ -472,6 +502,10 @@ section:nth-child(odd) {
 [class*="leadership"] .project-card {
   background: var(--navy-card) !important;
   border: 1px solid var(--border-mid) !important;
+}
+
+#leadership .project-title {
+  color: var(--orange-400) !important;
 }
 
 /* General white cards in light sections — override to dark */
@@ -802,7 +836,7 @@ a:hover {
   Only apply changes below this comment if needed.
 */
 footer {
-  /* Preserved exactly as designed */
+  background: var(--navy-800);
 }
 
 /* ── SECTION DIVIDERS ──────────────────────────────── */
@@ -887,7 +921,7 @@ b {
 .contact-follow { background: var(--navy-card) !important; border-color: var(--border-mid) !important; }
 .contact-follow-label { color: var(--white-90) !important; }
 .contact-follow-sub { color: var(--white-50) !important; }
-.contact-social-icon { color: var(--white-70) !important; border-color: var(--border-mid) !important; }
+.contact-social-icon { border-color: var(--border-mid) !important; }
 .contact-social-icon:hover { color: var(--orange-400) !important; }
 .contact-form { background: rgba(255,255,255,0.04) !important; border: 1px solid var(--border-mid) !important; }
 .form-group label { color: var(--white-70) !important; }
@@ -896,14 +930,15 @@ b {
 .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3) !important; }
 
 /* ── FOOTER ────────────────────────────────────────── */
-footer { background: var(--navy-800) !important; border-top: 1px solid var(--border-subtle) !important; }
-.footer-tagline, .footer-bio { color: var(--white-50) !important; }
-.footer-links-title { color: var(--white-50) !important; }
-.footer-links-list li a { color: var(--white-70) !important; }
+footer { background: var(--navy-800) !important; border-top: 1px solid var(--border-mid) !important; }
+.footer-tagline { color: var(--orange-300) !important; font-weight: 600; }
+.footer-bio { color: var(--white-90) !important; }
+.footer-links-title { color: var(--white) !important; font-weight: 700; letter-spacing: 0.04em; }
+.footer-links-list li a { color: var(--white-90) !important; }
 .footer-links-list li a:hover { color: var(--orange-400) !important; }
-.footer-divider { background: var(--border-subtle) !important; }
-.footer-copy { color: var(--white-50) !important; }
-.footer-top-link { color: var(--white-50) !important; }
+.footer-divider { background: var(--border-mid) !important; }
+.footer-copy { color: var(--white-70) !important; }
+.footer-top-link { color: var(--white-90) !important; font-weight: 600; }
 .footer-top-link:hover { color: var(--orange-400) !important; }
 
 /* ── CODE PREVIEW ──────────────────────────────────── */
@@ -924,7 +959,6 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
 
 /* ── SOCIAL ICON BRAND COLOURS ─────────────────────── */
 .contact-social-icon {
-  border-color: var(--border-mid) !important;
   transition: color 0.2s, background 0.2s, border-color 0.2s, transform 0.2s !important;
 }
 .contact-social-icon:hover { transform: translateY(-3px) scale(1.08) !important; }
@@ -940,7 +974,7 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
   border-color: #0A66C2 !important;
 }
 
-/* GitHub — #fff */
+/* GitHub — dark on dark, dark on light */
 .contact-social-icon--github {
   color: #e6edf3 !important;
   border-color: rgba(230,237,243,0.25) !important;
@@ -949,6 +983,14 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
   background: #24292e !important;
   color: #fff !important;
   border-color: #24292e !important;
+}
+html.light-mode .contact-social-icon--github {
+  color: #24292e !important;
+  border-color: rgba(36,41,46,0.3) !important;
+}
+html.light-mode .contact-social-icon--github:hover {
+  background: #24292e !important;
+  color: #fff !important;
 }
 
 /* Email — orange */
@@ -962,7 +1004,7 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
   border-color: var(--orange-500) !important;
 }
 
-/* X / Twitter — #fff */
+/* X / Twitter */
 .contact-social-icon--twitter {
   color: #e7e9ea !important;
   border-color: rgba(231,233,234,0.25) !important;
@@ -971,6 +1013,14 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
   background: #000 !important;
   color: #fff !important;
   border-color: #555 !important;
+}
+html.light-mode .contact-social-icon--twitter {
+  color: #0f172a !important;
+  border-color: rgba(0,0,0,0.25) !important;
+}
+html.light-mode .contact-social-icon--twitter:hover {
+  background: #000 !important;
+  color: #fff !important;
 }
 
 /* Instagram — pink/purple */
@@ -1006,3 +1056,288 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
   border-color: #69C9D0 !important;
   box-shadow: 2px 0 0 #69C9D0, -2px 0 0 #EE1D52 !important;
 }
+
+/* ── SECTION WAVE DIVIDERS ─────────────────────────── */
+/* Wave fill matches the section above it (hero = navy-900) */
+#about .section-wave path { fill: var(--navy-900); }
+
+/* ── ACTIVE NAV — stronger highlight ──────────────── */
+.nav-links a.active-nav {
+  color: var(--orange-400) !important;
+  background: rgba(234,88,12,0.12) !important;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  box-shadow: inset 0 -2px 0 var(--orange-500);
+}
+
+/* ── FAB — more prominent ──────────────────────────── */
+.fab {
+  background: linear-gradient(135deg, var(--orange-500), var(--orange-400)) !important;
+  box-shadow: 0 8px 28px rgba(234,88,12,0.45) !important;
+  border-radius: 14px !important;
+}
+.fab:hover { transform: translateY(-3px) scale(1.05) !important; }
+
+/* ── ABOUT PHOTO ───────────────────────────────────── */
+.about-photo { border-color: rgba(234,88,12,0.3) !important; }
+
+/* ── THEME TOGGLE BUTTON ───────────────────────────── */
+.theme-toggle {
+  border-color: var(--border-mid) !important;
+  color: var(--white-70) !important;
+  background: rgba(255,255,255,0.04) !important;
+}
+.theme-toggle:hover {
+  border-color: var(--orange-500) !important;
+  color: var(--orange-400) !important;
+  background: var(--orange-glow) !important;
+}
+
+/* Light mode — make toggle visible on white background */
+html.light-mode .theme-toggle {
+  border-color: rgba(0,0,0,0.15) !important;
+  color: #334155 !important;
+  background: rgba(0,0,0,0.05) !important;
+}
+html.light-mode .theme-toggle:hover {
+  border-color: #ea580c !important;
+  color: #ea580c !important;
+  background: rgba(234,88,12,0.08) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   LIGHT MODE — FINAL OVERRIDES
+   These must be at the end of the file to beat all the
+   !important dark-theme rules above.
+   ══════════════════════════════════════════════════════ */
+
+/* Global text */
+html.light-mode *                        { color: inherit; }
+html.light-mode body                     { color: #0f172a !important; }
+html.light-mode p                        { color: #334155 !important; }
+html.light-mode h1,html.light-mode h2,
+html.light-mode h3,html.light-mode h4,
+html.light-mode h5,html.light-mode h6   { color: #0f172a !important; }
+html.light-mode strong,html.light-mode b { color: #0f172a !important; }
+html.light-mode span                     { color: inherit !important; }
+html.light-mode li                       { color: #334155 !important; }
+
+/* Nav */
+html.light-mode nav                      { background: rgba(248,250,252,0.97) !important; border-bottom: 1px solid rgba(0,0,0,0.1) !important; }
+html.light-mode .logo-icon               { background: linear-gradient(135deg, #ea580c, #f97316) !important; color: #ffffff !important; }
+html.light-mode .logo-text               { color: #0f172a !important; }
+html.light-mode .nav-links a             { color: #334155 !important; }
+html.light-mode .nav-links a:hover       { color: #ea580c !important; }
+html.light-mode .nav-links a.active-nav  { color: #ea580c !important; background: rgba(234,88,12,0.1) !important; }
+html.light-mode .nav-more-toggle         { color: #334155 !important; }
+html.light-mode .nav-more-menu           { background: #fff !important; }
+html.light-mode .nav-more-menu a         { color: #334155 !important; }
+html.light-mode .nav-drawer-title        { color: #0f172a !important; }
+html.light-mode .nav-main-item > a,
+html.light-mode .nav-more-trigger,
+html.light-mode .nav-back-btn            { color: #334155 !important; }
+html.light-mode .nav-links.active        { background: rgba(248,250,252,0.98) !important; }
+
+/* Sections */
+html.light-mode section                  { background: #f8fafc !important; }
+html.light-mode section:nth-child(even),
+html.light-mode .section-bg-secondary,
+html.light-mode .section-bg-white,
+html.light-mode #about                   { background: #f1f5f9 !important; }
+html.light-mode .section-title           { color: #ea580c !important; }
+html.light-mode .section-subtitle        { color: #475569 !important; }
+
+/* Cards — all white with border */
+html.light-mode .skill-category,
+html.light-mode .project-card,
+html.light-mode .award-card,
+html.light-mode .testimonial-card,
+html.light-mode .highlight-item,
+html.light-mode .timeline-card,
+html.light-mode .learning-widget,
+html.light-mode .contact-form,
+html.light-mode .contact-follow,
+html.light-mode .contact-highlight-card  { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
+
+/* Card text */
+html.light-mode .skill-title,
+html.light-mode .project-title,
+html.light-mode .award-title,
+html.light-mode .timeline-title,
+html.light-mode .testimonial-name,
+html.light-mode .highlight-item h3,
+html.light-mode .contact-heading         { color: #0f172a !important; }
+
+html.light-mode .skill-item,
+html.light-mode .project-description,
+html.light-mode .award-description,
+html.light-mode .timeline-desc,
+html.light-mode .testimonial-text,
+html.light-mode .highlight-item p,
+html.light-mode .contact-muted,
+html.light-mode .learning-item,
+html.light-mode .about-text p            { color: #334155 !important; }
+
+html.light-mode .award-meta,
+html.light-mode .timeline-tag,
+html.light-mode .testimonial-role,
+html.light-mode .skill-bar-pct           { color: #64748b !important; }
+
+/* Skill bars */
+html.light-mode .skill-bar-track         { background: rgba(0,0,0,0.08) !important; }
+html.light-mode .skill-bar-name          { color: #0f172a !important; }
+
+/* Hero */
+html.light-mode .hero                    { background: linear-gradient(135deg,#f8fafc 0%,#f1f5f9 60%,#e2e8f0 100%) !important; }
+html.light-mode .hero-title              { color: #0f172a !important; }
+html.light-mode .hero-surname            { color: #64748b !important; }
+html.light-mode .description             { color: #334155 !important; }
+html.light-mode .hero-stat-num           { color: #ea580c !important; }
+html.light-mode .hero-stat-label         { color: #64748b !important; }
+html.light-mode .hero-stats              { background: rgba(0,0,0,0.04) !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode .hero-social             { border-color: rgba(0,0,0,0.12) !important; color: #475569 !important; }
+html.light-mode .hero-badge              { background: rgba(34,197,94,0.1) !important; border-color: rgba(34,197,94,0.3) !important; color: #16a34a !important; }
+html.light-mode .hero-resume-link        { color: #ea580c !important; border-color: rgba(234,88,12,0.4) !important; }
+html.light-mode .hero-scroll-hint        { color: #94a3b8 !important; }
+
+/* Contact form */
+html.light-mode .form-group label        { color: #334155 !important; }
+html.light-mode .form-group input,
+html.light-mode .form-group textarea     { background: #f1f5f9 !important; border-color: rgba(0,0,0,0.12) !important; color: #0f172a !important; }
+html.light-mode .form-group input::placeholder,
+html.light-mode .form-group textarea::placeholder { color: #94a3b8 !important; }
+html.light-mode .contact-item h3         { color: #64748b !important; }
+html.light-mode .contact-item p,
+html.light-mode .contact-link            { color: #334155 !important; }
+html.light-mode .contact-follow-label    { color: #0f172a !important; }
+html.light-mode .contact-follow-sub      { color: #64748b !important; }
+html.light-mode .contact-social-icon     { border-color: rgba(0,0,0,0.12) !important; }
+/* Keep brand colours visible on white background */
+html.light-mode .contact-social-icon--linkedin  { color: #0A66C2 !important; border-color: rgba(10,102,194,0.3) !important; }
+html.light-mode .contact-social-icon--instagram { color: #E1306C !important; border-color: rgba(225,48,108,0.3) !important; }
+html.light-mode .contact-social-icon--facebook  { color: #1877F2 !important; border-color: rgba(24,119,242,0.3) !important; }
+html.light-mode .contact-social-icon--tiktok    { color: #010101 !important; border-color: rgba(0,0,0,0.2) !important; }
+html.light-mode .contact-social-icon--email     { color: #ea580c !important; border-color: rgba(234,88,12,0.3) !important; }
+
+/* Timeline */
+html.light-mode .timeline-date           { background: #f1f5f9 !important; border-color: rgba(0,0,0,0.1) !important; color: #0f172a !important; }
+html.light-mode .timeline-quote          { background: rgba(234,88,12,0.05) !important; color: #334155 !important; }
+html.light-mode .timeline-quote-author   { color: #64748b !important; }
+
+/* About seeking */
+html.light-mode .about-seeking           { background: rgba(234,88,12,0.06) !important; border-left-color: #ea580c !important; color: #334155 !important; }
+
+/* Filter buttons */
+html.light-mode .filter-btn              { background: rgba(0,0,0,0.05) !important; border-color: rgba(0,0,0,0.1) !important; color: #334155 !important; }
+html.light-mode .filter-btn.active,
+html.light-mode .filter-btn:hover        { background: #ea580c !important; color: #fff !important; border-color: #ea580c !important; }
+
+/* Tech tags */
+html.light-mode .tech-tag                { background: rgba(234,88,12,0.08) !important; color: #c2410c !important; border-color: rgba(234,88,12,0.2) !important; }
+
+/* Footer stays dark */
+html.light-mode footer                   { background: #1e293b !important; color: rgba(255,255,255,0.8) !important; }
+html.light-mode footer *                 { color: inherit !important; }
+html.light-mode footer h1,
+html.light-mode footer h2,
+html.light-mode footer h3,
+html.light-mode footer h4,
+html.light-mode footer p,
+html.light-mode footer span,
+html.light-mode footer li               { color: inherit !important; }
+html.light-mode .footer-brand .logo-text,
+html.light-mode .footer-logo .logo-text { color: #ffffff !important; }
+html.light-mode .footer-tagline,
+html.light-mode .footer-bio              { color: rgba(255,255,255,0.55) !important; }
+html.light-mode .footer-links-title      { color: rgba(255,255,255,0.4) !important; }
+html.light-mode .footer-links-list li a  { color: rgba(255,255,255,0.65) !important; }
+html.light-mode .footer-copy             { color: rgba(255,255,255,0.35) !important; }
+html.light-mode .footer-top-link         { color: rgba(255,255,255,0.5) !important; }
+html.light-mode .footer-divider          { background: rgba(255,255,255,0.1) !important; }
+
+/* ── Missing section backgrounds ── */
+html.light-mode #skills                  { background: #f1f5f9 !important; }
+html.light-mode .contact,
+html.light-mode #contact                 { background: #f1f5f9 !important; }
+html.light-mode #about                   { background: #f1f5f9 !important; }
+html.light-mode .section-bg-white        { background: #ffffff !important; }
+html.light-mode .section-bg-secondary    { background: #f1f5f9 !important; }
+html.light-mode section:nth-child(odd)   { background: #f8fafc !important; }
+html.light-mode section:nth-child(even)  { background: #f1f5f9 !important; }
+
+/* ── All card/widget dark backgrounds ── */
+html.light-mode .skill-category,
+html.light-mode .project-card,
+html.light-mode .award-card,
+html.light-mode .testimonial-card,
+html.light-mode .highlight-item,
+html.light-mode section .highlight-item,
+html.light-mode [class*="community"] .highlight-item,
+html.light-mode .timeline-card,
+html.light-mode .learning-widget,
+html.light-mode .language-card,
+html.light-mode .contact-form,
+html.light-mode .contact-follow,
+html.light-mode .contact-highlight-card,
+html.light-mode .case-study-banner,
+html.light-mode [class*="leadership"] .project-card,
+html.light-mode section > .container > div > .award-card,
+html.light-mode section > .container > .awards-grid > .award-card { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
+
+/* ── Timeline date pill ── */
+html.light-mode .timeline-date           { background: #e2e8f0 !important; border-color: rgba(0,0,0,0.1) !important; color: #0f172a !important; }
+
+/* ── Skills section specific ── */
+html.light-mode #skills .skill-category  { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode #skills .section-subtitle { color: #475569 !important; }
+html.light-mode #skills .skill-title     { color: #0f172a !important; }
+html.light-mode #skills .skill-list      { border-top-color: rgba(0,0,0,0.08) !important; }
+html.light-mode #skills .skill-item      { color: #334155 !important; border-bottom-color: rgba(0,0,0,0.06) !important; }
+
+/* ── Contact section specific ── */
+html.light-mode .contact .section-title  { color: #ea580c !important; }
+html.light-mode .contact .section-subtitle { color: #475569 !important; }
+html.light-mode .contact-heading         { color: #0f172a !important; }
+html.light-mode .contact-muted           { color: #334155 !important; }
+
+/* ── Loading screen ── */
+html.light-mode .loading                 { background: #f8fafc !important; }
+
+/* ── Code preview ── */
+html.light-mode .project-image--code     { background: #1e293b !important; }
+
+/* ── Nav more menu ── */
+html.light-mode .nav-more-menu           { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important; }
+
+/* ── GITHUB WIDGET ─────────────────────────────────── */
+.github-widget {
+  background: var(--navy-card) !important;
+  border: 1px solid var(--border-mid) !important;
+}
+.github-widget__icon { color: #e6edf3 !important; }
+.github-widget__title { color: var(--white-90) !important; }
+.github-widget__link { color: var(--orange-400) !important; }
+.github-widget__link:hover { color: var(--orange-300) !important; }
+.github-widget__stat { color: var(--white-70) !important; }
+.github-widget__stat i { color: var(--orange-400) !important; }
+.github-widget__cta {
+  background: rgba(230,237,243,0.08) !important;
+  border: 1px solid rgba(230,237,243,0.15) !important;
+  color: var(--white-90) !important;
+}
+.github-widget__cta:hover { background: rgba(230,237,243,0.14) !important; }
+
+/* Light mode */
+html.light-mode .github-widget { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode .github-widget__icon { color: #24292e !important; }
+html.light-mode .github-widget__title { color: #0f172a !important; }
+html.light-mode .github-widget__stat { color: #475569 !important; }
+html.light-mode .github-widget__stat i { color: #ea580c !important; }
+html.light-mode .github-widget__cta { background: #f1f5f9 !important; border-color: rgba(0,0,0,0.1) !important; color: #0f172a !important; }
+html.light-mode .github-widget__cta:hover { background: #e2e8f0 !important; }
+
+/* ── HERO CTA BUTTONS — always readable ───────────────── */
+html.light-mode .btn-primary,
+html.light-mode .btn { color: #ffffff !important; }
+html.light-mode .btn-secondary { color: #0f172a !important; background: rgba(0,0,0,0.06) !important; border-color: rgba(0,0,0,0.15) !important; }
+html.light-mode .btn-secondary:hover { background: rgba(0,0,0,0.1) !important; border-color: #ea580c !important; color: #ea580c !important; }

@@ -28,12 +28,29 @@
                 tooling decisions, and delivery for community-facing Independence Day communication.
             </p>
             <div class="cs-hero-actions">
+                <a href="html/blog.html" class="cs-btn-back">
+                    <i class="fas fa-arrow-left"></i> Back to Blog
+                </a>
                 <a href="index.html#projects" class="cs-btn-back">
-                    <i class="fas fa-arrow-left"></i> Back to Portfolio
+                    <i class="fas fa-house"></i> Portfolio
                 </a>
-                <a href="images/Independence-day.jpg" target="_blank" rel="noopener noreferrer" class="cs-btn-view">
+                <button class="cs-btn-view" id="csPosterBtn" type="button">
                     <i class="fas fa-image"></i> View Full Poster
-                </a>
+                </button>
+            </div>
+
+            <!-- Lightbox overlay -->
+            <div class="cs-lightbox" id="csLightbox" role="dialog" aria-modal="true" aria-label="Full poster view" style="display:none">
+                <button class="cs-lightbox__close" id="csLightboxClose" aria-label="Close poster">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="cs-lightbox__backdrop" id="csLightboxBackdrop"></div>
+                <div class="cs-lightbox__content">
+                    <img src="images/Independence-day.jpg" alt="Independence Day Campaign Poster — Full Size" loading="lazy">
+                    <a href="images/Independence-day.jpg" download="Independence-Day-Poster.jpg" class="cs-lightbox__download">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -279,6 +296,81 @@
 
         <div class="cs-divider"></div>
 
+        <!-- ── LIKE & SHARE ── -->
+        <div class="cs-engage">
+            <div class="cs-engage-left">
+                <button class="cs-like-btn" id="csLikeBtn" aria-label="Like this article" aria-pressed="false">
+                    <i class="fas fa-heart cs-like-icon" id="csLikeIcon"></i>
+                    <span class="cs-like-label">Like this article</span>
+                    <span class="cs-like-count" id="csLikeCount">24</span>
+                </button>
+            </div>
+            <div class="cs-engage-right">
+                <span class="cs-share-label">Share</span>
+                <a href="https://twitter.com/intent/tweet?text=Independence+Day+Campaign+Case+Study+by+%40teeghee_4&url=https://solomonleek.tech/html/case-study.html"
+                   target="_blank" rel="noopener noreferrer" class="cs-share-btn cs-share-btn--twitter" aria-label="Share on X">
+                    <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://solomonleek.tech/html/case-study.html"
+                   target="_blank" rel="noopener noreferrer" class="cs-share-btn cs-share-btn--linkedin" aria-label="Share on LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <button class="cs-share-btn cs-share-btn--copy" id="csCopyBtn" aria-label="Copy link">
+                    <i class="fas fa-link" id="csCopyIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="cs-divider"></div>
+
+        <!-- ── COMMENTS ── -->
+        <div class="cs-comments" id="csComments">
+            <div class="cs-comments-header">
+                <h2 class="cs-comments-title">
+                    <i class="fas fa-comments"></i> Discussion
+                    <span class="cs-comments-count" id="csCommentCount">0</span>
+                </h2>
+                <p class="cs-comments-sub">Share your thoughts, feedback, or questions about this case study.</p>
+            </div>
+
+            <!-- Comment form -->
+            <form class="cs-comment-form" id="csCommentForm" novalidate>
+                <div class="cs-comment-form-row">
+                    <div class="cs-form-group">
+                        <label for="csCommentName">Name <span aria-hidden="true">*</span></label>
+                        <input type="text" id="csCommentName" name="name" placeholder="Your name" required maxlength="60" autocomplete="name">
+                    </div>
+                    <div class="cs-form-group">
+                        <label for="csCommentEmail">Email <span aria-hidden="true">*</span></label>
+                        <input type="email" id="csCommentEmail" name="email" placeholder="your@email.com (not published)" required maxlength="120" autocomplete="email">
+                    </div>
+                </div>
+                <div class="cs-form-group">
+                    <label for="csCommentText">Comment <span aria-hidden="true">*</span></label>
+                    <textarea id="csCommentText" name="comment" rows="4" placeholder="What are your thoughts on this case study?" required maxlength="1000"></textarea>
+                    <span class="cs-char-count"><span id="csCharLeft">1000</span> characters remaining</span>
+                </div>
+                <div class="cs-form-actions">
+                    <button type="submit" class="cs-btn-view cs-comment-submit" id="csCommentSubmit">
+                        <i class="fas fa-paper-plane"></i> Post Comment
+                    </button>
+                    <p class="cs-form-note"><i class="fas fa-lock"></i> Your email is never published.</p>
+                </div>
+                <p class="cs-comment-status" id="csCommentStatus" role="status" aria-live="polite"></p>
+            </form>
+
+            <!-- Comment list -->
+            <div class="cs-comment-list" id="csCommentList">
+                <!-- Comments rendered by JS -->
+            </div>
+
+            <p class="cs-comments-empty" id="csCommentsEmpty">
+                No comments yet. Be the first to share your thoughts.
+            </p>
+        </div>
+
+        <div class="cs-divider"></div>
+
         <!-- Next CTA -->
         <div class="cs-next">
             <h3>Explore More Work</h3>
@@ -298,6 +390,199 @@
     <!-- Page transition -->
     <div class="page-transition" id="pageTransition"></div>
     <script src="js/main.js?v=20260414"></script>
+    <script>
+    /* ── LIGHTBOX ── */
+    const posterBtn       = document.getElementById('csPosterBtn');
+    const lightbox        = document.getElementById('csLightbox');
+    const lightboxClose   = document.getElementById('csLightboxClose');
+    const lightboxBackdrop = document.getElementById('csLightboxBackdrop');
+
+    function openLightbox() {
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        lightboxClose.focus();
+    }
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = '';
+        posterBtn.focus();
+    }
+
+    if (posterBtn)        posterBtn.addEventListener('click', openLightbox);
+    if (lightboxClose)    lightboxClose.addEventListener('click', closeLightbox);
+    if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox && lightbox.style.display !== 'none') closeLightbox();
+    });
+    (function () {
+        const ARTICLE_KEY = 'cs-independence-day';
+        const LIKE_KEY    = ARTICLE_KEY + '-liked';
+        const LIKES_KEY   = ARTICLE_KEY + '-likes';
+        const COMMENTS_KEY = ARTICLE_KEY + '-comments';
+
+        /* ── LIKE BUTTON ── */
+        const likeBtn   = document.getElementById('csLikeBtn');
+        const likeIcon  = document.getElementById('csLikeIcon');
+        const likeCount = document.getElementById('csLikeCount');
+
+        let likes   = parseInt(localStorage.getItem(LIKES_KEY) || '24', 10);
+        let liked   = localStorage.getItem(LIKE_KEY) === 'true';
+
+        function renderLike() {
+            likeCount.textContent = likes;
+            likeBtn.classList.toggle('liked', liked);
+            likeBtn.setAttribute('aria-pressed', String(liked));
+            likeBtn.querySelector('.cs-like-label').textContent = liked ? 'Liked!' : 'Like this article';
+        }
+
+        likeBtn.addEventListener('click', function () {
+            liked = !liked;
+            likes = liked ? likes + 1 : Math.max(0, likes - 1);
+            localStorage.setItem(LIKE_KEY, String(liked));
+            localStorage.setItem(LIKES_KEY, String(likes));
+            renderLike();
+        });
+
+        renderLike();
+
+        /* ── COPY LINK ── */
+        const copyBtn  = document.getElementById('csCopyBtn');
+        const copyIcon = document.getElementById('csCopyIcon');
+        copyBtn.addEventListener('click', function () {
+            navigator.clipboard.writeText(window.location.href).then(function () {
+                copyIcon.className = 'fas fa-check';
+                copyBtn.classList.add('copied');
+                setTimeout(function () {
+                    copyIcon.className = 'fas fa-link';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+
+        /* ── COMMENTS ── */
+        const form        = document.getElementById('csCommentForm');
+        const nameInput   = document.getElementById('csCommentName');
+        const emailInput  = document.getElementById('csCommentEmail');
+        const textInput   = document.getElementById('csCommentText');
+        const submitBtn   = document.getElementById('csCommentSubmit');
+        const statusEl    = document.getElementById('csCommentStatus');
+        const listEl      = document.getElementById('csCommentList');
+        const emptyEl     = document.getElementById('csCommentsEmpty');
+        const countEl     = document.getElementById('csCommentCount');
+        const charLeft    = document.getElementById('csCharLeft');
+
+        /* Character counter */
+        textInput.addEventListener('input', function () {
+            charLeft.textContent = 1000 - this.value.length;
+        });
+
+        /* Load saved comments */
+        function loadComments() {
+            try { return JSON.parse(localStorage.getItem(COMMENTS_KEY) || '[]'); }
+            catch (e) { return []; }
+        }
+
+        function saveComments(comments) {
+            localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments));
+        }
+
+        function initials(name) {
+            return name.trim().split(/\s+/).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+        }
+
+        function timeAgo(ts) {
+            const diff = Date.now() - ts;
+            const m = Math.floor(diff / 60000);
+            if (m < 1)  return 'just now';
+            if (m < 60) return m + 'm ago';
+            const h = Math.floor(m / 60);
+            if (h < 24) return h + 'h ago';
+            const d = Math.floor(h / 24);
+            if (d < 30) return d + 'd ago';
+            return new Date(ts).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+        }
+
+        function renderComments() {
+            const comments = loadComments();
+            countEl.textContent = comments.length;
+            listEl.innerHTML = '';
+            emptyEl.style.display = comments.length ? 'none' : 'block';
+
+            comments.slice().reverse().forEach(function (c, idx) {
+                const realIdx = comments.length - 1 - idx;
+                const item = document.createElement('div');
+                item.className = 'cs-comment-item';
+                item.innerHTML =
+                    '<div class="cs-comment-avatar">' + initials(c.name) + '</div>' +
+                    '<div class="cs-comment-body">' +
+                        '<div class="cs-comment-meta">' +
+                            '<span class="cs-comment-name">' + escHtml(c.name) + '</span>' +
+                            '<span class="cs-comment-time">' + timeAgo(c.ts) + '</span>' +
+                        '</div>' +
+                        '<p class="cs-comment-text">' + escHtml(c.text) + '</p>' +
+                        '<button class="cs-comment-like' + (c.liked ? ' liked' : '') + '" data-idx="' + realIdx + '" aria-label="Like comment">' +
+                            '<i class="fas fa-heart"></i> ' + (c.likes || 0) +
+                        '</button>' +
+                    '</div>';
+                listEl.appendChild(item);
+            });
+
+            /* Comment like buttons */
+            listEl.querySelectorAll('.cs-comment-like').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const comments = loadComments();
+                    const i = parseInt(this.dataset.idx, 10);
+                    comments[i].liked = !comments[i].liked;
+                    comments[i].likes = (comments[i].likes || 0) + (comments[i].liked ? 1 : -1);
+                    saveComments(comments);
+                    renderComments();
+                });
+            });
+        }
+
+        function escHtml(str) {
+            return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        function setStatus(msg, type) {
+            statusEl.textContent = msg;
+            statusEl.className = 'cs-comment-status ' + type;
+        }
+
+        /* Submit */
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const text = textInput.value.trim();
+
+            if (!name || name.length < 2) { setStatus('Please enter your name (at least 2 characters).', 'error'); nameInput.focus(); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus('Please enter a valid email address.', 'error'); emailInput.focus(); return; }
+            if (!text || text.length < 5) { setStatus('Comment must be at least 5 characters.', 'error'); textInput.focus(); return; }
+
+            const originalHTML = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
+            submitBtn.disabled = true;
+
+            /* Simulate a brief save delay for UX */
+            setTimeout(function () {
+                const comments = loadComments();
+                comments.push({ name: name, text: text, ts: Date.now(), likes: 0, liked: false });
+                saveComments(comments);
+                form.reset();
+                charLeft.textContent = '1000';
+                setStatus('Comment posted! Thank you for your feedback.', 'success');
+                renderComments();
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.disabled = false;
+                /* Scroll to new comment */
+                listEl.firstElementChild && listEl.firstElementChild.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 600);
+        });
+
+        renderComments();
+    })();
+    </script>
 </body>
 </html>
 
