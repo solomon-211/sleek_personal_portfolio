@@ -902,3 +902,33 @@ html.light-mode .b-topics-divider { background: rgba(0,0,0,0.08) !important; }
 .b-search.has-value { border-color: rgba(234,88,12,0.35) !important; background: rgba(234,88,12,0.05) !important; }
 html.light-mode .b-search__clear { color: #94a3b8; }
 html.light-mode .b-search__clear:hover { color: #ea580c; }
+
+/* ── LOGO PHOTO ───────────────────────────────────── */
+.logo-photo { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid rgba(234,88,12,0.5); flex-shrink: 0; display: block; }
+
+/* ── SCROLL ARROWS ────────────────────────────────────── */
+.b-hero__scroll-hint {
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  padding: 1.25rem 0 1.5rem;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4);
+}
+.b-hero__scroll-arrows { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.b-scroll-arrow {
+  font-size: 1rem;
+  color: #ea580c !important;
+  display: block;
+  filter: drop-shadow(0 0 4px rgba(234,88,12,0.6));
+  animation: b-arrow-cascade 1.8s ease-in-out infinite;
+}
+.b-scroll-arrow--1 { animation-delay: 0s;   opacity: 0.4; }
+.b-scroll-arrow--2 { animation-delay: 0.3s; opacity: 0.4; }
+.b-scroll-arrow--3 { animation-delay: 0.6s; opacity: 0.4; }
+@keyframes b-arrow-cascade {
+  0%   { opacity: 0.2; transform: translateY(-4px); }
+  40%  { opacity: 1;   transform: translateY(2px); }
+  80%  { opacity: 0.3; transform: translateY(6px); }
+  100% { opacity: 0.2; transform: translateY(-4px); }
+}
+html.light-mode .b-hero__scroll-hint { color: rgba(0,0,0,0.4) !important; }
+html.light-mode .b-scroll-arrow { color: #ea580c !important; }

@@ -248,3 +248,6 @@ html.light-mode .ar-back-link        { background: rgba(0,0,0,0.05) !important; 
   .ar-cover__photo-wrap img { width: 200px; height: 200px; }
   .ar-cover--portrait { min-height: 260px; }
 }
+
+/* ── LOGO PHOTO ───────────────────────────────────── */
+.logo-photo { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid rgba(234,88,12,0.5); flex-shrink: 0; display: block; }
