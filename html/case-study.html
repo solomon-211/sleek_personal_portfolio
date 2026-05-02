@@ -14,6 +14,14 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/styles.css?v=20260414">
     <link rel="stylesheet" href="css/case-study.css?v=20260414">
+    <!-- Analytics -->
+    <script>
+    (function(){
+        const API='http://localhost:8000/api/analytics';
+        function send(d){fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){});}
+        send({page:location.pathname,referrer:document.referrer,event:'pageview'});
+    })();
+    </script>
     <noscript><style>body{visibility:visible}</style></noscript>
 </head>
 <body>

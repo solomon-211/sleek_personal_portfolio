@@ -28,6 +28,26 @@
     <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Analytics: self-hosted, no cookies, privacy-respecting -->
+    <script>
+    (function(){
+        const API = 'http://localhost:8000/api/analytics';
+        function send(data){ fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true}).catch(function(){}); }
+        // Page view
+        send({page:location.pathname,referrer:document.referrer,event:'pageview'});
+        // Section views via IntersectionObserver
+        if('IntersectionObserver' in window){
+            var obs = new IntersectionObserver(function(entries){
+                entries.forEach(function(e){
+                    if(e.isIntersecting && e.target.id){
+                        send({page:location.pathname,section:e.target.id,event:'section_view'});
+                    }
+                });
+            },{threshold:0.4});
+            document.querySelectorAll('section[id]').forEach(function(s){obs.observe(s);});
+        }
+    })();
+    </script>
     <noscript><style>#loading{display:none!important}</style></noscript>
         <script type="application/ld+json">
         {
@@ -1125,18 +1145,8 @@
                         </div>
                         <div>
                             <h3>Email</h3>
-                            <p>
-                                <a href="mailto:s.leek@alustudent.com" class="contact-link">s.leek@alustudent.com</a>
-                                <button class="copy-email-btn" data-email="s.leek@alustudent.com" aria-label="Copy email address" title="Copy email">
-                                    <i class="fas fa-copy" id="copyIcon1"></i>
-                                </button>
-                            </p>
-                            <p>
-                                <a href="mailto:thionggarang11@gmail.com" class="contact-link">thionggarang11@gmail.com</a>
-                                <button class="copy-email-btn" data-email="thionggarang11@gmail.com" aria-label="Copy email address" title="Copy email">
-                                    <i class="fas fa-copy" id="copyIcon2"></i>
-                                </button>
-                            </p>
+                            <p><a href="mailto:s.leek@alustudent.com" class="contact-link">s.leek@alustudent.com</a></p>
+                            <p><a href="mailto:thionggarang11@gmail.com" class="contact-link">thionggarang11@gmail.com</a></p>
                         </div>
                     </div>
                     <div class="contact-item">

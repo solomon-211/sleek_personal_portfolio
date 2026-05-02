@@ -12,6 +12,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/blog.css">
+    <!-- Analytics -->
+    <script>
+    (function(){
+        const API='http://localhost:8000/api/analytics';
+        function send(d){fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){});}
+        send({page:location.pathname,referrer:document.referrer,event:'pageview'});
+    })();
+    </script>
 </head>
 <body>
 

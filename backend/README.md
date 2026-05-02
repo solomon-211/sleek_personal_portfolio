@@ -63,6 +63,31 @@ The API will be available at `http://localhost:8000`.
 | GET | `/api/health` | Health check + SMTP status |
 | POST | `/api/contact` | Submit contact form |
 | GET | `/api/messages/count` | Total messages received |
+| POST | `/api/analytics` | Track a page view or section view |
+| GET | `/api/analytics/summary` | View aggregated analytics |
+
+---
+
+## Analytics
+
+Every page visit and section scroll is logged to `analytics.json`.
+
+To see your analytics summary:
+```bash
+curl http://localhost:8000/api/analytics/summary
+```
+
+Returns:
+```json
+{
+  "total_views": 42,
+  "pages": { "/html/index.html": 30, "/html/blog.html": 12 },
+  "sections": { "projects": 28, "contact": 15, "skills": 22 },
+  "referrers": { "https://linkedin.com": 8 }
+}
+```
+
+When you deploy, update the `API` URL in the analytics script in each HTML file from `http://localhost:8000` to your live backend URL.
 
 ---
 
