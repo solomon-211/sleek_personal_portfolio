@@ -664,7 +664,10 @@
             <div class="projects-grid">
                 <div class="project-card" data-category="design">
                     <div class="project-image">
-                        <img src="images/Independence-day.jpg" alt="Independence Day Poster" width="1200" height="800" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="images/Independence-day.jpg" type="image/jpeg" media="(max-width: 600px)" width="600" height="400">
+                            <img src="images/Independence-day.jpg" alt="Independence Day Poster" width="1200" height="800" loading="lazy" decoding="async">
+                        </picture>
                         <div class="project-overlay">
                             <div class="project-links">
                                 <a href="images/Independence-day.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Independence Day Poster" title="Open Independence Day Poster">
@@ -687,7 +690,10 @@
 
                 <div class="project-card" data-category="design">
                     <div class="project-image">
-                        <img src="images/back from school.jpg" alt="Back from School Campaign" width="1200" height="800" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="images/back from school.jpg" type="image/jpeg" media="(max-width: 600px)" width="600" height="400">
+                            <img src="images/back from school.jpg" alt="Back from School Campaign" width="1200" height="800" loading="lazy" decoding="async">
+                        </picture>
                         <div class="project-overlay">
                             <div class="project-links">
                                 <a href="images/back from school.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Back from School Campaign" title="Open Back from School Campaign">
@@ -709,7 +715,10 @@
 
                 <div class="project-card" data-category="design">
                     <div class="project-image">
-                        <img src="images/VICTORY CELEBRATION FOR BCYA CHAIRMANSHIP 2025-2027.jpg" alt="Victory Celebration Poster" width="1200" height="800" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="images/VICTORY CELEBRATION FOR BCYA CHAIRMANSHIP 2025-2027.jpg" type="image/jpeg" media="(max-width: 600px)" width="600" height="400">
+                            <img src="images/VICTORY CELEBRATION FOR BCYA CHAIRMANSHIP 2025-2027.jpg" alt="Victory Celebration Poster" width="1200" height="800" loading="lazy" decoding="async">
+                        </picture>
                         <div class="project-overlay">
                             <div class="project-links">
                                 <a href="images/VICTORY CELEBRATION FOR BCYA CHAIRMANSHIP 2025-2027.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Victory Celebration Poster" title="Open Victory Celebration Poster">
@@ -731,10 +740,13 @@
 
                 <div class="project-card" data-category="design">
                     <div class="project-image">
-                        <img src="images/Rise leadership Academy.png" alt="Rise Leadership Academy" width="1200" height="800" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="images/Rise leadership Academy.jpg" type="image/png" media="(max-width: 600px)" width="600" height="400">
+                            <img src="images/Rise leadership Academy.jpg" alt="Rise Leadership Academy" width="1200" height="800" loading="lazy" decoding="async">
+                        </picture>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="images/Rise leadership Academy.png" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Rise Leadership Academy Logo" title="Open Rise Leadership Academy Logo">
+                                <a href="images/Rise leadership Academy.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Rise Leadership Academy Logo" title="Open Rise Leadership Academy Logo">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
@@ -753,7 +765,10 @@
 
                 <div class="project-card" data-category="design">
                     <div class="project-image">
-                        <img src="images/POSTER-FOR-BIRTHDAY.jpg" alt="Birthday Celebration Poster" width="1200" height="800" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="images/POSTER-FOR-BIRTHDAY.jpg" type="image/jpeg" media="(max-width: 600px)" width="600" height="400">
+                            <img src="images/POSTER-FOR-BIRTHDAY.jpg" alt="Birthday Celebration Poster" width="1200" height="800" loading="lazy" decoding="async">
+                        </picture>
                         <div class="project-overlay">
                             <div class="project-links">
                                 <a href="images/POSTER-FOR-BIRTHDAY.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Birthday Celebration Poster" title="Open Birthday Celebration Poster">
@@ -775,7 +790,10 @@
 
                 <div class="project-card" data-category="design">
                     <div class="project-image">
-                        <img src="images/Social media.jpg" alt="Social Media Graphics" width="1200" height="800" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="images/Social media.jpg" type="image/jpeg" media="(max-width: 600px)" width="600" height="400">
+                            <img src="images/Social media.jpg" alt="Social Media Graphics" width="1200" height="800" loading="lazy" decoding="async">
+                        </picture>
                         <div class="project-overlay">
                             <div class="project-links">
                                 <a href="images/Social media.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Social Media Graphics" title="Open Social Media Graphics">
@@ -1117,8 +1135,18 @@
                         </div>
                         <div>
                             <h3>Email</h3>
-                            <p><a href="mailto:s.leek@alustudent.com" class="contact-link">s.leek@alustudent.com</a></p>
-                            <p><a href="mailto:thionggarang11@gmail.com" class="contact-link">thionggarang11@gmail.com</a></p>
+                            <p>
+                                <a href="mailto:s.leek@alustudent.com" class="contact-link">s.leek@alustudent.com</a>
+                                <button class="copy-email-btn" data-email="s.leek@alustudent.com" aria-label="Copy email address" title="Copy email">
+                                    <i class="fas fa-copy" id="copyIcon1"></i>
+                                </button>
+                            </p>
+                            <p>
+                                <a href="mailto:thionggarang11@gmail.com" class="contact-link">thionggarang11@gmail.com</a>
+                                <button class="copy-email-btn" data-email="thionggarang11@gmail.com" aria-label="Copy email address" title="Copy email">
+                                    <i class="fas fa-copy" id="copyIcon2"></i>
+                                </button>
+                            </p>
                         </div>
                     </div>
                     <div class="contact-item">

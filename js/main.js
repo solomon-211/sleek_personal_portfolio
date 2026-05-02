@@ -618,3 +618,38 @@ if ('IntersectionObserver' in window && !prefersReducedMotion) {
     // No animation — just set widths immediately
     document.querySelectorAll('.skill-bar-fill').forEach(bar => bar.classList.add('animated'));
 }
+
+// ── Copy email buttons ────────────────────────────────────────────────────────
+document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        const email = this.dataset.email;
+        const icon  = this.querySelector('i');
+        if (!email || !icon) return;
+        navigator.clipboard.writeText(email).then(function () {
+            icon.className = 'fas fa-check';
+            btn.classList.add('copied');
+            btn.title = 'Copied!';
+            setTimeout(function () {
+                icon.className = 'fas fa-copy';
+                btn.classList.remove('copied');
+                btn.title = 'Copy email';
+            }, 2000);
+        }).catch(function () {
+            // Fallback for browsers without clipboard API
+            const ta = document.createElement('textarea');
+            ta.value = email;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            icon.className = 'fas fa-check';
+            btn.classList.add('copied');
+            setTimeout(function () {
+                icon.className = 'fas fa-copy';
+                btn.classList.remove('copied');
+            }, 2000);
+        });
+    });
+});

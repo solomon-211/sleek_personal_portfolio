@@ -32,5 +32,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- Articles -->
+  <url>
+    <loc>https://solomonleek.tech/html/articles/alu-scholarship-journey.html</loc>
+    <lastmod>2026-01-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
 </urlset>

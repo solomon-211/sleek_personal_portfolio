@@ -1160,3 +1160,41 @@ html.light-mode .form-success-card {
 }
 html.light-mode .form-success-title { color: #0f172a; }
 html.light-mode .form-success-sub   { color: #475569; }
+
+/* ── COPY EMAIL BUTTON ────────────────────────────── */
+.copy-email-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 6px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.5);
+  font-size: 0.72rem; cursor: pointer;
+  margin-left: 0.4rem; vertical-align: middle;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  font-family: inherit;
+}
+.copy-email-btn:hover { background: rgba(234,88,12,0.12); border-color: rgba(234,88,12,0.35); color: #f97316; }
+.copy-email-btn.copied { background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.35); color: #22c55e; }
+html.light-mode .copy-email-btn { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.12); color: #64748b; }
+html.light-mode .copy-email-btn:hover { background: rgba(234,88,12,0.08); border-color: rgba(234,88,12,0.3); color: #ea580c; }
+
+/* ── FAB — mobile position fix ────────────────────── */
+@media (max-width: 768px) {
+  .fab {
+    bottom: 1.25rem !important;
+    right: 1.25rem !important;
+  }
+}
+
+/* ── IMAGE SKELETON SHIMMER ───────────────────────── */
+.project-image picture,
+.project-image img {
+  background: linear-gradient(90deg, #0a1628 25%, #132848 50%, #0a1628 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+.project-image img[src] { background: none; animation: none; }
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
