@@ -20,33 +20,71 @@
     <!-- ── TOP NAV ── -->
     <nav class="b-nav">
         <div class="b-nav__inner">
+
+            <!-- Logo -->
             <a href="html/index.html" class="b-nav__logo">
                 <div class="b-logo-icon">SK</div>
                 <span class="b-logo-text">Sleek</span>
             </a>
 
-            <div class="b-nav__cats">
-                <a href="#" class="b-nav__cat b-nav__cat--active" data-filter="all">All</a>
-                <a href="#" class="b-nav__cat" data-filter="engineering">Engineering</a>
-                <a href="#" class="b-nav__cat" data-filter="design">Design</a>
-                <a href="#" class="b-nav__cat" data-filter="leadership">Leadership</a>
-                <a href="#" class="b-nav__cat" data-filter="community">Community</a>
-                <a href="#" class="b-nav__cat" data-filter="africa">Africa &amp; Tech</a>
-                <a href="#" class="b-nav__cat" data-filter="student">Student Life</a>
-                <a href="#" class="b-nav__cat" data-filter="case-study">Case Study</a>
+            <!-- Desktop: Topics dropdown + search -->
+            <div class="b-nav__center">
+
+                <!-- Topics dropdown -->
+                <div class="b-topics-dropdown" id="bTopicsDropdown">
+                    <button class="b-topics-btn" id="bTopicsBtn" aria-expanded="false" aria-haspopup="true">
+                        <i class="fas fa-tag"></i>
+                        <span id="bTopicsLabel">All Topics</span>
+                        <i class="fas fa-chevron-down b-topics-chevron"></i>
+                    </button>
+                    <div class="b-topics-menu" id="bTopicsMenu" role="menu">
+                        <a href="#" class="b-topics-item b-topics-item--active" data-filter="all" role="menuitem">
+                            <i class="fas fa-border-all"></i> All Articles
+                        </a>
+                        <div class="b-topics-divider"></div>
+                        <a href="#" class="b-topics-item" data-filter="engineering" role="menuitem">
+                            <i class="fas fa-code"></i> Engineering
+                        </a>
+                        <a href="#" class="b-topics-item" data-filter="design" role="menuitem">
+                            <i class="fas fa-pen-nib"></i> Design
+                        </a>
+                        <a href="#" class="b-topics-item" data-filter="leadership" role="menuitem">
+                            <i class="fas fa-users"></i> Leadership
+                        </a>
+                        <a href="#" class="b-topics-item" data-filter="community" role="menuitem">
+                            <i class="fas fa-heart"></i> Community
+                        </a>
+                        <a href="#" class="b-topics-item" data-filter="africa" role="menuitem">
+                            <i class="fas fa-globe-africa"></i> Africa &amp; Tech
+                        </a>
+                        <a href="#" class="b-topics-item" data-filter="student" role="menuitem">
+                            <i class="fas fa-graduation-cap"></i> Student Life
+                        </a>
+                        <a href="#" class="b-topics-item" data-filter="case-study" role="menuitem">
+                            <i class="fas fa-star"></i> Case Study
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Search -->
+                <div class="b-search" id="bSearchWrap">
+                    <i class="fas fa-search b-search__icon"></i>
+                    <input type="search" class="b-search__input" id="bSearchInput" placeholder="Search articles…" aria-label="Search articles">
+                    <button class="b-search__clear" id="bSearchClear" aria-label="Clear search" style="display:none">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
             </div>
 
+            <!-- Right actions -->
             <div class="b-nav__right">
-                <div class="b-search">
-                    <i class="fas fa-search b-search__icon"></i>
-                    <input type="search" class="b-search__input" placeholder="Search articles…" aria-label="Search articles">
-                </div>
                 <button class="b-theme-toggle" id="bThemeToggle" aria-label="Toggle light/dark mode" title="Toggle theme">
                     <i class="fas fa-sun b-theme-icon-light"></i>
                     <i class="fas fa-moon b-theme-icon-dark"></i>
                 </button>
                 <a href="html/index.html" class="b-nav__portfolio">
-                    <i class="fas fa-arrow-left"></i> Portfolio
+                    <i class="fas fa-arrow-left"></i>
+                    <span class="b-nav__portfolio-text">Portfolio</span>
                 </a>
             </div>
         </div>
@@ -516,7 +554,65 @@
         });
     });
 
-    /* ── NAV CATEGORY FILTER ── */
+    /* ── TOPICS DROPDOWN ── */
+    const topicsBtn  = document.getElementById('bTopicsBtn');
+    const topicsMenu = document.getElementById('bTopicsMenu');
+    const topicsLabel = document.getElementById('bTopicsLabel');
+
+    function closeTopics() {
+        if (!topicsBtn || !topicsMenu) return;
+        topicsBtn.classList.remove('open');
+        topicsMenu.classList.remove('open');
+        topicsBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    if (topicsBtn && topicsMenu) {
+        topicsBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const isOpen = topicsMenu.classList.contains('open');
+            if (isOpen) { closeTopics(); } else {
+                topicsBtn.classList.add('open');
+                topicsMenu.classList.add('open');
+                topicsBtn.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        topicsMenu.querySelectorAll('.b-topics-item').forEach(function (item) {
+            item.addEventListener('click', function (e) {
+                e.preventDefault();
+                const filter = this.dataset.filter || 'all';
+                const label  = this.textContent.trim();
+
+                /* Update dropdown active state */
+                topicsMenu.querySelectorAll('.b-topics-item').forEach(i => i.classList.remove('b-topics-item--active'));
+                this.classList.add('b-topics-item--active');
+
+                /* Update button label */
+                topicsLabel.textContent = filter === 'all' ? 'All Topics' : label;
+
+                /* Sync sidebar pills */
+                pills.forEach(p => p.classList.remove('b-tag-pill--active'));
+                const matchPill = document.querySelector('.b-tag-pill[data-filter="' + filter + '"]');
+                if (matchPill) matchPill.classList.add('b-tag-pill--active');
+
+                filterPosts(filter);
+                closeTopics();
+                document.querySelector('.b-feed').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        /* Close on outside click */
+        document.addEventListener('click', function (e) {
+            if (!topicsBtn.contains(e.target) && !topicsMenu.contains(e.target)) closeTopics();
+        });
+
+        /* Close on Escape */
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeTopics();
+        });
+    }
+
+    /* ── NAV CATEGORY FILTER (legacy — kept for compatibility) ── */
     document.querySelectorAll('.b-nav__cat').forEach(function (cat) {
         cat.addEventListener('click', function (e) {
             e.preventDefault();
@@ -560,17 +656,43 @@
     if (searchInput) {
         searchInput.addEventListener('input', function () {
             const q = this.value.trim().toLowerCase();
-            if (!q) { filterPosts('all'); return; }
+            if (!q) {
+                filterPosts('all');
+                /* Reset topics dropdown label */
+                if (topicsLabel) topicsLabel.textContent = 'All Topics';
+                if (topicsMenu) {
+                    topicsMenu.querySelectorAll('.b-topics-item').forEach(i => i.classList.remove('b-topics-item--active'));
+                    const allItem = topicsMenu.querySelector('[data-filter="all"]');
+                    if (allItem) allItem.classList.add('b-topics-item--active');
+                }
+                return;
+            }
             let visible = 0;
             posts.forEach(function (post) {
-                const text = post.textContent.toLowerCase();
-                const show = text.includes(q);
+                /* Search only title + excerpt for cleaner results */
+                const title   = (post.querySelector('.b-post__title')   || {}).textContent || '';
+                const excerpt = (post.querySelector('.b-post__excerpt')  || {}).textContent || '';
+                const tags    = post.dataset.tags || '';
+                const haystack = (title + ' ' + excerpt + ' ' + tags).toLowerCase();
+                const show = haystack.includes(q);
                 post.classList.toggle('b-hidden', !show);
                 if (show) visible++;
             });
+            /* Hide dividers when searching */
+            document.querySelectorAll('.b-feed__divider').forEach(d => d.style.display = q ? 'none' : '');
             if (emptyEl) emptyEl.style.display = visible === 0 ? 'flex' : 'none';
-            /* Clear active pill */
+            /* Clear active pill and update dropdown */
             pills.forEach(p => p.classList.remove('b-tag-pill--active'));
+            if (topicsLabel) topicsLabel.textContent = 'Searching…';
+        });
+
+        /* Clear search on Escape */
+        searchInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                this.value = '';
+                this.dispatchEvent(new Event('input'));
+                this.blur();
+            }
         });
     }
 

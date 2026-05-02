@@ -101,7 +101,6 @@
                 <li class="nav-main-item"><a href="#home"     class="nav-link">Home</a></li>
                 <li class="nav-main-item"><a href="#about"    class="nav-link">About</a></li>
                 <li class="nav-main-item"><a href="#projects" class="nav-link">Projects</a></li>
-                <li class="nav-main-item"><a href="#timeline" class="nav-link">Journey</a></li>
                 <li class="nav-main-item"><a href="#skills"   class="nav-link">Skills</a></li>
                 <li class="nav-main-item"><a href="#contact"  class="nav-link">Contact</a></li>
                 <li class="nav-main-item"><a href="html/blog.html" class="nav-link">Blog</a></li>
@@ -114,16 +113,17 @@
                     </button>
                 </li>
 
-                <!-- More pages (hidden until More is pressed) -->
+                <!-- Back button (mobile only) -->
                 <li class="nav-back-item" id="navBackItem">
                     <button class="nav-link nav-back-btn" id="navBackBtn" type="button">
                         <i class="fas fa-arrow-left"></i> Back
                     </button>
                 </li>
-                <li class="nav-more-item"><a href="#academics"   class="nav-link">Academics</a></li>
-                <li class="nav-more-item"><a href="#awards"      class="nav-link">Awards</a></li>
-                <li class="nav-more-item"><a href="#leadership"  class="nav-link">Leadership</a></li>
-                <li class="nav-more-item"><a href="#community"   class="nav-link">Community</a></li>
+                <li class="nav-more-item"><a href="#timeline"     class="nav-link">Journey</a></li>
+                <li class="nav-more-item"><a href="#academics"    class="nav-link">Academics</a></li>
+                <li class="nav-more-item"><a href="#awards"       class="nav-link">Awards</a></li>
+                <li class="nav-more-item"><a href="#leadership"   class="nav-link">Leadership</a></li>
+                <li class="nav-more-item"><a href="#community"    class="nav-link">Community</a></li>
                 <li class="nav-more-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
 
                 <!-- Desktop More dropdown (desktop only) -->
@@ -132,12 +132,12 @@
                         More <i class="fas fa-chevron-down nav-more-icon"></i>
                     </button>
                     <ul class="nav-more-menu" id="navMoreMenu">
-                        <li><a href="#academics"   class="nav-link">Academics</a></li>
-                        <li><a href="#awards"      class="nav-link">Awards</a></li>
-                        <li><a href="#leadership"  class="nav-link">Leadership</a></li>
-                        <li><a href="#community"   class="nav-link">Community</a></li>
+                        <li><a href="#timeline"     class="nav-link">Journey</a></li>
+                        <li><a href="#academics"    class="nav-link">Academics</a></li>
+                        <li><a href="#awards"       class="nav-link">Awards</a></li>
+                        <li><a href="#leadership"   class="nav-link">Leadership</a></li>
+                        <li><a href="#community"    class="nav-link">Community</a></li>
                         <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-                        <li><a href="html/blog.html" class="nav-link">Blog</a></li>
                     </ul>
                 </li>
             </ul>
@@ -190,17 +190,17 @@
                 <!-- Stats row -->
                 <div class="hero-stats reveal-left">
                     <div class="hero-stat">
-                        <span class="hero-stat-num">300+</span>
+                        <span class="hero-stat-num" data-count="300" data-suffix="+">300+</span>
                         <span class="hero-stat-label">Lives Impacted</span>
                     </div>
                     <div class="hero-stat-divider"></div>
                     <div class="hero-stat">
-                        <span class="hero-stat-num">8+</span>
+                        <span class="hero-stat-num" data-count="8" data-suffix="+">8+</span>
                         <span class="hero-stat-label">Projects Built</span>
                     </div>
                     <div class="hero-stat-divider"></div>
                     <div class="hero-stat">
-                        <span class="hero-stat-num">3+</span>
+                        <span class="hero-stat-num" data-count="3" data-suffix="+">3+</span>
                         <span class="hero-stat-label">Years Design</span>
                     </div>
                     <div class="hero-stat-divider"></div>
@@ -225,8 +225,8 @@
                         <i class="fas fa-envelope"></i>
                     </a>
                     <span class="hero-social-divider"></span>
-                    <a href="resume.pdf" target="_blank" rel="noopener noreferrer" class="hero-resume-link">
-                        <i class="fas fa-file-pdf"></i> Resume
+                    <a href="https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="hero-resume-link">
+                        <i class="fas fa-file-lines"></i> Resume
                     </a>
                 </div>
 
@@ -359,288 +359,6 @@
                         <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" class="github-widget__cta">
                             <i class="fa-brands fa-github"></i> View Profile &amp; Repositories
                         </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Academic Excellence Section -->
-    <section id="academics" class="section-bg-white">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Academic Excellence</h2>
-                <p class="section-subtitle">
-                    A high-performance academic journey shaped by discipline, curiosity, and continuous growth
-                </p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-graduation-cap"></i></div>
-                        <h3 class="skill-title">Current Studies</h3>
-                    </div>
-                    <div class="skill-list">
-                        <span class="skill-item">Software Engineering - ALU</span>
-                        <span class="skill-item">Expected Graduation: 2028</span>
-                        <span class="skill-item">Kigali, Rwanda Campus</span>
-                        <span class="skill-item">Full Scholarship Recipient</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-award"></i></div>
-                        <h3 class="skill-title">Academic Achievements</h3>
-                    </div>
-                    <div class="skill-list">
-                        <span class="skill-item">Academic Excellence Award</span>
-                        <span class="skill-item">Programming Competition Winner</span>
-                        <span class="skill-item">Research Project Recognition</span>
-                        <span class="skill-item">Peer Tutoring Certification</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-book"></i></div>
-                        <h3 class="skill-title">Key Coursework</h3>
-                    </div>
-                    <div class="skill-list">
-                        <span class="skill-item">Data Structures & Algorithms</span>
-                        <span class="skill-item">Software Engineering Principles</span>
-                        <span class="skill-item">Database Management Systems</span>
-                        <span class="skill-item">Human-Computer Interaction</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-certificate"></i></div>
-                        <h3 class="skill-title">Certifications</h3>
-                    </div>
-                    <div class="skill-list">
-                        <span class="skill-item">Google IT Support Certificate</span>
-                        <span class="skill-item">Adobe Certified Expert</span>
-                        <span class="skill-item">Python Programming Certificate</span>
-                        <span class="skill-item">Web Development Bootcamp</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Awards Section -->
-    <section id="awards" class="section-bg-secondary">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Awards & Recognition</h2>
-                <p class="section-subtitle">
-                    Honors earned through excellence, leadership, and meaningful community contribution
-                </p>
-            </div>
-            <div class="awards-grid">
-                <article class="award-card">
-                    <div class="award-badge"><i class="fas fa-trophy"></i></div>
-                    <h3 class="award-title">Academic Excellence Award</h3>
-                    <p class="award-meta">ALU • 2025</p>
-                    <p class="award-description">Awarded for maintaining one of the highest GPAs in the cohort while actively supporting peers through tutoring and collaborative learning.</p>
-                </article>
-                <article class="award-card">
-                    <div class="award-badge"><i class="fas fa-users"></i></div>
-                    <h3 class="award-title">Leadership Impact Recognition</h3>
-                    <p class="award-meta">Student Leadership • 2025</p>
-                    <p class="award-description">Recognized for leading student initiatives that strengthened campus engagement, improved academic support structures, and elevated the student experience.</p>
-                </article>
-                <article class="award-card">
-                    <div class="award-badge"><i class="fas fa-hand-holding-heart"></i></div>
-                    <h3 class="award-title">Community Service Distinction</h3>
-                    <p class="award-meta">Community Programs • 2024</p>
-                    <p class="award-description">Acknowledged for delivering measurable impact through digital literacy training and youth mentorship programs across underserved communities.</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Leadership & Extracurricular Section -->
-    <section id="leadership" class="section-bg-secondary">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Leadership & Impact</h2>
-                <p class="section-subtitle">
-                    Leadership roles and programs that strengthened how I communicate, execute, and deliver impact
-                </p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Student Government President</h3>
-                        <p class="project-description">Elected to represent a student body of 500+ at ALU. Drove policy changes that improved access to academic resources, strengthened student welfare systems, and built a more engaged campus community.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Leadership</span>
-                            <span class="tech-tag">Policy Development</span>
-                            <span class="tech-tag">Public Speaking</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">ALU Marketing & Outreach Team</h3>
-                        <p class="project-description">Produced visual content and managed social media campaigns as part of ALU's official Marketing & Outreach Team — supporting student recruitment efforts and strengthening the university's brand presence across digital platforms.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Marketing</span>
-                            <span class="tech-tag">Content Creation</span>
-                            <span class="tech-tag">Brand Communication</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Global Leadership Program (Aspire Leaders)</h3>
-                        <p class="project-description">Selected for and completed the Aspire Leaders Program — a globally competitive leadership initiative that develops emerging leaders through intensive training in strategic thinking, ethical decision-making, and social impact design.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Global Leadership</span>
-                            <span class="tech-tag">Social Impact</span>
-                            <span class="tech-tag">Program Graduate</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section id="timeline" class="section-bg-white">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">My Journey</h2>
-                <p class="section-subtitle">The defining milestones that shaped my leadership, craft, and purpose</p>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Feb 2019</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Student Leadership</span>
-                        <h3 class="timeline-title">Student Government President</h3>
-                        <p class="timeline-desc">Elected to lead student government, representing 500+ students and advancing policy improvements that strengthened academic support systems and campus welfare.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">2019-2022</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Secondary Education</span>
-                        <h3 class="timeline-title">Darling Wisdom Academy &mdash; Secondary School</h3>
-                        <p class="timeline-desc">Completed secondary school with a strong academic foundation, disciplined study habits, and early leadership exposure that prepared me for university-level engineering studies.</p>
-                        <p class="timeline-quote-lead">Inspired by the quote:</p>
-                        <blockquote class="timeline-quote">"One minute on a book does not lie."</blockquote>
-                        <p class="timeline-quote-author">&mdash; Noble Arem Riak</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">2023-2024</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Teaching Experience</span>
-                        <h3 class="timeline-title">Mission Garden Nursery and Primary School &mdash; Teacher</h3>
-                        <p class="timeline-desc">Served as a teacher supporting foundational learning and student development, while strengthening my communication, mentorship, and classroom leadership capabilities.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Jan 2025</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Higher Education</span>
-                        <h3 class="timeline-title">African Leadership University (ALU) &mdash; Software Engineering</h3>
-                        <p class="timeline-desc">Began undergraduate Software Engineering studies at ALU, Kigali, Rwanda, on a full scholarship &mdash; a defining step toward building impactful technology solutions for Africa.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Jan 2025</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Design and Branding</span>
-                        <h3 class="timeline-title">Started Graphic Design</h3>
-                        <p class="timeline-desc">Began creating professional visual content &mdash; posters, branding, and social media graphics &mdash; combining creativity with communication to serve communities and organizations.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">May 2025</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Global Leadership Program</span>
-                        <h3 class="timeline-title">Aspire Leaders Program</h3>
-                        <p class="timeline-desc">Selected for this globally competitive leadership initiative, completing intensive training in strategic thinking, ethical decision-making, and social impact design.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">May 2025</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Global Learning Experience (SIE)</span>
-                        <h3 class="timeline-title">ALU Marketing &amp; Outreach Team</h3>
-                        <p class="timeline-desc">Joined ALU's official marketing team, producing visual content and managing campaigns that strengthened the university's brand across digital platforms.</p>
-                    </div>
-                </div>
-                <div class="timeline-item timeline-item--future">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Jul 2028</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag timeline-tag--future">Graduation Milestone</span>
-                        <h3 class="timeline-title">Expected Graduation &mdash; BSc Software Engineering, ALU</h3>
-                        <p class="timeline-desc">Expected to graduate with a Bachelor of Science in Software Engineering, prepared to build high-impact technology solutions for real challenges across Africa.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Community Service Section -->
-    <section id="community" class="section-bg-white">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Community Service</h2>
-                <p class="section-subtitle">
-                    Turning skills, time, and leadership into tangible progress for underserved communities
-                </p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3 class="section-heading-primary">Digital Literacy Initiative</h3>
-                    <p>
-                        I designed and led a digital literacy initiative in rural South Sudan, training more than 200 people in essential computer and internet skills. The program equipped participants to access online learning, apply for opportunities, and engage with digital services confidently, many for the first time.
-                    </p>
-                    <h3 class="section-heading-primary section-heading-spaced">Youth Mentorship Program</h3>
-                    <p>
-                        I mentored over 50 secondary school students in STEM, university preparation, and career planning. Through practical coaching on applications, study systems, and goal-setting, 85% of mentees progressed into higher education pathways.
-                    </p>
-                </div>
-                <div class="about-highlights">
-                    <div class="highlight-item">
-                        <div class="highlight-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div>
-                            <h3>200+ Hours</h3>
-                            <p>Community volunteer service completed</p>
-                        </div>
-                    </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div>
-                            <h3>300+ Lives</h3>
-                            <p>Directly impacted through various initiatives</p>
-                        </div>
-                    </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon">
-                            <i class="fas fa-globe-africa"></i>
-                        </div>
-                        <div>
-                            <h3>5 Communities</h3>
-                            <p>Served across East African communities</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -884,6 +602,412 @@
         </div>
     </section>
 
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skills & Expertise</h2>
+                <p class="section-subtitle">
+                    The capabilities I apply across design, software development, and engineering delivery
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category reveal">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+                        <h3 class="skill-title">Graphic Design</h3>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Adobe Photoshop</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Adobe Illustrator</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Figma</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Canva</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Brand Identity</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category reveal">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-code"></i></div>
+                        <h3 class="skill-title">Frontend Development</h3>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">HTML5 &amp; CSS3</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">JavaScript</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">React</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Responsive Design</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Bootstrap</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category reveal">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3 class="skill-title">Programming</h3>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Python</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Flask / Django</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Git &amp; GitHub</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">REST APIs</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">SQL</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category reveal">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3 class="skill-title">UI/UX Design</h3>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">User Research</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Wireframing</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Prototyping</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Design Systems</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-label"><span class="skill-bar-name">Usability Testing</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:100%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="section-bg-white">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My Journey</h2>
+                <p class="section-subtitle">The defining milestones that shaped my leadership, craft, and purpose</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Feb 2019</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Student Leadership</span>
+                        <h3 class="timeline-title">Student Government President</h3>
+                        <p class="timeline-desc">Elected to lead student government, representing 500+ students and advancing policy improvements that strengthened academic support and campus welfare.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2019-2022</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Secondary Education</span>
+                        <h3 class="timeline-title">Darling Wisdom Academy &mdash; Secondary School</h3>
+                        <p class="timeline-desc">Completed secondary school with a strong academic foundation and early leadership exposure that prepared me for university-level engineering studies.</p>
+                        <p class="timeline-quote-lead">Inspired by the quote:</p>
+                        <blockquote class="timeline-quote">"One minute on a book does not lie."</blockquote>
+                        <p class="timeline-quote-author">&mdash; Noble Arem Riak</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2023-2024</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Teaching Experience</span>
+                        <h3 class="timeline-title">Mission Garden Nursery and Primary School &mdash; Teacher</h3>
+                        <p class="timeline-desc">Served as a teacher supporting foundational learning and student development, strengthening my communication and mentorship capabilities.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Jan 2025</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Higher Education</span>
+                        <h3 class="timeline-title">African Leadership University (ALU) &mdash; Software Engineering</h3>
+                        <p class="timeline-desc">Began undergraduate Software Engineering at ALU, Kigali, on a full scholarship — a defining step toward building technology solutions for Africa.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Jan 2025</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Design and Branding</span>
+                        <h3 class="timeline-title">Started Graphic Design</h3>
+                        <p class="timeline-desc">Began creating professional visual content — posters, branding, and social media graphics — combining creativity with communication to serve communities and organisations.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">May 2025</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Global Leadership Program</span>
+                        <h3 class="timeline-title">Aspire Leaders Program</h3>
+                        <p class="timeline-desc">Selected for this globally competitive leadership initiative, completing intensive training in strategic thinking, ethical decision-making, and social impact design.</p>                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">May 2025</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">Global Learning Experience (SIE)</span>
+                        <h3 class="timeline-title">ALU Marketing &amp; Outreach Team</h3>
+                        <p class="timeline-desc">Joined ALU's official marketing team, producing visual content and managing campaigns that strengthened the university's brand across digital platforms.</p>                    </div>
+                </div>
+                <div class="timeline-item timeline-item--future">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Jul 2028</div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag timeline-tag--future">Graduation Milestone</span>
+                        <h3 class="timeline-title">Expected Graduation &mdash; BSc Software Engineering, ALU</h3>
+                        <p class="timeline-desc">Expected to graduate with a BSc in Software Engineering, ready to build technology solutions for real challenges across Africa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Excellence Section -->
+    <section id="academics" class="section-bg-white">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Academic Excellence</h2>
+                <p class="section-subtitle">
+                    A high-performance academic journey shaped by discipline, curiosity, and continuous growth
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h3 class="skill-title">Current Studies</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-item">Software Engineering - ALU</span>
+                        <span class="skill-item">Expected Graduation: 2028</span>
+                        <span class="skill-item">Kigali, Rwanda Campus</span>
+                        <span class="skill-item">Full Scholarship Recipient</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-award"></i></div>
+                        <h3 class="skill-title">Academic Achievements</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-item">Academic Excellence Award</span>
+                        <span class="skill-item">Programming Competition Winner</span>
+                        <span class="skill-item">Research Project Recognition</span>
+                        <span class="skill-item">Peer Tutoring Certification</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-book"></i></div>
+                        <h3 class="skill-title">Key Coursework</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-item">Data Structures & Algorithms</span>
+                        <span class="skill-item">Software Engineering Principles</span>
+                        <span class="skill-item">Database Management Systems</span>
+                        <span class="skill-item">Human-Computer Interaction</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <div class="skill-icon"><i class="fas fa-certificate"></i></div>
+                        <h3 class="skill-title">Certifications</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-item">Google IT Support Certificate</span>
+                        <span class="skill-item">Adobe Certified Expert</span>
+                        <span class="skill-item">Python Programming Certificate</span>
+                        <span class="skill-item">Web Development Bootcamp</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+<section id="awards" class="section-bg-secondary">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Awards & Recognition</h2>
+                <p class="section-subtitle">
+                    Honors earned through excellence, leadership, and meaningful community contribution
+                </p>
+            </div>
+            <div class="awards-grid">
+                <article class="award-card">
+                    <div class="award-badge"><i class="fas fa-trophy"></i></div>
+                    <h3 class="award-title">Academic Excellence Award</h3>
+                    <p class="award-meta">ALU • 2025</p>
+                    <p class="award-description">Awarded for maintaining one of the highest GPAs in the cohort while actively supporting peers through tutoring and collaborative learning.</p>
+                </article>
+                <article class="award-card">
+                    <div class="award-badge"><i class="fas fa-users"></i></div>
+                    <h3 class="award-title">Leadership Impact Recognition</h3>
+                    <p class="award-meta">Student Leadership • 2025</p>
+                    <p class="award-description">Recognized for leading student initiatives that strengthened campus engagement, improved academic support structures, and elevated the student experience.</p>
+                </article>
+                <article class="award-card">
+                    <div class="award-badge"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3 class="award-title">Community Service Distinction</h3>
+                    <p class="award-meta">Community Programs • 2024</p>
+                    <p class="award-description">Acknowledged for delivering measurable impact through digital literacy training and youth mentorship programs across underserved communities.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership & Extracurricular Section -->
+    <section id="leadership" class="section-bg-secondary">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Leadership & Impact</h2>
+                <p class="section-subtitle">
+                    Leadership roles and programs that strengthened how I communicate, execute, and deliver impact
+                </p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Student Government President</h3>
+                        <p class="project-description">Elected to represent 500+ students at ALU. Drove policy changes that improved academic resources, strengthened student welfare, and built a more engaged campus community.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Leadership</span>
+                            <span class="tech-tag">Policy Development</span>
+                            <span class="tech-tag">Public Speaking</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">ALU Marketing & Outreach Team</h3>
+                        <p class="project-description">Produced visual content and managed social media campaigns for ALU's official Marketing & Outreach Team — supporting student recruitment and strengthening the university's brand across digital platforms.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Marketing</span>
+                            <span class="tech-tag">Content Creation</span>
+                            <span class="tech-tag">Brand Communication</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Global Leadership Program (Aspire Leaders)</h3>
+                        <p class="project-description">Selected for and completed the Aspire Leaders Program — a globally competitive initiative developing emerging leaders through strategic thinking, ethical decision-making, and social impact design.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Global Leadership</span>
+                            <span class="tech-tag">Social Impact</span>
+                            <span class="tech-tag">Program Graduate</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Service Section -->
+    <section id="community" class="section-bg-white">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Community Service</h2>
+                <p class="section-subtitle">
+                    Turning skills, time, and leadership into tangible progress for underserved communities
+                </p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 class="section-heading-primary">Digital Literacy Initiative</h3>
+                    <p>
+                        Designed and led a digital literacy program in rural South Sudan, training 200+ people in essential computer and internet skills — many for the first time.
+                    </p>
+                    <h3 class="section-heading-primary section-heading-spaced">Youth Mentorship Program</h3>
+                    <p>
+                        Mentored 50+ secondary school students in STEM, university preparation, and career planning. 85% progressed into higher education pathways.
+                    </p>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div>
+                            <h3>200+ Hours</h3>
+                            <p>Community volunteer service completed</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h3>300+ Lives</h3>
+                            <p>Directly impacted through various initiatives</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-globe-africa"></i>
+                        </div>
+                        <div>
+                            <h3>5 Communities</h3>
+                            <p>Served across East African communities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Testimonials Section -->
     <section id="testimonials" class="section-bg-secondary">
         <div class="container">
@@ -928,133 +1052,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Skills & Expertise</h2>
-                <p class="section-subtitle">
-                    The capabilities I apply across design, software development, and engineering delivery
-                </p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
-                        <h3 class="skill-title">Graphic Design</h3>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Adobe Photoshop</span><span class="skill-bar-pct">90%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:90%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Adobe Illustrator</span><span class="skill-bar-pct">85%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:85%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Figma</span><span class="skill-bar-pct">80%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:80%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Canva</span><span class="skill-bar-pct">95%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:95%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Brand Identity</span><span class="skill-bar-pct">78%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:78%"></div></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-code"></i></div>
-                        <h3 class="skill-title">Frontend Development</h3>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">HTML5 & CSS3</span><span class="skill-bar-pct">92%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:92%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">JavaScript</span><span class="skill-bar-pct">75%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:75%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">React</span><span class="skill-bar-pct">60%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:60%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Responsive Design</span><span class="skill-bar-pct">88%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:88%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Bootstrap</span><span class="skill-bar-pct">80%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:80%"></div></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h3 class="skill-title">Programming</h3>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Python</span><span class="skill-bar-pct">82%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:82%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Flask / Django</span><span class="skill-bar-pct">65%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:65%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Git & GitHub</span><span class="skill-bar-pct">85%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:85%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">REST APIs</span><span class="skill-bar-pct">70%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:70%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">SQL</span><span class="skill-bar-pct">60%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:60%"></div></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
-                        <h3 class="skill-title">UI/UX Design</h3>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">User Research</span><span class="skill-bar-pct">75%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:75%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Wireframing</span><span class="skill-bar-pct">80%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:80%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Prototyping</span><span class="skill-bar-pct">72%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:72%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Design Systems</span><span class="skill-bar-pct">68%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:68%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Usability Testing</span><span class="skill-bar-pct">65%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:65%"></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -1068,17 +1065,11 @@
                 <div class="about-text">
                     <h3 class="contact-heading">My Vision</h3>
                     <p class="contact-muted">
-                        My goal is to build software that solves high-impact problems, starting with the communities I come from.
-                        As an engineer in training, I focus on practical technology for healthcare access, digital education,
-                        and economic inclusion across underserved African communities. Long term, I aim to return to South Sudan and launch
-                        a technology and innovation center that equips the next generation of African engineers to build locally relevant solutions.
+                        Build software that solves real problems — starting with the communities I come from. I focus on practical technology for healthcare access, digital education, and economic inclusion across underserved African communities. Long term, I aim to return to South Sudan and launch a technology and innovation center for the next generation of African engineers.
                     </p>
                     <h3 class="contact-heading section-heading-spaced">What I'm Looking For</h3>
                     <p class="contact-muted">
-                        I am actively seeking internships, collaborative projects, and mentorship opportunities that accelerate my growth
-                        as an engineer and leader. Whether contributing to a mission-driven product or partnering with experienced teams,
-                        I bring discipline, curiosity, and a strong execution mindset. Every opportunity I take on is a chance to deliver value
-                        while growing my capacity to lead meaningful work.
+                        Internships, collaborative projects, and mentorship that accelerate my growth as an engineer and leader. I bring discipline, curiosity, and a strong execution mindset to every opportunity.
                     </p>
                 </div>
                 <div class="about-highlights">
@@ -1268,7 +1259,7 @@
                         <li><a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a></li>
                         <li><a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a></li>
                         <li><a href="mailto:s.leek@alustudent.com?cc=thionggarang11@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
-                        <li><a href="resume.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> Resume</a></li>
+                        <li><a href="https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> Resume</a></li>
                     </ul>
                 </div>
             </div>
@@ -1287,5 +1278,6 @@
     <script src="js/main.js?v=20260414"></script>
 </body>
 </html>
+
 
 

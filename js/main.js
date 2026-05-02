@@ -653,3 +653,49 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
         });
     });
 });
+
+// ── Hero stat counter animation ───────────────────────────────────────────────
+(function () {
+    if (prefersReducedMotion) return;
+
+    const statNums = document.querySelectorAll('.hero-stat-num[data-count]');
+    if (!statNums.length) return;
+
+    let animated = false;
+
+    function runCounters() {
+        if (animated) return;
+        animated = true;
+        statNums.forEach(function (el) {
+            const target  = parseInt(el.dataset.count, 10);
+            const suffix  = el.dataset.suffix || '';
+            const duration = 1400;
+            const start   = performance.now();
+
+            function step(now) {
+                const elapsed  = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                // Ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(eased * target) + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = target + suffix;
+            }
+            requestAnimationFrame(step);
+        });
+    }
+
+    // Trigger when hero stats scroll into view
+    if ('IntersectionObserver' in window) {
+        const statsEl = document.querySelector('.hero-stats');
+        if (statsEl) {
+            const obs = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting) { runCounters(); obs.disconnect(); }
+            }, { threshold: 0.5 });
+            obs.observe(statsEl);
+        }
+    } else {
+        // Fallback: run after 800ms
+        setTimeout(runCounters, 800);
+    }
+})();

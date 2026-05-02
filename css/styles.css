@@ -1341,3 +1341,133 @@ html.light-mode .btn-primary,
 html.light-mode .btn { color: #ffffff !important; }
 html.light-mode .btn-secondary { color: #0f172a !important; background: rgba(0,0,0,0.06) !important; border-color: rgba(0,0,0,0.15) !important; }
 html.light-mode .btn-secondary:hover { background: rgba(0,0,0,0.1) !important; border-color: #ea580c !important; color: #ea580c !important; }
+
+/* ── SECTION GRID PATTERN ──────────────────────────────
+   Same subtle grid as the hero, applied to all sections.
+   Uses ::after so it doesn't conflict with existing ::before.
+   ─────────────────────────────────────────────────────── */
+section {
+  position: relative;
+  overflow: hidden;
+}
+section::after {
+  content: '';
+  position: absolute; inset: 0;
+  pointer-events: none; z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
+}
+
+/* Make sure section content sits above the grid */
+section > * { position: relative; z-index: 1; }
+
+/* Slightly more visible on alternating sections for rhythm */
+section:nth-child(even)::after {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Light mode — use dark lines instead of white */
+html.light-mode section::after {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px) !important;
+}
+html.light-mode section:nth-child(even)::after {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   VISUAL ENHANCEMENTS
+   ══════════════════════════════════════════════════════ */
+
+/* ── 1. FLOATING ACCENT ORBS on key sections ──────────── */
+#skills::before,
+#contact::before,
+#timeline::before {
+  content: '';
+  position: absolute; pointer-events: none; z-index: 0;
+  border-radius: 50%; filter: blur(80px);
+  opacity: 0.07;
+  animation: orb-drift 14s ease-in-out infinite alternate;
+}
+#skills::before {
+  width: 500px; height: 500px;
+  background: #ea580c;
+  top: -100px; right: -150px;
+}
+#contact::before {
+  width: 400px; height: 400px;
+  background: #f97316;
+  bottom: -80px; left: -100px;
+  animation-duration: 12s;
+  animation-delay: -5s;
+}
+#timeline::before {
+  width: 350px; height: 350px;
+  background: #ea580c;
+  top: 50%; left: -120px;
+  animation-duration: 16s;
+  animation-delay: -8s;
+}
+/* Reduce orbs in light mode */
+html.light-mode #skills::before,
+html.light-mode #contact::before,
+html.light-mode #timeline::before { opacity: 0.03 !important; }
+
+/* ── 2. SECTION TITLE — gradient underline ────────────── */
+.section-title::after {
+  background: linear-gradient(90deg, var(--orange-500), var(--orange-300), transparent) !important;
+  width: 80px !important;
+  height: 3px !important;
+}
+
+/* ── 3. CARD HOVER GLOW ───────────────────────────────── */
+.skill-category:hover,
+.project-card:hover,
+.award-card:hover,
+.testimonial-card:hover,
+.timeline-card:hover {
+  box-shadow:
+    0 16px 48px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(234,88,12,0.2),
+    0 0 20px rgba(234,88,12,0.06) !important;
+}
+html.light-mode .skill-category:hover,
+html.light-mode .project-card:hover,
+html.light-mode .award-card:hover,
+html.light-mode .testimonial-card:hover,
+html.light-mode .timeline-card:hover {
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.1),
+    0 0 0 1px rgba(234,88,12,0.15),
+    0 0 16px rgba(234,88,12,0.05) !important;
+}
+
+/* ── 4. REVEAL ANIMATIONS on more elements ────────────── */
+.award-card,
+.testimonial-card,
+.highlight-item,
+.timeline-card,
+.language-card {
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease !important;
+}
+
+/* ── 5. SECTION DIVIDER — orange fade line ────────────── */
+section + section::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(234,88,12,0.15), transparent);
+  margin: 0 auto;
+  width: 80%;
+  position: relative; z-index: 2;
+}

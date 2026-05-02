@@ -32,6 +32,10 @@
                 <span class="ar-logo-text">Sleek</span>
             </a>
             <div class="ar-nav__actions">
+                <button class="ar-theme-toggle" id="arThemeToggle" aria-label="Toggle theme" title="Toggle theme">
+                    <i class="fas fa-sun ar-theme-icon-light"></i>
+                    <i class="fas fa-moon ar-theme-icon-dark"></i>
+                </button>
                 <button class="ar-share-btn" id="arShareBtn" title="Copy link" aria-label="Copy link">
                     <i class="fas fa-link"></i>
                 </button>
@@ -61,6 +65,8 @@
                                 <span class="ar-meta__date">January 2026</span>
                                 <span class="ar-dot"></span>
                                 <span class="ar-meta__read">6 min read</span>
+                                <span class="ar-dot"></span>
+                                <span>Student Life</span>
                             </span>
                         </div>
                     </div>
@@ -73,8 +79,18 @@
                         </a>
                     </div>
                 </div>
-                <div class="ar-cover">
-                    <img src="images/photo.jpg" alt="Solomon Thiong Garang Leek at ALU, Kigali" loading="eager">
+
+                <!-- Hero banner — portrait photo displayed properly -->
+                <div class="ar-cover ar-cover--portrait">
+                    <div class="ar-cover__photo-wrap">
+                        <img src="images/photo.jpg" alt="Solomon Thiong Garang Leek — ALU, Kigali" loading="eager">
+                    </div>
+                    <div class="ar-cover__overlay">
+                        <div class="ar-cover__badge">
+                            <i class="fas fa-graduation-cap"></i>
+                            Mastercard Foundation Scholar · ALU, Kigali, Rwanda
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -230,6 +246,20 @@
     <script>
     (function () {
         const ARTICLE_KEY = 'article-alu-scholarship';
+
+        /* ── Theme toggle ── */
+        const themeBtn = document.getElementById('arThemeToggle');
+        const html = document.documentElement;
+        const STORAGE_KEY = 'portfolio-theme';
+        const saved = localStorage.getItem(STORAGE_KEY);
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'light' || (!saved && !prefersDark)) html.classList.add('light-mode');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', function () {
+                const isLight = html.classList.toggle('light-mode');
+                localStorage.setItem(STORAGE_KEY, isLight ? 'light' : 'dark');
+            });
+        }
         const progress = document.getElementById('arProgress');
         window.addEventListener('scroll', function () {
             const h = document.documentElement.scrollHeight - window.innerHeight;
