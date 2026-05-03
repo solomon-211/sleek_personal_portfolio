@@ -13,8 +13,8 @@ a { text-decoration: none; transition: color 0.2s; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
 /* ── SKIP LINK ────────────────────────────────────── */
-.skip-link { position: absolute; top: -100%; left: 1rem; background: #ea580c; color: #fff; padding: 0.5rem 1rem; border-radius: 4px; z-index: 9999; font-size: 0.875rem; }
-.skip-link:focus { top: 1rem; }
+.skip-link { position: absolute; top: -100%; left: 1rem; background: #ea580c; color: #fff !important; padding: 0.6rem 1.25rem; border-radius: 0 0 8px 8px; z-index: 9999; font-size: 0.875rem; font-weight: 700; text-decoration: none; transition: top 0.2s ease; box-shadow: 0 4px 16px rgba(234,88,12,0.4); }
+.skip-link:focus { top: 0; outline: 2px solid #fff; outline-offset: 2px; }
 
 /* ── PAGE TRANSITION ──────────────────────────────── */
 .page-transition { position: fixed; inset: 0; background: #060d1a; z-index: 9998; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
@@ -1221,4 +1221,139 @@ html.light-mode .copy-email-btn:hover { background: rgba(234,88,12,0.08); border
   border: 2px solid rgba(234,88,12,0.5);
   flex-shrink: 0;
   display: block;
+}
+
+/* ── MOBILE UX FIXES ──────────────────────────────── */
+
+/* iOS safe area — FAB above home indicator */
+.fab {
+  bottom: calc(2rem + env(safe-area-inset-bottom)) !important;
+}
+
+/* Minimum 44px tap targets on social icons */
+.hero-social,
+.contact-social-icon,
+.ar-social,
+.b-author-card__socials a {
+  min-width: 44px !important;
+  min-height: 44px !important;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.78rem; color: rgba(255,255,255,0.45);
+  flex-wrap: wrap; margin-bottom: 1.25rem;
+}
+.breadcrumb a { color: rgba(255,255,255,0.55); transition: color 0.2s; }
+.breadcrumb a:hover { color: #f97316; }
+.breadcrumb__sep { color: rgba(255,255,255,0.25); font-size: 0.65rem; }
+.breadcrumb__current { color: rgba(255,255,255,0.7); font-weight: 600; }
+html.light-mode .breadcrumb { color: #64748b; }
+html.light-mode .breadcrumb a { color: #475569; }
+html.light-mode .breadcrumb a:hover { color: #ea580c; }
+html.light-mode .breadcrumb__current { color: #334155; }
+
+/* TOC */
+.ar-toc {
+  position: sticky; top: 80px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 1.25rem;
+  max-height: calc(100vh - 120px); overflow-y: auto;
+}
+.ar-toc__title {
+  font-family: 'Sora', sans-serif; font-size: 0.75rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.4); margin-bottom: 0.75rem;
+}
+.ar-toc__list { display: flex; flex-direction: column; gap: 0.1rem; list-style: none; }
+.ar-toc__item a {
+  display: block; padding: 0.4rem 0.6rem; border-radius: 6px;
+  font-size: 0.82rem; color: rgba(255,255,255,0.55);
+  transition: background 0.15s, color 0.15s; border-left: 2px solid transparent;
+}
+.ar-toc__item a:hover { color: #f97316; background: rgba(234,88,12,0.06); }
+.ar-toc__item a.active { color: #f97316 !important; border-left-color: #ea580c; background: rgba(234,88,12,0.08); }
+html.light-mode .ar-toc { background: #fff; border-color: rgba(0,0,0,0.1); }
+html.light-mode .ar-toc__title { color: #64748b; }
+html.light-mode .ar-toc__item a { color: #475569; }
+html.light-mode .ar-toc__item a:hover { color: #ea580c; }
+
+/* Article layout with TOC sidebar */
+.ar-layout { display: grid; grid-template-columns: 1fr 220px; gap: 3rem; max-width: 1000px; margin: 0 auto; padding: 3rem 1.5rem; }
+.ar-layout .ar-body__inner { max-width: 100%; }
+@media (max-width: 860px) {
+  .ar-layout { grid-template-columns: 1fr; }
+  .ar-toc { display: none; }
+}
+
+/* Related articles */
+.ar-related { border-top: 1px solid rgba(255,255,255,0.08); padding: 2.5rem 1.5rem; }
+.ar-related__inner { max-width: 680px; margin: 0 auto; }
+.ar-related__title { font-family: 'Sora', sans-serif; font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 1.25rem; }
+.ar-related__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.ar-related__card {
+  padding: 1.25rem; border-radius: 14px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+  display: flex; flex-direction: column; gap: 0.5rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.ar-related__card:hover { background: rgba(234,88,12,0.05); border-color: rgba(234,88,12,0.2); }
+.ar-related__tag { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #f97316; }
+.ar-related__name { font-size: 0.9rem; font-weight: 700; color: #fff; line-height: 1.4; }
+.ar-related__meta { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+.ar-related__badge { font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); width: fit-content; }
+html.light-mode .ar-related { border-top-color: rgba(0,0,0,0.08); background: #f8fafc; }
+html.light-mode .ar-related__title { color: #0f172a; }
+html.light-mode .ar-related__card { background: #fff; border-color: rgba(0,0,0,0.1); }
+html.light-mode .ar-related__name { color: #0f172a; }
+html.light-mode .ar-related__meta { color: #64748b; }
+
+/* ALU / MCF logos */
+.credential-logos { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.75rem; }
+.credential-logo { height: 36px; width: auto; object-fit: contain; border-radius: 6px; opacity: 0.85; transition: opacity 0.2s; filter: brightness(1.1); }
+.credential-logo:hover { opacity: 1; }
+html.light-mode .credential-logo { filter: none; }
+
+/* ── HERO TRUST BAR ───────────────────────────────── */
+.hero-trust {
+  display: flex; align-items: center; gap: 0.75rem;
+  flex-wrap: wrap; margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; width: fit-content;
+}
+.hero-trust__label {
+  font-size: 0.72rem; font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.hero-trust__item {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.8rem; font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.hero-trust__item:hover { color: #f97316; }
+.hero-trust__logo {
+  width: 24px; height: 24px;
+  border-radius: 5px; object-fit: contain;
+  background: #fff; padding: 2px;
+  flex-shrink: 0;
+}
+.hero-trust__sep { color: rgba(255,255,255,0.2); font-size: 0.8rem; }
+
+/* Light mode */
+html.light-mode .hero-trust { background: rgba(0,0,0,0.04) !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode .hero-trust__label { color: #64748b !important; }
+html.light-mode .hero-trust__item { color: #334155 !important; }
+html.light-mode .hero-trust__item:hover { color: #ea580c !important; }
+
+@media (max-width: 480px) {
+  .hero-trust { gap: 0.5rem; }
+  .hero-trust__item span { display: none; }
 }

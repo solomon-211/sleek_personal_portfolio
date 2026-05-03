@@ -116,10 +116,6 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background:
-    radial-gradient(800px circle at 5% 10%, rgba(234,88,12,0.07), transparent 55%),
-    radial-gradient(600px circle at 95% 20%, rgba(251,146,60,0.05), transparent 50%),
-    radial-gradient(700px circle at 50% 80%, rgba(19,40,72,0.6), transparent 60%) !important;
 }
 
 /* ── NAVIGATION ────────────────────────────────────── */
@@ -1389,39 +1385,7 @@ html.light-mode section:nth-child(even)::after {
    VISUAL ENHANCEMENTS
    ══════════════════════════════════════════════════════ */
 
-/* ── 1. FLOATING ACCENT ORBS on key sections ──────────── */
-#skills::before,
-#contact::before,
-#timeline::before {
-  content: '';
-  position: absolute; pointer-events: none; z-index: 0;
-  border-radius: 50%; filter: blur(80px);
-  opacity: 0.07;
-  animation: orb-drift 14s ease-in-out infinite alternate;
-}
-#skills::before {
-  width: 500px; height: 500px;
-  background: #ea580c;
-  top: -100px; right: -150px;
-}
-#contact::before {
-  width: 400px; height: 400px;
-  background: #f97316;
-  bottom: -80px; left: -100px;
-  animation-duration: 12s;
-  animation-delay: -5s;
-}
-#timeline::before {
-  width: 350px; height: 350px;
-  background: #ea580c;
-  top: 50%; left: -120px;
-  animation-duration: 16s;
-  animation-delay: -8s;
-}
-/* Reduce orbs in light mode */
-html.light-mode #skills::before,
-html.light-mode #contact::before,
-html.light-mode #timeline::before { opacity: 0.03 !important; }
+/* ── 1. FLOATING ACCENT ORBS removed ─────────────────── */
 
 /* ── 2. SECTION TITLE — gradient underline ────────────── */
 .section-title::after {

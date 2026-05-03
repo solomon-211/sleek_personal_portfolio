@@ -20,7 +20,9 @@
         <meta name="twitter:image" content="https://solomonleek.tech/images/photo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="http://localhost:8000">
+    <link rel="dns-prefetch" href="https://solomonleek.tech">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f4c81'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Sora,sans-serif' font-weight='800' font-size='13' fill='white'>SK</text></svg>">
     <link rel="canonical" href="https://solomonleek.tech/">
@@ -169,15 +171,18 @@
     <section id="home" class="hero">
         <!-- Animated background orbs -->
         <div class="hero-bg" aria-hidden="true">
-            <div class="hero-orb hero-orb--1"></div>
-            <div class="hero-orb hero-orb--2"></div>
-            <div class="hero-orb hero-orb--3"></div>
             <div class="hero-grid-lines"></div>
         </div>
 
         <div class="hero-container">
             <!-- LEFT: Content -->
             <div class="hero-content">
+
+                <!-- Availability badge -->
+                <div class="hero-badge reveal-left">
+                    <span class="hero-badge-dot"></span>
+                    <span>Available for Internships &amp; Collaborations · 2026</span>
+                </div>
 
                 <!-- Name & title -->
                 <h1 class="hero-title reveal-left">
@@ -210,11 +215,6 @@
                 <!-- Stats row -->
                 <div class="hero-stats reveal-left">
                     <div class="hero-stat">
-                        <span class="hero-stat-num" data-count="300" data-suffix="+">300+</span>
-                        <span class="hero-stat-label">Lives Impacted</span>
-                    </div>
-                    <div class="hero-stat-divider"></div>
-                    <div class="hero-stat">
                         <span class="hero-stat-num" data-count="8" data-suffix="+">8+</span>
                         <span class="hero-stat-label">Projects Built</span>
                     </div>
@@ -225,9 +225,28 @@
                     </div>
                     <div class="hero-stat-divider"></div>
                     <div class="hero-stat">
-                        <span class="hero-stat-num">ALU</span>
-                        <span class="hero-stat-label">Mastercard Foundation Reciepint</span>
+                        <span class="hero-stat-num" data-count="50" data-suffix="+">50+</span>
+                        <span class="hero-stat-label">Students Mentored</span>
                     </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-num" data-count="2" data-suffix="">2</span>
+                        <span class="hero-stat-label">Languages</span>
+                    </div>
+                </div>
+
+                <!-- Institution trust bar -->
+                <div class="hero-trust reveal-left">
+                    <span class="hero-trust__label">Studying at</span>
+                    <a href="#academics" class="hero-trust__item">
+                        <img src="images/ALU%20LOGO.jpg" alt="African Leadership University" class="hero-trust__logo">
+                        <span>African Leadership University</span>
+                    </a>
+                    <span class="hero-trust__sep">·</span>
+                    <a href="#academics" class="hero-trust__item">
+                        <img src="images/MCF%20LOGO.jpg" alt="Mastercard Foundation" class="hero-trust__logo">
+                        <span>Mastercard Foundation Scholar</span>
+                    </a>
                 </div>
 
                 <!-- Social links -->
@@ -256,7 +275,7 @@
             <div class="hero-image-wrap reveal-right">
                 <div class="hero-image-ring"></div>
                 <div class="hero-image-glow"></div>
-                <img src="images/photo.jpg" alt="Solomon Thiong Garang Leek — Software Engineer & Designer" width="380" height="380" loading="eager" decoding="async" class="hero-photo">
+                <img src="images/photo.jpg" alt="Solomon Thiong Garang Leek — Software Engineer & Designer" width="380" height="380" loading="eager" decoding="async" fetchpriority="high" class="hero-photo">
             </div>
         </div>
 
@@ -928,54 +947,6 @@
                     <p class="award-meta">Community Programs • 2024</p>
                     <p class="award-description">Acknowledged for delivering measurable impact through digital literacy training and youth mentorship programs across underserved communities.</p>
                 </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Leadership & Extracurricular Section -->
-    <section id="leadership" class="section-bg-secondary">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Leadership & Impact</h2>
-                <p class="section-subtitle">
-                    Leadership roles and programs that strengthened how I communicate, execute, and deliver impact
-                </p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Student Government President</h3>
-                        <p class="project-description">Elected to represent 500+ students at ALU. Drove policy changes that improved academic resources, strengthened student welfare, and built a more engaged campus community.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Leadership</span>
-                            <span class="tech-tag">Policy Development</span>
-                            <span class="tech-tag">Public Speaking</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">ALU Marketing & Outreach Team</h3>
-                        <p class="project-description">Produced visual content and managed social media campaigns for ALU's official Marketing & Outreach Team — supporting student recruitment and strengthening the university's brand across digital platforms.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Marketing</span>
-                            <span class="tech-tag">Content Creation</span>
-                            <span class="tech-tag">Brand Communication</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Global Leadership Program (Aspire Leaders)</h3>
-                        <p class="project-description">Selected for and completed the Aspire Leaders Program — a globally competitive initiative developing emerging leaders through strategic thinking, ethical decision-making, and social impact design.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Global Leadership</span>
-                            <span class="tech-tag">Social Impact</span>
-                            <span class="tech-tag">Program Graduate</span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
