@@ -413,15 +413,45 @@
     <section id="projects" class="section-bg-secondary">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Design Portfolio</h2>
+                <h2 class="section-title">Projects & Portfolio</h2>
                 <p class="section-subtitle">
-                    A curated body of campaign, branding, and digital design work crafted for clarity and engagement
+                    A mix of software engineering projects and design work — from full-stack apps and REST APIs to campaign visuals and brand identity
                 </p>
             </div>
+
+            <!-- Stats bar -->
+            <div class="projects-stats-bar">
+                <div class="projects-stat-item">
+                    <span class="projects-stat-num">8+</span>
+                    <span class="projects-stat-label">Projects Built</span>
+                </div>
+                <div class="projects-stat-divider"></div>
+                <div class="projects-stat-item">
+                    <span class="projects-stat-num">5</span>
+                    <span class="projects-stat-label">Dev Projects</span>
+                </div>
+                <div class="projects-stat-divider"></div>
+                <div class="projects-stat-item">
+                    <span class="projects-stat-num">6</span>
+                    <span class="projects-stat-label">Design Works</span>
+                </div>
+                <div class="projects-stat-divider"></div>
+                <div class="projects-stat-item">
+                    <span class="projects-stat-num">2</span>
+                    <span class="projects-stat-label">Live &amp; Deployed</span>
+                </div>
+            </div>
+
             <div class="projects-filter">
-                <button class="filter-btn active" data-filter="all">All Work</button>
-                <button class="filter-btn" data-filter="design">Design</button>
-                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th-large"></i> All Work <span class="filter-count">11</span>
+                </button>
+                <button class="filter-btn" data-filter="design">
+                    <i class="fas fa-pen-nib"></i> Design <span class="filter-count">6</span>
+                </button>
+                <button class="filter-btn" data-filter="web">
+                    <i class="fas fa-code"></i> Dev Projects <span class="filter-count">5</span>
+                </button>
             </div>
             <div class="projects-grid">
                 <div class="project-card" data-category="design">
@@ -440,6 +470,7 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Independence Day Campaign Poster</h3>
+                        <span class="project-category-chip"><i class="fas fa-pen-nib"></i> Design</span>
                         <p class="project-description">A patriotic campaign poster designed for Independence Day communication, combining bold national colors, strong hierarchy, and clear event messaging across print and social formats.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">Poster Design</span>
@@ -466,6 +497,7 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Back to School Awareness Flyer</h3>
+                        <span class="project-category-chip"><i class="fas fa-pen-nib"></i> Design</span>
                         <p class="project-description">An education-focused flyer created to encourage school enrollment and attendance, using friendly typography, clear call-to-action sections, and balanced layout.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">Flyer Design</span>
@@ -491,6 +523,7 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Victory Celebration Event Poster</h3>
+                        <span class="project-category-chip"><i class="fas fa-pen-nib"></i> Design</span>
                         <p class="project-description">A commemorative celebration poster designed for leadership victory events, combining energetic composition, celebratory visual cues, and readable event details.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">Event Branding</span>
@@ -515,6 +548,7 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Rise Leadership Academy</h3>
+                        <span class="project-category-chip"><i class="fas fa-pen-nib"></i> Design</span>
                         <p class="project-description">Professional logo and branding design for leadership academy with modern and inspiring aesthetics.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">Logo Design</span>
@@ -540,6 +574,7 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Birthday Celebration Poster</h3>
+                        <span class="project-category-chip"><i class="fas fa-pen-nib"></i> Design</span>
                         <p class="project-description">Festive birthday poster design with colorful elements and celebratory theme for special occasions.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">Digital Art</span>
@@ -565,6 +600,7 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Social Media Graphics — ALU Outreach</h3>
+                        <span class="project-category-chip"><i class="fas fa-pen-nib"></i> Design</span>
                         <p class="project-description">Designed and produced social media content for ALU's Marketing & Outreach Team, driving brand visibility and student engagement across Instagram, LinkedIn, and X.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">Social Media</span>
@@ -601,7 +637,10 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Personal Portfolio Website</h3>
-                        <span class="project-status project-status--live"><i class="fas fa-circle"></i> Live</span>
+                        <div class="project-meta-row">
+                            <span class="project-status project-status--live"><i class="fas fa-circle"></i> Live</span>
+                            <span class="project-category-chip"><i class="fas fa-code"></i> Dev</span>
+                        </div>
                         <p class="project-description">This portfolio — built from scratch with semantic HTML5, custom CSS3, and vanilla JavaScript. Features scroll animations, IntersectionObserver, responsive layout, and accessibility best practices.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">HTML5</span>
@@ -616,29 +655,198 @@
                     <div class="project-image project-image--code">
                         <div class="project-code-preview" aria-hidden="true">
                             <span class="code-line"><span class="code-tag">HealthHub Bridge</span></span>
-                            <span class="code-line"><span class="code-attr">findNearbyFacilities()</span></span>
-                            <span class="code-line"><span class="code-attr">map.render()</span></span>
-                            <span class="code-line"><span class="code-attr">hospital</span> <span class="code-val">clinic pharmacy</span></span>
-                            <span class="code-line"><span class="code-tag">distance: 2.4 km</span></span>
-                            <span class="code-line"><span class="code-tag">openNow: true</span></span>
+                            <span class="code-line"><span class="code-attr">registerPatient()</span></span>
+                            <span class="code-line"><span class="code-attr">bookAppointment()</span></span>
+                            <span class="code-line"><span class="code-attr">role:</span> <span class="code-val">doctor | admin</span></span>
+                            <span class="code-line"><span class="code-tag">GET /api/patients</span></span>
+                            <span class="code-line"><span class="code-tag">MySQL · Flask · JS</span></span>
                         </div>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://www.solomonleek.tech" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Visit HealthHub Bridge live site" title="Visit live site">
-                                    <i class="fas fa-paper-plane"></i>
+                                <a href="https://github.com/solomon-211/HealthHubBridge_Project" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View HealthHub Bridge on GitHub" title="View on GitHub">
+                                    <i class="fab fa-github"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">HealthHub Bridge</h3>
-                        <span class="project-status project-status--wip"><i class="fas fa-hammer"></i> In Progress</span>
-                        <p class="project-description">A healthcare discovery platform I built to help users quickly locate nearby medical facilities, view essential service details, and make faster care decisions during urgent situations.</p>
+                        <h3 class="project-title">HealthHub Bridge — Clinic Management System</h3>
+                        <div class="project-meta-row">
+                            <span class="project-status project-status--wip"><i class="fas fa-hammer"></i> In Progress</span>
+                            <span class="project-category-chip"><i class="fas fa-code"></i> Dev</span>
+                            <span class="project-featured-badge"><i class="fas fa-star"></i> Final Project</span>
+                        </div>
+                        <p class="project-description">A full-stack clinic management platform built for community health facilities in South Sudan, where most clinics still rely on paper records. Covers patient registration, appointment scheduling with double-booking prevention, medical records, billing, and role-based access for Receptionists, Doctors, and Admins. ALU BSc. Software Engineering final project.</p>
                         <div class="tech-tags">
-                            <span class="tech-tag">Healthcare</span>
-                            <span class="tech-tag">Location Search</span>
-                            <span class="tech-tag">Maps Integration</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">MySQL</span>
                             <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">REST API</span>
+                            <span class="tech-tag">Role-Based Access</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web">
+                    <div class="project-image project-image--code">
+                        <div class="project-code-preview" aria-hidden="true">
+                            <span class="code-line"><span class="code-tag">HealthHub Finder</span></span>
+                            <span class="code-line"><span class="code-attr">findFacilities()</span></span>
+                            <span class="code-line"><span class="code-attr">Nginx</span> <span class="code-val">load balancer</span></span>
+                            <span class="code-line"><span class="code-attr">Google Places API</span></span>
+                            <span class="code-line"><span class="code-tag">radius: 1–100km</span></span>
+                            <span class="code-line"><span class="code-tag">cache: 10 min</span></span>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://www.solomonleek.tech" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Visit HealthHub Medical Finder live site" title="Visit live site">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="https://github.com/solomon-211/healthhub-medical-finder" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View HealthHub Medical Finder on GitHub" title="View on GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://youtu.be/BN70xcWhNkk" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Watch demo video" title="Watch demo">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">HealthHub Medical Finder</h3>
+                        <div class="project-meta-row">
+                            <span class="project-status project-status--live"><i class="fas fa-circle"></i> Live</span>
+                            <span class="project-category-chip"><i class="fas fa-code"></i> Dev</span>
+                            <span class="project-featured-badge"><i class="fas fa-star"></i> Featured</span>
+                        </div>
+                        <p class="project-description">A global medical facility finder deployed at solomonleek.tech. Users locate nearby hospitals, clinics, pharmacies, dental and optical centers within a 1–100km radius using Google Places API and OpenStreetMap. Features an interactive Leaflet map with Street View, appointment booking, favorites management, search history, and a 10-minute intelligent cache. Deployed on Nginx with round-robin load balancing, UFW firewall, and XSS protection.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Nginx</span>
+                            <span class="tech-tag">Google Places API</span>
+                            <span class="tech-tag">Leaflet.js</span>
+                            <span class="tech-tag">Load Balancing</span>
+                            <span class="tech-tag">OpenStreetMap</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web">
+                    <div class="project-image project-image--code">
+                        <div class="project-code-preview" aria-hidden="true">
+                            <span class="code-line"><span class="code-tag">MoMo DB Design</span></span>
+                            <span class="code-line"><span class="code-attr">Users</span> <span class="code-val">↔ Transactions</span></span>
+                            <span class="code-line"><span class="code-attr">M:N</span> <span class="code-val">junction table</span></span>
+                            <span class="code-line"><span class="code-attr">DECIMAL(15,2)</span> <span class="code-val">amounts</span></span>
+                            <span class="code-line"><span class="code-tag">FK constraints</span></span>
+                            <span class="code-line"><span class="code-tag">audit trail logs</span></span>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/solomon-211/Database_Design_and_Implementation" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Database Design project on GitHub" title="View on GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">MoMo Database Design & Implementation</h3>
+                        <div class="project-meta-row">
+                            <span class="project-status project-status--live"><i class="fas fa-circle"></i> Completed</span>
+                            <span class="project-category-chip"><i class="fas fa-code"></i> Dev</span>
+                        </div>
+                        <p class="project-description">A normalized relational database system for processing Mobile Money SMS transaction data. Designed with 5 core tables (Users, Transactions, Transaction Categories, System Logs, and a junction table for M:N relationships), composite indexes for query performance, foreign key and check constraints for data integrity, and a full audit trail. Includes JSON schemas for API-ready response formats.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Database Design</span>
+                            <span class="tech-tag">ERD</span>
+                            <span class="tech-tag">Normalization</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">JSON Schema</span>
+                            <span class="tech-tag">Audit Trail</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web">
+                    <div class="project-image project-image--code">
+                        <div class="project-code-preview" aria-hidden="true">
+                            <span class="code-line"><span class="code-tag">MoMo REST API</span></span>
+                            <span class="code-line"><span class="code-attr">GET</span> <span class="code-val">/transactions</span></span>
+                            <span class="code-line"><span class="code-attr">POST /transactions</span></span>
+                            <span class="code-line"><span class="code-attr">auth:</span> <span class="code-val">Basic Auth</span></span>
+                            <span class="code-line"><span class="code-tag">dict lookup: O(1)</span></span>
+                            <span class="code-line"><span class="code-tag">30x faster search</span></span>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/solomon-211/MoMo_Rest_API_Formative_Assignment" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View MoMo REST API on GitHub" title="View on GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">MoMo REST API — Mobile Money Transaction System</h3>
+                        <div class="project-meta-row">
+                            <span class="project-status project-status--live"><i class="fas fa-circle"></i> Completed</span>
+                            <span class="project-category-chip"><i class="fas fa-code"></i> Dev</span>
+                        </div>
+                        <p class="project-description">A full CRUD REST API for managing Mobile Money transaction records parsed from SMS XML data — built with pure Python, no frameworks. I handled the authentication and security layer (Basic Auth, authorization, endpoint protection). Includes a DSA performance comparison showing dictionary lookup is ~30x faster than linear search (O(1) vs O(n)).</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">REST API</span>
+                            <span class="tech-tag">XML Parsing</span>
+                            <span class="tech-tag">Basic Auth</span>
+                            <span class="tech-tag">CRUD</span>
+                            <span class="tech-tag">DSA</span>
+                            <span class="tech-tag">No Frameworks</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web">
+                    <div class="project-image project-image--code">
+                        <div class="project-code-preview" aria-hidden="true">
+                            <span class="code-line"><span class="code-tag">NYC Urban Mobility</span></span>
+                            <span class="code-line"><span class="code-attr">MinHeap</span> <span class="code-val">top-K zones</span></span>
+                            <span class="code-line"><span class="code-attr">cleanData()</span> <span class="code-val">7 steps</span></span>
+                            <span class="code-line"><span class="code-attr">GET /api/trips</span></span>
+                            <span class="code-line"><span class="code-tag">choropleth.render()</span></span>
+                            <span class="code-line"><span class="code-tag">trips: 1M+ records</span></span>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/solomon-211/Urban_Mobility_Data_Explorer_Summative" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Urban Mobility Data Explorer on GitHub" title="View on GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://youtu.be/V8WMKv5jU2s" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Watch project walkthrough video" title="Watch demo">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">NYC Urban Mobility Data Explorer</h3>
+                        <div class="project-meta-row">
+                            <span class="project-status project-status--live"><i class="fas fa-circle"></i> Completed</span>
+                            <span class="project-category-chip"><i class="fas fa-code"></i> Dev</span>
+                            <span class="project-featured-badge"><i class="fas fa-star"></i> Featured</span>
+                        </div>
+                        <p class="project-description">A full-stack data engineering project analyzing NYC taxi trip patterns from 1M+ real-world records. Features a custom 7-step data cleaning pipeline, a min-heap algorithm (O(n log k)) for top-K zone selection, a normalized SQLite database, 7 RESTful API endpoints, and an interactive dashboard with choropleth maps and real-time filtering.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">SQLite</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">GeoPandas</span>
+                            <span class="tech-tag">Chart.js</span>
+                            <span class="tech-tag">Leaflet.js</span>
+                            <span class="tech-tag">Data Engineering</span>
                         </div>
                     </div>
                 </div>

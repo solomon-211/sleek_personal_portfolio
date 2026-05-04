@@ -941,6 +941,111 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
 .project-image--code { background: var(--navy-700) !important; }
 .project-code-preview { color: var(--white-50) !important; }
 
+/* Better syntax highlighting in code preview */
+.project-image--code .code-tag  { color: #7dd3fc !important; }  /* blue — tags/labels */
+.project-image--code .code-attr { color: #86efac !important; }  /* green — functions/keys */
+.project-image--code .code-val  { color: #fca5a5 !important; }  /* red/pink — values */
+
+/* ── PROJECTS STATS BAR ────────────────────────────── */
+.projects-stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: var(--white-06);
+  border: 1px solid var(--border-mid);
+  border-radius: 14px;
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.projects-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+.projects-stat-num {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--orange-400);
+  line-height: 1;
+}
+.projects-stat-label {
+  font-size: 0.72rem;
+  color: var(--white-50);
+  font-weight: 500;
+  margin-top: 0.2rem;
+  white-space: nowrap;
+}
+.projects-stat-divider {
+  width: 1px;
+  height: 2rem;
+  background: var(--border-mid);
+}
+
+/* ── FILTER COUNT BADGE ────────────────────────────── */
+.filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.12);
+  color: inherit;
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 999px;
+  padding: 0 0.3rem;
+  margin-left: 0.25rem;
+  transition: background 0.2s;
+}
+.filter-btn.active .filter-count,
+.filter-btn:hover .filter-count {
+  background: rgba(255,255,255,0.25) !important;
+}
+
+/* ── PROJECT META ROW ──────────────────────────────── */
+.project-meta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ── CATEGORY CHIP ─────────────────────────────────── */
+.project-category-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(99,102,241,0.12);
+  border: 1px solid rgba(99,102,241,0.25);
+  color: #a5b4fc;
+  letter-spacing: 0.02em;
+}
+
+/* ── FEATURED BADGE ────────────────────────────────── */
+.project-featured-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(234,88,12,0.12);
+  border: 1px solid rgba(234,88,12,0.3);
+  color: var(--orange-400);
+}
+.project-featured-badge i { font-size: 0.55rem; }
+
 /* ── CASE STUDY BANNER ─────────────────────────────── */
 .case-study-banner { background: var(--navy-card) !important; border: 1px solid var(--border-mid) !important; border-left: 4px solid var(--orange-500) !important; }
 .case-study-banner-title { color: var(--white-90) !important; }
@@ -1301,6 +1406,14 @@ html.light-mode .loading                 { background: #f8fafc !important; }
 
 /* ── Code preview ── */
 html.light-mode .project-image--code     { background: #1e293b !important; }
+
+/* ── Projects stats bar & chips ── */
+html.light-mode .projects-stats-bar      { background: #f1f5f9 !important; border-color: rgba(0,0,0,0.08) !important; }
+html.light-mode .projects-stat-label     { color: #64748b !important; }
+html.light-mode .projects-stat-divider   { background: rgba(0,0,0,0.1) !important; }
+html.light-mode .project-category-chip   { background: rgba(99,102,241,0.08) !important; border-color: rgba(99,102,241,0.2) !important; color: #6366f1 !important; }
+html.light-mode .project-featured-badge  { background: rgba(234,88,12,0.08) !important; border-color: rgba(234,88,12,0.2) !important; }
+html.light-mode .filter-count            { background: rgba(0,0,0,0.1) !important; }
 
 /* ── Nav more menu ── */
 html.light-mode .nav-more-menu           { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important; }
