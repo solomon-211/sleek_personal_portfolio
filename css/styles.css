@@ -171,6 +171,11 @@ nav {
   background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 60%, var(--navy-700) 100%) !important;
 }
 
+/* Trust bar → socials gap */
+.hero-socials {
+  margin-top: 1rem !important;
+}
+
 .hero-content h1 { color: var(--white) !important; }
 .hero-content .highlight { color: var(--orange-400) !important; }
 .hero-surname { color: rgba(255,255,255,0.75) !important; }
