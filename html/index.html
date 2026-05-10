@@ -20,11 +20,10 @@
         <meta name="twitter:image" content="https://solomonleek.tech/images/photo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="http://localhost:8000">
     <link rel="dns-prefetch" href="https://solomonleek.tech">
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap&subset=latin" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f4c81'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Sora,sans-serif' font-weight='800' font-size='13' fill='white'>SK</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f4c81'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Sora,sans-serif' font-weight='800' font-size='13' fill='white'>SL</text></svg>">
     <link rel="canonical" href="https://solomonleek.tech/">
     <meta name="theme-color" content="#ea580c">
     <script>document.documentElement.classList.add('js');</script>
@@ -33,7 +32,9 @@
     <!-- Analytics: self-hosted, no cookies, privacy-respecting -->
     <script>
     (function(){
-        const API = 'http://localhost:8000/api/analytics';
+        // Use a meta tag or window variable set by your deploy environment.
+        // Falls back to the production URL so localhost never fires in production.
+        var API = (window.ANALYTICS_API_URL) || 'https://solomonleek.tech/api/analytics';
         function send(data){ fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true}).catch(function(){}); }
         // Page view
         send({page:location.pathname,referrer:document.referrer,event:'pageview'});
@@ -96,7 +97,7 @@
     <nav>
         <div class="nav-container">
             <a href="#home" class="logo">
-                <img src="images/photo.jpg" alt="Solomon Leek" class="logo-photo">
+                <span class="logo-icon" aria-hidden="true">SL</span>
                 <span class="logo-text">Solomon Leek</span>
             </a>
             <div class="nav-right-group">
@@ -181,7 +182,7 @@
                 <!-- Availability badge -->
                 <div class="hero-badge reveal-left">
                     <span class="hero-badge-dot"></span>
-                    <span>Available for Internships &amp; Collaborations · 2026</span>
+                    <span>Available for Internships &amp; Collaborations · <span id="badgeYear"></span>2026</span></span>
                 </div>
 
                 <!-- Name & title -->
@@ -228,11 +229,7 @@
                         <span class="hero-stat-num" data-count="50" data-suffix="+">50+</span>
                         <span class="hero-stat-label">Students Mentored</span>
                     </div>
-                    <div class="hero-stat-divider"></div>
-                    <div class="hero-stat">
-                        <span class="hero-stat-num" data-count="2" data-suffix="">2</span>
-                        <span class="hero-stat-label">Languages</span>
-                    </div>
+
                 </div>
 
                 <!-- Institution trust bar -->
@@ -264,7 +261,7 @@
                         <i class="fas fa-envelope"></i>
                     </a>
                     <span class="hero-social-divider"></span>
-                    <a href="https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="hero-resume-link">
+                    <a href="https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="hero-resume-link" id="resumeLink">
                         <i class="fas fa-file-lines"></i> Resume
                     </a>
                 </div>
@@ -275,7 +272,9 @@
             <div class="hero-image-wrap reveal-right">
                 <div class="hero-image-ring"></div>
                 <div class="hero-image-glow"></div>
-                <img src="images/photo.jpg" alt="Solomon Thiong Garang Leek — Software Engineer & Designer" width="380" height="380" loading="eager" decoding="async" fetchpriority="high" class="hero-photo">
+                <img src="images/photo.jpg" alt="Solomon Thiong Garang Leek — Software Engineer & Designer" width="380" height="380" loading="eager" decoding="async" fetchpriority="high" class="hero-photo"
+                     onload="this.removeAttribute('loading')"
+                     style="content-visibility:auto">
             </div>
         </div>
 
@@ -1273,8 +1272,14 @@
                     </p>
                     <h3 class="contact-heading section-heading-spaced">What I'm Looking For</h3>
                     <p class="contact-muted">
-                        Internships, collaborative projects, and mentorship that accelerate my growth as an engineer and leader. I bring discipline, curiosity, and a strong execution mindset to every opportunity.
+                        I am actively seeking <strong>software engineering internships</strong> (remote or Kigali-based) for 2026, as well as <strong>collaborative open-source projects</strong> in web development, Python, or civic tech. I am also open to <strong>mentorship</strong> from engineers working on social impact or African tech ecosystems. I bring discipline, a strong execution mindset, and the ability to work across design and engineering.
                     </p>
+                    <ul class="contact-seeking-list">
+                        <li><i class="fas fa-check-circle"></i> Software engineering internship — remote or Kigali</li>
+                        <li><i class="fas fa-check-circle"></i> Open-source collaboration — web, Python, civic tech</li>
+                        <li><i class="fas fa-check-circle"></i> Mentorship from engineers in African tech or social impact</li>
+                        <li><i class="fas fa-check-circle"></i> Freelance design or frontend projects</li>
+                    </ul>
                 </div>
                 <div class="about-highlights">
                     <div class="highlight-item contact-highlight-card">
@@ -1403,6 +1408,7 @@
                     <div class="form-group">
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" required maxlength="2000" placeholder="Tell me about your project..."></textarea>
+                        <span class="form-char-count"><span id="msgCharLeft">2000</span> characters remaining</span>
                     </div>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-paper-plane"></i> Send Message
@@ -1461,7 +1467,11 @@
             <div class="footer-divider"></div>
 
             <div class="footer-bottom">
-                <p class="footer-copy">&copy; 2025 Solomon Thiong Garang Leek. All rights reserved.</p>
+                <p class="footer-copy">&copy; <span id="footerYear"></span>2025</span> Solomon Thiong Garang Leek. All rights reserved.</p>
+                <p class="footer-copy footer-visitors" id="footerVisitors" style="display:none">
+                    <i class="fas fa-eye" style="color:var(--orange-400);margin-right:0.3rem;font-size:0.75rem"></i>
+                    <span id="visitorCount">—</span> portfolio views
+                </p>
                 <a href="#home" class="footer-top-link">Back to top <i class="fas fa-arrow-up"></i></a>
             </div>
         </div>

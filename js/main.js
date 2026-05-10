@@ -144,20 +144,6 @@ document.addEventListener('click', function (e) {
     if (!isMobile() && !navMoreEl.contains(e.target)) closeDesktopMore();
 });
 
-// ── 2. Smooth scroll for all anchor links (footer, sidebar, etc.) ──────────────
-document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-    link.addEventListener('click', function (e) {
-        const id = this.getAttribute('href').slice(1);
-        if (!id) return;
-        const target = document.getElementById(id);
-        if (!target) return;
-        e.preventDefault();
-        target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
-        // Update URL without jumping
-        history.pushState(null, '', '#' + id);
-    });
-});
-
 // Escape key
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
@@ -200,8 +186,6 @@ function scrollToTop() {
 }
 
 if (fabBtn) {
-    fabBtn.style.opacity    = '0';
-    fabBtn.style.pointerEvents = 'none';
     fabBtn.addEventListener('click', scrollToTop);
     fabBtn.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToTop(); }
@@ -303,7 +287,7 @@ function validateForm(name, email, subject, message) {
 
 async function sendViaEmailJS(payload) {
     // POST to backend. Falls back to mailto if backend is unreachable.
-    const apiUrl = window.CONTACT_API_URL || 'http://localhost:8000/api/contact';
+    const apiUrl = window.CONTACT_API_URL || 'https://solomonleek.tech/api/contact';
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 12000);
 
@@ -425,29 +409,24 @@ function handleScrollEffects() {
     const scrollY      = window.scrollY;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
+    // Nav: toggle class instead of inline style so CSS theme controls the colour
     if (nav) {
-        // Keep dark navy — only adjust opacity on scroll
-        nav.style.background = scrollY > 100
-            ? 'rgba(6,13,26,0.98)'
-            : 'rgba(6,13,26,0.92)';
+        nav.classList.toggle('nav--scrolled', scrollY > 100);
     }
 
+    // Scroll progress: use CSS custom property so the bar width is CSS-driven
     if (progressBar) {
-        progressBar.style.width = `${scrollHeight > 0 ? (scrollY / scrollHeight) * 100 : 0}%`;
+        const pct = scrollHeight > 0 ? (scrollY / scrollHeight) * 100 : 0;
+        progressBar.style.setProperty('--scroll-pct', `${pct}%`);
     }
 
     if (parallaxBg && !prefersReducedMotion) {
         parallaxBg.style.transform = `translateY(${scrollY * 0.5}px)`;
     }
 
+    // FAB: toggle class instead of inline opacity/pointerEvents
     if (fabBtn) {
-        if (scrollY > 300) {
-            fabBtn.style.opacity       = '1';
-            fabBtn.style.pointerEvents = 'auto';
-        } else {
-            fabBtn.style.opacity       = '0';
-            fabBtn.style.pointerEvents = 'none';
-        }
+        fabBtn.classList.toggle('visible', scrollY > 300);
     }
 }
 
@@ -698,4 +677,156 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
         // Fallback: run after 800ms
         setTimeout(runCounters, 800);
     }
+})();
+
+// ── Dynamic badge year & footer year ─────────────────────────────────────────
+(function () {
+    const yr = new Date().getFullYear();
+    const badgeYear = document.getElementById('badgeYear');
+    const footerYear = document.getElementById('footerYear');
+    if (badgeYear) badgeYear.textContent = yr;
+    if (footerYear) footerYear.textContent = yr;
+})();
+
+// ── Contact form character counter ───────────────────────────────────────────
+(function () {
+    const msgArea  = document.getElementById('message');
+    const charLeft = document.getElementById('msgCharLeft');
+    if (!msgArea || !charLeft) return;
+
+    function updateCount() {
+        const remaining = 2000 - msgArea.value.length;
+        charLeft.textContent = remaining;
+        charLeft.style.color = remaining < 100 ? '#f97316' : '';
+        charLeft.style.fontWeight = remaining < 100 ? '700' : '';
+    }
+
+    msgArea.addEventListener('input', updateCount);
+    updateCount(); // initialise
+})();
+
+// ── Resume download tracking ──────────────────────────────────────────────────
+(function () {
+    const resumeLink = document.getElementById('resumeLink');
+    if (!resumeLink) return;
+
+    resumeLink.addEventListener('click', function () {
+        const apiUrl = window.ANALYTICS_API_URL || 'https://solomonleek.tech/api/analytics';
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ page: location.pathname, section: 'resume-download', event: 'resume_click' }),
+            keepalive: true
+        }).catch(function () {});
+    });
+})();
+
+// ── Visitor counter (fetches from analytics summary) ─────────────────────────
+(function () {
+    const countEl   = document.getElementById('visitorCount');
+    const wrapEl    = document.getElementById('footerVisitors');
+    if (!countEl || !wrapEl) return;
+
+    const apiBase = window.ANALYTICS_API_URL
+        ? window.ANALYTICS_API_URL.replace('/api/analytics', '')
+        : 'https://solomonleek.tech';
+
+    fetch(apiBase + '/api/analytics/summary', { method: 'GET' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+            if (!data || !data.total_views) return;
+            const views = data.total_views;
+            // Format: 1234 → "1.2k", under 1000 → exact
+            countEl.textContent = views >= 1000
+                ? (views / 1000).toFixed(1).replace(/\.0$/, '') + 'k'
+                : views;
+            wrapEl.style.display = 'block';
+        })
+        .catch(function () {});
+})();
+
+// ── Newsletter subscription (blog page) ──────────────────────────────────────
+(function () {
+    const form     = document.getElementById('newsletterForm');
+    const emailEl  = document.getElementById('newsletterEmail');
+    const statusEl = document.getElementById('newsletterStatus');
+    if (!form || !emailEl || !statusEl) return;
+
+    const apiBase = window.ANALYTICS_API_URL
+        ? window.ANALYTICS_API_URL.replace('/api/analytics', '')
+        : 'https://solomonleek.tech';
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const email = emailEl.value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            statusEl.textContent = 'Please enter a valid email address.';
+            statusEl.style.color = '#f97316';
+            statusEl.style.display = 'block';
+            return;
+        }
+
+        const btn = form.querySelector('button[type="submit"]');
+        const origText = btn ? btn.textContent : 'Subscribe';
+        if (btn) { btn.textContent = 'Subscribing…'; btn.disabled = true; }
+
+        try {
+            const res = await fetch(apiBase + '/api/newsletter', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            const data = await res.json().catch(() => ({}));
+            statusEl.textContent = data.message || 'Subscribed!';
+            statusEl.style.color = res.ok ? '#22c55e' : '#f97316';
+            statusEl.style.display = 'block';
+            if (res.ok) { emailEl.value = ''; }
+        } catch (err) {
+            statusEl.textContent = 'Could not subscribe right now. Try again later.';
+            statusEl.style.color = '#f97316';
+            statusEl.style.display = 'block';
+        } finally {
+            if (btn) { btn.textContent = origText; btn.disabled = false; }
+        }
+    });
+})();
+
+// ── Notify-me buttons (coming-soon articles) ──────────────────────────────────
+(function () {
+    const apiBase = window.ANALYTICS_API_URL
+        ? window.ANALYTICS_API_URL.replace('/api/analytics', '')
+        : 'https://solomonleek.tech';
+
+    document.querySelectorAll('.b-notify-btn').forEach(function (btn) {
+        btn.addEventListener('click', async function () {
+            // Get article title from the nearest h3
+            const card  = btn.closest('.b-post');
+            const title = card ? (card.querySelector('.b-post__title') || {}).textContent || 'article' : 'article';
+
+            const email = prompt('Enter your email to be notified when "' + title.trim() + '" is published:');
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+                if (email !== null) alert('Please enter a valid email address.');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+            try {
+                const res = await fetch(apiBase + '/api/notify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email.trim(), article: title.trim() })
+                });
+                const data = await res.json().catch(() => ({}));
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                btn.title = data.message || "You're on the list!";
+                btn.style.color = '#22c55e';
+            } catch (err) {
+                btn.innerHTML = '<i class="fas fa-bell"></i>';
+                btn.disabled = false;
+                alert('Could not save your request. Please try again.');
+            }
+        });
+    });
 })();

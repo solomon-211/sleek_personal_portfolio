@@ -33,6 +33,12 @@
   --white-20: rgba(255,255,255,0.20);
   --white-10: rgba(255,255,255,0.10);
   --white-06: rgba(255,255,255,0.06);
+  --white-62: rgba(255,255,255,0.62);
+  --white-60: rgba(255,255,255,0.60);
+  --slate-400: #94a3b8;
+  --slate-300: #cbd5e1;
+  --slate-500: #64748b;
+  --light-orange: #d95e0a;   /* desaturated orange for light mode */
 
   --border-subtle: rgba(255,255,255,0.08);
   --border-mid:    rgba(255,255,255,0.14);
@@ -167,7 +173,7 @@ nav {
 
 .hero-content h1 { color: var(--white) !important; }
 .hero-content .highlight { color: var(--orange-400) !important; }
-.hero-surname { color: var(--white-50) !important; }
+.hero-surname { color: rgba(255,255,255,0.75) !important; }
 .hero-roles { color: var(--white-70) !important; }
 .role-text { color: var(--orange-400) !important; border-color: var(--orange-400) !important; }
 .description { color: var(--white-70) !important; max-width: 48ch; line-height: 1.75; }
@@ -179,7 +185,7 @@ nav {
 /* Stats panel */
 .hero-stats { background: rgba(255,255,255,0.04) !important; border-color: var(--border-subtle) !important; }
 .hero-stat-num { color: var(--orange-400) !important; }
-.hero-stat-label { color: var(--white-50) !important; }
+.hero-stat-label { color: var(--white-62) !important; }
 .hero-stat-divider { background: var(--border-subtle) !important; }
 
 /* Social icons */
@@ -250,9 +256,7 @@ html.light-mode .contact .section-title {
 }
 
 /* ── ABOUT SECTION ─────────────────────────────────── */
-#about {
-  background: var(--navy-800) !important;
-}
+/* #about background already set above */
 
 .about-text {
   color: var(--white-70) !important;
@@ -383,7 +387,7 @@ html.light-mode .contact .section-title {
 }
 
 #skills .section-subtitle {
-  color: var(--white-50) !important;
+  color: var(--white-62) !important;
 }
 
 #skills .skill-category {
@@ -410,7 +414,7 @@ html.light-mode .contact .section-title {
 }
 
 #skills .skill-item::before {
-  background: var(--orange-400) !important;
+  background: var(--slate-400) !important;
 }
 
 .skill-icon {
@@ -467,17 +471,8 @@ html.light-mode .contact .section-title {
   color: var(--white-70) !important;
 }
 
-.case-study-stats {
-  gap: 2rem;
-}
-
-.cs-stat-value {
-  color: var(--orange-400) !important;
-}
-
-.cs-stat-label {
-  color: var(--white-50) !important;
-}
+.case-study-banner-btn { background: var(--orange-500) !important; color: var(--white) !important; box-shadow: var(--shadow-orange) !important; }
+.case-study-banner-btn:hover { background: var(--orange-400) !important; }
 
 /* ── AWARDS SECTION ────────────────────────────────── */
 .award-badge {
@@ -490,7 +485,7 @@ html.light-mode .contact .section-title {
 }
 
 .award-card {
-  border-top: 3px solid var(--orange-500) !important;
+  border-top: 3px solid var(--slate-400) !important;
 }
 
 /* ── LEADERSHIP CARDS ──────────────────────────────── */
@@ -514,18 +509,18 @@ section > .container > .awards-grid > .award-card {
 
 /* ── JOURNEY / TIMELINE ────────────────────────────── */
 .timeline::before {
-  background: linear-gradient(180deg, var(--orange-500), var(--orange-300)) !important;
+  background: linear-gradient(180deg, var(--slate-400), var(--slate-300)) !important;
 }
 
 .timeline-dot {
-  background: var(--orange-500) !important;
+  background: var(--slate-400) !important;
   border-color: var(--navy-900) !important;
-  box-shadow: 0 0 0 3px var(--orange-500) !important;
+  box-shadow: 0 0 0 3px var(--slate-400) !important;
 }
 
 .timeline-item--future .timeline-dot {
-  background: var(--orange-300) !important;
-  box-shadow: 0 0 0 3px var(--orange-300) !important;
+  background: var(--slate-300) !important;
+  box-shadow: 0 0 0 3px var(--slate-300) !important;
 }
 
 .timeline-date {
@@ -534,24 +529,14 @@ section > .container > .awards-grid > .award-card {
   color: var(--white) !important;
 }
 
-.timeline-card {
-  background: var(--navy-card) !important;
-  border: 1px solid var(--border-mid) !important;
-  box-shadow: var(--shadow-card) !important;
-}
+/* .timeline-card background/border/shadow already set in CARDS — UNIVERSAL above */
 
 .timeline-card:hover {
   border-color: var(--border-accent) !important;
   box-shadow: var(--shadow-hover) !important;
 }
 
-.timeline-title {
-  color: var(--white-90) !important;
-}
-
-.timeline-desc {
-  color: var(--white-70) !important;
-}
+/* .timeline-title and .timeline-desc already set in CARDS — UNIVERSAL above */
 
 .timeline-tag {
   background: rgba(234,88,12,0.15) !important;
@@ -570,7 +555,7 @@ section > .container > .awards-grid > .award-card {
 }
 
 .timeline-quote-author {
-  color: var(--white-50) !important;
+  color: var(--white-62) !important;
 }
 
 /* ── COMMUNITY SERVICE ─────────────────────────────── */
@@ -613,7 +598,7 @@ section .highlight-item p {
 }
 
 .testimonial-role {
-  color: var(--white-50) !important;
+  color: var(--white-62) !important;
 }
 
 /* ── LANGUAGES ─────────────────────────────────────── */
@@ -630,7 +615,7 @@ section .highlight-item p {
 }
 
 .language-fill {
-  background: linear-gradient(90deg, var(--orange-500), var(--orange-300)) !important;
+  background: linear-gradient(90deg, var(--slate-400), var(--slate-300)) !important;
 }
 
 .level-native  { background: rgba(22,163,74,0.15) !important; color: #86efac !important; }
@@ -647,7 +632,7 @@ section .highlight-item p {
 }
 
 .contact .section-subtitle {
-  color: var(--white-50) !important;
+  color: var(--white-62) !important;
 }
 
 .contact-heading {
@@ -727,17 +712,12 @@ section .highlight-item p {
 }
 
 /* Contact social icons */
-.contact-follow-label {
-  color: var(--white) !important;
-}
-
-.contact-follow-sub {
-  color: var(--white-50) !important;
-}
+/* .contact-follow-label and .contact-follow-sub defined in VISION SECTION above */
 
 .contact-social-icon:hover {
   border-color: var(--orange-400) !important;
   box-shadow: 0 8px 24px rgba(234,88,12,0.3) !important;
+  transform: translateY(-3px) scale(1.08) !important;
 }
 
 /* ── BUTTONS ────────────────────────────────────────── */
@@ -831,9 +811,7 @@ a:hover {
   The footer keeps its original dark navy styling.
   Only apply changes below this comment if needed.
 */
-footer {
-  background: var(--navy-800);
-}
+/* footer background is set in the ── FOOTER ── block below */
 
 /* ── SECTION DIVIDERS ──────────────────────────────── */
 .section-bg-secondary::before {
@@ -915,15 +893,6 @@ b {
 .contact-item h3 { color: var(--white-50) !important; }
 .contact-item p, .contact-item a { color: var(--white-70) !important; }
 .contact-follow { background: var(--navy-card) !important; border-color: var(--border-mid) !important; }
-.contact-follow-label { color: var(--white-90) !important; }
-.contact-follow-sub { color: var(--white-50) !important; }
-.contact-social-icon { border-color: var(--border-mid) !important; }
-.contact-social-icon:hover { color: var(--orange-400) !important; }
-.contact-form { background: rgba(255,255,255,0.04) !important; border: 1px solid var(--border-mid) !important; }
-.form-group label { color: var(--white-70) !important; }
-.form-group input, .form-group textarea { background: rgba(255,255,255,0.06) !important; border: 1px solid var(--border-mid) !important; color: var(--white) !important; }
-.form-group input:focus, .form-group textarea:focus { border-color: var(--orange-500) !important; background: rgba(255,255,255,0.09) !important; box-shadow: 0 0 0 3px rgba(234,88,12,0.15) !important; outline: none; }
-.form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3) !important; }
 
 /* ── FOOTER ────────────────────────────────────────── */
 footer { background: var(--navy-800) !important; border-top: 1px solid var(--border-mid) !important; }
@@ -951,7 +920,6 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
   background: var(--white-06);
   border: 1px solid var(--border-mid);
   border-radius: 14px;
@@ -1000,7 +968,7 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
   border-radius: 999px;
   padding: 0 0.3rem;
   margin-left: 0.25rem;
-  transition: background 0.2s;
+  transition: background 0.2s, opacity 0.15s;
 }
 .filter-btn.active .filter-count,
 .filter-btn:hover .filter-count {
@@ -1047,22 +1015,16 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
 .project-featured-badge i { font-size: 0.55rem; }
 
 /* ── CASE STUDY BANNER ─────────────────────────────── */
-.case-study-banner { background: var(--navy-card) !important; border: 1px solid var(--border-mid) !important; border-left: 4px solid var(--orange-500) !important; }
-.case-study-banner-title { color: var(--white-90) !important; }
-.case-study-banner-desc { color: var(--white-70) !important; }
-.case-study-banner-btn { background: var(--orange-500) !important; color: var(--white) !important; box-shadow: var(--shadow-orange) !important; }
-.case-study-banner-btn:hover { background: var(--orange-400) !important; }
+/* (defined above near projects section — kept here for specificity) */
 
 /* ── CONTACT VISION CARDS ──────────────────────────── */
-.contact-highlight-card { background: var(--navy-card) !important; border: 1px solid var(--border-mid) !important; }
-.contact-heading { color: var(--white-90) !important; }
-.contact-muted { color: var(--white-70) !important; }
+/* (contact-heading, contact-muted defined in VISION SECTION above) */
 
 /* ── SOCIAL ICON BRAND COLOURS ─────────────────────── */
 .contact-social-icon {
   transition: color 0.2s, background 0.2s, border-color 0.2s, transform 0.2s !important;
 }
-.contact-social-icon:hover { transform: translateY(-3px) scale(1.08) !important; }
+/* :hover merged into Contact social icons block above */
 
 /* LinkedIn — #0A66C2 */
 .contact-social-icon--linkedin {
@@ -1240,7 +1202,7 @@ html.light-mode .nav-back-btn            { color: #334155 !important; }
 html.light-mode .nav-links.active        { background: rgba(248,250,252,0.98) !important; }
 
 /* Sections */
-html.light-mode section                  { background: #f8fafc !important; }
+html.light-mode section                  { background: #fafaf9 !important; }
 html.light-mode section:nth-child(even),
 html.light-mode .section-bg-secondary,
 html.light-mode .section-bg-white,
@@ -1289,7 +1251,7 @@ html.light-mode .skill-bar-track         { background: rgba(0,0,0,0.08) !importa
 html.light-mode .skill-bar-name          { color: #0f172a !important; }
 
 /* Hero */
-html.light-mode .hero                    { background: linear-gradient(135deg,#f8fafc 0%,#f1f5f9 60%,#e2e8f0 100%) !important; }
+html.light-mode .hero                    { background: linear-gradient(135deg,#fafaf9 0%,#f1f5f9 60%,#e2e8f0 100%) !important; }
 html.light-mode .hero-title              { color: #0f172a !important; }
 html.light-mode .hero-surname            { color: #64748b !important; }
 html.light-mode .description             { color: #334155 !important; }
@@ -1363,7 +1325,7 @@ html.light-mode #contact                 { background: #f1f5f9 !important; }
 html.light-mode #about                   { background: #f1f5f9 !important; }
 html.light-mode .section-bg-white        { background: #ffffff !important; }
 html.light-mode .section-bg-secondary    { background: #f1f5f9 !important; }
-html.light-mode section:nth-child(odd)   { background: #f8fafc !important; }
+html.light-mode section:nth-child(odd)   { background: #fafaf9 !important; }
 html.light-mode section:nth-child(even)  { background: #f1f5f9 !important; }
 
 /* ── All card/widget dark backgrounds ── */
@@ -1402,7 +1364,7 @@ html.light-mode .contact-heading         { color: #0f172a !important; }
 html.light-mode .contact-muted           { color: #334155 !important; }
 
 /* ── Loading screen ── */
-html.light-mode .loading                 { background: #f8fafc !important; }
+html.light-mode .loading                 { background: #fafaf9 !important; }
 
 /* ── Code preview ── */
 html.light-mode .project-image--code     { background: #1e293b !important; }
@@ -1553,3 +1515,285 @@ section + section::before {
 .hero-scroll-arrow { color: #ea580c !important; }
 html.light-mode .hero-scroll-hint { color: rgba(0,0,0,0.4) !important; }
 html.light-mode .hero-scroll-arrow { color: #ea580c !important; filter: drop-shadow(0 0 4px rgba(234,88,12,0.4)) !important; }
+
+/* ══════════════════════════════════════════════════════
+   LIGHT MODE — MISSING SECTIONS (skills, timeline,
+   community, awards, testimonials, languages, nav)
+   ══════════════════════════════════════════════════════ */
+
+/* ── Global body & text ─────────────────────────────── */
+html.light-mode body                     { background: #fafaf9 !important; color: #0f172a !important; }
+html.light-mode h2, html.light-mode h3,
+html.light-mode h4                       { color: #0f172a !important; }
+html.light-mode p                        { color: #334155 !important; }
+html.light-mode a                        { color: #ea580c !important; }
+html.light-mode strong, html.light-mode b { color: #0f172a !important; }
+
+/* ── Section backgrounds ────────────────────────────── */
+html.light-mode section                  { background: #fafaf9 !important; }
+html.light-mode section:nth-child(even)  { background: #f1f5f9 !important; }
+html.light-mode section:nth-child(odd)   { background: #fafaf9 !important; }
+html.light-mode .section-bg-secondary,
+html.light-mode #about                   { background: #f1f5f9 !important; }
+html.light-mode #skills                  { background: #f1f5f9 !important; }
+html.light-mode .contact,
+html.light-mode #contact                 { background: #f1f5f9 !important; }
+
+/* ── Section titles & subtitles ─────────────────────── */
+html.light-mode .section-title           { color: #ea580c !important; }
+html.light-mode .section-subtitle        { color: #475569 !important; }
+
+/* ── Navigation ─────────────────────────────────────── */
+html.light-mode nav                      { background: rgba(248,250,252,0.95) !important; border-bottom-color: rgba(0,0,0,0.08) !important; box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
+html.light-mode nav.nav--scrolled        { background: rgba(248,250,252,0.99) !important; }
+html.light-mode .nav-links a             { color: #334155 !important; }
+html.light-mode .nav-links a:hover,
+html.light-mode .nav-links a.active-nav  { color: #ea580c !important; background: rgba(234,88,12,0.06) !important; }
+html.light-mode .nav-more-toggle         { color: #334155 !important; }
+html.light-mode .nav-more-toggle:hover   { color: #ea580c !important; }
+html.light-mode .logo-text               { color: #0f172a !important; }
+html.light-mode .theme-toggle            { color: #334155 !important; }
+html.light-mode .menu-toggle             { color: #334155 !important; }
+
+/* ── Skills section ─────────────────────────────────── */
+html.light-mode #skills .section-title   { color: #ea580c !important; }
+html.light-mode #skills .section-subtitle { color: #475569 !important; }
+html.light-mode #skills .skill-category  { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
+html.light-mode #skills .skill-category:hover { background: #f8fafc !important; border-color: rgba(234,88,12,0.3) !important; }
+html.light-mode #skills .skill-title     { color: #0f172a !important; }
+html.light-mode #skills .skill-list      { border-top-color: rgba(0,0,0,0.08) !important; }
+html.light-mode #skills .skill-item      { color: #334155 !important; border-bottom-color: rgba(0,0,0,0.06) !important; }
+html.light-mode #skills .skill-item::before { background: #ea580c !important; }
+html.light-mode .skill-bar-track         { background: rgba(0,0,0,0.08) !important; }
+html.light-mode .skill-bar-name          { color: #0f172a !important; }
+html.light-mode .skill-bar-pct           { color: #64748b !important; }
+
+/* ── Timeline / Journey section ─────────────────────── */
+html.light-mode #timeline                { background: #f8fafc !important; }
+html.light-mode .timeline::before        { background: linear-gradient(180deg, #ea580c, #f97316) !important; }
+html.light-mode .timeline-dot            { background: #ea580c !important; border-color: #f8fafc !important; box-shadow: 0 0 0 3px #ea580c !important; }
+html.light-mode .timeline-item--future .timeline-dot { background: #fb923c !important; box-shadow: 0 0 0 3px #fb923c !important; }
+html.light-mode .timeline-card           { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
+html.light-mode .timeline-card:hover     { border-color: rgba(234,88,12,0.3) !important; box-shadow: 0 8px 24px rgba(0,0,0,0.1) !important; }
+html.light-mode .timeline-title          { color: #0f172a !important; }
+html.light-mode .timeline-desc           { color: #334155 !important; }
+html.light-mode .timeline-date           { background: #e2e8f0 !important; border-color: rgba(0,0,0,0.1) !important; color: #0f172a !important; }
+html.light-mode .timeline-tag            { background: rgba(234,88,12,0.1) !important; color: #c2410c !important; }
+html.light-mode .timeline-tag--future    { background: rgba(251,146,60,0.1) !important; color: #ea580c !important; }
+html.light-mode .timeline-quote          { background: rgba(234,88,12,0.05) !important; border-left-color: #ea580c !important; color: #334155 !important; }
+html.light-mode .timeline-quote-author   { color: #64748b !important; }
+
+/* ── Community section ──────────────────────────────── */
+html.light-mode #community               { background: #f8fafc !important; }
+html.light-mode .community-stat,
+html.light-mode [class*="community"] .highlight-item { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode section .highlight-item  { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode section .highlight-item h3 { color: #0f172a !important; }
+html.light-mode section .highlight-item p  { color: #334155 !important; }
+
+/* ── Awards section ─────────────────────────────────── */
+html.light-mode #awards                  { background: #f1f5f9 !important; }
+html.light-mode .award-card              { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; border-top-color: #ea580c !important; box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
+html.light-mode .award-title             { color: #0f172a !important; }
+html.light-mode .award-meta              { color: #ea580c !important; }
+html.light-mode .award-description       { color: #334155 !important; }
+
+/* ── Testimonials section ───────────────────────────── */
+html.light-mode #testimonials            { background: #f8fafc !important; }
+html.light-mode .testimonial-card        { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
+html.light-mode .testimonial-text        { color: #334155 !important; }
+html.light-mode .testimonial-name        { color: #0f172a !important; }
+html.light-mode .testimonial-role        { color: #64748b !important; }
+html.light-mode .testimonial-author      { border-top-color: rgba(0,0,0,0.08) !important; }
+html.light-mode .testimonial-quote i     { color: #ea580c !important; }
+
+/* ── Languages section ──────────────────────────────── */
+html.light-mode #languages               { background: #f1f5f9 !important; }
+html.light-mode .language-card           { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
+html.light-mode .language-name           { color: #0f172a !important; }
+html.light-mode .language-bar            { background: rgba(0,0,0,0.08) !important; }
+html.light-mode .level-native            { background: rgba(22,163,74,0.1) !important; color: #16a34a !important; }
+html.light-mode .level-fluent            { background: rgba(234,88,12,0.1) !important; color: #c2410c !important; }
+html.light-mode .level-conversational    { background: rgba(202,138,4,0.1) !important; color: #a16207 !important; }
+
+/* ── Leadership section ─────────────────────────────── */
+html.light-mode #leadership              { background: #f8fafc !important; }
+html.light-mode .leadership-card,
+html.light-mode [class*="leadership"] .project-card { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode #leadership .project-title { color: #ea580c !important; }
+
+/* ── Academics section ──────────────────────────────── */
+html.light-mode #academics               { background: #f1f5f9 !important; }
+html.light-mode .cert-item               { border-bottom-color: rgba(0,0,0,0.06) !important; color: #334155 !important; }
+html.light-mode .cert-item-name::before  { background: #ea580c !important; }
+html.light-mode .cert-verify             { color: #ea580c !important; border-color: rgba(234,88,12,0.3) !important; }
+
+/* ── About section ──────────────────────────────────── */
+html.light-mode .about-text              { color: #334155 !important; }
+html.light-mode .about-photo-badge       { background: #ffffff !important; color: #334155 !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important; }
+html.light-mode .highlight-item          { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode .highlight-item h3       { color: #0f172a !important; }
+html.light-mode .highlight-item p        { color: #475569 !important; }
+html.light-mode .learning-widget         { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode .learning-title          { color: #0f172a !important; }
+html.light-mode .learning-item           { color: #334155 !important; }
+html.light-mode .learning-item i         { color: #ea580c !important; }
+
+/* ── About quick-stats card (replaces duplicate photo) ── */
+.about-quick-stats {
+  background: var(--navy-card);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.about-quick-stats__title {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--white-50);
+  margin-bottom: 0.25rem;
+}
+.about-quick-stats__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.about-quick-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.75rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  text-align: center;
+}
+.about-quick-stat__num {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--orange-400);
+  line-height: 1;
+}
+.about-quick-stat__label {
+  font-size: 0.7rem;
+  color: var(--white-50);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.about-quick-stats__quote {
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--orange-500);
+  border-radius: 0 8px 8px 0;
+  background: rgba(234,88,12,0.06);
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--white-70);
+  line-height: 1.6;
+}
+.about-quick-stats__quote cite {
+  display: block;
+  font-style: normal;
+  font-size: 0.72rem;
+  color: var(--white-50);
+  margin-top: 0.4rem;
+  font-weight: 600;
+}
+
+/* Light mode */
+html.light-mode .about-quick-stats       { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
+html.light-mode .about-quick-stats__title { color: #64748b !important; }
+html.light-mode .about-quick-stat        { background: #f8fafc !important; border-color: rgba(0,0,0,0.08) !important; }
+html.light-mode .about-quick-stat__num   { color: #ea580c !important; }
+html.light-mode .about-quick-stat__label { color: #64748b !important; }
+html.light-mode .about-quick-stats__quote { background: rgba(234,88,12,0.05) !important; color: #334155 !important; }
+html.light-mode .about-quick-stats__quote cite { color: #64748b !important; }
+
+/* ── Projects section ───────────────────────────────── */
+html.light-mode #projects                { background: #f8fafc !important; }
+html.light-mode .project-card            { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
+html.light-mode .project-title           { color: #0f172a !important; }
+html.light-mode .project-description     { color: #334155 !important; }
+html.light-mode .case-study-banner       { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; border-left-color: #ea580c !important; }
+html.light-mode .case-study-banner-title { color: #0f172a !important; }
+html.light-mode .case-study-banner-desc  { color: #334155 !important; }
+html.light-mode .cs-stat-label           { color: #64748b !important; }
+
+/* ── FAB & scroll progress ──────────────────────────── */
+html.light-mode .fab                     { box-shadow: 0 8px 24px rgba(234,88,12,0.3) !important; }
+html.light-mode .scroll-progress         { background: linear-gradient(90deg, #ea580c, #f97316) !important; }
+
+/* ── Loading screen ─────────────────────────────────── */
+html.light-mode .loading                 { background: #fafaf9 !important; }
+html.light-mode .spinner                 { border-color: rgba(0,0,0,0.1) !important; border-top-color: #ea580c !important; }
+
+/* ── Skip link ──────────────────────────────────────── */
+html.light-mode .skip-link               { background: #ea580c !important; color: #fff !important; }
+
+/* ── Hero section ───────────────────────────────────── */
+html.light-mode .hero                    { background: linear-gradient(135deg, #fafaf9 0%, #f1f5f9 60%, #e2e8f0 100%) !important; }
+html.light-mode .hero-content h1         { color: #0f172a !important; }
+html.light-mode .hero-surname            { color: #64748b !important; opacity: 1 !important; }
+html.light-mode .hero-role-pill          { background: rgba(0,0,0,0.05) !important; border-color: rgba(0,0,0,0.1) !important; color: #334155 !important; }
+html.light-mode .hero-role-pill:hover    { background: rgba(234,88,12,0.08) !important; border-color: rgba(234,88,12,0.3) !important; color: #c2410c !important; }
+html.light-mode .hero-image-ring         {
+  background:
+    linear-gradient(#fafaf9, #fafaf9) padding-box,
+    conic-gradient(from 0deg, #ea580c 0%, #f97316 25%, transparent 50%, #ea580c 75%, #f97316 100%) border-box !important;
+}
+html.light-mode .hero-photo              { border-color: rgba(234,88,12,0.25) !important; box-shadow: 0 0 0 8px rgba(234,88,12,0.06), 0 24px 60px rgba(0,0,0,0.15) !important; }
+html.light-mode .hero-chip               { background: rgba(255,255,255,0.95) !important; border-color: rgba(234,88,12,0.25) !important; color: #0f172a !important; box-shadow: 0 4px 16px rgba(0,0,0,0.1) !important; }
+html.light-mode .hero-chip i             { color: #ea580c !important; }
+html.light-mode .hero-trust__label       { color: #64748b !important; }
+html.light-mode .hero-trust__item        { color: #334155 !important; }
+html.light-mode .hero-social-divider     { background: rgba(0,0,0,0.12) !important; }
+html.light-mode .hero-grid-lines         {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px) !important;
+}
+
+/* ── MODULAR SECTION SPACING ──────────────────────── */
+/* Lighter sections get less padding; heavier content sections get more */
+#awards,
+#languages,
+#testimonials { padding: 4rem 0 !important; }
+
+#projects,
+#timeline,
+#community { padding: 6rem 0 !important; }
+
+/* ── SECTION HEADER MOTIF ─────────────────────────── */
+/* Subtle left-border accent on section headers for visual system consistency */
+.section-header {
+  position: relative;
+}
+.section-header::before {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 2rem;
+  background: linear-gradient(180deg, var(--orange-500), transparent);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 2px;
+  opacity: 0.4;
+}
+
+/* Light mode — desaturated orange for a designed feel */
+html.light-mode .btn-primary,
+html.light-mode .btn-primary:hover { background: linear-gradient(135deg, #d95e0a, #e8650b) !important; }
+html.light-mode .section-title { color: #d95e0a !important; }
+html.light-mode .section-title::after { background: linear-gradient(90deg, #d95e0a, #e8650b) !important; }
+html.light-mode .hero-content .highlight { color: #d95e0a !important; }
+html.light-mode .fab { background: linear-gradient(135deg, #d95e0a, #e8650b) !important; }
+html.light-mode .scroll-progress { background: linear-gradient(90deg, #d95e0a, #e8650b) !important; }
+html.light-mode .about-seeking { border-left-color: #d95e0a !important; }
+html.light-mode .hero-resume-link { color: #d95e0a !important; border-color: rgba(217,94,10,0.4) !important; }

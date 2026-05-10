@@ -1,14 +1,15 @@
 """
 Portfolio Contact API — Solomon Thiong Garang Leek
 ===================================================
-Strong backend with:
+Features:
   - Input validation (Pydantic v2)
-  - Rate limiting (per IP, in-memory)
+  - File-backed rate limiting (persists across restarts)
+  - Rate limiting on analytics endpoint (prevents flooding)
   - Honeypot spam field
   - HTML + plain-text email
   - Message logging to JSON file (no database needed)
   - Analytics tracking (page views, section views)
-  - CORS locked to allowed origins
+  - CORS locked to allowed origins (defaults to solomonleek.tech)
   - Health + stats endpoints
   - Graceful fallback when SMTP is not configured
 """
@@ -19,7 +20,6 @@ import os
 import smtplib
 import time
 from datetime import datetime, timezone
-from email.message import EmailMessage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
@@ -30,6 +30,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 from pydantic import BaseModel, EmailStr, Field, field_validator
 
 load_dotenv()
@@ -43,38 +44,75 @@ logging.basicConfig(
 log = logging.getLogger("portfolio")
 
 # ── File paths ─────────────────────────────────────────────────────────────────
-LOG_FILE       = Path(__file__).parent / "messages.json"
-ANALYTICS_FILE = Path(__file__).parent / "analytics.json"
+BASE_DIR       = Path(__file__).parent
+LOG_FILE       = BASE_DIR / "messages.json"
+ANALYTICS_FILE = BASE_DIR / "analytics.json"
+RATE_FILE      = BASE_DIR / "rate_limits.json"   # file-backed rate store
+NEWSLETTER_FILE = BASE_DIR / "newsletter.json"    # subscriber list
+NOTIFY_FILE     = BASE_DIR / "notify_requests.json"  # article notify requests
 
 
-def _append_json(path: Path, data: dict) -> None:
-    records: List[dict] = []
-    if path.exists():
-        try:
-            records = json.loads(path.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError):
-            records = []
-    records.append(data)
-    path.write_text(json.dumps(records, indent=2, ensure_ascii=False), encoding="utf-8")
+# ── JSON helpers ───────────────────────────────────────────────────────────────
+def _read_json(path: Path, default):
+    if not path.exists():
+        return default
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return default
 
 
-# ── Rate limiter ───────────────────────────────────────────────────────────────
-RATE_LIMIT_MAX    = int(os.getenv("RATE_LIMIT_MAX", "5"))
-RATE_LIMIT_WINDOW = int(os.getenv("RATE_LIMIT_WINDOW", "3600"))
-_rate_store: Dict[str, List[float]] = defaultdict(list)
+def _write_json(path: Path, data) -> None:
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
-def _check_rate_limit(ip: str) -> None:
+def _append_json(path: Path, record: dict) -> None:
+    records: List[dict] = _read_json(path, [])
+    records.append(record)
+    _write_json(path, records)
+
+
+# ── File-backed rate limiter ───────────────────────────────────────────────────
+# Persists across server restarts so limits survive deploys/crashes.
+CONTACT_RATE_MAX    = int(os.getenv("RATE_LIMIT_MAX", "5"))
+CONTACT_RATE_WINDOW = int(os.getenv("RATE_LIMIT_WINDOW", "3600"))   # seconds
+
+# Analytics gets a much tighter limit to prevent flooding
+ANALYTICS_RATE_MAX    = int(os.getenv("ANALYTICS_RATE_MAX", "120"))  # 120 events
+ANALYTICS_RATE_WINDOW = int(os.getenv("ANALYTICS_RATE_WINDOW", "60")) # per minute
+
+
+def _check_rate_limit(ip: str, max_requests: int, window_seconds: int, bucket: str = "contact") -> None:
+    """
+    File-backed sliding-window rate limiter.
+    Reads/writes RATE_FILE so limits survive restarts.
+    bucket: logical namespace so contact and analytics don't share counters.
+    """
     now = time.time()
-    window_start = now - RATE_LIMIT_WINDOW
-    _rate_store[ip] = [t for t in _rate_store[ip] if t > window_start]
-    if len(_rate_store[ip]) >= RATE_LIMIT_MAX:
-        log.warning("Rate limit hit for IP %s", ip)
+    window_start = now - window_seconds
+
+    store: Dict[str, Dict[str, List[float]]] = _read_json(RATE_FILE, {})
+    bucket_store = store.setdefault(bucket, {})
+
+    # Prune old timestamps for this IP
+    bucket_store[ip] = [t for t in bucket_store.get(ip, []) if t > window_start]
+
+    if len(bucket_store[ip]) >= max_requests:
+        _write_json(RATE_FILE, store)
+        log.warning("Rate limit hit — bucket=%s ip=%s", bucket, ip)
         raise HTTPException(
             status_code=status.HTTP_429_TOO_MANY_REQUESTS,
-            detail="Too many requests. Please wait before sending another message.",
+            detail="Too many requests. Please wait before trying again.",
         )
-    _rate_store[ip].append(now)
+
+    bucket_store[ip].append(now)
+
+    # Periodically clean up stale IPs to keep the file small
+    if len(bucket_store) > 500:
+        bucket_store = {k: v for k, v in bucket_store.items() if v}
+        store[bucket] = bucket_store
+
+    _write_json(RATE_FILE, store)
 
 
 # ── Pydantic models ────────────────────────────────────────────────────────────
@@ -83,7 +121,7 @@ class ContactPayload(BaseModel):
     email:   EmailStr
     subject: str      = Field(min_length=3,  max_length=120)
     message: str      = Field(min_length=10, max_length=2000)
-    website: Optional[str] = Field(default="")
+    website: Optional[str] = Field(default="")   # honeypot — must stay empty
 
     @field_validator("name")
     @classmethod
@@ -122,20 +160,48 @@ class AnalyticsPayload(BaseModel):
     event:    Optional[str] = Field(default="pageview", max_length=50)
 
 
+class NewsletterPayload(BaseModel):
+    email: EmailStr
+
+    @field_validator("email")
+    @classmethod
+    def email_not_disposable(cls, v: str) -> str:
+        # Basic block of obvious throwaway domains
+        blocked = ["mailinator.com", "guerrillamail.com", "tempmail.com", "throwam.com"]
+        domain = v.split("@")[-1].lower()
+        if domain in blocked:
+            raise ValueError("Please use a real email address")
+        return v.lower().strip()
+
+
+class NotifyPayload(BaseModel):
+    email:   EmailStr
+    article: str = Field(min_length=3, max_length=200)
+
+    @field_validator("article")
+    @classmethod
+    def article_no_html(cls, v: str) -> str:
+        if "<" in v or ">" in v:
+            raise ValueError("Invalid characters in article title")
+        return v.strip()
+
+
 # ── FastAPI app ────────────────────────────────────────────────────────────────
 app = FastAPI(
     title="Portfolio API",
-    version="2.1.0",
+    version="3.0.0",
     docs_url=None,
     redoc_url=None,
 )
 
-origins_raw = os.getenv("ALLOWED_ORIGINS", "*")
+# CORS: default to the production domain — never open wildcard in production.
+_default_origins = "https://solomonleek.tech,http://localhost:5500,http://127.0.0.1:5500"
+origins_raw = os.getenv("ALLOWED_ORIGINS", _default_origins)
 origins: List[str] = [o.strip() for o in origins_raw.split(",") if o.strip()]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins if origins else ["*"],
+    allow_origins=origins,
     allow_credentials=False,
     allow_methods=["POST", "GET", "OPTIONS"],
     allow_headers=["Content-Type", "Accept"],
@@ -145,9 +211,9 @@ app.add_middleware(
 # ── Email builder ──────────────────────────────────────────────────────────────
 def _build_email(payload: ContactPayload, to_email: str, from_email: str) -> MIMEMultipart:
     msg = MIMEMultipart("alternative")
-    msg["Subject"] = f"[Portfolio] {payload.subject}"
-    msg["From"]    = f"Portfolio Contact <{from_email}>"
-    msg["To"]      = to_email
+    msg["Subject"]  = f"[Portfolio] {payload.subject}"
+    msg["From"]     = f"Portfolio Contact <{from_email}>"
+    msg["To"]       = to_email
     msg["Reply-To"] = payload.email
 
     plain = (
@@ -162,36 +228,77 @@ def _build_email(payload: ContactPayload, to_email: str, from_email: str) -> MIM
         f"Sent via solomonleek.tech"
     )
 
-    safe_message = payload.message.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>")
+    safe_msg = (
+        payload.message
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace("\n", "<br>")
+    )
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#060d1a;font-family:'Segoe UI',Arial,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#060d1a;padding:40px 20px;">
     <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="background:#0f1e35;border-radius:16px;border:1px solid rgba(255,255,255,0.1);overflow:hidden;max-width:600px;width:100%;">
+      <table width="600" cellpadding="0" cellspacing="0"
+             style="background:#0f1e35;border-radius:16px;border:1px solid rgba(255,255,255,0.1);
+                    overflow:hidden;max-width:600px;width:100%;">
+        <!-- Header -->
         <tr><td style="background:linear-gradient(135deg,#ea580c,#f97316);padding:28px 32px;">
-          <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:18px;color:#fff;">SK Portfolio — New Message</span>
+          <table width="100%" cellpadding="0" cellspacing="0"><tr>
+            <td>
+              <div style="width:36px;height:36px;background:rgba(255,255,255,0.2);border-radius:8px;
+                          display:inline-block;text-align:center;line-height:36px;
+                          font-family:'Sora',sans-serif;font-weight:800;font-size:13px;color:#fff;
+                          vertical-align:middle;">SK</div>
+              <span style="font-family:'Sora',Arial,sans-serif;font-weight:800;font-size:18px;
+                           color:#fff;vertical-align:middle;margin-left:10px;">Sleek Portfolio</span>
+            </td>
+            <td align="right" style="font-size:12px;color:rgba(255,255,255,0.7);">New Message</td>
+          </tr></table>
         </td></tr>
+        <!-- Body -->
         <tr><td style="padding:32px;">
-          <h2 style="font-family:'Sora',Arial,sans-serif;font-size:20px;font-weight:800;color:#fff;margin:0 0 8px;">You have a new message</h2>
-          <p style="font-size:14px;color:rgba(255,255,255,0.5);margin:0 0 28px;">From your portfolio contact form.</p>
-          <table width="100%" cellpadding="0" cellspacing="0" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;margin-bottom:24px;">
+          <h2 style="font-family:'Sora',Arial,sans-serif;font-size:20px;font-weight:800;
+                     color:#fff;margin:0 0 8px;">You have a new message</h2>
+          <p style="font-size:14px;color:rgba(255,255,255,0.5);margin:0 0 28px;">
+            Someone reached out through your portfolio contact form.</p>
+          <!-- Sender -->
+          <table width="100%" cellpadding="0" cellspacing="0"
+                 style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+                        border-radius:12px;margin-bottom:24px;">
             <tr><td style="padding:20px 24px;">
-              <p style="margin:0 0 8px;font-size:11px;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,0.4);">From</p>
-              <p style="margin:0;font-size:15px;font-weight:700;color:#fff;">{payload.name} <span style="color:#f97316;">&lt;{payload.email}&gt;</span></p>
-              <p style="margin:12px 0 8px;font-size:11px;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,0.4);">Subject</p>
-              <p style="margin:0;font-size:15px;color:rgba(255,255,255,0.9);">{payload.subject}</p>
+              <span style="font-size:11px;font-weight:700;text-transform:uppercase;
+                           color:rgba(255,255,255,0.4);">From</span><br>
+              <span style="font-size:15px;font-weight:700;color:#fff;">{payload.name}</span>
+              <span style="font-size:13px;color:#f97316;margin-left:8px;">&lt;{payload.email}&gt;</span>
+              <br><br>
+              <span style="font-size:11px;font-weight:700;text-transform:uppercase;
+                           color:rgba(255,255,255,0.4);">Subject</span><br>
+              <span style="font-size:15px;color:rgba(255,255,255,0.9);">{payload.subject}</span>
             </td></tr>
           </table>
-          <div style="background:rgba(255,255,255,0.03);border-left:4px solid #ea580c;border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:28px;">
-            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,0.4);margin:0 0 12px;">Message</p>
-            <p style="font-size:15px;color:rgba(255,255,255,0.8);line-height:1.7;margin:0;">{safe_message}</p>
+          <!-- Message -->
+          <div style="background:rgba(255,255,255,0.03);border-left:4px solid #ea580c;
+                      border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:28px;">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;
+                      color:rgba(255,255,255,0.4);margin:0 0 12px;">Message</p>
+            <p style="font-size:15px;color:rgba(255,255,255,0.8);line-height:1.7;margin:0;">
+              {safe_msg}</p>
           </div>
-          <a href="mailto:{payload.email}?subject=Re: {payload.subject}" style="display:inline-block;background:linear-gradient(135deg,#ea580c,#f97316);color:#fff;font-size:14px;font-weight:700;padding:12px 24px;border-radius:8px;text-decoration:none;">Reply to {payload.name}</a>
+          <a href="mailto:{payload.email}?subject=Re: {payload.subject}"
+             style="display:inline-block;background:linear-gradient(135deg,#ea580c,#f97316);
+                    color:#fff;font-size:14px;font-weight:700;padding:12px 24px;
+                    border-radius:8px;text-decoration:none;">Reply to {payload.name}</a>
         </td></tr>
+        <!-- Footer -->
         <tr><td style="padding:20px 32px;border-top:1px solid rgba(255,255,255,0.07);">
-          <p style="font-size:12px;color:rgba(255,255,255,0.3);margin:0;">Sent via <a href="https://solomonleek.tech" style="color:#f97316;text-decoration:none;">solomonleek.tech</a></p>
+          <p style="font-size:12px;color:rgba(255,255,255,0.3);margin:0;">
+            Sent via <a href="https://solomonleek.tech"
+                        style="color:#f97316;text-decoration:none;">solomonleek.tech</a>
+          </p>
         </td></tr>
       </table>
     </td></tr>
@@ -235,46 +342,42 @@ def _send_email(payload: ContactPayload) -> None:
 def health() -> dict:
     return {
         "status": "ok",
-        "version": "2.1.0",
+        "version": "3.0.0",
         "smtp_configured": bool(os.getenv("SMTP_HOST") and os.getenv("SMTP_USER")),
     }
 
 
 @app.get("/api/messages/count")
 def message_count() -> dict:
-    if not LOG_FILE.exists():
-        return {"count": 0}
-    try:
-        return {"count": len(json.loads(LOG_FILE.read_text(encoding="utf-8")))}
-    except Exception:
-        return {"count": 0}
+    records = _read_json(LOG_FILE, [])
+    return {"count": len(records) if isinstance(records, list) else 0}
 
 
 @app.get("/api/analytics/summary")
 def analytics_summary() -> dict:
     """Return aggregated analytics — page views, top sections, top referrers."""
-    if not ANALYTICS_FILE.exists():
+    records = _read_json(ANALYTICS_FILE, [])
+    if not isinstance(records, list):
         return {"total_views": 0, "sections": {}, "referrers": {}, "pages": {}}
-    try:
-        records = json.loads(ANALYTICS_FILE.read_text(encoding="utf-8"))
-        pages: Dict[str, int]    = defaultdict(int)
-        sections: Dict[str, int] = defaultdict(int)
-        referrers: Dict[str, int] = defaultdict(int)
-        for r in records:
-            pages[r.get("page", "/")] += 1
-            if r.get("section"):
-                sections[r["section"]] += 1
-            ref = r.get("referrer", "")
-            if ref:
-                referrers[ref] += 1
-        return {
-            "total_views": len(records),
-            "pages":     dict(sorted(pages.items(),     key=lambda x: x[1], reverse=True)[:10]),
-            "sections":  dict(sorted(sections.items(),  key=lambda x: x[1], reverse=True)[:10]),
-            "referrers": dict(sorted(referrers.items(), key=lambda x: x[1], reverse=True)[:10]),
-        }
-    except Exception:
-        return {"total_views": 0, "sections": {}, "referrers": {}, "pages": {}}
+
+    pages: Dict[str, int]     = defaultdict(int)
+    sections: Dict[str, int]  = defaultdict(int)
+    referrers: Dict[str, int] = defaultdict(int)
+
+    for r in records:
+        pages[r.get("page", "/")] += 1
+        if r.get("section"):
+            sections[r["section"]] += 1
+        ref = r.get("referrer", "")
+        if ref:
+            referrers[ref] += 1
+
+    return {
+        "total_views": len(records),
+        "pages":     dict(sorted(pages.items(),     key=lambda x: x[1], reverse=True)[:10]),
+        "sections":  dict(sorted(sections.items(),  key=lambda x: x[1], reverse=True)[:10]),
+        "referrers": dict(sorted(referrers.items(), key=lambda x: x[1], reverse=True)[:10]),
+    }
 
 
 @app.post("/api/analytics", status_code=status.HTTP_200_OK)
@@ -284,10 +387,13 @@ async def track(request: Request, payload: AnalyticsPayload) -> dict:
     client_ip = client_ip.split(",")[0].strip()
     ua = request.headers.get("User-Agent", "")
 
-    # Skip bots
+    # Skip known bots
     bot_keywords = ["bot", "crawler", "spider", "headless", "python-requests", "curl"]
     if any(k in ua.lower() for k in bot_keywords):
         return {"ok": True}
+
+    # Rate-limit analytics to prevent flooding (120 events/min per IP)
+    _check_rate_limit(client_ip, ANALYTICS_RATE_MAX, ANALYTICS_RATE_WINDOW, bucket="analytics")
 
     record = {
         "ts":       datetime.now(timezone.utc).isoformat(),
@@ -303,351 +409,17 @@ async def track(request: Request, payload: AnalyticsPayload) -> dict:
 
 @app.post("/api/contact", status_code=status.HTTP_200_OK)
 async def contact(request: Request, payload: ContactPayload) -> dict:
-    if payload.website and payload.website.strip():
-        log.warning("Honeypot triggered — bot submission blocked")
-        return {"ok": True, "message": "Message received"}
-
-    client_ip = request.headers.get("X-Forwarded-For", request.client.host if request.client else "unknown")
-    client_ip = client_ip.split(",")[0].strip()
-    _check_rate_limit(client_ip)
-
-    record = {
-        "id":        int(time.time() * 1000),
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "ip":        client_ip,
-        "name":      payload.name,
-        "email":     payload.email,
-        "subject":   payload.subject,
-        "message":   payload.message,
-        "delivered": False,
-    }
-
-    try:
-        _send_email(payload)
-        record["delivered"] = True
-        log.info("Contact from %s <%s> — subject: %s", payload.name, payload.email, payload.subject)
-    except RuntimeError as cfg_err:
-        log.error("SMTP config error: %s", cfg_err)
-        _append_json(LOG_FILE, record)
-        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-                            detail="Email service not configured. Message was saved — I will follow up shortly.") from cfg_err
-    except smtplib.SMTPAuthenticationError:
-        log.error("SMTP authentication failed")
-        _append_json(LOG_FILE, record)
-        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-                            detail="Email delivery failed. Message was saved — I will follow up shortly.")
-    except Exception as err:
-        log.error("Email send failed: %s", err)
-        _append_json(LOG_FILE, record)
-        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-                            detail="Email delivery failed. Message was saved — I will follow up shortly.") from err
-
-    _append_json(LOG_FILE, record)
-    return {"ok": True, "message": "Message sent! I'll get back to you soon."}
-
-
-from fastapi.exceptions import RequestValidationError
-
-@app.exception_handler(RequestValidationError)
-async def validation_error_handler(request: Request, exc: RequestValidationError):
-    errors = exc.errors()
-    first = errors[0] if errors else {}
-    field = first.get("loc", ["field"])[-1]
-    msg   = first.get("msg", "Invalid input")
-    return JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        content={"detail": f"{field}: {msg}"},
-    )
-
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("app:app", host="0.0.0.0", port=int(os.getenv("PORT", "8000")), reload=True, log_level="info")
-
-import json
-import logging
-import os
-import smtplib
-import time
-from datetime import datetime, timezone
-from email.message import EmailMessage
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from pathlib import Path
-from typing import Dict, List, Optional
-from collections import defaultdict
-
-from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, Request, status
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
-from pydantic import BaseModel, EmailStr, Field, field_validator
-
-load_dotenv()
-
-# ── Logging ────────────────────────────────────────────────────────────────────
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s  %(levelname)-8s  %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-)
-log = logging.getLogger("portfolio")
-
-# ── Message log file ───────────────────────────────────────────────────────────
-LOG_FILE = Path(__file__).parent / "messages.json"
-
-
-def _append_message(data: dict) -> None:
-    """Append a contact message to the local JSON log."""
-    messages: List[dict] = []
-    if LOG_FILE.exists():
-        try:
-            messages = json.loads(LOG_FILE.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError):
-            messages = []
-    messages.append(data)
-    LOG_FILE.write_text(json.dumps(messages, indent=2, ensure_ascii=False), encoding="utf-8")
-
-
-# ── Rate limiter (in-memory, per IP) ──────────────────────────────────────────
-RATE_LIMIT_MAX     = int(os.getenv("RATE_LIMIT_MAX", "5"))      # max requests
-RATE_LIMIT_WINDOW  = int(os.getenv("RATE_LIMIT_WINDOW", "3600")) # per window (seconds)
-
-_rate_store: Dict[str, List[float]] = defaultdict(list)
-
-
-def _check_rate_limit(ip: str) -> None:
-    now = time.time()
-    window_start = now - RATE_LIMIT_WINDOW
-    # Keep only timestamps within the current window
-    _rate_store[ip] = [t for t in _rate_store[ip] if t > window_start]
-    if len(_rate_store[ip]) >= RATE_LIMIT_MAX:
-        log.warning("Rate limit hit for IP %s", ip)
-        raise HTTPException(
-            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
-            detail=f"Too many requests. Please wait before sending another message.",
-        )
-    _rate_store[ip].append(now)
-
-
-# ── Pydantic models ────────────────────────────────────────────────────────────
-class ContactPayload(BaseModel):
-    name:    str      = Field(min_length=2,  max_length=80)
-    email:   EmailStr
-    subject: str      = Field(min_length=3,  max_length=120)
-    message: str      = Field(min_length=10, max_length=2000)
-    website: Optional[str] = Field(default="")  # honeypot — must be empty
-
-    @field_validator("name")
-    @classmethod
-    def name_no_html(cls, v: str) -> str:
-        if "<" in v or ">" in v:
-            raise ValueError("Invalid characters in name")
-        return v.strip()
-
-    @field_validator("subject")
-    @classmethod
-    def subject_no_html(cls, v: str) -> str:
-        if "<" in v or ">" in v:
-            raise ValueError("Invalid characters in subject")
-        return v.strip()
-
-    @field_validator("message")
-    @classmethod
-    def message_no_scripts(cls, v: str) -> str:
-        lower = v.lower()
-        if "<script" in lower or "javascript:" in lower:
-            raise ValueError("Invalid content in message")
-        return v.strip()
-
-    @field_validator("website")
-    @classmethod
-    def honeypot_must_be_empty(cls, v: str) -> str:
-        if v and v.strip():
-            raise ValueError("Bot detected")
-        return v
-
-
-# ── FastAPI app ────────────────────────────────────────────────────────────────
-app = FastAPI(
-    title="Portfolio Contact API",
-    version="2.0.0",
-    docs_url=None,   # disable Swagger UI in production
-    redoc_url=None,
-)
-
-origins_raw = os.getenv("ALLOWED_ORIGINS", "*")
-origins: List[str] = [o.strip() for o in origins_raw.split(",") if o.strip()]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins if origins else ["*"],
-    allow_credentials=False,
-    allow_methods=["POST", "GET", "OPTIONS"],
-    allow_headers=["Content-Type", "Accept"],
-)
-
-
-# ── Email builder ──────────────────────────────────────────────────────────────
-def _build_email(payload: ContactPayload, to_email: str, from_email: str) -> MIMEMultipart:
-    msg = MIMEMultipart("alternative")
-    msg["Subject"] = f"[Portfolio] {payload.subject}"
-    msg["From"]    = f"Portfolio Contact <{from_email}>"
-    msg["To"]      = to_email
-    msg["Reply-To"] = payload.email
-
-    # Plain text
-    plain = (
-        f"New message from your portfolio contact form\n"
-        f"{'─' * 48}\n"
-        f"Name:    {payload.name}\n"
-        f"Email:   {payload.email}\n"
-        f"Subject: {payload.subject}\n"
-        f"{'─' * 48}\n\n"
-        f"{payload.message}\n\n"
-        f"{'─' * 48}\n"
-        f"Sent via solomonleek.tech"
-    )
-
-    # HTML
-    safe_message = payload.message.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>")
-    html = f"""<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#060d1a;font-family:'Segoe UI',Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#060d1a;padding:40px 20px;">
-    <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="background:#0f1e35;border-radius:16px;border:1px solid rgba(255,255,255,0.1);overflow:hidden;max-width:600px;width:100%;">
-
-        <!-- Header -->
-        <tr><td style="background:linear-gradient(135deg,#ea580c,#f97316);padding:28px 32px;">
-          <table width="100%" cellpadding="0" cellspacing="0">
-            <tr>
-              <td>
-                <div style="width:36px;height:36px;background:rgba(255,255,255,0.2);border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:800;font-size:13px;color:#fff;vertical-align:middle;text-align:center;line-height:36px;">SK</div>
-                <span style="font-family:'Sora',Arial,sans-serif;font-weight:800;font-size:18px;color:#fff;vertical-align:middle;margin-left:10px;">Sleek Portfolio</span>
-              </td>
-              <td align="right" style="font-size:12px;color:rgba(255,255,255,0.7);">New Message</td>
-            </tr>
-          </table>
-        </td></tr>
-
-        <!-- Body -->
-        <tr><td style="padding:32px;">
-          <h2 style="font-family:'Sora',Arial,sans-serif;font-size:20px;font-weight:800;color:#fff;margin:0 0 8px;">You have a new message</h2>
-          <p style="font-size:14px;color:rgba(255,255,255,0.5);margin:0 0 28px;">Someone reached out through your portfolio contact form.</p>
-
-          <!-- Sender info -->
-          <table width="100%" cellpadding="0" cellspacing="0" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;margin-bottom:24px;">
-            <tr><td style="padding:20px 24px;">
-              <table width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="padding-bottom:12px;">
-                    <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.4);">From</span><br>
-                    <span style="font-size:15px;font-weight:700;color:#fff;">{payload.name}</span>
-                    <span style="font-size:13px;color:#f97316;margin-left:8px;">&lt;{payload.email}&gt;</span>
-                  </td>
-                </tr>
-                <tr><td style="border-top:1px solid rgba(255,255,255,0.07);padding-top:12px;">
-                  <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.4);">Subject</span><br>
-                  <span style="font-size:15px;color:rgba(255,255,255,0.9);">{payload.subject}</span>
-                </td></tr>
-              </table>
-            </td></tr>
-          </table>
-
-          <!-- Message -->
-          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-left:4px solid #ea580c;border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:28px;">
-            <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.4);margin:0 0 12px;">Message</p>
-            <p style="font-size:15px;color:rgba(255,255,255,0.8);line-height:1.7;margin:0;">{safe_message}</p>
-          </div>
-
-          <!-- Reply button -->
-          <table cellpadding="0" cellspacing="0"><tr><td>
-            <a href="mailto:{payload.email}?subject=Re: {payload.subject}" style="display:inline-block;background:linear-gradient(135deg,#ea580c,#f97316);color:#fff;font-size:14px;font-weight:700;padding:12px 24px;border-radius:8px;text-decoration:none;">Reply to {payload.name}</a>
-          </td></tr></table>
-        </td></tr>
-
-        <!-- Footer -->
-        <tr><td style="padding:20px 32px;border-top:1px solid rgba(255,255,255,0.07);">
-          <p style="font-size:12px;color:rgba(255,255,255,0.3);margin:0;">Sent via <a href="https://solomonleek.tech" style="color:#f97316;text-decoration:none;">solomonleek.tech</a> contact form</p>
-        </td></tr>
-
-      </table>
-    </td></tr>
-  </table>
-</body>
-</html>"""
-
-    msg.attach(MIMEText(plain, "plain", "utf-8"))
-    msg.attach(MIMEText(html,  "html",  "utf-8"))
-    return msg
-
-
-# ── SMTP sender ────────────────────────────────────────────────────────────────
-def _send_email(payload: ContactPayload) -> None:
-    smtp_host     = os.getenv("SMTP_HOST", "")
-    smtp_port     = int(os.getenv("SMTP_PORT", "587"))
-    smtp_user     = os.getenv("SMTP_USER", "")
-    smtp_password = os.getenv("SMTP_PASSWORD", "")
-    smtp_starttls = os.getenv("SMTP_STARTTLS", "true").lower() == "true"
-    to_email      = os.getenv("CONTACT_TO_EMAIL", "")
-    from_email    = os.getenv("CONTACT_FROM_EMAIL", smtp_user or "")
-
-    if not (smtp_host and smtp_user and smtp_password and to_email and from_email):
-        raise RuntimeError(
-            "SMTP not configured. Set SMTP_HOST, SMTP_USER, SMTP_PASSWORD, "
-            "CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL in your .env file."
-        )
-
-    msg = _build_email(payload, to_email, from_email)
-
-    with smtplib.SMTP(smtp_host, smtp_port, timeout=15) as server:
-        server.ehlo()
-        if smtp_starttls:
-            server.starttls()
-            server.ehlo()
-        server.login(smtp_user, smtp_password)
-        server.send_message(msg)
-        log.info("Email sent to %s from %s (%s)", to_email, payload.name, payload.email)
-
-
-# ── Routes ─────────────────────────────────────────────────────────────────────
-@app.get("/api/health")
-def health() -> dict:
-    return {
-        "status": "ok",
-        "version": "2.0.0",
-        "smtp_configured": bool(os.getenv("SMTP_HOST") and os.getenv("SMTP_USER")),
-    }
-
-
-@app.get("/api/messages/count")
-def message_count() -> dict:
-    """Return total number of logged messages (no content exposed)."""
-    if not LOG_FILE.exists():
-        return {"count": 0}
-    try:
-        messages = json.loads(LOG_FILE.read_text(encoding="utf-8"))
-        return {"count": len(messages)}
-    except Exception:
-        return {"count": 0}
-
-
-@app.post("/api/contact", status_code=status.HTTP_200_OK)
-async def contact(request: Request, payload: ContactPayload) -> dict:
     # 1. Honeypot check
     if payload.website and payload.website.strip():
         log.warning("Honeypot triggered — bot submission blocked")
-        # Return 200 so bots don't know they were blocked
         return {"ok": True, "message": "Message received"}
 
-    # 2. Rate limit
+    # 2. Rate limit (file-backed — survives restarts)
     client_ip = request.headers.get("X-Forwarded-For", request.client.host if request.client else "unknown")
     client_ip = client_ip.split(",")[0].strip()
-    _check_rate_limit(client_ip)
+    _check_rate_limit(client_ip, CONTACT_RATE_MAX, CONTACT_RATE_WINDOW, bucket="contact")
 
-    # 3. Log message locally (always, even if email fails)
+    # 3. Build log record (always saved, even if email fails)
     record = {
         "id":        int(time.time() * 1000),
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -666,39 +438,186 @@ async def contact(request: Request, payload: ContactPayload) -> dict:
         log.info("Contact from %s <%s> — subject: %s", payload.name, payload.email, payload.subject)
     except RuntimeError as cfg_err:
         log.error("SMTP config error: %s", cfg_err)
-        _append_message(record)
+        _append_json(LOG_FILE, record)
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="Email service not configured. Message was saved — I will follow up shortly.",
         ) from cfg_err
     except smtplib.SMTPAuthenticationError:
         log.error("SMTP authentication failed")
-        _append_message(record)
+        _append_json(LOG_FILE, record)
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="Email delivery failed. Message was saved — I will follow up shortly.",
         )
     except Exception as err:
         log.error("Email send failed: %s", err)
-        _append_message(record)
+        _append_json(LOG_FILE, record)
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="Email delivery failed. Message was saved — I will follow up shortly.",
         ) from err
 
-    _append_message(record)
+    _append_json(LOG_FILE, record)
     return {"ok": True, "message": "Message sent! I'll get back to you soon."}
 
 
-# ── Validation error handler ───────────────────────────────────────────────────
-from fastapi.exceptions import RequestValidationError
+# ── Newsletter subscription ────────────────────────────────────────────────────
+@app.post("/api/newsletter", status_code=status.HTTP_200_OK)
+async def newsletter_subscribe(request: Request, payload: NewsletterPayload) -> dict:
+    """Store a newsletter subscriber. Sends a confirmation email if SMTP is configured."""
+    client_ip = request.headers.get("X-Forwarded-For", request.client.host if request.client else "unknown")
+    client_ip = client_ip.split(",")[0].strip()
 
+    # Rate limit: 3 subscribe attempts per hour per IP
+    _check_rate_limit(client_ip, 3, 3600, bucket="newsletter")
+
+    subscribers: List[dict] = _read_json(NEWSLETTER_FILE, [])
+
+    # Deduplicate — silently succeed if already subscribed
+    existing_emails = [s.get("email", "").lower() for s in subscribers]
+    if payload.email.lower() in existing_emails:
+        return {"ok": True, "message": "You're already subscribed. Thanks!"}
+
+    record = {
+        "email":     payload.email.lower(),
+        "subscribed_at": datetime.now(timezone.utc).isoformat(),
+        "ip":        client_ip,
+        "active":    True,
+    }
+    subscribers.append(record)
+    _write_json(NEWSLETTER_FILE, subscribers)
+    log.info("Newsletter subscriber: %s", payload.email)
+
+    # Send confirmation email (best-effort — don't fail if SMTP not configured)
+    try:
+        _send_newsletter_confirmation(payload.email)
+    except Exception as e:
+        log.warning("Newsletter confirmation email failed: %s", e)
+
+    return {"ok": True, "message": "Subscribed! You'll get new articles in your inbox."}
+
+
+def _send_newsletter_confirmation(to_email: str) -> None:
+    smtp_host     = os.getenv("SMTP_HOST", "")
+    smtp_port     = int(os.getenv("SMTP_PORT", "587"))
+    smtp_user     = os.getenv("SMTP_USER", "")
+    smtp_password = os.getenv("SMTP_PASSWORD", "")
+    smtp_starttls = os.getenv("SMTP_STARTTLS", "true").lower() == "true"
+    from_email    = os.getenv("CONTACT_FROM_EMAIL", smtp_user or "")
+
+    if not (smtp_host and smtp_user and smtp_password and from_email):
+        raise RuntimeError("SMTP not configured")
+
+    msg = MIMEMultipart("alternative")
+    msg["Subject"]  = "You're subscribed to Solomon Leek's blog"
+    msg["From"]     = f"Solomon Leek <{from_email}>"
+    msg["To"]       = to_email
+
+    plain = (
+        "Hi,\n\n"
+        "You're now subscribed to Solomon Thiong Garang Leek's blog.\n"
+        "You'll receive an email when new articles are published.\n\n"
+        "Topics: Software Engineering · Design · Leadership · Africa & Tech\n\n"
+        "To unsubscribe, reply to this email with 'unsubscribe' in the subject.\n\n"
+        "— Solomon\nhttps://solomonleek.tech"
+    )
+
+    html = """<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"></head>
+<body style="margin:0;padding:0;background:#060d1a;font-family:'Segoe UI',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#060d1a;padding:40px 20px;">
+    <tr><td align="center">
+      <table width="560" cellpadding="0" cellspacing="0"
+             style="background:#0f1e35;border-radius:16px;border:1px solid rgba(255,255,255,0.1);
+                    overflow:hidden;max-width:560px;width:100%;">
+        <tr><td style="background:linear-gradient(135deg,#ea580c,#f97316);padding:24px 32px;">
+          <span style="font-family:'Sora',Arial,sans-serif;font-weight:800;font-size:18px;color:#fff;">
+            Solomon Leek · Blog
+          </span>
+        </td></tr>
+        <tr><td style="padding:32px;">
+          <h2 style="font-family:'Sora',Arial,sans-serif;font-size:20px;font-weight:800;color:#fff;margin:0 0 12px;">
+            You're subscribed!
+          </h2>
+          <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.7;margin:0 0 20px;">
+            Thanks for subscribing. You'll get an email when new articles are published on topics like
+            software engineering, design, leadership, and building technology for Africa.
+          </p>
+          <a href="https://solomonleek.tech/html/blog.html"
+             style="display:inline-block;background:linear-gradient(135deg,#ea580c,#f97316);
+                    color:#fff;font-size:14px;font-weight:700;padding:12px 24px;
+                    border-radius:8px;text-decoration:none;">
+            Read the Blog
+          </a>
+          <p style="font-size:12px;color:rgba(255,255,255,0.3);margin:24px 0 0;">
+            To unsubscribe, reply with "unsubscribe" in the subject line.
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>"""
+
+    msg.attach(MIMEText(plain, "plain", "utf-8"))
+    msg.attach(MIMEText(html,  "html",  "utf-8"))
+
+    with smtplib.SMTP(smtp_host, smtp_port, timeout=15) as server:
+        server.ehlo()
+        if smtp_starttls:
+            server.starttls()
+            server.ehlo()
+        server.login(smtp_user, smtp_password)
+        server.send_message(msg)
+        log.info("Newsletter confirmation sent to %s", to_email)
+
+
+# ── Article notify-me ──────────────────────────────────────────────────────────
+@app.post("/api/notify", status_code=status.HTTP_200_OK)
+async def notify_subscribe(request: Request, payload: NotifyPayload) -> dict:
+    """Store a 'notify me when published' request for a coming-soon article."""
+    client_ip = request.headers.get("X-Forwarded-For", request.client.host if request.client else "unknown")
+    client_ip = client_ip.split(",")[0].strip()
+
+    # Rate limit: 10 notify requests per hour per IP
+    _check_rate_limit(client_ip, 10, 3600, bucket="notify")
+
+    requests_list: List[dict] = _read_json(NOTIFY_FILE, [])
+
+    # Deduplicate per email+article combo
+    for r in requests_list:
+        if r.get("email", "").lower() == payload.email.lower() and r.get("article") == payload.article:
+            return {"ok": True, "message": "You're already on the list for this article."}
+
+    record = {
+        "email":      payload.email.lower(),
+        "article":    payload.article,
+        "requested_at": datetime.now(timezone.utc).isoformat(),
+        "ip":         client_ip,
+        "notified":   False,
+    }
+    requests_list.append(record)
+    _write_json(NOTIFY_FILE, requests_list)
+    log.info("Notify request: %s for '%s'", payload.email, payload.article)
+
+    return {"ok": True, "message": "Got it! We'll email you when this article is published."}
+
+
+@app.get("/api/newsletter/count")
+def newsletter_count() -> dict:
+    """Return subscriber count (no emails exposed)."""
+    subscribers = _read_json(NEWSLETTER_FILE, [])
+    active = [s for s in subscribers if isinstance(s, dict) and s.get("active", True)]
+    return {"count": len(active)}
+
+
+# ── Validation error handler ───────────────────────────────────────────────────
 @app.exception_handler(RequestValidationError)
 async def validation_error_handler(request: Request, exc: RequestValidationError):
     errors = exc.errors()
-    first = errors[0] if errors else {}
-    field = first.get("loc", ["field"])[-1]
-    msg   = first.get("msg", "Invalid input")
+    first  = errors[0] if errors else {}
+    field  = first.get("loc", ["field"])[-1]
+    msg    = first.get("msg", "Invalid input")
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content={"detail": f"{field}: {msg}"},

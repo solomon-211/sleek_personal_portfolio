@@ -6,16 +6,41 @@
     <base href="../">
     <title>Blog — Solomon Thiong Garang Leek</title>
     <meta name="description" content="Thoughts on software engineering, design, leadership, and building technology for Africa by Solomon Thiong Garang Leek.">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f4c81'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Sora,sans-serif' font-weight='800' font-size='13' fill='white'>SK</text></svg>">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog — Solomon Thiong Garang Leek">
+    <meta property="og:description" content="Thoughts on software engineering, design, leadership, and building technology for Africa.">
+    <meta property="og:url" content="https://solomonleek.tech/html/blog.html">
+    <meta property="og:image" content="https://solomonleek.tech/images/photo.jpg">
+    <meta property="og:image:alt" content="Solomon Thiong Garang Leek — Blog">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog — Solomon Thiong Garang Leek">
+    <meta name="twitter:description" content="Thoughts on software engineering, design, leadership, and building technology for Africa.">
+    <meta name="twitter:image" content="https://solomonleek.tech/images/photo.jpg">
+    <link rel="canonical" href="https://solomonleek.tech/html/blog.html">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Solomon Thiong Garang Leek — Blog",
+      "url": "https://solomonleek.tech/html/blog.html",
+      "description": "Thoughts on software engineering, design, leadership, and building technology for Africa.",
+      "author": {
+        "@type": "Person",
+        "name": "Solomon Thiong Garang Leek",
+        "url": "https://solomonleek.tech"
+      }
+    }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f4c81'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Sora,sans-serif' font-weight='800' font-size='13' fill='white'>SL</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap&subset=latin" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/blog.css">
     <!-- Analytics -->
     <script>
     (function(){
-        const API='http://localhost:8000/api/analytics';
+        var API = (window.ANALYTICS_API_URL) || 'https://solomonleek.tech/api/analytics';
         function send(d){fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){});}
         send({page:location.pathname,referrer:document.referrer,event:'pageview'});
     })();
@@ -415,10 +440,11 @@
                         <div class="b-newsletter__icon"><i class="fas fa-envelope-open-text"></i></div>
                         <h3 class="b-newsletter__title">Stay Updated</h3>
                         <p class="b-newsletter__sub">Get new articles delivered to your inbox. No spam, ever.</p>
-                        <form class="b-newsletter__form" onsubmit="return false;">
-                            <input type="email" placeholder="your@email.com" class="b-newsletter__input" aria-label="Email address">
+                        <form class="b-newsletter__form" id="newsletterForm" novalidate>
+                            <input type="email" id="newsletterEmail" placeholder="your@email.com" class="b-newsletter__input" aria-label="Email address" required>
                             <button type="submit" class="b-btn b-btn--primary b-btn--full">Subscribe</button>
                         </form>
+                        <p class="b-newsletter__status" id="newsletterStatus" role="status" aria-live="polite" style="display:none;font-size:0.8rem;margin-top:0.5rem;"></p>
                         <p class="b-newsletter__note"><i class="fas fa-lock"></i> No spam. Unsubscribe anytime.</p>
                     </div>
                 </div>
