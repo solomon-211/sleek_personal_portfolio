@@ -534,6 +534,8 @@ section > .container > .awards-grid > .award-card {
   color: var(--white) !important;
 }
 
+/* Active timeline custom styles removed to restore original look */
+
 /* .timeline-card background/border/shadow already set in CARDS — UNIVERSAL above */
 
 .timeline-card:hover {
@@ -799,6 +801,102 @@ a:hover {
   background: var(--navy-900) !important;
 }
 
+/* Center and layout improvements for Academic Excellence section */
+#academics .section-header {
+  text-align: center !important;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#academics .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  justify-items: center;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1rem 2rem;
+}
+
+#academics .skill-category {
+  width: 100%;
+  max-width: 420px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+#academics .skill-category-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+#academics .skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#academics .skill-item {
+  color: var(--white-70) !important;
+  white-space: normal;
+}
+
+@media (max-width: 600px) {
+  #academics .skills-grid {
+    grid-template-columns: 1fr;
+    padding: 0.5rem 0 1rem;
+  }
+}
+
+/* Active timeline styling (visible in dark & light themes) */
+.timeline-item--active .timeline-dot {
+  background: linear-gradient(135deg, var(--orange-500), var(--orange-300)) !important;
+  box-shadow: 0 0 0 6px rgba(234,88,12,0.08) !important;
+  border-color: transparent !important;
+}
+
+.timeline-item--active .timeline-date {
+  background: linear-gradient(90deg, rgba(234,88,12,0.12), rgba(234,88,12,0.06)) !important;
+  color: var(--white) !important;
+  border-color: rgba(234,88,12,0.12) !important;
+}
+
+.timeline-tag--active {
+  background: rgba(234,88,12,0.10) !important;
+  color: var(--orange-300) !important;
+  border: 1px solid rgba(234,88,12,0.12) !important;
+  font-weight: 600 !important;
+  padding: 0.22rem 0.5rem !important;
+  border-radius: 999px !important;
+  display: inline-block !important;
+}
+
+/* Light mode overrides so active styling remains clear */
+html.light-mode .timeline-item--active .timeline-dot {
+  background: #ea580c !important;
+  box-shadow: 0 0 0 6px rgba(234,88,12,0.12) !important;
+}
+
+html.light-mode .timeline-item--active .timeline-date {
+  background: linear-gradient(90deg, #ea580c, #fb923c) !important;
+  color: #ffffff !important;
+  border-color: rgba(234,88,12,0.18) !important;
+}
+
+html.light-mode .timeline-tag--active {
+  background: rgba(234,88,12,0.14) !important;
+  color: #ea580c !important;
+  border-color: rgba(234,88,12,0.18) !important;
+}
+
+/* Academics & Overview customizations removed to restore original layout */
+
+
 .spinner {
   border-color: var(--border-mid) !important;
   border-top-color: var(--orange-500) !important;
@@ -895,15 +993,31 @@ b {
 }
 
 /* ── CONTACT SECTION ───────────────────────────────── */
-.contact-item h3 { color: var(--white-50) !important; }
+/* Labels — bold and fully visible */
+.contact-item h3 {
+  color: var(--white-90) !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
+  text-transform: uppercase;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.06em;
+}
 .contact-item p, .contact-item a { color: var(--white-70) !important; }
 .contact-follow { background: var(--navy-card) !important; border-color: var(--border-mid) !important; }
+
+/* Contact icon brand colours */
+.contact-icon--phone    { background: linear-gradient(135deg, #22c55e, #16a34a) !important; }
+.contact-icon--email    { background: linear-gradient(135deg, #ea580c, #f97316) !important; }
+.contact-icon--github   { background: linear-gradient(135deg, #24292e, #3d444d) !important; }
+.contact-icon--linkedin { background: linear-gradient(135deg, #0A66C2, #0077b5) !important; }
 
 /* ── FOOTER ────────────────────────────────────────── */
 footer { background: var(--navy-800) !important; border-top: 1px solid var(--border-mid) !important; }
 .footer-tagline { color: var(--orange-300) !important; font-weight: 600; }
 .footer-bio { color: var(--white-90) !important; }
-.footer-links-title { color: var(--white) !important; font-weight: 700; letter-spacing: 0.04em; }
+.footer-links-title { color: var(--orange-400) !important; font-weight: 700; letter-spacing: 0.04em; }
+.footer-logo .logo-text,
+.footer-brand .logo-text { color: var(--orange-400) !important; }
 .footer-links-list li a { color: var(--white-90) !important; }
 .footer-links-list li a:hover { color: var(--orange-400) !important; }
 .footer-divider { background: var(--border-mid) !important; }
@@ -1313,6 +1427,22 @@ html.light-mode footer h4,
 html.light-mode footer p,
 html.light-mode footer span,
 html.light-mode footer li               { color: inherit !important; }
+/* Footer titles — orange, must come after the wildcard rule */
+html.light-mode footer .footer-links-title,
+footer .footer-links-title              { color: #f97316 !important; opacity: 1 !important; }
+/* Footer name — orange */
+html.light-mode footer .footer-logo .logo-text,
+html.light-mode footer .footer-brand .logo-text,
+footer .footer-logo .logo-text,
+footer .footer-brand .logo-text         { color: #f97316 !important; opacity: 1 !important; }
+/* Footer tagline, bio, links — bright white */
+footer .footer-tagline                  { color: #fb923c !important; opacity: 1 !important; }
+footer .footer-bio                      { color: rgba(255,255,255,0.85) !important; opacity: 1 !important; }
+footer .footer-links-list li a          { color: rgba(255,255,255,0.85) !important; opacity: 1 !important; }
+footer .footer-links-list li a:hover    { color: #f97316 !important; }
+footer .footer-copy                     { color: rgba(255,255,255,0.7) !important; opacity: 1 !important; }
+footer .footer-top-link                 { color: rgba(255,255,255,0.85) !important; opacity: 1 !important; }
+footer .footer-top-link:hover           { color: #f97316 !important; }
 html.light-mode .footer-brand .logo-text,
 html.light-mode .footer-logo .logo-text { color: #ffffff !important; }
 html.light-mode .footer-tagline,
@@ -1587,24 +1717,6 @@ html.light-mode .timeline-tag            { background: rgba(234,88,12,0.1) !impo
 html.light-mode .timeline-tag--future    { background: rgba(251,146,60,0.1) !important; color: #ea580c !important; }
 html.light-mode .timeline-quote          { background: rgba(234,88,12,0.05) !important; border-left-color: #ea580c !important; color: #334155 !important; }
 html.light-mode .timeline-quote-author   { color: #64748b !important; }
-
-/* ── Community section ──────────────────────────────── */
-html.light-mode #community               { background: #f8fafc !important; }
-html.light-mode .community-stat,
-html.light-mode [class*="community"] .highlight-item { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
-html.light-mode section .highlight-item  { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; }
-html.light-mode section .highlight-item h3 { color: #0f172a !important; }
-html.light-mode section .highlight-item p  { color: #334155 !important; }
-
-/* ── Awards section ─────────────────────────────────── */
-html.light-mode #awards                  { background: #f1f5f9 !important; }
-html.light-mode .award-card              { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; border-top-color: #ea580c !important; box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
-html.light-mode .award-title             { color: #0f172a !important; }
-html.light-mode .award-meta              { color: #ea580c !important; }
-html.light-mode .award-description       { color: #334155 !important; }
-
-/* ── Testimonials section ───────────────────────────── */
-html.light-mode #testimonials            { background: #f8fafc !important; }
 html.light-mode .testimonial-card        { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
 html.light-mode .testimonial-text        { color: #334155 !important; }
 html.light-mode .testimonial-name        { color: #0f172a !important; }
@@ -1615,6 +1727,44 @@ html.light-mode .testimonial-quote i     { color: #ea580c !important; }
 /* ── Languages section ──────────────────────────────── */
 html.light-mode #languages               { background: #f1f5f9 !important; }
 html.light-mode .language-card           { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
+
+/* Strong overrides to ensure active timeline items are always clearly visible */
+#timeline .timeline-item--active .timeline-dot,
+html.light-mode #timeline .timeline-item--active .timeline-dot {
+  width: 14px !important;
+  height: 14px !important;
+  background: linear-gradient(135deg, #ff7a2e, #ea580c) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 0 8px rgba(234,88,12,0.18) !important;
+  border: 2px solid rgba(255,255,255,0.95) !important;
+  display: inline-block !important;
+  transform: translateZ(0) !important;
+}
+
+#timeline .timeline-item--active .timeline-date,
+html.light-mode #timeline .timeline-item--active .timeline-date {
+  background: linear-gradient(90deg,#ff7a2e,#ea580c) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 8px 28px rgba(234,88,12,0.16) !important;
+}
+
+#timeline .timeline-tag--active,
+html.light-mode #timeline .timeline-tag--active {
+  background: linear-gradient(90deg,#ff7a2e,#ea580c) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 700 !important;
+  padding: 0.25rem 0.6rem !important;
+  border-radius: 999px !important;
+}
+
+/* Ensure date and tag sit above decorative timeline lines */
+#timeline .timeline-date,
+#timeline .timeline-tag--active {
+  position: relative !important;
+  z-index: 3 !important;
+}
 html.light-mode .language-name           { color: #0f172a !important; }
 html.light-mode .language-bar            { background: rgba(0,0,0,0.08) !important; }
 html.light-mode .level-native            { background: rgba(22,163,74,0.1) !important; color: #16a34a !important; }
@@ -1629,7 +1779,21 @@ html.light-mode #leadership .project-title { color: #ea580c !important; }
 
 /* ── Academics section ──────────────────────────────── */
 html.light-mode #academics               { background: #f1f5f9 !important; }
-html.light-mode .cert-item               { border-bottom-color: rgba(0,0,0,0.06) !important; color: #334155 !important; }
+html.light-mode #academics .skill-category {
+  background: #ffffff !important;
+  border-color: rgba(0,0,0,0.1) !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
+}
+html.light-mode #academics .skill-title  { color: #0f172a !important; }
+html.light-mode #academics .skill-icon   { background: linear-gradient(135deg, #ea580c, #f97316) !important; }
+html.light-mode #academics .skill-list   { border-top-color: rgba(0,0,0,0.1) !important; }
+html.light-mode #academics .skill-item  {
+  color: #1e293b !important;
+  border-bottom-color: rgba(0,0,0,0.07) !important;
+  font-weight: 500 !important;
+}
+html.light-mode #academics .skill-item::before { background: #ea580c !important; }
+html.light-mode .cert-item               { border-bottom-color: rgba(0,0,0,0.06) !important; color: #1e293b !important; font-weight: 500 !important; }
 html.light-mode .cert-item-name::before  { background: #ea580c !important; }
 html.light-mode .cert-verify             { color: #ea580c !important; border-color: rgba(234,88,12,0.3) !important; }
 
