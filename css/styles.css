@@ -1966,3 +1966,365 @@ html.light-mode .fab { background: linear-gradient(135deg, #d95e0a, #e8650b) !im
 html.light-mode .scroll-progress { background: linear-gradient(90deg, #d95e0a, #e8650b) !important; }
 html.light-mode .about-seeking { border-left-color: #d95e0a !important; }
 html.light-mode .hero-resume-link { color: #d95e0a !important; border-color: rgba(217,94,10,0.4) !important; }
+
+
+/* ══════════════════════════════════════════════════════
+   UI/UX IMPROVEMENTS — Solomon Portfolio
+   ══════════════════════════════════════════════════════ */
+
+/* ── 1. SMOOTHER GLOBAL TRANSITIONS ───────────────────── */
+*, *::before, *::after {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── 2. BETTER LINK UNDERLINES ────────────────────────── */
+.footer-links-list li a,
+.contact-link,
+.hero-resume-link {
+  text-underline-offset: 3px;
+}
+
+/* ── 3. IMPROVED BUTTON ACTIVE STATES ─────────────────── */
+.btn:active,
+.btn-primary:active {
+  transform: translateY(0) scale(0.97) !important;
+  box-shadow: 0 4px 12px rgba(234,88,12,0.2) !important;
+}
+.btn-secondary:active {
+  transform: scale(0.97) !important;
+}
+.filter-btn:active {
+  transform: scale(0.95) !important;
+}
+
+/* ── 4. NAV — active indicator line ───────────────────── */
+.nav-links a.active-nav {
+  box-shadow: inset 0 -2px 0 var(--orange-500) !important;
+}
+
+/* ── 5. HERO PHOTO — smoother white circle ─────────────── */
+.hero-photo {
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.4s ease !important;
+}
+.hero-image-wrap:hover .hero-photo {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 0 8px rgba(234,88,12,0.12),
+    0 40px 100px rgba(0,0,0,0.7) !important;
+}
+
+/* ── 6. SECTION TITLES — tighter letter spacing ───────── */
+.section-title {
+  letter-spacing: -0.02em;
+}
+
+/* ── 7. PROJECT CARDS — image zoom on hover ────────────── */
+.project-card {
+  overflow: hidden;
+}
+.project-card .project-image img {
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1) !important;
+}
+.project-card:hover .project-image img {
+  transform: scale(1.06) !important;
+}
+
+/* ── 8. SKILL BAR — animated fill on load ──────────────── */
+.skill-bar-fill {
+  transition: width 1.4s cubic-bezier(0.4,0,0.2,1) !important;
+}
+
+/* ── 9. TIMELINE DOTS — pulse on active ────────────────── */
+.timeline-item--active .timeline-dot::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(234,88,12,0.3);
+  animation: timeline-pulse 2s ease-in-out infinite;
+}
+@keyframes timeline-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50%       { transform: scale(1.4); opacity: 0; }
+}
+
+/* ── 10. CONTACT FORM — focus ring improvement ─────────── */
+.form-group input:focus,
+.form-group textarea:focus {
+  box-shadow:
+    0 0 0 3px rgba(234,88,12,0.15),
+    0 2px 8px rgba(0,0,0,0.2) !important;
+  transform: translateY(-1px);
+}
+
+/* ── 11. HIGHLIGHT ITEMS — icon animation ──────────────── */
+.highlight-item:hover .highlight-icon {
+  transform: scale(1.08) rotate(-3deg);
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.highlight-icon {
+  transition: transform 0.3s ease;
+}
+
+/* ── 12. SOCIAL ICONS — bounce effect ──────────────────── */
+.hero-social:hover,
+.contact-social-icon:hover {
+  animation: icon-bounce 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes icon-bounce {
+  0%   { transform: translateY(0); }
+  40%  { transform: translateY(-6px); }
+  70%  { transform: translateY(-2px); }
+  100% { transform: translateY(-2px); }
+}
+
+/* ── 13. SECTION HEADER — fade-in underline ────────────── */
+.section-title::after {
+  transition: width 0.6s cubic-bezier(0.4,0,0.2,1) !important;
+}
+
+/* ── 14. TECH TAGS — subtle hover lift ─────────────────── */
+.tech-tag {
+  transition: transform 0.2s ease, background 0.2s ease !important;
+  cursor: default;
+}
+.tech-tag:hover {
+  transform: translateY(-2px);
+}
+
+/* ── 15. CARD CONTENT — better line heights ────────────── */
+.project-description,
+.award-description,
+.testimonial-text,
+.timeline-desc {
+  line-height: 1.75 !important;
+}
+
+/* ── 16. FOOTER LINKS — hover slide effect ─────────────── */
+.footer-links-list li a {
+  position: relative;
+  padding-left: 0;
+  transition: padding-left 0.2s ease, color 0.2s ease, opacity 0.2s ease !important;
+}
+.footer-links-list li a:hover {
+  padding-left: 6px !important;
+}
+
+/* ── 17. ABOUT PHOTO — hover tilt ──────────────────────── */
+.about-photo {
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.3s ease !important;
+}
+.about-photo-wrap:hover .about-photo {
+  transform: rotate(-2deg) scale(1.03);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5) !important;
+}
+
+/* ── 18. BADGE PULSE — hero availability badge ─────────── */
+.hero-badge {
+  position: relative;
+  overflow: visible;
+}
+
+/* ── 19. IMPROVED SCROLLBAR ─────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #060d1a; }
+::-webkit-scrollbar-thumb {
+  background: rgba(234,88,12,0.4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(234,88,12,0.7);
+}
+
+/* ── 20. SELECTION COLOR ─────────────────────────────────── */
+::selection {
+  background: rgba(234,88,12,0.3);
+  color: #fff;
+}
+html.light-mode ::selection {
+  background: rgba(234,88,12,0.2);
+  color: #0f172a;
+}
+
+/* ── 21. TESTIMONIAL CARDS — quote icon position ───────── */
+.testimonial-card {
+  position: relative;
+  overflow: hidden;
+}
+.testimonial-card::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.5rem;
+  right: 1rem;
+  font-size: 6rem;
+  line-height: 1;
+  color: rgba(234,88,12,0.06);
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+/* ── 22. PROJECT CODE PREVIEW — glow effect ────────────── */
+.project-image--code {
+  position: relative;
+}
+.project-image--code::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(234,88,12,0.04), transparent 70%);
+  pointer-events: none;
+}
+
+/* ── 23. READING PROGRESS — thicker bar ────────────────── */
+.scroll-progress {
+  height: 3px !important;
+  box-shadow: 0 0 8px rgba(234,88,12,0.5);
+}
+
+/* ── 24. INPUT LABELS — float animation ────────────────── */
+.form-group {
+  position: relative;
+}
+.form-group label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── 25. MOBILE — larger tap targets ───────────────────── */
+@media (max-width: 768px) {
+  .btn,
+  .btn-primary,
+  .btn-secondary {
+    min-height: 48px;
+    padding: 0.85rem 1.5rem !important;
+  }
+  .filter-btn {
+    min-height: 44px;
+    padding: 0.5rem 1.1rem !important;
+  }
+  .nav-links a {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* ── 26. CARD FOCUS STATES for keyboard nav ─────────────── */
+.project-card:focus-within {
+  border-color: rgba(234,88,12,0.4) !important;
+  box-shadow: 0 0 0 3px rgba(234,88,12,0.15) !important;
+}
+
+/* ── 27. EMPTY STATE ANIMATIONS ─────────────────────────── */
+.b-feed__empty,
+.g-empty {
+  animation: fade-up 0.4s ease;
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── 28. HERO CHIPS — better shadow ────────────────────── */
+.hero-chip {
+  box-shadow:
+    0 4px 16px rgba(0,0,0,0.4),
+    0 0 0 1px rgba(234,88,12,0.1) !important;
+}
+.hero-chip:hover {
+  transform: translateY(-3px) !important;
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(234,88,12,0.2) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ── 29. AWARD BADGE — glow ─────────────────────────────── */
+.award-badge {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1) !important;
+}
+.award-card:hover .award-badge {
+  transform: scale(1.12) rotate(5deg);
+}
+
+/* ── 30. LOADING SPINNER — orange gradient ──────────────── */
+.spinner {
+  border: 3px solid rgba(234,88,12,0.15) !important;
+  border-top-color: var(--orange-500) !important;
+  box-shadow: 0 0 16px rgba(234,88,12,0.2);
+}
+
+
+/* ══════════════════════════════════════════════════════
+   CONTACT SOCIAL ICONS — LIGHT MODE ANIMATION FIX
+   Ensures icons remain visible with brand colors
+   during the bounce animation in light mode.
+   ══════════════════════════════════════════════════════ */
+
+/* Base hover state — same bounce animation but keep colors visible */
+html.light-mode .contact-social-icon:hover {
+  animation: icon-bounce 0.4s cubic-bezier(0.34,1.56,0.64,1) !important;
+  transform: translateY(-2px) scale(1.08) !important;
+  box-shadow: 0 8px 24px rgba(234,88,12,0.15) !important;
+}
+
+/* LinkedIn */
+html.light-mode .contact-social-icon--linkedin:hover {
+  background: #0A66C2 !important;
+  color: #fff !important;
+  border-color: #0A66C2 !important;
+}
+
+/* GitHub */
+html.light-mode .contact-social-icon--github:hover {
+  background: #24292e !important;
+  color: #fff !important;
+  border-color: #24292e !important;
+}
+
+/* Email */
+html.light-mode .contact-social-icon--email:hover {
+  background: #ea580c !important;
+  color: #fff !important;
+  border-color: #ea580c !important;
+}
+
+/* X / Twitter */
+html.light-mode .contact-social-icon--twitter:hover {
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #555 !important;
+}
+
+/* Instagram */
+html.light-mode .contact-social-icon--instagram:hover {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) !important;
+  color: #fff !important;
+  border-color: #d6249f !important;
+}
+
+/* Facebook */
+html.light-mode .contact-social-icon--facebook:hover {
+  background: #1877F2 !important;
+  color: #fff !important;
+  border-color: #1877F2 !important;
+}
+
+/* TikTok */
+html.light-mode .contact-social-icon--tiktok:hover {
+  background: #010101 !important;
+  color: #69C9D0 !important;
+  border-color: #69C9D0 !important;
+}
+
+/* Ensure icon children inside the buttons also stay white on hover */
+html.light-mode .contact-social-icon:hover i,
+html.light-mode .contact-social-icon:hover svg,
+html.light-mode .contact-social-icon:hover path {
+  color: inherit !important;
+  fill: currentColor !important;
+}

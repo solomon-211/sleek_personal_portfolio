@@ -264,3 +264,355 @@ html.light-mode .ar-back-link        { background: rgba(0,0,0,0.05) !important; 
 }
 .ar-download-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 html.light-mode .ar-download-btn { color: #fff !important; }
+
+/* ══════════════════════════════════════════════════════
+   ARTICLE PAGE — UI/UX ENHANCEMENTS
+   ══════════════════════════════════════════════════════ */
+
+/* ── CUSTOM SCROLLBAR ──────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #060d1a; }
+::-webkit-scrollbar-thumb { background: rgba(234,88,12,0.4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(234,88,12,0.7); }
+::selection { background: rgba(234,88,12,0.3); color: #fff; }
+
+/* ── PROGRESS BAR ──────────────────────────────────── */
+.ar-progress {
+  height: 3px;
+  box-shadow: 0 0 8px rgba(234,88,12,0.6);
+}
+
+/* ── NAV ────────────────────────────────────────────── */
+.ar-nav { transition: box-shadow 0.3s ease; }
+.ar-nav__back {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+.ar-nav__back:hover {
+  background: rgba(234,88,12,0.08);
+}
+.ar-share-btn {
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ar-share-btn:hover { transform: scale(1.08); }
+
+/* ── ARTICLE HEADER ────────────────────────────────── */
+.ar-header {
+  padding: 4rem 1.5rem 0;
+}
+.ar-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── TITLE — tighter spacing ───────────────────────── */
+.ar-title {
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.ar-subtitle {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.62);
+}
+
+/* ── META — enhanced ───────────────────────────────── */
+.ar-meta {
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 1.75rem;
+}
+.ar-meta__name { font-size: 0.95rem; }
+.ar-meta__info { font-size: 0.8rem; gap: 0.5rem; }
+
+/* ── COVER — enhanced ──────────────────────────────── */
+.ar-cover {
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.3);
+}
+.ar-cover img {
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.ar-cover:hover img { transform: scale(1.03); }
+
+/* ── ARTICLE BODY — better reading experience ──────── */
+.ar-body {
+  padding: 3.5rem 1.5rem 2rem;
+}
+.ar-body__inner {
+  max-width: 700px;
+}
+
+/* Lead paragraph — larger and more prominent */
+.ar-lead {
+  font-size: 1.2rem;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.82);
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 2rem;
+}
+
+/* Body paragraphs */
+.ar-body__inner p {
+  font-size: 1.02rem;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.72);
+  margin-bottom: 1.6rem;
+  letter-spacing: 0.01em;
+}
+
+/* H2 — stronger hierarchy */
+.ar-body__inner h2 {
+  font-size: 1.55rem;
+  letter-spacing: -0.02em;
+  margin: 3rem 0 1.1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  color: #fff;
+}
+/* H2 accent dot */
+.ar-body__inner h2::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ea580c;
+  margin-right: 0.6rem;
+  vertical-align: middle;
+  margin-bottom: 2px;
+  flex-shrink: 0;
+}
+
+/* H3 */
+.ar-body__inner h3 {
+  font-size: 1.2rem;
+  margin: 2.25rem 0 0.85rem;
+  color: rgba(255,255,255,0.92);
+}
+
+/* ── CALLOUT — enhanced ────────────────────────────── */
+.ar-callout {
+  padding: 1.4rem 1.6rem;
+  border-radius: 0 16px 16px 0;
+  border-left-width: 5px;
+  background: linear-gradient(135deg,
+    rgba(234,88,12,0.1) 0%,
+    rgba(234,88,12,0.05) 100%);
+  box-shadow: 0 4px 20px rgba(234,88,12,0.08);
+  margin: 2.5rem 0;
+  transition: box-shadow 0.2s;
+}
+.ar-callout:hover {
+  box-shadow: 0 8px 30px rgba(234,88,12,0.12);
+}
+.ar-callout i {
+  font-size: 1.1rem;
+  margin-top: 0.1rem;
+}
+.ar-callout p {
+  font-size: 1rem !important;
+  line-height: 1.75 !important;
+}
+
+/* ── BLOCKQUOTE — enhanced ─────────────────────────── */
+.ar-quote {
+  padding: 1.5rem 2rem;
+  border-left-width: 5px;
+  border-radius: 0 16px 16px 0;
+  margin: 2.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.ar-quote::before {
+  content: '\201C';
+  position: absolute;
+  top: -1rem;
+  left: 1rem;
+  font-size: 5rem;
+  color: rgba(234,88,12,0.12);
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  line-height: 1;
+  pointer-events: none;
+}
+.ar-quote p, .ar-quote {
+  font-size: 1.1rem !important;
+  line-height: 1.8 !important;
+  color: rgba(255,255,255,0.8) !important;
+}
+.ar-quote cite {
+  font-size: 0.85rem;
+  color: #f97316;
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+
+/* ── LISTS — enhanced ──────────────────────────────── */
+.ar-list { gap: 0.65rem; margin: 1.5rem 0 2rem; }
+.ar-list li {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  padding: 0.1rem 0;
+}
+.ar-list:not(.ar-list--numbered) li::before {
+  width: 7px;
+  height: 7px;
+  background: linear-gradient(135deg, #ea580c, #f97316);
+  top: 0.6em;
+}
+
+/* ── ENGAGE SECTION — enhanced ─────────────────────── */
+.ar-engage {
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  transition: box-shadow 0.2s;
+}
+.ar-engage:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+/* Like button */
+.ar-like-btn {
+  border-radius: 999px;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.95rem;
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ar-like-btn:hover { transform: scale(1.04); }
+.ar-like-btn:active { transform: scale(0.97); }
+.ar-like-btn.liked {
+  box-shadow: 0 4px 16px rgba(239,68,68,0.2);
+}
+
+/* Share icons */
+.ar-social {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ar-social:hover { transform: translateY(-3px) scale(1.08); }
+
+/* ── AUTHOR BIO — enhanced ─────────────────────────── */
+.ar-author-bio {
+  border-radius: 18px;
+  padding: 1.75rem;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.ar-author-bio:hover {
+  border-color: rgba(234,88,12,0.2);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+.ar-author-bio__avatar {
+  width: 60px;
+  height: 60px;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ar-author-bio:hover .ar-author-bio__avatar {
+  transform: scale(1.06);
+}
+.ar-author-bio__name {
+  font-size: 1rem;
+}
+.ar-author-bio__text {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.6);
+}
+.ar-author-bio__links a {
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  transition: background 0.15s, color 0.15s;
+}
+.ar-author-bio__links a:hover {
+  background: rgba(249,115,22,0.1);
+}
+
+/* ── NAV LINKS — enhanced ──────────────────────────── */
+.ar-back-link {
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+.ar-back-link:hover {
+  transform: translateX(-3px);
+}
+.ar-contact-link {
+  border-radius: 999px;
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ar-contact-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(234,88,12,0.4);
+}
+
+/* ── DOWNLOAD BUTTON — enhanced ─────────────────────── */
+.ar-download-btn {
+  border-radius: 999px;
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ar-download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(234,88,12,0.4);
+}
+.ar-download-btn:active { transform: scale(0.97); }
+
+/* ── TAGS — hover effect ───────────────────────────── */
+.ar-tag {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.ar-tag:hover {
+  transform: translateY(-1px);
+}
+
+/* ── COVER BADGE — enhanced ────────────────────────── */
+.ar-cover__badge {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: 0.82rem;
+  box-shadow: 0 4px 16px rgba(234,88,12,0.2);
+}
+
+/* ── LIGHT MODE ENHANCEMENTS ───────────────────────── */
+html.light-mode .ar-body__inner h2::before { background: #ea580c; }
+html.light-mode .ar-body__inner h2 { border-top-color: rgba(0,0,0,0.07) !important; }
+html.light-mode .ar-lead { border-bottom-color: rgba(0,0,0,0.07) !important; }
+html.light-mode .ar-meta { border-color: rgba(0,0,0,0.07) !important; }
+html.light-mode .ar-callout { background: linear-gradient(135deg, rgba(234,88,12,0.07), rgba(234,88,12,0.03)) !important; }
+html.light-mode .ar-quote::before { color: rgba(234,88,12,0.1); }
+html.light-mode .ar-quote p, html.light-mode .ar-quote { color: #334155 !important; }
+html.light-mode .ar-quote cite { color: #ea580c !important; }
+html.light-mode .ar-engage { background: #fff !important; border-color: rgba(0,0,0,0.08) !important; }
+html.light-mode .ar-author-bio { background: #fff !important; }
+html.light-mode .ar-author-bio:hover { border-color: rgba(234,88,12,0.2) !important; }
+html.light-mode .ar-author-bio__text { color: #475569 !important; }
+html.light-mode .ar-back-link:hover { background: rgba(0,0,0,0.06) !important; color: #0f172a !important; }
+html.light-mode ::selection { background: rgba(234,88,12,0.2); color: #0f172a; }
+html.light-mode .ar-header::after {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.035) 1px, transparent 1px) !important;
+}
+
+/* ── AR-TAG LIGHT MODE FIXES ───────────────────────── */
+html.light-mode .ar-tag--student     { background: rgba(20,184,166,0.1) !important; border-color: rgba(20,184,166,0.3) !important; color: #0d9488 !important; }
+html.light-mode .ar-tag--ghost       { background: rgba(0,0,0,0.06) !important; border-color: rgba(0,0,0,0.12) !important; color: #475569 !important; }
+html.light-mode .ar-tag--orange      { background: rgba(234,88,12,0.1) !important; border-color: rgba(234,88,12,0.3) !important; color: #c2410c !important; }
+html.light-mode .ar-tag--engineering { background: rgba(59,130,246,0.1) !important; border-color: rgba(59,130,246,0.3) !important; color: #2563eb !important; }
+html.light-mode .ar-tag--design      { background: rgba(168,85,247,0.1) !important; border-color: rgba(168,85,247,0.3) !important; color: #7c3aed !important; }
+html.light-mode .ar-tag--leadership  { background: rgba(234,88,12,0.1) !important; border-color: rgba(234,88,12,0.3) !important; color: #c2410c !important; }
+html.light-mode .ar-tag--community   { background: rgba(34,197,94,0.1) !important; border-color: rgba(34,197,94,0.3) !important; color: #16a34a !important; }
+html.light-mode .ar-tag--africa      { background: rgba(202,138,4,0.1) !important; border-color: rgba(202,138,4,0.3) !important; color: #a16207 !important; }

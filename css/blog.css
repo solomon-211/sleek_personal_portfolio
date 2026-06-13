@@ -932,3 +932,290 @@ html.light-mode .b-search__clear:hover { color: #ea580c; }
 }
 html.light-mode .b-hero__scroll-hint { color: rgba(0,0,0,0.4) !important; }
 html.light-mode .b-scroll-arrow { color: #ea580c !important; }
+
+/* ══════════════════════════════════════════════════════
+   BLOG PAGE — UI/UX ENHANCEMENTS
+   ══════════════════════════════════════════════════════ */
+
+/* ── CUSTOM SCROLLBAR ──────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #060d1a; }
+::-webkit-scrollbar-thumb { background: rgba(234,88,12,0.4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(234,88,12,0.7); }
+::selection { background: rgba(234,88,12,0.3); color: #fff; }
+
+/* ── NAV — enhanced ────────────────────────────────── */
+.b-nav {
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.05);
+}
+.b-nav__inner { gap: 1.25rem; }
+.b-nav__logo { transition: opacity 0.2s; }
+.b-nav__logo:hover { opacity: 0.85; }
+
+/* Progress bar glow */
+.b-progress-bar {
+  box-shadow: 0 0 8px rgba(234,88,12,0.6);
+  height: 3px;
+}
+
+/* ── HERO — enhanced ───────────────────────────────── */
+.b-hero {
+  padding: 3.5rem 1.5rem 0;
+}
+.b-hero__inner {
+  gap: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+.b-hero__title {
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+.b-hero__excerpt {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.65);
+}
+/* Hero image hover zoom */
+.b-hero__image {
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+.b-hero__image:hover {
+  box-shadow: 0 32px 80px rgba(0,0,0,0.65);
+}
+.b-hero__image img {
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.b-hero__image:hover img {
+  transform: scale(1.04);
+}
+/* Hero stats pill */
+.b-hero__stats {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── FEED — enhanced cards ─────────────────────────── */
+.b-feed { gap: 0; }
+
+/* Better post hover */
+.b-post {
+  border-radius: 12px;
+  transition: background 0.2s ease, transform 0.2s ease, padding 0.2s ease;
+}
+.b-post:hover {
+  transform: translateX(4px);
+}
+
+/* Post title hover effect */
+.b-post__title {
+  letter-spacing: -0.01em;
+  transition: color 0.2s;
+}
+.b-post:hover .b-post__title {
+  color: #f97316;
+}
+
+/* Post excerpt better readability */
+.b-post__excerpt {
+  line-height: 1.75;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Thumbnail hover zoom */
+.b-post__thumb {
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.b-post__thumb img {
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.b-post:hover .b-post__thumb img {
+  transform: scale(1.08);
+}
+
+/* Published card — stronger visual */
+.b-post--published {
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(234,88,12,0.06);
+  transition: background 0.25s ease, border-color 0.25s ease,
+              transform 0.25s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.25s ease;
+}
+.b-post--published:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(234,88,12,0.12);
+  border-color: rgba(234,88,12,0.5);
+}
+.b-post--published .b-post__thumb {
+  width: 110px;
+  height: 88px;
+  border-radius: 12px;
+}
+
+/* Read button pulse on card hover */
+.b-post--published:hover .b-post__read-btn {
+  box-shadow: 0 4px 14px rgba(234,88,12,0.4);
+}
+
+/* ── FEED DIVIDER — enhanced ───────────────────────── */
+.b-feed__divider {
+  margin: 1rem 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+}
+.b-feed__divider span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.75rem;
+  background: rgba(234,88,12,0.08);
+  border: 1px solid rgba(234,88,12,0.15);
+  border-radius: 999px;
+  color: #f97316;
+  white-space: nowrap;
+}
+
+/* ── SIDEBAR — enhanced widgets ────────────────────── */
+.b-widget {
+  border-radius: 18px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.b-widget:hover {
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* Author avatar ring animation */
+.b-author-card__avatar {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.3s ease;
+}
+.b-author-card:hover .b-author-card__avatar {
+  transform: scale(1.06);
+  box-shadow: 0 0 0 8px rgba(234,88,12,0.12);
+}
+
+/* Newsletter input focus */
+.b-newsletter__input {
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.b-newsletter__input:focus {
+  border-color: #ea580c;
+  box-shadow: 0 0 0 3px rgba(234,88,12,0.12);
+  background: rgba(255,255,255,0.08);
+}
+
+/* Reading item hover */
+.b-reading-item {
+  transition: background 0.15s ease, padding-left 0.15s ease;
+  border-radius: 8px;
+}
+.b-reading-item:not(.b-reading-item--coming):hover {
+  padding-left: 1.5rem;
+  background: rgba(234,88,12,0.05);
+}
+
+/* Tag pills */
+.b-tag-pill {
+  transition: all 0.2s cubic-bezier(0.4,0,0.2,1);
+}
+.b-tag-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(234,88,12,0.15);
+}
+
+/* ── BUTTONS — enhanced ────────────────────────────── */
+.b-btn {
+  transition: all 0.2s cubic-bezier(0.4,0,0.2,1);
+  letter-spacing: 0.01em;
+}
+.b-btn--primary:active { transform: scale(0.97) !important; }
+.b-btn--ghost:active { transform: scale(0.97) !important; }
+
+/* ── TAGS — hover lift ─────────────────────────────── */
+.b-tag {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.b-tag:hover {
+  transform: translateY(-1px);
+}
+
+/* ── TOPICS DROPDOWN — smoother ────────────────────── */
+.b-topics-menu {
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+.b-topics-item {
+  border-radius: 10px;
+  transition: background 0.15s, color 0.15s, padding-left 0.15s;
+}
+.b-topics-item:hover {
+  padding-left: 1rem;
+}
+
+/* ── NOTIFY BUTTON — enhanced ──────────────────────── */
+.b-notify-btn {
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.b-notify-btn:hover {
+  transform: scale(1.1);
+}
+.b-notify-btn.notified {
+  animation: bell-ring 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes bell-ring {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(-15deg); }
+  75%  { transform: rotate(15deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* ── POST ACTIONS — hover effects ──────────────────── */
+.b-post__action {
+  transition: color 0.2s, transform 0.2s;
+}
+.b-post__action:hover {
+  transform: scale(1.1);
+  color: #f97316;
+}
+
+/* ── FOOTER SOCIALS — hover ────────────────────────── */
+.b-footer__socials a {
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.b-footer__socials a:hover {
+  transform: translateY(-3px);
+}
+
+/* ── FOOTER LINKS — slide effect ───────────────────── */
+.b-footer__col-links a {
+  transition: color 0.2s, padding-left 0.2s;
+  display: block;
+}
+.b-footer__col-links a:hover {
+  padding-left: 6px;
+}
+
+/* ── LIGHT MODE ENHANCEMENTS ───────────────────────── */
+html.light-mode .b-post--published {
+  box-shadow: 0 4px 20px rgba(234,88,12,0.06) !important;
+}
+html.light-mode .b-post--published:hover {
+  box-shadow: 0 12px 40px rgba(234,88,12,0.1) !important;
+}
+html.light-mode .b-widget {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
+}
+html.light-mode .b-feed__divider span {
+  background: rgba(234,88,12,0.08) !important;
+  border-color: rgba(234,88,12,0.15) !important;
+}
+html.light-mode ::selection { background: rgba(234,88,12,0.2); color: #0f172a; }
+html.light-mode .b-post:hover .b-post__title { color: #ea580c !important; }
