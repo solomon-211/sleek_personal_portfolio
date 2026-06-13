@@ -11,18 +11,21 @@ Live: https://solomonleek.tech
 1. [Project Structure](#1-project-structure)
 2. [Local Development](#2-local-development)
 3. [Server Requirements](#3-server-requirements)
-4. [Step 1 — Point Your Domain DNS](#step-1--point-your-domain-dns)
-5. [Step 2 — SSH Into Your Server](#step-2--ssh-into-your-server)
-6. [Step 3 — Install Required Software](#step-3--install-required-software)
-7. [Step 4 — Upload Project Files](#step-4--upload-project-files)
-8. [Step 5 — Set File Permissions](#step-5--set-file-permissions)
-9. [Step 6 — Configure Nginx](#step-6--configure-nginx)
-10. [Step 7 — Enable HTTPS with Certbot](#step-7--enable-https-with-certbot)
-11. [Step 8 — Deploy the Backend (Contact Form API)](#step-8--deploy-the-backend-contact-form-api)
-12. [Step 9 — Run Backend as a System Service](#step-9--run-backend-as-a-system-service)
-13. [Step 10 — Add Backend Proxy to Nginx](#step-10--add-backend-proxy-to-nginx)
-14. [Updating the Site](#updating-the-site)
-15. [Troubleshooting](#troubleshooting)
+4. [Architecture Overview](#4-architecture-overview)
+5. [Step 1 — Point Your Domain DNS](#step-1--point-your-domain-dns)
+6. [Step 2 — SSH Into Your Server](#step-2--ssh-into-your-server)
+7. [Step 3 — Install Required Software](#step-3--install-required-software)
+8. [Step 4 — Upload Project Files](#step-4--upload-project-files)
+9. [Step 5 — Set File Permissions](#step-5--set-file-permissions)
+10. [Step 6 — Configure Firewall (UFW)](#step-6--configure-firewall-ufw)
+11. [Step 7 — Configure Nginx (Web Server + Load Balancer)](#step-7--configure-nginx-web-server--load-balancer)
+12. [Step 8 — Enable HTTPS with Certbot](#step-8--enable-https-with-certbot)
+13. [Step 9 — Deploy the Backend (Contact Form API)](#step-9--deploy-the-backend-contact-form-api)
+14. [Step 10 — Run Backend as a System Service](#step-10--run-backend-as-a-system-service)
+15. [Step 11 — Gmail App Password Setup](#step-11--gmail-app-password-setup)
+16. [Step 12 — Verify Everything Works](#step-12--verify-everything-works)
+17. [Updating the Site](#updating-the-site)
+18. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -37,9 +40,12 @@ sleek_personal_portfolio/
 ├── README.md
 ├── html/
 │   ├── index.html          ← Main portfolio page
+│   ├── blog.html           ← Blog page
 │   └── case-study.html     ← Case study page
 ├── css/
-│   ├── styles.css          ← Main styles (base layout + dark navy theme)
+│   ├── base.css            ← Base layout styles
+│   ├── styles.css          ← Dark navy theme
+│   ├── blog.css            ← Blog page styles
 │   ├── case-study.css      ← Case study page styles
 │   └── 404.css             ← 404 page styles
 ├── js/
@@ -48,7 +54,7 @@ sleek_personal_portfolio/
 └── backend/
     ├── app.py              ← FastAPI contact form API
     ├── requirements.txt
-    ├── .env.example        ← Copy this to .env and fill in values
+    ├── .env.example        ← Copy to .env and fill in values
     └── README.md
 ```
 
@@ -78,10 +84,33 @@ Then open: http://localhost:8080
 
 ## 3. Server Requirements
 
-- Ubuntu 22.04 VPS (DigitalOcean, Linode, Vultr, AWS EC2, etc.)
-- At least 512MB RAM
+- Ubuntu 22.04 VPS — cheapest options:
+  - [Hetzner](https://hetzner.com) ~$4/mo
+  - [DigitalOcean](https://digitalocean.com) ~$6/mo
+  - [AWS Lightsail](https://aws.amazon.com/lightsail) ~$5/mo
+- At least 512 MB RAM
 - Domain `solomonleek.tech` with DNS control
 - SSH root access
+
+---
+
+## 4. Architecture Overview
+
+```
+Internet
+   │
+   ▼
+Firewall (UFW) — blocks everything except ports 22, 80, 443
+   │
+   ▼
+Nginx — Web Server + Load Balancer + HTTPS termination
+   │                        │
+   ▼                        ▼
+Static Files          /api/ → FastAPI (Uvicorn, port 8000)
+(HTML/CSS/JS/images)         ↓
+                      Sends email via Gmail SMTP
+                      to s.leek@alustudent.com
+```
 
 ---
 
@@ -94,7 +123,7 @@ At your domain registrar (Namecheap, GoDaddy, etc.), create these DNS records:
 | A    | @    | YOUR_SERVER_IP |
 | A    | www  | YOUR_SERVER_IP |
 
-DNS propagation takes 10–30 minutes. You can check with:
+DNS propagation takes 10–30 minutes. Check with:
 
 ```bash
 nslookup solomonleek.tech
@@ -115,19 +144,14 @@ ssh root@YOUR_SERVER_IP
 ```bash
 apt update && apt upgrade -y
 
-# Nginx
-apt install nginx -y
+apt install -y nginx python3 python3-pip python3-venv certbot python3-certbot-nginx ufw git
+```
+
+Enable Nginx to start on boot:
+
+```bash
 systemctl enable nginx
 systemctl start nginx
-
-# Python (for backend)
-apt install python3 python3-pip python3-venv -y
-
-# Certbot (free SSL)
-apt install certbot python3-certbot-nginx -y
-
-# Git (optional, for git-based deploys)
-apt install git -y
 ```
 
 ---
@@ -159,9 +183,57 @@ find /var/www/solomonleek.tech -type f -exec chmod 644 {} \;
 
 ---
 
-## Step 6 — Configure Nginx
+## Step 6 — Configure Firewall (UFW)
 
-Create the Nginx config file:
+UFW (Uncomplicated Firewall) blocks all unwanted traffic and only allows SSH, HTTP, and HTTPS.
+
+```bash
+# Block all incoming by default
+ufw default deny incoming
+ufw default allow outgoing
+
+# Allow SSH — do this first or you will be locked out
+ufw allow ssh
+
+# Allow web traffic
+ufw allow 80/tcp
+ufw allow 443/tcp
+
+# Enable the firewall
+ufw enable
+
+# Verify rules
+ufw status
+```
+
+Expected output:
+```
+Status: active
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW       Anywhere
+80/tcp                     ALLOW       Anywhere
+443/tcp                    ALLOW       Anywhere
+```
+
+---
+
+## Step 7 — Configure Nginx (Web Server + Load Balancer)
+
+Add the API rate limit zone to the Nginx `http` block:
+
+```bash
+nano /etc/nginx/nginx.conf
+```
+
+Inside the `http { }` block, add this line:
+
+```nginx
+limit_req_zone $binary_remote_addr zone=api_limit:10m rate=10r/m;
+```
+
+Now create the site config:
 
 ```bash
 nano /etc/nginx/sites-available/solomonleek.tech
@@ -170,40 +242,102 @@ nano /etc/nginx/sites-available/solomonleek.tech
 Paste this complete configuration:
 
 ```nginx
+# Upstream (load balancer)
+# Add more backend workers here if you scale up later:
+#   server 127.0.0.1:8001;
+#   server 127.0.0.1:8002;
+upstream portfolio_api {
+    least_conn;
+    server 127.0.0.1:8000;
+    keepalive 32;
+}
+
+# Redirect all HTTP → HTTPS
 server {
     listen 80;
     listen [::]:80;
     server_name solomonleek.tech www.solomonleek.tech;
+    return 301 https://$host$request_uri;
+}
 
-    root /var/www/solomonleek.tech;
+# Main HTTPS server
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name solomonleek.tech www.solomonleek.tech;
+
+    # SSL certificates — Certbot fills these in automatically in Step 8
+    ssl_certificate     /etc/letsencrypt/live/solomonleek.tech/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/solomonleek.tech/privkey.pem;
+    ssl_protocols       TLSv1.2 TLSv1.3;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+    ssl_session_cache   shared:SSL:10m;
+    ssl_session_timeout 1d;
+
+    # Security headers
+    add_header X-Frame-Options           "SAMEORIGIN"                    always;
+    add_header X-Content-Type-Options    "nosniff"                       always;
+    add_header X-XSS-Protection          "1; mode=block"                 always;
+    add_header Referrer-Policy           "strict-origin-when-cross-origin" always;
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+    # Document root
+    root  /var/www/solomonleek.tech;
     index index.html;
 
-    # Root redirect goes to html/index.html
+    # Gzip compression
+    gzip            on;
+    gzip_types      text/plain text/css application/javascript application/json image/svg+xml;
+    gzip_min_length 1000;
+
+    # Root redirect
     location = / {
         return 301 /html/index.html;
     }
 
-    # Main portfolio page
+    # Static HTML pages
     location /html/ {
         try_files $uri $uri/ /html/index.html;
     }
 
-    # Static assets — long cache
+    # API → FastAPI backend via load balancer upstream
+    location /api/ {
+        proxy_pass         http://portfolio_api;
+        proxy_http_version 1.1;
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_set_header   Connection        "";
+        proxy_read_timeout    30s;
+        proxy_connect_timeout 10s;
+
+        # Nginx-level rate limiting (10 API requests/min per IP)
+        limit_req zone=api_limit burst=10 nodelay;
+    }
+
+    # Cache static assets for 30 days
     location ~* \.(css|js|jpg|jpeg|png|gif|svg|webp|ico|woff|woff2|ttf|pdf)$ {
         expires 30d;
         add_header Cache-Control "public, immutable";
         try_files $uri =404;
     }
 
-    # Block hidden files
+    # Block access to sensitive files
+    location ~* \.(env|json|log|py|sh)$ {
+        deny all;
+        return 404;
+    }
+
+    # Block hidden files and directories
     location ~ /\. {
         deny all;
     }
 
-    # Custom 404
+    # Custom 404 page
     error_page 404 /404.html;
     location = /404.html {
-        root /var/www/solomonleek.tech;
+        root     /var/www/solomonleek.tech;
         internal;
     }
 }
@@ -215,7 +349,7 @@ Enable the site and reload Nginx:
 # Enable site
 ln -s /etc/nginx/sites-available/solomonleek.tech /etc/nginx/sites-enabled/
 
-# Remove default site
+# Remove the default placeholder site
 rm -f /etc/nginx/sites-enabled/default
 
 # Test config — must say "syntax is ok"
@@ -225,17 +359,17 @@ nginx -t
 systemctl reload nginx
 ```
 
-Your site is now live at: http://solomonleek.tech
+> **Note:** The HTTPS `server` block references SSL certificate paths that don't exist yet. Nginx will fail to reload until you complete Step 8. If you want to test HTTP first, temporarily remove the HTTPS server block and only keep the HTTP one.
 
 ---
 
-## Step 7 — Enable HTTPS with Certbot
+## Step 8 — Enable HTTPS with Certbot
 
 ```bash
 certbot --nginx -d solomonleek.tech -d www.solomonleek.tech
 ```
 
-Follow the prompts. Certbot will:
+Certbot will:
 - Get a free SSL certificate from Let's Encrypt
 - Automatically update your Nginx config for HTTPS
 - Redirect all HTTP traffic to HTTPS
@@ -246,13 +380,13 @@ Test that auto-renewal works:
 certbot renew --dry-run
 ```
 
-Your site is now live at: https://solomonleek.tech
+Certificates auto-renew every 90 days. No manual action needed.
+
+Your site is now live at: **https://solomonleek.tech**
 
 ---
 
-## Step 8 — Deploy the Backend (Contact Form API)
-
-The contact form sends messages via the FastAPI backend in the `backend/` folder.
+## Step 9 — Deploy the Backend (Contact Form API)
 
 ```bash
 cd /var/www/solomonleek.tech/backend
@@ -269,25 +403,25 @@ cp .env.example .env
 nano .env
 ```
 
-Fill in your `.env` file:
+Fill in your `.env` file with real values:
 
 ```env
 PORT=8000
 ALLOWED_ORIGINS=https://solomonleek.tech,https://www.solomonleek.tech
 CONTACT_TO_EMAIL=s.leek@alustudent.com
-CONTACT_FROM_EMAIL=your-gmail@gmail.com
+CONTACT_FROM_EMAIL=no-reply@solomonleek.tech
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your-gmail@gmail.com
-SMTP_PASSWORD=your-gmail-app-password
+SMTP_PASSWORD=your-16-char-app-password
 SMTP_STARTTLS=true
+RATE_LIMIT_MAX=5
+RATE_LIMIT_WINDOW=3600
 ```
-
-> **Gmail App Password:** Go to myaccount.google.com → Security → 2-Step Verification → App passwords → Create one named "Portfolio". Use the 16-character password as `SMTP_PASSWORD`.
 
 ---
 
-## Step 9 — Run Backend as a System Service
+## Step 10 — Run Backend as a System Service
 
 ```bash
 nano /etc/systemd/system/portfolio-backend.service
@@ -297,16 +431,17 @@ Paste:
 
 ```ini
 [Unit]
-Description=Portfolio FastAPI Backend
+Description=Solomon Portfolio FastAPI Backend
 After=network.target
 
 [Service]
 User=www-data
 WorkingDirectory=/var/www/solomonleek.tech/backend
-ExecStart=/var/www/solomonleek.tech/backend/venv/bin/uvicorn app:app --host 127.0.0.1 --port 8000
-Restart=always
-RestartSec=3
+Environment="PATH=/var/www/solomonleek.tech/backend/venv/bin"
 EnvironmentFile=/var/www/solomonleek.tech/backend/.env
+ExecStart=/var/www/solomonleek.tech/backend/venv/bin/uvicorn app:app --host 127.0.0.1 --port 8000 --workers 2
+Restart=always
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
@@ -325,48 +460,53 @@ systemctl status portfolio-backend
 
 ---
 
-## Step 10 — Add Backend Proxy to Nginx
+## Step 11 — Gmail App Password Setup
 
-Open your Nginx config:
+The contact form sends emails to `s.leek@alustudent.com` using Gmail SMTP. You need an App Password — not your regular Gmail password.
 
-```bash
-nano /etc/nginx/sites-available/solomonleek.tech
-```
+1. Go to [myaccount.google.com](https://myaccount.google.com)
+2. Click **Security**
+3. Turn on **2-Step Verification** (required)
+4. Search for **App Passwords**
+5. Select app: **Mail** → device: **Other** → name it `Portfolio`
+6. Copy the 16-character password
+7. Paste it as `SMTP_PASSWORD` in your `.env` file
+8. Restart the backend: `systemctl restart portfolio-backend`
 
-Add this `location` block inside the `server {}` block, before the closing `}`:
+---
 
-```nginx
-# Proxy contact form API to FastAPI backend
-location /api/ {
-    proxy_pass http://127.0.0.1:8000;
-    proxy_http_version 1.1;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_read_timeout 30s;
-}
-```
+## Step 12 — Verify Everything Works
 
-Test and reload:
-
-```bash
-nginx -t
-systemctl reload nginx
-```
-
-Test the API is working:
-
+**Check the backend health:**
 ```bash
 curl https://solomonleek.tech/api/health
-# Expected: {"status":"ok"}
+# Expected: {"status":"ok","version":"3.0.0","smtp_configured":true}
 ```
+
+**Check the backend logs:**
+```bash
+journalctl -u portfolio-backend -f
+```
+
+**Check Nginx logs:**
+```bash
+tail -f /var/log/nginx/access.log
+tail -f /var/log/nginx/error.log
+```
+
+**Check firewall status:**
+```bash
+ufw status
+```
+
+**Test the contact form:**  
+Open https://solomonleek.tech, fill in the contact form and submit. You should receive an email at `s.leek@alustudent.com` within a few seconds.
 
 ---
 
 ## Updating the Site
 
-**If you uploaded via SCP** (run from your Windows PC in PowerShell):
+**Upload changed files from your Windows PC (PowerShell):**
 
 ```powershell
 scp -r "C:\Users\HP\OneDrive\Desktop\Portfolio\sleek_personal_portfolio" root@YOUR_SERVER_IP:/var/www/solomonleek.tech
@@ -379,14 +519,6 @@ chown -R www-data:www-data /var/www/solomonleek.tech
 systemctl reload nginx
 ```
 
-**If you deployed via Git:**
-
-```bash
-cd /var/www/solomonleek.tech
-git pull origin main
-systemctl reload nginx
-```
-
 **If you updated the backend:**
 
 ```bash
@@ -396,56 +528,82 @@ pip install -r requirements.txt
 systemctl restart portfolio-backend
 ```
 
+**If you use Git:**
+
+```bash
+cd /var/www/solomonleek.tech
+git pull origin main
+chown -R www-data:www-data /var/www/solomonleek.tech
+systemctl reload nginx
+# If backend changed:
+systemctl restart portfolio-backend
+```
+
 ---
 
 ## Troubleshooting
 
-### Site shows Nginx default page
+**Site shows Nginx default page**
 ```bash
 rm -f /etc/nginx/sites-enabled/default
 nginx -t && systemctl reload nginx
 ```
 
-### CSS / JS / images not loading
-- Check file paths are correct — Linux filenames are case-sensitive
-- Confirm `chown` and `chmod` permissions are set (Step 5)
+**CSS / JS / images not loading**
+- Linux filenames are case-sensitive — check exact file names
+- Run: `chown -R www-data:www-data /var/www/solomonleek.tech`
 - Check browser console for 404 errors
 
-### Nginx config error
+**Nginx config error**
 ```bash
 nginx -t
 # Fix any errors shown, then:
 systemctl reload nginx
 ```
 
-### Domain not resolving
+**Domain not resolving**
 - Recheck DNS A records at your registrar
 - Wait up to 30 minutes for propagation
-- Test with: `nslookup solomonleek.tech`
+- Test: `nslookup solomonleek.tech`
 
-### HTTPS certificate error
+**HTTPS certificate error**
 ```bash
 certbot renew --dry-run
 certbot --nginx -d solomonleek.tech -d www.solomonleek.tech
 ```
 
-### Contact form not sending
+**Contact form not sending**
 ```bash
 # Check backend is running
 systemctl status portfolio-backend
 
-# Check backend logs
+# View backend logs
 journalctl -u portfolio-backend -n 50
 
 # Test API directly
 curl https://solomonleek.tech/api/health
 ```
 
-### 403 Forbidden
+**403 Forbidden**
 ```bash
 chown -R www-data:www-data /var/www/solomonleek.tech
 find /var/www/solomonleek.tech -type d -exec chmod 755 {} \;
 find /var/www/solomonleek.tech -type f -exec chmod 644 {} \;
+```
+
+**Backend not starting**
+```bash
+# Check for .env errors
+cat /var/www/solomonleek.tech/backend/.env
+
+# Check detailed logs
+journalctl -u portfolio-backend -n 100 --no-pager
+```
+
+**Port 8000 not reachable from Nginx**
+```bash
+# Confirm backend is listening on the correct port
+ss -tlnp | grep 8000
 ```
 
 ---

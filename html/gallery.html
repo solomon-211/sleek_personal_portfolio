@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../">
+    <title>Gallery — Solomon Thiong Garang Leek</title>
+    <meta name="description" content="Photo gallery of Solomon Thiong Garang Leek — design work, events, leadership, and personal moments.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f4c81'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Sora,sans-serif' font-weight='800' font-size='13' fill='white'>SL</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="g-nav">
+        <div class="g-nav__inner">
+            <a href="html/index.html" class="g-nav__logo">
+                <img src="images/photo.jpg" alt="Solomon Leek" class="g-nav__photo">
+                <span class="g-nav__name">Solomon Leek</span>
+            </a>
+            <div class="g-nav__links">
+                <a href="html/index.html">Portfolio</a>
+                <a href="html/blog.html">Blog</a>
+                <a href="html/gallery.html" class="active">Gallery</a>
+                <a href="html/index.html#contact">Contact</a>
+            </div>
+            <a href="html/index.html" class="g-nav__back">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="g-hero">
+        <div class="g-hero__inner">
+            <div class="g-hero__label">
+                <i class="fas fa-images"></i> Visual Gallery
+            </div>
+            <h1 class="g-hero__title">My Gallery</h1>
+            <p class="g-hero__sub">Design work, events, leadership moments, and personal highlights — all in one place.</p>
+            <div class="g-hero__stats">
+                <span><strong>19</strong> Photos</span>
+                <span class="g-dot"></span>
+                <span><strong>5</strong> Categories</span>
+                <span class="g-dot"></span>
+                <span><strong>3+</strong> Years of Work</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="g-main">
+        <div class="g-container">
+
+            <!-- Filter Tabs -->
+            <div class="g-filters">
+                <button class="g-filter active" data-filter="all">
+                    <i class="fas fa-th"></i> All <span class="g-filter__count">19</span>
+                </button>
+                <button class="g-filter" data-filter="design">
+                    <i class="fas fa-pen-nib"></i> Design <span class="g-filter__count">9</span>
+                </button>
+                <button class="g-filter" data-filter="leadership">
+                    <i class="fas fa-users"></i> Leadership <span class="g-filter__count">2</span>
+                </button>
+                <button class="g-filter" data-filter="personal">
+                    <i class="fas fa-user"></i> Personal <span class="g-filter__count">3</span>
+                </button>
+                <button class="g-filter" data-filter="logos">
+                    <i class="fas fa-star"></i> Logos <span class="g-filter__count">5</span>
+                </button>
+            </div>
+
+            <!-- Grid -->
+            <div class="g-grid" id="galleryGrid">
+
+                <!-- Design -->
+                <div class="g-item" data-category="design" data-title="Independence Day Campaign Poster" data-desc="A patriotic campaign poster designed for Independence Day — bold national colors, strong hierarchy, and clear event messaging.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/Independence-day.jpg" alt="Independence Day Campaign Poster" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--design">Design</span>
+                        <p class="g-item__title">Independence Day Campaign Poster</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="design" data-title="Back to School Awareness Flyer" data-desc="An education-focused flyer to encourage school enrollment and attendance, using friendly typography and a clear call-to-action.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/back from school.jpg" alt="Back to School Flyer" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--design">Design</span>
+                        <p class="g-item__title">Back to School Awareness Flyer</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="leadership" data-title="Victory Celebration — BCYA Chairmanship 2025–2027" data-desc="A commemorative celebration poster designed for the BCYA Chairmanship victory event, combining energetic composition and celebratory visuals.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/VICTORY CELEBRATION FOR BCYA CHAIRMANSHIP 2025-2027.jpg" alt="Victory Celebration Poster" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--leadership">Leadership</span>
+                        <p class="g-item__title">Victory Celebration — BCYA Chairmanship</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="logos" data-title="Rise Leadership Academy — Branding" data-desc="Professional logo and branding design for Rise Leadership Academy with a modern, inspiring aesthetic.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/Rise leadership Academy.jpg" alt="Rise Leadership Academy Branding" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--logos">Logo</span>
+                        <p class="g-item__title">Rise Leadership Academy — Branding</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="design" data-title="Birthday Celebration Poster" data-desc="Festive birthday poster design with colorful elements and a celebratory theme for special occasions.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/POSTER-FOR-BIRTHDAY.jpg" alt="Birthday Celebration Poster" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--design">Design</span>
+                        <p class="g-item__title">Birthday Celebration Poster</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="design" data-title="Social Media Graphics — ALU Outreach" data-desc="Social media content for ALU's Marketing & Outreach Team, driving brand visibility and student engagement across Instagram, LinkedIn, and X.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/Social media.jpg" alt="Social Media Graphics" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--design">Design</span>
+                        <p class="g-item__title">Social Media Graphics — ALU Outreach</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="personal" data-title="Solomon Thiong Garang Leek" data-desc="Professional portrait of Solomon Thiong Garang Leek — Software Engineer, Designer, and Community Leader.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/photo.jpg" alt="Solomon Thiong Garang Leek" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--personal">Personal</span>
+                        <p class="g-item__title">Solomon Thiong Garang Leek</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="design" data-title="EID Mubarak Greeting" data-desc="A festive EID Mubarak greeting design created for community celebration and digital sharing.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/EID MUBARAK.jpg" alt="EID Mubarak Greeting" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--design">Design</span>
+                        <p class="g-item__title">EID Mubarak Greeting</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="logos" data-title="HealthHub Bridge — Project Logo" data-desc="Branding and logo design for the HealthHub Bridge clinic management system.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/HealthHub Bridge.jpg" alt="HealthHub Bridge Logo" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--logos">Logo</span>
+                        <p class="g-item__title">HealthHub Bridge — Project Logo</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="logos" data-title="BH — Brand Mark" data-desc="Minimalist brand mark and identity design.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/BH.png" alt="BH Brand Mark" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--logos">Logo</span>
+                        <p class="g-item__title">BH — Brand Mark</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="personal" data-title="African Leadership University — Logo" data-desc="ALU logo — the institution where Solomon studies Software Engineering on the Mastercard Foundation Scholarship.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/ALU LOGO.jpg" alt="ALU Logo" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--personal">Personal</span>
+                        <p class="g-item__title">African Leadership University</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="personal" data-title="Mastercard Foundation — Scholar" data-desc="Mastercard Foundation logo — the scholarship that enabled Solomon's journey to ALU, Kigali.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/MCF LOGO.jpg" alt="Mastercard Foundation Logo" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--personal">Personal</span>
+                        <p class="g-item__title">Mastercard Foundation Scholar</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="leadership" data-title="WhatsApp Profile — Community Moment" data-desc="A personal community moment captured during leadership and outreach activities.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/WhatsApp Image 2026-03-19 at 11.35.50 PM.jpeg" alt="Community Moment" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--leadership">Leadership</span>
+                        <p class="g-item__title">Community Moment</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="logos" data-title="Sleek Nexus Creative — Brand Logo" data-desc="Official brand logo for Sleek Nexus Creative — Solomon's long-term vision for a tech innovation hub and incubator in South Sudan.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/SLEEK NEXUS CREATIVE.png" alt="Sleek Nexus Creative Logo" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--logos">Logo</span>
+                        <p class="g-item__title">Sleek Nexus Creative — Brand Logo</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="logos" data-title="Nexus — Brand Mark" data-desc="Minimalist Nexus brand mark, part of the Sleek Nexus Creative identity system.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/Nexus.png" alt="Nexus Brand Mark" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--logos">Logo</span>
+                        <p class="g-item__title">Nexus — Brand Mark</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="logos" data-title="NSC — Brand Identity" data-desc="NSC brand identity design — part of the Sleek Nexus Creative branding suite.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/NSC.jpg" alt="NSC Brand Identity" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--logos">Logo</span>
+                        <p class="g-item__title">NSC — Brand Identity</p>
+                    </div>
+                </div>
+
+                <div class="g-item" data-category="design" data-title="IISS — Design Work" data-desc="A professional design piece created as part of Solomon's graphic design portfolio.">
+                    <div class="g-item__img-wrap">
+                        <img src="images/IISS.jpg" alt="IISS Design" loading="lazy">
+                        <div class="g-item__overlay">
+                            <button class="g-item__zoom" aria-label="View full image"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <div class="g-item__info">
+                        <span class="g-item__tag g-item__tag--design">Design</span>
+                        <p class="g-item__title">IISS — Design Work</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Empty state (shown when filter has no results) -->
+            <div class="g-empty" id="galleryEmpty" style="display:none;">
+                <i class="fas fa-images"></i>
+                <p>No images in this category yet.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="g-lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button class="g-lightbox__close" id="lightboxClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <button class="g-lightbox__prev" id="lightboxPrev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+        <button class="g-lightbox__next" id="lightboxNext" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+        <div class="g-lightbox__content">
+            <img src="" alt="" id="lightboxImg" class="g-lightbox__img">
+            <div class="g-lightbox__info">
+                <p class="g-lightbox__title" id="lightboxTitle"></p>
+                <p class="g-lightbox__desc" id="lightboxDesc"></p>
+            </div>
+        </div>
+        <div class="g-lightbox__counter" id="lightboxCounter"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="g-footer">
+        <div class="g-footer__inner">
+            <p>© 2025 Solomon Thiong Garang Leek. All rights reserved.</p>
+            <a href="html/index.html" class="g-footer__link">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        const filters = document.querySelectorAll('.g-filter');
+        const items = document.querySelectorAll('.g-item');
+        const empty = document.getElementById('galleryEmpty');
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightboxImg');
+        const lbTitle = document.getElementById('lightboxTitle');
+        const lbDesc = document.getElementById('lightboxDesc');
+        const lbCounter = document.getElementById('lightboxCounter');
+
+        let currentIndex = 0;
+        let visibleItems = [];
+
+        // Filter
+        filters.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filters.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                let count = 0;
+                items.forEach(item => {
+                    const show = filter === 'all' || item.dataset.category === filter;
+                    item.style.display = show ? '' : 'none';
+                    if (show) count++;
+                });
+                empty.style.display = count === 0 ? 'flex' : 'none';
+                updateVisibleItems();
+            });
+        });
+
+        function updateVisibleItems() {
+            visibleItems = [...items].filter(i => i.style.display !== 'none');
+        }
+        updateVisibleItems();
+
+        // Lightbox open
+        items.forEach(item => {
+            item.querySelector('.g-item__zoom').addEventListener('click', () => openLightbox(item));
+            item.querySelector('.g-item__img-wrap').addEventListener('click', () => openLightbox(item));
+        });
+
+        function openLightbox(item) {
+            updateVisibleItems();
+            currentIndex = visibleItems.indexOf(item);
+            showLightboxItem(currentIndex);
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showLightboxItem(index) {
+            const item = visibleItems[index];
+            const img = item.querySelector('img');
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            lbTitle.textContent = item.dataset.title;
+            lbDesc.textContent = item.dataset.desc;
+            lbCounter.textContent = `${index + 1} / ${visibleItems.length}`;
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        document.getElementById('lightboxPrev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+            showLightboxItem(currentIndex);
+        });
+        document.getElementById('lightboxNext').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % visibleItems.length;
+            showLightboxItem(currentIndex);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', e => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') document.getElementById('lightboxPrev').click();
+            if (e.key === 'ArrowRight') document.getElementById('lightboxNext').click();
+        });
+
+        // Close on backdrop click
+        lightbox.addEventListener('click', e => {
+            if (e.target === lightbox) closeLightbox();
+        });
+    </script>
+
+</body>
+</html>

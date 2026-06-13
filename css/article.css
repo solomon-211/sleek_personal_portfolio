@@ -251,3 +251,16 @@ html.light-mode .ar-back-link        { background: rgba(0,0,0,0.05) !important; 
 
 /* ── LOGO PHOTO ───────────────────────────────────── */
 .logo-photo { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid rgba(234,88,12,0.5); flex-shrink: 0; display: block; }
+
+/* ── DOWNLOAD BUTTON ──────────────────────────────── */
+.ar-download-btn {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.6rem 1.25rem; border-radius: 8px;
+  background: linear-gradient(135deg, #ea580c, #f97316);
+  color: #fff !important; font-size: 0.875rem; font-weight: 700;
+  border-bottom: none !important;
+  box-shadow: 0 6px 20px rgba(234,88,12,0.3);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.ar-download-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+html.light-mode .ar-download-btn { color: #fff !important; }
