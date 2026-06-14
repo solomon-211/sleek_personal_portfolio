@@ -706,11 +706,24 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
     const banner = document.getElementById('availBanner');
     const closeBtn = document.getElementById('availBannerClose');
     if (!banner || !closeBtn) return;
-    if (sessionStorage.getItem('availBannerDismissed')) banner.style.display = 'none';
-    closeBtn.addEventListener('click', function () {
+    function setBannerHeight() {
+        const h = banner.offsetHeight;
+        document.documentElement.style.setProperty('--banner-h', h + 'px');
+        if (nav) nav.style.top = h + 'px';
+    }
+    function hideBanner() {
         banner.style.display = 'none';
+        document.documentElement.style.setProperty('--banner-h', '0px');
+        if (nav) nav.style.top = '0px';
         sessionStorage.setItem('availBannerDismissed', '1');
-    });
+    }
+    if (sessionStorage.getItem('availBannerDismissed')) {
+        hideBanner();
+    } else {
+        setBannerHeight();
+        window.addEventListener('resize', setBannerHeight);
+    }
+    closeBtn.addEventListener('click', hideBanner);
 })();
 
 // ── #4 Live Kigali Clock ──────────────────────────────────────────────────────
