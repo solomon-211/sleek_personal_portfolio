@@ -2328,3 +2328,67 @@ html.light-mode .contact-social-icon:hover path {
   color: inherit !important;
   fill: currentColor !important;
 }
+
+/* ── BLOG PREVIEW CARDS (homepage) ─────────────────── */
+.blog-preview-card {
+  display: flex; flex-direction: column;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--navy-card);
+  border: 1px solid var(--border-mid);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.blog-preview-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--border-accent);
+  background: var(--navy-card-hover);
+}
+.blog-preview-card__img {
+  height: 190px; overflow: hidden;
+}
+.blog-preview-card__img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.blog-preview-card:hover .blog-preview-card__img img {
+  transform: scale(1.06);
+}
+.blog-preview-card__body {
+  padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1;
+}
+.blog-preview-card__tag {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--orange-300);
+}
+.blog-preview-card__title {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.95rem; font-weight: 700;
+  color: var(--white-90); line-height: 1.4;
+}
+.blog-preview-card__excerpt {
+  font-size: 0.82rem; color: var(--white-60);
+  line-height: 1.65; flex: 1;
+}
+.blog-preview-card__meta {
+  font-size: 0.72rem; color: var(--white-50); margin-top: 0.25rem;
+}
+
+/* Light mode */
+html.light-mode .blog-preview-card { background: #ffffff !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
+html.light-mode .blog-preview-card:hover { border-color: rgba(234,88,12,0.3) !important; box-shadow: 0 8px 24px rgba(0,0,0,0.1) !important; }
+html.light-mode .blog-preview-card__title { color: #0f172a !important; }
+html.light-mode .blog-preview-card__excerpt { color: #475569 !important; }
+html.light-mode .blog-preview-card__meta { color: #94a3b8 !important; }
+
+@media (max-width: 900px) {
+  #blog .projects-grid { grid-template-columns: repeat(2,1fr) !important; }
+}
+@media (max-width: 560px) {
+  #blog .projects-grid { grid-template-columns: 1fr !important; }
+}

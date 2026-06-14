@@ -108,6 +108,7 @@
         </header>
 
         <!-- ── ARTICLE BODY ── -->
+        <div class="ar-layout">
         <div class="ar-body">
             <div class="ar-body__inner">
 
@@ -190,6 +191,13 @@ print(greet("Africa"))</code></pre>
 
             </div>
         </div>
+
+        <nav class="ar-toc" id="arToc" aria-label="Table of contents">
+            <p class="ar-toc__title">On this page</p>
+            <ul class="ar-toc__list" id="arTocList"></ul>
+        </nav>
+
+        </div><!-- end .ar-layout -->
 
         <!-- ── ARTICLE FOOTER ── -->
         <footer class="ar-footer">
@@ -309,6 +317,33 @@ print(greet("Africa"))</code></pre>
             const el = document.getElementById(id);
             if (el) el.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url;
         });
+        /* TOC generation + active highlight */
+        const tocList = document.getElementById('arTocList');
+        const headings = Array.from(document.querySelectorAll('.ar-body__inner h2')).filter(function(h){ return h.id; });
+        if (tocList) {
+            headings.forEach(function (h) {
+                const li = document.createElement('li');
+                li.className = 'ar-toc__item';
+                const a = document.createElement('a');
+                a.href = '#' + h.id;
+                a.textContent = h.textContent.replace(/^\s*[\u2022]?\s*/, '');
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+            window.addEventListener('scroll', function () {
+                let current = '';
+                headings.forEach(function (h) {
+                    if (window.scrollY >= h.offsetTop - 120) current = h.id;
+                });
+                tocList.querySelectorAll('a').forEach(function (a) {
+                    a.classList.toggle('ar-toc--active', a.getAttribute('href') === '#' + current);
+                });
+            }, { passive: true });
+        }
     })();
     </script>
 

@@ -1251,7 +1251,8 @@ html.light-mode .copy-email-btn:hover { background: rgba(234,88,12,0.08); border
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
-.project-image img[src] { background: none; animation: none; }
+.project-image img[src],
+.project-image picture { background: none; animation: none; }
 @keyframes shimmer {
   0%   { background-position: 200% 0; }
   100% { background-position: -200% 0; }

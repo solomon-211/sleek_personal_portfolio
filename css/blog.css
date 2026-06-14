@@ -997,7 +997,7 @@ html.light-mode .b-scroll-arrow { color: #ea580c !important; }
 }
 
 /* ── FEED — enhanced cards ─────────────────────────── */
-.b-feed { gap: 0; }
+.b-feed { gap: 1.5rem; }
 
 /* Better post hover */
 .b-post {

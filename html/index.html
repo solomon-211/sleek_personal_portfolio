@@ -124,7 +124,7 @@
                 <li class="nav-main-item"><a href="#about"    class="nav-link">About</a></li>
                 <li class="nav-main-item"><a href="#projects" class="nav-link">Projects</a></li>
                 <li class="nav-main-item"><a href="#skills"   class="nav-link">Skills</a></li>
-                <li class="nav-main-item"><a href="html/gallery.html" class="nav-link">Gallery</a></li>
+                <li class="nav-main-item"><a href="#blog"     class="nav-link">Blog</a></li>
                 <li class="nav-main-item"><a href="#contact"  class="nav-link">Contact</a></li>
 
                 <!-- More Pages button (mobile only) -->
@@ -144,6 +144,7 @@
                 <li class="nav-more-item"><a href="#timeline"  class="nav-link">Background</a></li>
                 <li class="nav-more-item"><a href="#impact"     class="nav-link">Awards &amp; Leadership</a></li>
                 <li class="nav-more-item"><a href="#community"  class="nav-link">Community</a></li>
+                <li class="nav-more-item"><a href="html/gallery.html" class="nav-link">Gallery</a></li>
 
                 <!-- Desktop More dropdown (desktop only) -->
                 <li class="nav-more nav-desktop-more" id="navMore">
@@ -154,6 +155,7 @@
                         <li><a href="#timeline"  class="nav-link">Background</a></li>
                         <li><a href="#impact"    class="nav-link">Awards &amp; Leadership</a></li>
                         <li><a href="#community" class="nav-link">Community</a></li>
+                        <li><a href="html/gallery.html" class="nav-link">Gallery</a></li>
                     </ul>
                 </li>
             </ul>
@@ -306,7 +308,7 @@
             <div class="section-header">
                 <h2 class="section-title">About Me</h2>
                 <p class="section-subtitle">
-                    Building meaningful digital solutions through thoughtful design, strong engineering, and purposeful leadership
+                    Not just a developer. A problem-solver, a designer, and a leader — driven by one belief: technology should create real change for real people. That's the standard every project is held to.
                 </p>
             </div>
             <div class="about-content">
@@ -1270,6 +1272,65 @@
             </div>
         </div>
     </section>
+    <!-- Blog Preview Section -->
+    <section id="blog" class="section-bg-secondary">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">From the Blog</h2>
+                <p class="section-subtitle">
+                    Thoughts on engineering, design, leadership, and building for impact — straight from the journey
+                </p>
+            </div>
+            <div class="projects-grid" style="grid-template-columns:repeat(3,1fr);">
+
+                <!-- Card 1 -->
+                <a href="html/articles/aspire-leaders-program.html" class="blog-preview-card">
+                    <div class="blog-preview-card__img">
+                        <img src="images/1754355782432.jpg" alt="Aspire Leaders Program" loading="lazy">
+                    </div>
+                    <div class="blog-preview-card__body">
+                        <span class="blog-preview-card__tag"><i class="fas fa-users"></i> Leadership</span>
+                        <h3 class="blog-preview-card__title">Aspire Leaders Program &mdash; Finally Get It Done!!!</h3>
+                        <p class="blog-preview-card__excerpt">I completed the Harvard-affiliated Aspire Leaders Program — gaining invaluable insights on leadership, AI, and social entrepreneurship.</p>
+                        <span class="blog-preview-card__meta">May 2025 &nbsp;&middot;&nbsp; 5 min read</span>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a href="html/articles/alu-marketing-extern-nairobi.html" class="blog-preview-card">
+                    <div class="blog-preview-card__img">
+                        <img src="images/1747700819023.jpg" alt="ALU Nairobi Nexus" loading="lazy">
+                    </div>
+                    <div class="blog-preview-card__body">
+                        <span class="blog-preview-card__tag"><i class="fas fa-globe-africa"></i> Community</span>
+                        <h3 class="blog-preview-card__title">ALU Marketing &amp; Outreach Extern &mdash; Nairobi Nexus</h3>
+                        <p class="blog-preview-card__excerpt">Kicking off the Signature Immersive Experience in Nairobi — learning by doing through education and enterprise in East Africa.</p>
+                        <span class="blog-preview-card__meta">May 2025 &nbsp;&middot;&nbsp; 4 min read</span>
+                    </div>
+                </a>
+
+                <!-- Card 3 -->
+                <a href="html/articles/alu-scholarship-journey.html" class="blog-preview-card">
+                    <div class="blog-preview-card__img">
+                        <img src="images/photo.jpg" alt="ALU Scholarship Journey" loading="lazy" style="object-position:top">
+                    </div>
+                    <div class="blog-preview-card__body">
+                        <span class="blog-preview-card__tag"><i class="fas fa-graduation-cap"></i> Student Life</span>
+                        <h3 class="blog-preview-card__title">How I Got a Full Scholarship to ALU &mdash; My Application Journey</h3>
+                        <p class="blog-preview-card__excerpt">I applied twice. The first time I received a grant. The second time I got the full Mastercard Foundation Scholarship. Here is the real story.</p>
+                        <span class="blog-preview-card__meta">January 2026 &nbsp;&middot;&nbsp; 6 min read</span>
+                    </div>
+                </a>
+
+            </div>
+            <div style="text-align:center;margin-top:2.5rem;">
+                <a href="html/blog.html" class="btn btn-primary">
+                    <i class="fas fa-book-open"></i> Read All Articles
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -1459,6 +1520,7 @@
                         <li><a href="#academics">Academics</a></li>
                         <li><a href="#timeline">Journey</a></li>
                         <li><a href="#projects">Projects</a></li>
+                        <li><a href="html/blog.html">Blog</a></li>
                     </ul>
                 </div>
                 <div class="footer-links-group">
@@ -1521,6 +1583,8 @@
     <!-- Analytics: self-hosted, no cookies, privacy-respecting -->
     <script>
     document.addEventListener('DOMContentLoaded', function(){
+        // Only run analytics on the live domain to prevent console errors locally
+        if (location.hostname !== 'solomonleek.tech') return;
         var API = (window.ANALYTICS_API_URL) || 'https://solomonleek.tech/api/analytics';
         function send(data){ fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true}).catch(function(){}); }
         send({page:location.pathname,referrer:document.referrer,event:'pageview'});
