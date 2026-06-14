@@ -144,9 +144,11 @@ document.addEventListener('click', function (e) {
     if (!isMobile() && !navMoreEl.contains(e.target)) closeDesktopMore();
 });
 
-// Escape key
+// Escape key — command palette takes priority when open
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
+        const cmdPalette = document.getElementById('cmdPalette');
+        if (cmdPalette && !cmdPalette.hidden) return; // let palette's own handler close it
         if (isMenuOpen()) closeMenu();
         closeDesktopMore();
     }
@@ -195,6 +197,19 @@ if (fabBtn) {
 // ── Project filtering ─────────────────────────────────────────────────────────
 const filterBtns   = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
+
+// Dynamic filter counts from DOM
+(function () {
+    const counts = { all: projectCards.length };
+    projectCards.forEach(c => {
+        const cat = c.getAttribute('data-category');
+        if (cat) counts[cat] = (counts[cat] || 0) + 1;
+    });
+    filterBtns.forEach(btn => {
+        const countEl = btn.querySelector('.filter-count');
+        if (countEl) countEl.textContent = counts[btn.getAttribute('data-filter')] ?? 0;
+    });
+})();
 
 filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -327,9 +342,16 @@ function openMailtoFallback({ name, email, subject, message }) {
 }
 
 const contactForm = document.getElementById('contactForm');
+let formCooldown = false;
+
 if (contactForm) {
     contactForm.addEventListener('submit', async function (e) {
         e.preventDefault();
+
+        if (formCooldown) {
+            setFormStatus('Please wait 60 seconds before sending another message.', 'error');
+            return;
+        }
 
         const submitBtn    = this.querySelector('button[type="submit"]');
         const originalHTML = submitBtn ? submitBtn.innerHTML : 'Send Message';
@@ -385,6 +407,8 @@ if (contactForm) {
             });
             this.reset();
             setFormStatus(result?.message || 'Message sent! I\'ll get back to you soon.', 'success');
+            formCooldown = true;
+            setTimeout(() => { formCooldown = false; }, 60000);
         } catch (err) {
             const errMsg = err.message || '';
             // If backend saved the message but email failed, show a softer message
@@ -598,30 +622,28 @@ if ('IntersectionObserver' in window && !prefersReducedMotion) {
     document.querySelectorAll('.skill-bar-fill').forEach(bar => bar.classList.add('animated'));
 }
 
-// ── Copy email buttons ────────────────────────────────────────────────────────
+// ── Copy buttons (email + phone) ─────────────────────────────────────────────
 document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
-        const email = this.dataset.email;
+        const value = this.dataset.copy || this.dataset.email;
         const icon  = this.querySelector('i');
-        if (!email || !icon) return;
-        navigator.clipboard.writeText(email).then(function () {
+        if (!value || !icon) return;
+        navigator.clipboard.writeText(value).then(function () {
             icon.className = 'fas fa-check';
             btn.classList.add('copied');
             btn.title = 'Copied!';
             setTimeout(function () {
                 icon.className = 'fas fa-copy';
                 btn.classList.remove('copied');
-                btn.title = 'Copy email';
+                btn.title = btn.dataset.copy ? 'Copy phone number' : 'Copy email';
             }, 2000);
         }).catch(function () {
-            // Fallback for browsers without clipboard API
             const ta = document.createElement('textarea');
-            ta.value = email;
-            ta.style.position = 'fixed';
-            ta.style.opacity = '0';
+            ta.value = value;
+            ta.style.cssText = 'position:fixed;opacity:0';
             document.body.appendChild(ta);
             ta.select();
-            document.execCommand('copy');
+            ta.setSelectionRange(0, 99999);
             document.body.removeChild(ta);
             icon.className = 'fas fa-check';
             btn.classList.add('copied');
@@ -677,6 +699,132 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
         // Fallback: run after 800ms
         setTimeout(runCounters, 800);
     }
+})();
+
+// ── #7 Availability Banner dismiss ──────────────────────────────────────────
+(function () {
+    const banner = document.getElementById('availBanner');
+    const closeBtn = document.getElementById('availBannerClose');
+    if (!banner || !closeBtn) return;
+    if (sessionStorage.getItem('availBannerDismissed')) banner.style.display = 'none';
+    closeBtn.addEventListener('click', function () {
+        banner.style.display = 'none';
+        sessionStorage.setItem('availBannerDismissed', '1');
+    });
+})();
+
+// ── #4 Live Kigali Clock ──────────────────────────────────────────────────────
+(function () {
+    const timeEl = document.getElementById('kigaliTime');
+    const iconEl = document.getElementById('kigaliIcon');
+    if (!timeEl) return;
+    function tick() {
+        const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Africa/Kigali' }));
+        const h = now.getHours();
+        const m = String(now.getMinutes()).padStart(2, '0');
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        const h12 = ((h % 12) || 12);
+        timeEl.textContent = h12 + ':' + m + ' ' + ampm;
+        if (iconEl) iconEl.textContent = (h >= 6 && h < 18) ? '☀️' : '🌙';
+    }
+    tick();
+    setInterval(tick, 1000);
+})();
+
+// ── #1 Command Palette ────────────────────────────────────────────────────────
+(function () {
+    const palette  = document.getElementById('cmdPalette');
+    const input    = document.getElementById('cmdInput');
+    const list     = document.getElementById('cmdList');
+    const backdrop = document.getElementById('cmdBackdrop');
+    if (!palette || !input || !list) return;
+
+    const commands = [
+        { label: 'Home',         icon: 'fas fa-home',          action: () => scrollTo('#home') },
+        { label: 'About Me',     icon: 'fas fa-user',          action: () => scrollTo('#about') },
+        { label: 'Projects',     icon: 'fas fa-th-large',      action: () => scrollTo('#projects') },
+        { label: 'Skills',       icon: 'fas fa-code',          action: () => scrollTo('#skills') },
+        { label: 'Journey',      icon: 'fas fa-road',          action: () => scrollTo('#timeline') },
+        { label: 'Academics',    icon: 'fas fa-graduation-cap',action: () => scrollTo('#academics') },
+        { label: 'Awards & Leadership', icon: 'fas fa-trophy', action: () => scrollTo('#impact') },
+        { label: 'Community',    icon: 'fas fa-heart',         action: () => scrollTo('#community') },
+        { label: 'Testimonials', icon: 'fas fa-quote-left',    action: () => scrollTo('#testimonials') },
+        { label: 'Contact',      icon: 'fas fa-paper-plane',   action: () => scrollTo('#contact') },
+        { label: 'Gallery',      icon: 'fas fa-images',        action: () => { window.location.href = 'html/gallery.html'; } },
+        { label: 'Blog',         icon: 'fas fa-newspaper',     action: () => { window.location.href = 'html/blog.html'; } },
+        { label: 'Toggle Theme', icon: 'fas fa-circle-half-stroke', action: () => document.getElementById('themeToggle')?.click() },
+        { label: 'Resume',       icon: 'fas fa-file-lines',    action: () => window.open('https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing', '_blank') },
+        { label: 'GitHub',       icon: 'fab fa-github',        action: () => window.open('https://github.com/solomon-211', '_blank') },
+        { label: 'LinkedIn',     icon: 'fab fa-linkedin',      action: () => window.open('https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345', '_blank') },
+    ];
+
+    function scrollTo(selector) {
+        close();
+        const el = document.querySelector(selector);
+        if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+    }
+
+    let filtered = commands;
+    let activeIdx = 0;
+
+    function open() {
+        palette.hidden = false;
+        input.value = '';
+        render(commands);
+        setTimeout(() => input.focus(), 50);
+    }
+
+    function close() {
+        palette.hidden = true;
+        input.value = '';
+    }
+
+    function render(items) {
+        filtered = items;
+        activeIdx = 0;
+        list.innerHTML = items.map((cmd, i) =>
+            '<li role="option" class="cmd__item' + (i === 0 ? ' cmd__item--active' : '') + '" data-idx="' + i + '">' +
+            '<i class="' + cmd.icon + ' cmd__item-icon"></i>' +
+            '<span>' + cmd.label + '</span>' +
+            '</li>'
+        ).join('');
+        list.querySelectorAll('.cmd__item').forEach(el => {
+            el.addEventListener('mousedown', function (e) {
+                e.preventDefault();
+                filtered[+this.dataset.idx]?.action();
+                close();
+            });
+        });
+    }
+
+    function setActive(idx) {
+        const items = list.querySelectorAll('.cmd__item');
+        items.forEach(el => el.classList.remove('cmd__item--active'));
+        if (items[idx]) {
+            items[idx].classList.add('cmd__item--active');
+            items[idx].scrollIntoView({ block: 'nearest' });
+        }
+    }
+
+    input.addEventListener('input', function () {
+        const q = this.value.toLowerCase();
+        render(q ? commands.filter(c => c.label.toLowerCase().includes(q)) : commands);
+    });
+
+    input.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min(activeIdx + 1, filtered.length - 1); setActive(activeIdx); }
+        if (e.key === 'ArrowUp')   { e.preventDefault(); activeIdx = Math.max(activeIdx - 1, 0); setActive(activeIdx); }
+        if (e.key === 'Enter')     { filtered[activeIdx]?.action(); close(); }
+        if (e.key === 'Escape')    { close(); }
+    });
+
+    if (backdrop) backdrop.addEventListener('click', close);
+
+    document.getElementById('cmdOpenBtn')?.addEventListener('click', open);
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !palette.hidden) { e.stopImmediatePropagation(); close(); }
+    });
 })();
 
 // ── Dynamic badge year & footer year ─────────────────────────────────────────

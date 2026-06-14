@@ -18,39 +18,20 @@
         <meta name="twitter:title" content="Solomon Thiong Garang Leek - Portfolio">
         <meta name="twitter:description" content="Software Engineering student at ALU showcasing leadership, design, development, and community impact projects.">
         <meta name="twitter:image" content="https://solomonleek.tech/images/photo.jpg">
+    <meta name="robots" content="index, follow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://solomonleek.tech">
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap&subset=latin" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f4c81'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Sora,sans-serif' font-weight='800' font-size='13' fill='white'>SL</text></svg>">
     <link rel="canonical" href="https://solomonleek.tech/">
     <meta name="theme-color" content="#ea580c">
     <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Analytics: self-hosted, no cookies, privacy-respecting -->
-    <script>
-    (function(){
-        // Use a meta tag or window variable set by your deploy environment.
-        // Falls back to the production URL so localhost never fires in production.
-        var API = (window.ANALYTICS_API_URL) || 'https://solomonleek.tech/api/analytics';
-        function send(data){ fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true}).catch(function(){}); }
-        // Page view
-        send({page:location.pathname,referrer:document.referrer,event:'pageview'});
-        // Section views via IntersectionObserver
-        if('IntersectionObserver' in window){
-            var obs = new IntersectionObserver(function(entries){
-                entries.forEach(function(e){
-                    if(e.isIntersecting && e.target.id){
-                        send({page:location.pathname,section:e.target.id,event:'section_view'});
-                    }
-                });
-            },{threshold:0.4});
-            document.querySelectorAll('section[id]').forEach(function(s){obs.observe(s);});
-        }
-    })();
-    </script>
+
     <noscript><style>#loading{display:none!important}</style></noscript>
         <script type="application/ld+json">
         {
@@ -75,6 +56,20 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ── AVAILABILITY BANNER ── -->
+    <div class="avail-banner" id="availBanner" role="banner" aria-label="Availability status">
+        <div class="avail-banner__inner">
+            <span class="avail-banner__dot"></span>
+            <span class="avail-banner__text">
+                <strong>Open to Work</strong> — Available for software engineering internships &amp; collaborations · Remote or Kigali-based · 2026
+            </span>
+            <a href="#contact" class="avail-banner__cta">Get in touch <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <button class="avail-banner__close" id="availBannerClose" aria-label="Dismiss banner">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
 
     <!-- Page transition overlay -->
     <div class="page-transition" id="pageTransition"></div>
@@ -101,6 +96,10 @@
                 <span class="logo-text">Solomon Leek</span>
             </a>
             <div class="nav-right-group">
+                <!-- Command palette trigger -->
+                <button class="nav-search-btn" id="cmdOpenBtn" aria-label="Search" title="Search">
+                    <i class="fas fa-search"></i>
+                </button>
                 <!-- Theme toggle -->
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle theme">
                     <i class="fas fa-sun theme-icon-light"></i>
@@ -142,12 +141,9 @@
                         <i class="fas fa-arrow-left"></i> Back
                     </button>
                 </li>
-                <li class="nav-more-item"><a href="#timeline"     class="nav-link">Journey</a></li>
-                <li class="nav-more-item"><a href="#academics"    class="nav-link">Academics</a></li>
-                <li class="nav-more-item"><a href="#awards"       class="nav-link">Awards</a></li>
-                <li class="nav-more-item"><a href="#leadership"   class="nav-link">Leadership</a></li>
-                <li class="nav-more-item"><a href="#community"    class="nav-link">Community</a></li>
-                <li class="nav-more-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li class="nav-more-item"><a href="#timeline"  class="nav-link">Background</a></li>
+                <li class="nav-more-item"><a href="#impact"     class="nav-link">Awards &amp; Leadership</a></li>
+                <li class="nav-more-item"><a href="#community"  class="nav-link">Community</a></li>
 
                 <!-- Desktop More dropdown (desktop only) -->
                 <li class="nav-more nav-desktop-more" id="navMore">
@@ -155,12 +151,9 @@
                         More <i class="fas fa-chevron-down nav-more-icon"></i>
                     </button>
                     <ul class="nav-more-menu" id="navMoreMenu">
-                        <li><a href="#timeline"     class="nav-link">Journey</a></li>
-                        <li><a href="#academics"    class="nav-link">Academics</a></li>
-                        <li><a href="#awards"       class="nav-link">Awards</a></li>
-                        <li><a href="#leadership"   class="nav-link">Leadership</a></li>
-                        <li><a href="#community"    class="nav-link">Community</a></li>
-                        <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                        <li><a href="#timeline"  class="nav-link">Background</a></li>
+                        <li><a href="#impact"    class="nav-link">Awards &amp; Leadership</a></li>
+                        <li><a href="#community" class="nav-link">Community</a></li>
                     </ul>
                 </li>
             </ul>
@@ -183,6 +176,15 @@
                 <div class="hero-badge reveal-left">
                     <span class="hero-badge-dot"></span>
                     <span>Available for Internships &amp; Collaborations · <span id="badgeYear">2026</span></span>
+                </div>
+
+                <!-- Kigali clock -->
+                <div class="kigali-clock reveal-left" aria-label="Current time in Kigali, Rwanda">
+                    <span class="kigali-clock__icon" id="kigaliIcon">🌙</span>
+                    <span class="kigali-clock__label">Kigali, Rwanda</span>
+                    <span class="kigali-clock__sep">·</span>
+                    <span class="kigali-clock__time" id="kigaliTime">--:-- --</span>
+                    <span class="kigali-clock__tz">CAT</span>
                 </div>
 
                 <!-- Name & title -->
@@ -485,12 +487,12 @@
                 <div class="project-card" data-category="design">
                     <div class="project-image">
                         <picture>
-                            <source srcset="images/back%20from%20school.jpg" type="image/jpeg" media="(max-width: 600px)" width="600" height="400">
-                            <img src="images/back%20from%20school.jpg" alt="Back from School Campaign" width="1200" height="800" loading="lazy" decoding="async">
+                            <source srcset="images/back-from-school.jpg" type="image/jpeg" media="(max-width: 600px)" width="600" height="400">
+                            <img src="images/back-from-school.jpg" alt="Back from School Campaign" width="1200" height="800" loading="lazy" decoding="async">
                         </picture>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="images/back%20from%20school.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Back from School Campaign" title="Open Back from School Campaign">
+                                <a href="images/back-from-school.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Back from School Campaign" title="Open Back from School Campaign">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
@@ -537,11 +539,11 @@
                 <div class="project-card" data-category="design">
                     <div class="project-image">
                         <picture>
-                            <img src="images/Rise%20leadership%20Academy.jpg" alt="Rise Leadership Academy" width="1200" height="800" loading="lazy" decoding="async">
+                            <img src="images/Rise-leadership-Academy.jpg" alt="Rise Leadership Academy" width="1200" height="800" loading="lazy" decoding="async">
                         </picture>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="images/Rise%20leadership%20Academy.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Rise Leadership Academy Logo" title="Open Rise Leadership Academy Logo">
+                                <a href="images/Rise-leadership-Academy.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Rise Leadership Academy Logo" title="Open Rise Leadership Academy Logo">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
@@ -588,12 +590,12 @@
                 <div class="project-card" data-category="design">
                     <div class="project-image">
                         <picture>
-                            <source srcset="images/Social%20media.jpg" type="image/jpeg" media="(max-width: 600px)" width="600" height="400">
-                            <img src="images/Social%20media.jpg" alt="Social Media Graphics" width="1200" height="800" loading="lazy" decoding="async">
+                            <source srcset="images/Social-media.jpg" type="image/jpeg" media="(max-width: 600px)" width="600" height="400">
+                            <img src="images/Social-media.jpg" alt="Social Media Graphics" width="1200" height="800" loading="lazy" decoding="async">
                         </picture>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="images/Social%20media.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Social Media Graphics" title="Open Social Media Graphics">
+                                <a href="images/Social-media.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open Social Media Graphics" title="Open Social Media Graphics">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
@@ -1135,7 +1137,41 @@
         </div>
     </section>
 
-    <!-- Awards Section removed per request -->
+    <!-- Awards & Leadership Section -->
+    <section id="impact" class="section-bg-white">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Awards &amp; Leadership</h2>
+                <p class="section-subtitle">Recognition received and leadership roles held across academia, community, and student governance</p>
+            </div>
+            <div class="awards-grid">
+                <div class="award-card reveal">
+                    <div class="award-badge"><i class="fas fa-medal"></i></div>
+                    <h3 class="award-title">Mastercard Foundation Scholar</h3>
+                    <p class="award-meta">2025 · African Leadership University</p>
+                    <p class="award-description">Selected as a full-scholarship recipient under the Mastercard Foundation Scholars Program — awarded to students demonstrating academic excellence, leadership potential, and commitment to giving back to their communities.</p>
+                </div>
+                <div class="award-card reveal">
+                    <div class="award-badge"><i class="fas fa-users"></i></div>
+                    <h3 class="award-title">Student Government President</h3>
+                    <p class="award-meta">2019 · Darling Wisdom Academy</p>
+                    <p class="award-description">Elected by peers to serve as Student Government President, representing 500+ students and leading initiatives that improved academic support and campus welfare policies.</p>
+                </div>
+                <div class="award-card reveal">
+                    <div class="award-badge"><i class="fas fa-trophy"></i></div>
+                    <h3 class="award-title">BCYA Chairmanship — 2025–2027</h3>
+                    <p class="award-meta">2025 · Bor Community Youth Association</p>
+                    <p class="award-description">Elected as Chairperson of the Bor Community Youth Association for 2025–2027, tasked with driving youth empowerment programs and community development initiatives across the diaspora.</p>
+                </div>
+                <div class="award-card reveal">
+                    <div class="award-badge"><i class="fas fa-globe"></i></div>
+                    <h3 class="award-title">Aspire Leaders Program Graduate</h3>
+                    <p class="award-meta">2025 · Harvard-affiliated Program</p>
+                    <p class="award-description">Completed the globally competitive Aspire Leaders Program — a Harvard-affiliated initiative focused on strategic leadership, ethical decision-making, and social impact design for emerging leaders worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Community Service Section -->
     <section id="community" class="section-bg-white">
@@ -1202,7 +1238,7 @@
                     <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
                     <p class="testimonial-text">Solomon demonstrates exceptional dedication to both academic excellence and community impact. His ability to bridge technology and social good is truly remarkable.</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar-initials">PM</div>
+                        <div class="testimonial-avatar-initials" aria-label="PM">PM</div>
                         <div>
                             <h4 class="testimonial-name">Pelin Mutanguha</h4>
                             <p class="testimonial-role">Faculty Mentor · African Leadership University</p>
@@ -1213,7 +1249,7 @@
                     <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
                     <p class="testimonial-text">His leadership in our community digital literacy program transformed lives. Solomon leads with empathy, vision, and technical skill that is rare to find.</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar-initials">AK</div>
+                        <div class="testimonial-avatar-initials" aria-label="AK">AK</div>
                         <div>
                             <h4 class="testimonial-name">A. Kuol</h4>
                             <p class="testimonial-role">Program Lead · South Sudan Youth Initiative</p>
@@ -1224,7 +1260,7 @@
                     <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
                     <p class="testimonial-text">Working with Solomon on our branding project was outstanding. He delivered professional, creative work on time and exceeded every expectation.</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar-initials">RL</div>
+                        <div class="testimonial-avatar-initials" aria-label="RL">RL</div>
                         <div>
                             <h4 class="testimonial-name">Rise Leadership Academy</h4>
                             <p class="testimonial-role">Branding Client · Juba, South Sudan</p>
@@ -1268,7 +1304,7 @@
                         <div>
                             <h3 class="contact-heading">Sleek Nexus Creative</h3>
                             <p class="contact-muted">Tech innovation hub &amp; incubator — South Sudan</p>
-                            <img src="images/SLEEK NEXUS CREATIVE.png" alt="Sleek Nexus Creative Logo" style="max-width:120px;margin-top:0.6rem;border-radius:6px;opacity:0.9;">
+                            <img src="images/SLEEK%20NEXUS%20CREATIVE.png" alt="Sleek Nexus Creative Logo" width="120" height="60" style="max-width:120px;margin-top:0.6rem;border-radius:6px;opacity:0.9;">
                         </div>
                     </div>
                     <div class="highlight-item contact-highlight-card">
@@ -1305,7 +1341,10 @@
                         </div>
                         <div>
                             <h3>Phone</h3>
-                            <p><a href="tel:+211925277700" class="contact-link">+211 925 277 700</a></p>
+                            <p>
+                                <a href="tel:+211925277700" class="contact-link">+211 925 277 700</a>
+                                <button class="copy-email-btn" data-copy="+211925277700" title="Copy phone number" aria-label="Copy phone number"><i class="fas fa-copy"></i></button>
+                            </p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1425,8 +1464,7 @@
                 <div class="footer-links-group">
                     <p class="footer-links-title">Sections</p>
                     <ul class="footer-links-list">
-                        <li><a href="#awards">Awards</a></li>
-                        <li><a href="#leadership">Leadership</a></li>
+                        <li><a href="#impact">Awards &amp; Leadership</a></li>
                         <li><a href="#community">Community</a></li>
                         <li><a href="#skills">Skills</a></li>
                         <li><a href="#contact">Contact</a></li>
@@ -1446,7 +1484,7 @@
             <div class="footer-divider"></div>
 
             <div class="footer-bottom">
-                <p class="footer-copy">&copy; <span id="footerYear">2026</span> Solomon Thiong Garang Leek. All rights reserved.</p>
+                <p class="footer-copy">&copy; <span id="footerYear"></span> Solomon Thiong Garang Leek. All rights reserved.</p>
                 <p class="footer-copy footer-visitors" id="footerVisitors" style="display:none">
                     <i class="fas fa-eye" style="color:var(--orange-400);margin-right:0.3rem;font-size:0.75rem"></i>
                     <span id="visitorCount">—</span> portfolio views
@@ -1458,7 +1496,46 @@
 
 
 
+    <!-- ── COMMAND PALETTE ── -->
+    <div class="cmd" id="cmdPalette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+        <div class="cmd__backdrop" id="cmdBackdrop"></div>
+        <div class="cmd__box">
+            <div class="cmd__search-wrap">
+                <i class="fas fa-search cmd__search-icon"></i>
+                <input type="text" class="cmd__input" id="cmdInput"
+                    placeholder="Type a command or search…"
+                    autocomplete="off" spellcheck="false" aria-label="Command search">
+                <kbd class="cmd__esc">ESC</kbd>
+            </div>
+            <ul class="cmd__list" id="cmdList" role="listbox" aria-label="Commands"></ul>
+            <div class="cmd__footer">
+                <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                <span><kbd>⏎</kbd> select</span>
+                <span><kbd>ESC</kbd> close</span>
+            </div>
+        </div>
+    </div>
+
     <script src="js/main.js?v=20260414"></script>
+
+    <!-- Analytics: self-hosted, no cookies, privacy-respecting -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        var API = (window.ANALYTICS_API_URL) || 'https://solomonleek.tech/api/analytics';
+        function send(data){ fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true}).catch(function(){}); }
+        send({page:location.pathname,referrer:document.referrer,event:'pageview'});
+        if('IntersectionObserver' in window){
+            var obs = new IntersectionObserver(function(entries){
+                entries.forEach(function(e){
+                    if(e.isIntersecting && e.target.id){
+                        send({page:location.pathname,section:e.target.id,event:'section_view'});
+                    }
+                });
+            },{threshold:0.4});
+            document.querySelectorAll('section[id]').forEach(function(s){obs.observe(s);});
+        }
+    });
+    </script>
 </body>
 </html>
 
