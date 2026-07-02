@@ -249,12 +249,28 @@ function showSuccessAnimation(message) {
     const overlay = document.createElement('div');
     overlay.className = 'form-success-overlay';
     overlay.id = 'formSuccessOverlay';
-    overlay.innerHTML =
-        '<div class="form-success-card">' +
-            '<div class="form-success-icon"><i class="fas fa-check"></i></div>' +
-            '<p class="form-success-title">Message Sent!</p>' +
-            '<p class="form-success-sub">' + (message || "I'll get back to you soon.") + '</p>' +
-        '</div>';
+
+    const card = document.createElement('div');
+    card.className = 'form-success-card';
+
+    const icon = document.createElement('div');
+    icon.className = 'form-success-icon';
+    const iconEl = document.createElement('i');
+    iconEl.className = 'fas fa-check';
+    icon.appendChild(iconEl);
+
+    const title = document.createElement('p');
+    title.className = 'form-success-title';
+    title.textContent = 'Message Sent!';
+
+    const sub = document.createElement('p');
+    sub.className = 'form-success-sub';
+    sub.textContent = message || "I'll get back to you soon.";
+
+    card.appendChild(icon);
+    card.appendChild(title);
+    card.appendChild(sub);
+    overlay.appendChild(card);
     document.body.appendChild(overlay);
 
     // Confetti burst
@@ -766,9 +782,9 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
         { label: 'Gallery',      icon: 'fas fa-images',        action: () => { window.location.href = 'html/gallery.html'; } },
         { label: 'Blog',         icon: 'fas fa-newspaper',     action: () => { window.location.href = 'html/blog.html'; } },
         { label: 'Toggle Theme', icon: 'fas fa-circle-half-stroke', action: () => document.getElementById('themeToggle')?.click() },
-        { label: 'Resume',       icon: 'fas fa-file-lines',    action: () => window.open('https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing', '_blank') },
-        { label: 'GitHub',       icon: 'fab fa-github',        action: () => window.open('https://github.com/solomon-211', '_blank') },
-        { label: 'LinkedIn',     icon: 'fab fa-linkedin',      action: () => window.open('https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345', '_blank') },
+        { label: 'Resume',       icon: 'fas fa-file-lines',    action: () => window.open('https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing', '_blank', 'noopener,noreferrer') },
+        { label: 'GitHub',       icon: 'fab fa-github',        action: () => window.open('https://github.com/solomon-211', '_blank', 'noopener,noreferrer') },
+        { label: 'LinkedIn',     icon: 'fab fa-linkedin',      action: () => window.open('https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345', '_blank', 'noopener,noreferrer') },
     ];
 
     function scrollTo(selector) {
@@ -952,6 +968,93 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
     });
 })();
 
+// ── Toast helper (replaces alert/prompt pop-ups) ────────────────────────────
+function showNotifyToast(message, type) {
+    const existing = document.getElementById('notifyToast');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.id = 'notifyToast';
+    toast.style.cssText =
+        'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);' +
+        'background:' + (type === 'error' ? '#dc2626' : '#16a34a') + ';' +
+        'color:#fff;padding:0.75rem 1.5rem;border-radius:8px;font-size:0.9rem;' +
+        'font-weight:600;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,0.3);' +
+        'transition:opacity 0.3s ease;';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3500);
+}
+
+function showNotifyModal(articleTitle, onConfirm) {
+    const existing = document.getElementById('notifyModal');
+    if (existing) existing.remove();
+
+    const backdrop = document.createElement('div');
+    backdrop.id = 'notifyModal';
+    backdrop.style.cssText =
+        'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9998;' +
+        'display:flex;align-items:center;justify-content:center;padding:1rem;';
+
+    const box = document.createElement('div');
+    box.style.cssText =
+        'background:#0f1e35;border:1px solid rgba(255,255,255,0.12);border-radius:16px;' +
+        'padding:2rem;max-width:420px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.5);';
+
+    const heading = document.createElement('p');
+    heading.style.cssText = 'font-weight:700;color:#fff;margin:0 0 0.5rem;font-size:1rem;';
+    heading.textContent = 'Notify me when published';
+
+    const sub = document.createElement('p');
+    sub.style.cssText = 'color:rgba(255,255,255,0.6);font-size:0.85rem;margin:0 0 1rem;';
+    sub.textContent = '"' + articleTitle + '"';
+
+    const input = document.createElement('input');
+    input.type = 'email';
+    input.placeholder = 'your.email@example.com';
+    input.style.cssText =
+        'width:100%;box-sizing:border-box;padding:0.65rem 0.9rem;border-radius:8px;' +
+        'border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);' +
+        'color:#fff;font-size:0.9rem;margin-bottom:1rem;outline:none;';
+
+    const btnRow = document.createElement('div');
+    btnRow.style.cssText = 'display:flex;gap:0.75rem;justify-content:flex-end;';
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.style.cssText =
+        'padding:0.55rem 1.1rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);' +
+        'background:transparent;color:rgba(255,255,255,0.7);cursor:pointer;font-size:0.85rem;';
+    cancelBtn.addEventListener('click', () => backdrop.remove());
+
+    const confirmBtn = document.createElement('button');
+    confirmBtn.textContent = 'Notify Me';
+    confirmBtn.style.cssText =
+        'padding:0.55rem 1.1rem;border-radius:8px;border:none;' +
+        'background:linear-gradient(135deg,#ea580c,#f97316);color:#fff;' +
+        'cursor:pointer;font-size:0.85rem;font-weight:700;';
+    confirmBtn.addEventListener('click', () => {
+        const val = input.value.trim();
+        if (!val || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+            input.style.borderColor = '#dc2626';
+            return;
+        }
+        backdrop.remove();
+        onConfirm(val);
+    });
+
+    backdrop.addEventListener('click', (e) => { if (e.target === backdrop) backdrop.remove(); });
+
+    btnRow.appendChild(cancelBtn);
+    btnRow.appendChild(confirmBtn);
+    box.appendChild(heading);
+    box.appendChild(sub);
+    box.appendChild(input);
+    box.appendChild(btnRow);
+    backdrop.appendChild(box);
+    document.body.appendChild(backdrop);
+    setTimeout(() => input.focus(), 50);
+}
+
 // ── Notify-me buttons (coming-soon articles) ──────────────────────────────────
 (function () {
     const apiBase = window.ANALYTICS_API_URL
@@ -959,35 +1062,136 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
         : 'https://solomonleek.tech';
 
     document.querySelectorAll('.b-notify-btn').forEach(function (btn) {
-        btn.addEventListener('click', async function () {
-            // Get article title from the nearest h3
+        btn.addEventListener('click', function () {
             const card  = btn.closest('.b-post');
             const title = card ? (card.querySelector('.b-post__title') || {}).textContent || 'article' : 'article';
 
-            const email = prompt('Enter your email to be notified when "' + title.trim() + '" is published:');
-            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-                if (email !== null) alert('Please enter a valid email address.');
-                return;
-            }
+            showNotifyModal(title.trim(), async function (email) {
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
 
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                try {
+                    const res = await fetch(apiBase + '/api/notify', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email.trim(), article: title.trim() })
+                    });
+                    const data = await res.json().catch(() => ({}));
+                    btn.innerHTML = '<i class="fas fa-check"></i>';
+                    btn.title = data.message || "You're on the list!";
+                    btn.style.color = '#22c55e';
+                } catch (err) {
+                    btn.innerHTML = '<i class="fas fa-bell"></i>';
+                    btn.disabled = false;
+                    showNotifyToast('Could not save your request. Please try again.', 'error');
+                }
+            });
+        });
+    });
+})();
 
-            try {
-                const res = await fetch(apiBase + '/api/notify', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: email.trim(), article: title.trim() })
-                });
-                const data = await res.json().catch(() => ({}));
-                btn.innerHTML = '<i class="fas fa-check"></i>';
-                btn.title = data.message || "You're on the list!";
-                btn.style.color = '#22c55e';
-            } catch (err) {
-                btn.innerHTML = '<i class="fas fa-bell"></i>';
-                btn.disabled = false;
-                alert('Could not save your request. Please try again.');
+// ── Activity strip ────────────────────────────────────────────────────────────
+(function () {
+    const strip = document.getElementById('activityStrip');
+    const closeBtn = document.getElementById('activityClose');
+    const items = document.getElementById('activityItems');
+
+    if (!strip || !closeBtn || !items) return;
+
+    // Duplicate content for seamless infinite scroll
+    items.innerHTML = items.innerHTML + items.innerHTML;
+
+    closeBtn.addEventListener('click', function () {
+        strip.classList.add('hidden');
+        sessionStorage.setItem('activityStripClosed', '1');
+    });
+
+    // Restore closed state within session
+    if (sessionStorage.getItem('activityStripClosed') === '1') {
+        strip.classList.add('hidden');
+    }
+})();
+
+// ── Discipline card accordion ─────────────────────────────────────────────────
+(function () {
+    document.querySelectorAll('.discipline-card--collapsible').forEach(function (card) {
+        var btn  = card.querySelector('.discipline-card__header');
+        var body = card.querySelector('.discipline-card__body');
+        if (!btn || !body) return;
+
+        btn.addEventListener('click', function () {
+            var isOpen = card.classList.contains('is-open');
+
+            // Close all other cards first
+            document.querySelectorAll('.discipline-card--collapsible.is-open').forEach(function (other) {
+                if (other !== card) {
+                    other.classList.remove('is-open');
+                    var otherBody = other.querySelector('.discipline-card__body');
+                    var otherBtn  = other.querySelector('.discipline-card__header');
+                    if (otherBody) otherBody.hidden = true;
+                    if (otherBtn)  otherBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Toggle this card
+            if (isOpen) {
+                card.classList.remove('is-open');
+                body.hidden = true;
+                btn.setAttribute('aria-expanded', 'false');
+            } else {
+                card.classList.add('is-open');
+                body.hidden = false;
+                btn.setAttribute('aria-expanded', 'true');
             }
         });
+    });
+
+    // Handle ?cat= query param on portfolio.html to auto-filter
+    if (window.location.pathname.includes('portfolio.html')) {
+        var params = new URLSearchParams(window.location.search);
+        var cat = params.get('cat');
+        if (cat && window.pfFilter) {
+            window.pfFilter(cat);
+        }
+    }
+})();
+
+// ── Footer newsletter form ────────────────────────────────────────────────────
+(function () {
+    const form     = document.getElementById('footerNewsletterForm');
+    const emailEl  = document.getElementById('footerNewsletterEmail');
+    const statusEl = document.getElementById('footerNewsletterStatus');
+    if (!form || !emailEl || !statusEl) return;
+
+    const apiBase = window.ANALYTICS_API_URL
+        ? window.ANALYTICS_API_URL.replace('/api/analytics', '')
+        : 'https://solomonleek.tech';
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const email = emailEl.value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            statusEl.textContent = 'Please enter a valid email.';
+            statusEl.className = 'footer-newsletter-status visible error';
+            return;
+        }
+        const btn = form.querySelector('button');
+        if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; }
+        try {
+            const res = await fetch(apiBase + '/api/newsletter', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            const data = await res.json().catch(() => ({}));
+            statusEl.textContent = data.message || 'Subscribed!';
+            statusEl.className = 'footer-newsletter-status visible';
+            if (res.ok) emailEl.value = '';
+        } catch {
+            statusEl.textContent = 'Could not subscribe. Try again later.';
+            statusEl.className = 'footer-newsletter-status visible error';
+        } finally {
+            if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-arrow-right"></i>'; }
+        }
     });
 })();

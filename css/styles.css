@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Roboto:wght@400;500;700;900&display=swap');
+
 /*
   =====================================================
   SLEEK PORTFOLIO — DARK NAVY THEME OVERRIDE
@@ -71,7 +73,7 @@
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.14);
   color: rgba(255,255,255,0.85);
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Nunito Sans', 'Roboto', sans-serif;
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -363,13 +365,13 @@ html.light-mode .contact .section-title {
 /* ── SKILLS GRID LAYOUT ───────────────────────────── */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1054,7 +1056,7 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
   padding: 0 1.5rem;
 }
 .projects-stat-num {
-  font-family: 'Sora', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Nunito Sans', sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--orange-400);
@@ -1306,7 +1308,6 @@ html.light-mode li                       { color: #334155 !important; }
 
 /* Nav */
 html.light-mode nav                      { background: rgba(248,250,252,0.97) !important; border-bottom: 1px solid rgba(0,0,0,0.1) !important; }
-html.light-mode .logo-icon               { background: linear-gradient(135deg, #ea580c, #f97316) !important; color: #ffffff !important; }
 html.light-mode .logo-text               { color: #0f172a !important; }
 html.light-mode .nav-links a             { color: #334155 !important; }
 html.light-mode .nav-links a:hover       { color: #ea580c !important; }
@@ -1548,48 +1549,15 @@ html.light-mode .btn { color: #ffffff !important; }
 html.light-mode .btn-secondary { color: #0f172a !important; background: rgba(0,0,0,0.06) !important; border-color: rgba(0,0,0,0.15) !important; }
 html.light-mode .btn-secondary:hover { background: rgba(0,0,0,0.1) !important; border-color: #ea580c !important; color: #ea580c !important; }
 
-/* ── SECTION GRID PATTERN ──────────────────────────────
-   Same subtle grid as the hero, applied to all sections.
-   Uses ::after so it doesn't conflict with existing ::before.
-   ─────────────────────────────────────────────────────── */
+/* ── SECTION GRID PATTERN — removed (was causing title blur) ── */
 section {
   position: relative;
   overflow: hidden;
 }
-section::after {
-  content: '';
-  position: absolute; inset: 0;
-  pointer-events: none; z-index: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
-}
+/* section::after grid removed */
 
-/* Make sure section content sits above the grid */
+/* Make sure section content sits above any pseudo-elements */
 section > * { position: relative; z-index: 1; }
-
-/* Slightly more visible on alternating sections for rhythm */
-section:nth-child(even)::after {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-/* Light mode — use dark lines instead of white */
-html.light-mode section::after {
-  background-image:
-    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px) !important;
-}
-html.light-mode section:nth-child(even)::after {
-  background-image:
-    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px) !important;
-}
 
 /* ══════════════════════════════════════════════════════
    VISUAL ENHANCEMENTS
@@ -1819,7 +1787,7 @@ html.light-mode .learning-item i         { color: #ea580c !important; }
   gap: 1rem;
 }
 .about-quick-stats__title {
-  font-family: 'Sora', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Nunito Sans', sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1843,7 +1811,7 @@ html.light-mode .learning-item i         { color: #ea580c !important; }
   text-align: center;
 }
 .about-quick-stat__num {
-  font-family: 'Sora', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
   font-size: 1.4rem;
   font-weight: 800;
   color: var(--orange-400);
@@ -1937,24 +1905,7 @@ html.light-mode .hero-grid-lines         {
 #timeline,
 #community { padding: 6rem 0 !important; }
 
-/* ── SECTION HEADER MOTIF ─────────────────────────── */
-/* Subtle left-border accent on section headers for visual system consistency */
-.section-header {
-  position: relative;
-}
-.section-header::before {
-  content: '';
-  display: block;
-  width: 3px;
-  height: 2rem;
-  background: linear-gradient(180deg, var(--orange-500), transparent);
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  border-radius: 2px;
-  opacity: 0.4;
-}
+/* ── SECTION HEADER MOTIF — removed ───────────────── */
 
 /* Light mode — desaturated orange for a designed feel */
 html.light-mode .btn-primary,
@@ -2161,7 +2112,7 @@ html.light-mode ::selection {
   font-size: 6rem;
   line-height: 1;
   color: rgba(234,88,12,0.06);
-  font-family: 'Sora', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Nunito Sans', sans-serif;
   font-weight: 800;
   pointer-events: none;
 }
@@ -2367,7 +2318,7 @@ html.light-mode .contact-social-icon:hover path {
   letter-spacing: 0.05em; color: var(--orange-300);
 }
 .blog-preview-card__title {
-  font-family: 'Sora', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Nunito Sans', sans-serif;
   font-size: 0.95rem; font-weight: 700;
   color: var(--white-90); line-height: 1.4;
 }
@@ -2392,3 +2343,20 @@ html.light-mode .blog-preview-card__meta { color: #94a3b8 !important; }
 @media (max-width: 560px) {
   #blog .projects-grid { grid-template-columns: 1fr !important; }
 }
+
+/* ── DISCIPLINE CARDS — dark theme ───────────────────── */
+.discipline-card {
+  background: var(--navy-card) !important;
+  border: 1px solid var(--border-mid) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease !important;
+}
+.discipline-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-hover) !important;
+  border-color: var(--border-accent) !important;
+}
+.discipline-card__title { color: var(--white-90) !important; }
+.discipline-card__desc  { color: var(--white-70) !important; }
+.discipline-card__process { border-top-color: var(--border-subtle) !important; }
+.discipline-card__process span { color: var(--white-62) !important; }

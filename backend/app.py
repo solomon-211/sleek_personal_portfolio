@@ -43,6 +43,11 @@ logging.basicConfig(
 )
 log = logging.getLogger("portfolio")
 
+def _sanitize_log(value: str) -> str:
+    """Strip newlines and carriage returns to prevent log injection."""
+    return str(value).replace('\n', ' ').replace('\r', ' ').replace('\t', ' ')
+
+
 # ── File paths ─────────────────────────────────────────────────────────────────
 BASE_DIR       = Path(__file__).parent
 LOG_FILE       = BASE_DIR / "messages.json"
@@ -334,7 +339,7 @@ def _send_email(payload: ContactPayload) -> None:
             server.ehlo()
         server.login(smtp_user, smtp_password)
         server.send_message(msg)
-        log.info("Email sent to %s from %s (%s)", to_email, payload.name, payload.email)
+        log.info("Email sent to %s from %s (%s)", _sanitize_log(to_email), _sanitize_log(payload.name), _sanitize_log(payload.email))
 
 
 # ── Routes ─────────────────────────────────────────────────────────────────────
@@ -351,6 +356,17 @@ def health() -> dict:
 def message_count() -> dict:
     records = _read_json(LOG_FILE, [])
     return {"count": len(records) if isinstance(records, list) else 0}
+
+
+@app.get("/api/messages")
+def messages(limit: int = 50) -> dict:
+    records = _read_json(LOG_FILE, [])
+    if not isinstance(records, list):
+        return {"count": 0, "messages": []}
+
+    safe_limit = max(1, min(int(limit), 200))
+    recent_messages = list(reversed(records))[:safe_limit]
+    return {"count": len(records), "messages": recent_messages}
 
 
 @app.get("/api/analytics/summary")
@@ -435,28 +451,19 @@ async def contact(request: Request, payload: ContactPayload) -> dict:
     try:
         _send_email(payload)
         record["delivered"] = True
-        log.info("Contact from %s <%s> — subject: %s", payload.name, payload.email, payload.subject)
+        log.info("Contact from %s <%s> — subject: %s", _sanitize_log(payload.name), _sanitize_log(payload.email), _sanitize_log(payload.subject))
     except RuntimeError as cfg_err:
         log.error("SMTP config error: %s", cfg_err)
         _append_json(LOG_FILE, record)
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Email service not configured. Message was saved — I will follow up shortly.",
-        ) from cfg_err
+        return {"ok": True, "message": "Message received! Your inquiry has been saved."}
     except smtplib.SMTPAuthenticationError:
         log.error("SMTP authentication failed")
         _append_json(LOG_FILE, record)
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Email delivery failed. Message was saved — I will follow up shortly.",
-        )
+        return {"ok": True, "message": "Message received! Your inquiry has been saved."}
     except Exception as err:
         log.error("Email send failed: %s", err)
         _append_json(LOG_FILE, record)
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Email delivery failed. Message was saved — I will follow up shortly.",
-        ) from err
+        return {"ok": True, "message": "Message received! Your inquiry has been saved."}
 
     _append_json(LOG_FILE, record)
     return {"ok": True, "message": "Message sent! I'll get back to you soon."}
@@ -487,7 +494,7 @@ async def newsletter_subscribe(request: Request, payload: NewsletterPayload) -> 
     }
     subscribers.append(record)
     _write_json(NEWSLETTER_FILE, subscribers)
-    log.info("Newsletter subscriber: %s", payload.email)
+    log.info("Newsletter subscriber: %s", _sanitize_log(payload.email))
 
     # Send confirmation email (best-effort — don't fail if SMTP not configured)
     try:
@@ -569,7 +576,7 @@ def _send_newsletter_confirmation(to_email: str) -> None:
             server.ehlo()
         server.login(smtp_user, smtp_password)
         server.send_message(msg)
-        log.info("Newsletter confirmation sent to %s", to_email)
+        log.info("Newsletter confirmation sent to %s", _sanitize_log(to_email))
 
 
 # ── Article notify-me ──────────────────────────────────────────────────────────
@@ -598,7 +605,7 @@ async def notify_subscribe(request: Request, payload: NotifyPayload) -> dict:
     }
     requests_list.append(record)
     _write_json(NOTIFY_FILE, requests_list)
-    log.info("Notify request: %s for '%s'", payload.email, payload.article)
+    log.info("Notify request: %s for '%s'", _sanitize_log(payload.email), _sanitize_log(payload.article))
 
     return {"ok": True, "message": "Got it! We'll email you when this article is published."}
 

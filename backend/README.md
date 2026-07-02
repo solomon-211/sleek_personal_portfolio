@@ -1,130 +1,118 @@
-# Portfolio Contact API
+# Portfolio Backend API
 
-FastAPI backend for the portfolio contact form.
-
-## Features
-
-- ✅ Input validation with Pydantic v2
-- ✅ Rate limiting — 5 requests per IP per hour (configurable)
-- ✅ Honeypot spam field
-- ✅ HTML + plain-text email with branded template
-- ✅ Message logging to `messages.json` (every message saved, even if email fails)
-- ✅ CORS locked to allowed origins
-- ✅ Health check endpoint
+FastAPI backend for Solomon Thiong Garang Leek's portfolio.
+Handles contact form submissions, newsletter subscriptions, article notify requests, and analytics.
 
 ---
 
-## Setup
+## Forms & What They Do
 
-### 1. Install dependencies
+| Form | Endpoint | What happens |
+|---|---|---|
+| Contact form (main page) | `POST /api/contact` | Email sent to `CONTACT_TO_EMAIL`, message saved to `messages.json` |
+| Newsletter (footer + blog sidebar) | `POST /api/newsletter` | Email saved to `newsletter.json`, confirmation email sent to subscriber |
+| Notify me (coming-soon articles) | `POST /api/notify` | Request saved to `notify_requests.json` |
+| Page analytics | `POST /api/analytics` | Event saved to `analytics.json` |
+
+---
+
+## Setup for Deployment
+
+### Step 1 — Copy the example env file
 
 ```bash
 cd backend
-pip install -r requirements.txt
-```
-
-### 2. Configure environment
-
-```bash
 cp .env.example .env
 ```
 
-Open `.env` and fill in your values. The minimum required fields are:
+### Step 2 — Fill in your real values
+
+Open `.env` and set:
 
 ```env
-CONTACT_TO_EMAIL=your-email@gmail.com
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
+# Your Gmail address (used as the SMTP sender)
+SMTP_USER=your-gmail@gmail.com
 SMTP_PASSWORD=your-16-char-app-password
-SMTP_STARTTLS=true
+
+# Where contact form messages are delivered
+CONTACT_TO_EMAIL=s.leek@alustudent.com
+CONTACT_FROM_EMAIL=your-gmail@gmail.com
+
+# Your live domain (CORS)
+ALLOWED_ORIGINS=https://solomonleek.tech
 ```
 
-**Gmail setup (recommended):**
-1. Enable 2-Factor Authentication on your Google account
-2. Go to: myaccount.google.com → Security → App Passwords
-3. Create an App Password for "Mail"
-4. Use the 16-character password as `SMTP_PASSWORD`
+### Step 3 — Get a Gmail App Password
 
-### 3. Run the server
+1. Go to [myaccount.google.com](https://myaccount.google.com)
+2. Security → 2-Step Verification (must be ON)
+3. Security → App Passwords
+4. Create one for "Mail" → copy the 16-character password
+5. Paste it as `SMTP_PASSWORD` in your `.env`
+
+### Step 4 — Install dependencies
 
 ```bash
-uvicorn app:app --reload --port 8000
+pip install -r requirements.txt
 ```
 
-The API will be available at `http://localhost:8000`.
+### Step 5 — Run locally
 
----
-
-## Endpoints
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/health` | Health check + SMTP status |
-| POST | `/api/contact` | Submit contact form |
-| GET | `/api/messages/count` | Total messages received |
-| POST | `/api/analytics` | Track a page view or section view |
-| GET | `/api/analytics/summary` | View aggregated analytics |
-
----
-
-## Analytics
-
-Every page visit and section scroll is logged to `analytics.json`.
-
-To see your analytics summary:
 ```bash
-curl http://localhost:8000/api/analytics/summary
+python app.py
 ```
 
-Returns:
-```json
-{
-  "total_views": 42,
-  "pages": { "/html/index.html": 30, "/html/blog.html": 12 },
-  "sections": { "projects": 28, "contact": 15, "skills": 22 },
-  "referrers": { "https://linkedin.com": 8 }
-}
-```
+Server starts at `http://localhost:8000`
 
-When you deploy, update the `API` URL in the analytics script in each HTML file from `http://localhost:8000` to your live backend URL.
+### Step 6 — Deploy
+
+**Recommended: [Render.com](https://render.com) (free tier)**
+
+1. Push repo to GitHub
+2. Create a new Web Service on Render
+3. Set Build Command: `pip install -r requirements.txt`
+4. Set Start Command: `uvicorn app:app --host 0.0.0.0 --port $PORT`
+5. Add all `.env` values as Environment Variables in Render dashboard
+6. Deploy — Render gives you a URL like `https://your-app.onrender.com`
+7. Set `window.CONTACT_API_URL` in your HTML to that URL
 
 ---
 
-## Message log
+## Setting the API URL on your frontend
 
-Every submission is saved to `messages.json` in this folder — even if email delivery fails. This means you never lose a message.
-
-To read your messages:
-```bash
-cat messages.json
-```
-
----
-
-## Frontend configuration
-
-The frontend sends to `http://localhost:8000/api/contact` by default.
-
-To point to a different URL (e.g. after deploying), set this before your script tag:
+In your HTML, before `<script src="js/main.js">`, add:
 
 ```html
-<script>window.CONTACT_API_URL = 'https://your-api.example.com/api/contact';</script>
+<script>
+  window.CONTACT_API_URL = 'https://your-app.onrender.com/api/contact';
+  window.ANALYTICS_API_URL = 'https://your-app.onrender.com/api/analytics';
+</script>
+```
+
+Or set it once in a config script that all pages load.
+
+---
+
+## Checking it works after deployment
+
+```bash
+# Health check
+curl https://your-app.onrender.com/api/health
+
+# Test contact form
+curl -X POST https://your-app.onrender.com/api/contact \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test","email":"test@example.com","subject":"Test","message":"Hello from curl"}'
 ```
 
 ---
 
-## Deployment
+## Data files (auto-created)
 
-For production, deploy with:
-
-```bash
-uvicorn app:app --host 0.0.0.0 --port 8000 --workers 2
-```
-
-Or use a process manager like `systemd`, `supervisor`, or deploy to Railway/Render/Fly.io.
-
-Remember to:
-- Set `ALLOWED_ORIGINS` to your live domain
-- Use environment variables (not `.env` file) in production
-- Keep `messages.json` backed up
+| File | Contents |
+|---|---|
+| `messages.json` | All contact form submissions |
+| `newsletter.json` | Newsletter subscribers |
+| `notify_requests.json` | Article notify-me requests |
+| `analytics.json` | Page view events |
+| `rate_limits.json` | Rate limit state (persists across restarts) |

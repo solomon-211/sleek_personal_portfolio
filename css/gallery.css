@@ -523,3 +523,14 @@ body {
     .g-lightbox__prev { left: 0.5rem; }
     .g-lightbox__next { right: 0.5rem; }
 }
+
+/* ── LAZY LOAD PLACEHOLDER ───────────────────────────────────────────────────── */
+img.g-lazy {
+    background: linear-gradient(90deg, #0a1628 25%, #132848 50%, #0a1628 75%);
+    background-size: 200% 100%;
+    animation: g-shimmer 1.4s infinite;
+}
+@keyframes g-shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
