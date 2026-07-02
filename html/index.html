@@ -32,13 +32,12 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/styles.css">
 
-    <!-- API configuration — update CONTACT_API_URL and ANALYTICS_API_URL when you deploy -->
+    <!-- Optional overrides for a separately hosted API.
+         If unset, the frontend uses same-origin /api routes. -->
     <script>
-        // When deployed, set these to your live backend URL.
-        // Example: window.CONTACT_API_URL = 'https://your-app.onrender.com/api/contact';
-        // Leave as-is for local development — forms will fall back to mailto if backend is offline.
-        window.CONTACT_API_URL    = window.CONTACT_API_URL    || 'https://solomonleek.tech/api/contact';
-        window.ANALYTICS_API_URL  = window.ANALYTICS_API_URL  || 'https://solomonleek.tech/api/analytics';
+        // Example:
+        // window.CONTACT_API_URL = 'https://your-app.onrender.com/api/contact';
+        // window.ANALYTICS_API_URL = 'https://your-app.onrender.com/api/analytics';
     </script>
 
     <noscript><style>#loading{display:none!important}</style></noscript>

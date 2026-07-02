@@ -8,6 +8,23 @@ const parallaxBg  = document.getElementById('parallaxBg');
 const formStatus  = document.getElementById('formStatus');
 const fabBtn      = document.getElementById('fabBtn');
 
+function getApiUrl(configKey, relativePath, productionFallback) {
+    const configured = window[configKey];
+    if (typeof configured === 'string' && configured.trim()) {
+        return configured.trim();
+    }
+
+    if (window.location.protocol === 'file:') {
+        return productionFallback;
+    }
+
+    return relativePath;
+}
+
+const CONTACT_API_URL = getApiUrl('CONTACT_API_URL', '/api/contact', 'https://solomonleek.tech/api/contact');
+const ANALYTICS_API_URL = getApiUrl('ANALYTICS_API_URL', '/api/analytics', 'https://solomonleek.tech/api/analytics');
+const ANALYTICS_API_BASE = ANALYTICS_API_URL.replace(/\/api\/analytics\/?$/, '');
+
 // ── Theme toggle ──────────────────────────────────────────────────────────────
 (function () {
     const btn = document.getElementById('themeToggle');
@@ -318,12 +335,11 @@ function validateForm(name, email, subject, message) {
 
 async function sendViaEmailJS(payload) {
     // POST to backend. Falls back to mailto if backend is unreachable.
-    const apiUrl = window.CONTACT_API_URL || 'https://solomonleek.tech/api/contact';
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 12000);
 
     try {
-        const response = await fetch(apiUrl, {
+        const response = await fetch(CONTACT_API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify(payload),
@@ -888,8 +904,7 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
     if (!resumeLink) return;
 
     resumeLink.addEventListener('click', function () {
-        const apiUrl = window.ANALYTICS_API_URL || 'https://solomonleek.tech/api/analytics';
-        fetch(apiUrl, {
+        fetch(ANALYTICS_API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ page: location.pathname, section: 'resume-download', event: 'resume_click' }),
@@ -904,11 +919,7 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
     const wrapEl    = document.getElementById('footerVisitors');
     if (!countEl || !wrapEl) return;
 
-    const apiBase = window.ANALYTICS_API_URL
-        ? window.ANALYTICS_API_URL.replace('/api/analytics', '')
-        : 'https://solomonleek.tech';
-
-    fetch(apiBase + '/api/analytics/summary', { method: 'GET' })
+    fetch(ANALYTICS_API_BASE + '/api/analytics/summary', { method: 'GET' })
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (data) {
             if (!data || !data.total_views) return;
@@ -929,10 +940,6 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
     const statusEl = document.getElementById('newsletterStatus');
     if (!form || !emailEl || !statusEl) return;
 
-    const apiBase = window.ANALYTICS_API_URL
-        ? window.ANALYTICS_API_URL.replace('/api/analytics', '')
-        : 'https://solomonleek.tech';
-
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
         const email = emailEl.value.trim();
@@ -948,7 +955,7 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
         if (btn) { btn.textContent = 'Subscribing…'; btn.disabled = true; }
 
         try {
-            const res = await fetch(apiBase + '/api/newsletter', {
+            const res = await fetch(ANALYTICS_API_BASE + '/api/newsletter', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email })
@@ -1057,9 +1064,7 @@ function showNotifyModal(articleTitle, onConfirm) {
 
 // ── Notify-me buttons (coming-soon articles) ──────────────────────────────────
 (function () {
-    const apiBase = window.ANALYTICS_API_URL
-        ? window.ANALYTICS_API_URL.replace('/api/analytics', '')
-        : 'https://solomonleek.tech';
+    const apiBase = ANALYTICS_API_BASE;
 
     document.querySelectorAll('.b-notify-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -1163,9 +1168,7 @@ function showNotifyModal(articleTitle, onConfirm) {
     const statusEl = document.getElementById('footerNewsletterStatus');
     if (!form || !emailEl || !statusEl) return;
 
-    const apiBase = window.ANALYTICS_API_URL
-        ? window.ANALYTICS_API_URL.replace('/api/analytics', '')
-        : 'https://solomonleek.tech';
+    const apiBase = ANALYTICS_API_BASE;
 
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
