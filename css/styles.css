@@ -328,9 +328,9 @@ html.light-mode .contact .section-title {
 .testimonial-card,
 .language-card,
 .timeline-card {
-  background: var(--navy-card) !important;
-  border: 1px solid var(--border-mid) !important;
-  box-shadow: var(--shadow-card) !important;
+  background: linear-gradient(180deg, rgba(19, 40, 72, 0.98) 0%, rgba(15, 30, 53, 0.96) 100%) !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.36) !important;
   border-radius: var(--radius-card) !important;
   transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease !important;
 }
@@ -343,7 +343,7 @@ html.light-mode .contact .section-title {
   transform: translateY(-5px) !important;
   box-shadow: var(--shadow-hover) !important;
   border-color: var(--border-accent) !important;
-  background: var(--navy-card-hover) !important;
+  background: linear-gradient(180deg, rgba(21, 39, 68, 1) 0%, rgba(18, 33, 58, 0.98) 100%) !important;
 }
 
 /* Card text */

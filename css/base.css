@@ -474,6 +474,9 @@ section { padding: 5rem 0; }
 .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 @media (max-width: 900px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .projects-grid { grid-template-columns: 1fr; } }
+.projects-grid,
+.skills-grid,
+.testimonials-grid { align-items: stretch; }
 .project-card { border-radius: 14px; overflow: hidden; }
 .project-image { position: relative; overflow: hidden; height: 200px; }
 .project-image img,
