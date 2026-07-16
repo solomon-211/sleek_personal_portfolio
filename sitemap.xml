@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <!-- Main portfolio -->
   <url>
@@ -7,9 +8,17 @@
     <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://solomonleek.tech/images/photo.jpg</image:loc>
+      <image:title>Solomon Thiong Garang Leek — Software Engineer &amp; Designer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://solomonleek.tech/images/solomon-hero.png</image:loc>
+      <image:title>Solomon Thiong Garang Leek — Portfolio Hero</image:title>
+    </image:image>
   </url>
 
-  <!-- Portfolio page (canonical HTML path) -->
+  <!-- Portfolio page -->
   <url>
     <loc>https://solomonleek.tech/html/index.html</loc>
     <lastmod>2026-05-10</lastmod>
@@ -23,25 +32,87 @@
     <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://solomonleek.tech/images/Independence-day.jpg</image:loc>
+      <image:title>Independence Day Campaign Poster by Solomon Thiong Garang Leek</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://solomonleek.tech/images/Nexus.png</image:loc>
+      <image:title>Sleek Nexus Creative Brand Identity by Solomon Thiong Garang Leek</image:title>
+    </image:image>
   </url>
 
-  <!-- Case Study: Independence Day Campaign -->
+  <!-- Blog -->
+  <url>
+    <loc>https://solomonleek.tech/html/blog.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://solomonleek.tech/images/photo.jpg</image:loc>
+      <image:title>Solomon Thiong Garang Leek — Blog</image:title>
+    </image:image>
+  </url>
+
+  <!-- Gallery -->
+  <url>
+    <loc>https://solomonleek.tech/html/gallery.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Case Study -->
   <url>
     <loc>https://solomonleek.tech/html/case-study.html</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://solomonleek.tech/images/Independence-day.jpg</image:loc>
+      <image:title>Independence Day Campaign — Case Study by Solomon Thiong Garang Leek</image:title>
+    </image:image>
   </url>
 
-  <!-- Article: ALU Scholarship Journey -->
+  <!-- Articles -->
   <url>
     <loc>https://solomonleek.tech/html/articles/alu-scholarship-journey.html</loc>
     <lastmod>2026-01-01</lastmod>
     <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://solomonleek.tech/images/photo.jpg</image:loc>
+      <image:title>How I Got a Full Scholarship to ALU — Solomon Thiong Garang Leek</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://solomonleek.tech/html/articles/aspire-leaders-program.html</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://solomonleek.tech/images/1754355782432.jpg</image:loc>
+      <image:title>Aspire Leaders Program — Solomon Thiong Garang Leek</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://solomonleek.tech/html/articles/alu-marketing-extern-nairobi.html</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://solomonleek.tech/images/1747700819023.jpg</image:loc>
+      <image:title>ALU Marketing Extern Nairobi — Solomon Thiong Garang Leek</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://solomonleek.tech/html/articles/financial-planning-young-adults.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
 
-  <!-- 404 page -->
+  <!-- 404 -->
   <url>
     <loc>https://solomonleek.tech/404.html</loc>
     <lastmod>2026-05-10</lastmod>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <base href="../">
     <title>Solomon Thiong Garang Leek - Portfolio</title>
     <meta name="description" content="Professional portfolio of Solomon Thiong Garang Leek - Graphic Designer, Frontend Developer & Python Programmer">
-        <meta name="keywords" content="software engineer South Sudan, ALU student, African developer, frontend developer portfolio, graphic designer, Python programmer, scholarship candidate">
+    <meta name="keywords" content="Solomon Thiong Garang Leek, Solomon Leek, Solomon Leek ALU, South Sudan developer, software engineer South Sudan, ALU student, African developer, frontend developer portfolio, graphic designer South Sudan, Python programmer, scholarship candidate, Mastercard Foundation Scholar, ALU Kigali, sleek nexus creative">
         <meta name="author" content="Solomon Thiong Garang Leek">
         <meta property="og:type" content="website">
         <meta property="og:title" content="Solomon Thiong Garang Leek - Portfolio">
@@ -25,7 +25,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap&subset=latin" rel="stylesheet">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f4c81'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Sora,sans-serif' font-weight='800' font-size='13' fill='white'>SL</text></svg>">
+    <link rel="icon" type="image/jpeg" href="images/photo.jpg">
+    <link rel="apple-touch-icon" href="images/photo.jpg">
     <link rel="canonical" href="https://solomonleek.tech/">
     <meta name="theme-color" content="#ea580c">
     <script>document.documentElement.classList.add('js');</script>
@@ -46,18 +47,62 @@
             "@context": "https://schema.org",
             "@type": "Person",
             "name": "Solomon Thiong Garang Leek",
+            "givenName": "Solomon",
+            "familyName": "Leek",
+            "additionalName": "Thiong Garang",
             "url": "https://solomonleek.tech",
-            "image": "https://solomonleek.tech/images/photo.jpg",
+            "image": [
+                {
+                    "@type": "ImageObject",
+                    "url": "https://solomonleek.tech/images/photo.jpg",
+                    "name": "Solomon Thiong Garang Leek — Professional Portrait",
+                    "description": "Professional portrait of Solomon Thiong Garang Leek, Software Engineering student at ALU Kigali"
+                },
+                {
+                    "@type": "ImageObject",
+                    "url": "https://solomonleek.tech/images/solomon-hero.png",
+                    "name": "Solomon Thiong Garang Leek — Hero Photo",
+                    "description": "Solomon Thiong Garang Leek, Software Engineer and Graphic Designer"
+                }
+            ],
             "jobTitle": "Software Engineering Student",
             "description": "Software Engineering student at ALU focused on leadership, community impact, and technology solutions for Africa.",
+            "nationality": "South Sudanese",
+            "homeLocation": {
+                "@type": "Place",
+                "name": "Kigali, Rwanda"
+            },
             "alumniOf": {
                 "@type": "CollegeOrUniversity",
-                "name": "African Leadership University"
+                "name": "African Leadership University",
+                "url": "https://www.alueducation.com"
             },
+            "knowsAbout": ["Software Engineering", "Graphic Design", "Python", "Flask", "JavaScript", "Brand Identity", "Community Leadership"],
+            "email": "s.leek@alustudent.com",
             "sameAs": [
                 "https://github.com/solomon-211",
-                "https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+                "https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345",
+                "https://x.com/teeghee_4",
+                "https://www.instagram.com/sleek_tg001"
             ]
+        }
+        </script>
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Solomon Thiong Garang Leek — Portfolio",
+            "url": "https://solomonleek.tech",
+            "description": "Portfolio of Solomon Thiong Garang Leek — Software Engineer, Graphic Designer, and Community Leader from South Sudan studying at ALU Kigali.",
+            "author": {
+                "@type": "Person",
+                "name": "Solomon Thiong Garang Leek"
+            },
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://solomonleek.tech/html/blog.html?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
         }
         </script>
     <!-- NOTE: All styles are in css/styles.css -->
@@ -150,9 +195,9 @@
                     </button>
                 </li>
                 <li class="nav-more-item"><a href="#timeline"  class="nav-link">Background</a></li>
-
                 <li class="nav-more-item"><a href="#community"  class="nav-link">Community</a></li>
                 <li class="nav-more-item"><a href="html/gallery.html" class="nav-link">Gallery</a></li>
+                <li class="nav-more-item"><a href="admin.html" class="nav-link" style="opacity:0.45;font-size:0.82rem;"><i class="fas fa-lock" style="font-size:0.7rem;"></i> Admin</a></li>
 
                 <!-- Desktop More dropdown (desktop only) -->
                 <li class="nav-more nav-desktop-more" id="navMore">
@@ -161,9 +206,9 @@
                     </button>
                     <ul class="nav-more-menu" id="navMoreMenu">
                         <li><a href="#timeline"  class="nav-link">Background</a></li>
-
                         <li><a href="#community" class="nav-link">Community</a></li>
                         <li><a href="html/gallery.html" class="nav-link">Gallery</a></li>
+                        <li><a href="admin.html" class="nav-link" style="opacity:0.45;font-size:0.82rem;"><i class="fas fa-lock" style="font-size:0.7rem;"></i> Admin</a></li>
                     </ul>
                 </li>
             </ul>
@@ -1101,7 +1146,7 @@
                 <div class="about-text">
                     <h3 class="contact-heading">My Vision</h3>
                     <p class="contact-muted">
-                        Build software that solves real problems &mdash; starting with the communities I come from. I focus on practical technology for healthcare access, digital education, and economic inclusion across underserved African communities. Long term, I aim to return to South Sudan and launch <strong>Sleek Nexus Creative</strong> &mdash; a tech innovation hub and incubator for the next generation of African engineers.
+                        Build software that solves real problems &mdash; starting with the communities I come from. I focus on practical technology for healthcare access, digital education, and economic inclusion across underserved African communities.
                     </p>
                     <h3 class="contact-heading section-heading-spaced">What I'm Looking For</h3>
                     <p class="contact-muted">
@@ -1323,21 +1368,29 @@
                                 <i class="fas fa-file-lines"></i> Resume
                             </a>
                         </li>
+                        <li><a href="admin.html" style="opacity:0.35;font-size:0.78rem;" title="Admin"><i class="fas fa-lock"></i> Admin</a></li>
                     </ul>
                 </div>
 
                 <!-- Newsletter -->
                 <div class="footer-links-group footer-newsletter-col">
-                    <p class="footer-links-title">Stay Updated</p>
-                    <p class="footer-newsletter-sub">Get new articles and project updates in your inbox.</p>
+                    <div class="footer-newsletter-header">
+                        <span class="footer-newsletter-icon"><i class="fas fa-envelope-open-text"></i></span>
+                        <p class="footer-links-title">Stay in the Loop</p>
+                    </div>
+                    <p class="footer-newsletter-sub">Articles on engineering, design, and building for Africa &mdash; delivered when it matters, not every day.</p>
                     <form class="footer-newsletter-form" id="footerNewsletterForm" novalidate>
-                        <input type="email" id="footerNewsletterEmail" class="footer-newsletter-input" placeholder="your@email.com" aria-label="Email address" required>
+                        <input type="email" id="footerNewsletterEmail" class="footer-newsletter-input" placeholder="Enter your email address" aria-label="Email address" required>
                         <button type="submit" class="footer-newsletter-btn" aria-label="Subscribe">
-                            <i class="fas fa-arrow-right"></i>
+                            Subscribe <i class="fas fa-arrow-right"></i>
                         </button>
                     </form>
                     <p class="footer-newsletter-status" id="footerNewsletterStatus" role="status" aria-live="polite"></p>
-                    <p class="footer-newsletter-note"><i class="fas fa-lock"></i> No spam. Unsubscribe anytime.</p>
+                    <div class="footer-newsletter-trust">
+                        <span><i class="fas fa-shield-halved"></i> No spam, ever</span>
+                        <span><i class="fas fa-rotate-left"></i> Unsubscribe anytime</span>
+                        <span><i class="fas fa-users"></i> Join the community</span>
+                    </div>
                 </div>
 
             </div>
@@ -1386,6 +1439,53 @@
     </div>
 
     <script src="js/main.js?v=20260414"></script>
+    <!-- Inject dynamic content from admin -->
+    <script>
+    (function(){
+        var s = document.createElement('script');
+        s.src = 'js/admin.js';
+        s.onload = function(){
+            // Inject featured projects into homepage grid
+            (function(){
+                var projects = (window.admLoad && window.admLoad('adm_projects')) || [];
+                var featured = projects.filter(function(p){ return p.featured; }).slice(0,3);
+                if (!featured.length) return;
+                var grid = document.querySelector('#projects .projects-grid');
+                if (!grid) return;
+                function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+                featured.forEach(function(p){
+                    var tags = p.tags ? p.tags.split(',').map(function(t){ return '<span class="tech-tag">'+esc(t.trim())+'</span>'; }).join('') : '';
+                    var card = document.createElement('div');
+                    card.className = 'project-card';
+                    card.dataset.category = p.category || 'design';
+                    card.innerHTML = '<div class="project-image">'+(p.image ? '<img src="'+esc(p.image)+'" alt="'+esc(p.title)+'" loading="lazy">' : '<div class="project-code-preview" aria-hidden="true"><span class="code-tag">'+esc(p.title)+'</span></div>')+'<div class="project-overlay"><div class="project-links">'+(p.liveUrl ? '<a href="'+esc(p.liveUrl)+'" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>' : '')+(p.githubUrl ? '<a href="'+esc(p.githubUrl)+'" target="_blank" class="project-link"><i class="fab fa-github"></i></a>' : '')+'</div></div></div><div class="project-content"><div class="project-meta-row"><span class="project-featured-badge"><i class="fas fa-star"></i> Featured</span></div><h3 class="project-title">'+esc(p.title)+'</h3><p class="project-description">'+esc(p.description)+'</p><div class="tech-tags">'+tags+'</div></div>';
+                    grid.appendChild(card);
+                });
+            })();
+            // Inject latest blog articles into homepage blog preview
+            (function(){
+                var articles = (window.admLoad && window.admLoad('adm_articles')) || [];
+                if (!articles.length) return;
+                var grid = document.querySelector('#blog .projects-grid');
+                if (!grid) return;
+                function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+                var TAG_ICONS = { engineering:'fa-code', design:'fa-pen-nib', leadership:'fa-users', community:'fa-globe-africa', africa:'fa-globe-africa', student:'fa-graduation-cap', 'case-study':'fa-star', 'personal-growth':'fa-chart-line' };
+                var TAG_LABELS = { engineering:'Engineering', design:'Design', leadership:'Leadership', community:'Community', africa:'Africa & Tech', student:'Student Life', 'case-study':'Case Study', 'personal-growth':'Personal Growth' };
+                articles.slice(0,3).forEach(function(a){
+                    var href = a.slug ? 'html/articles/'+a.slug+'.html' : '#';
+                    var icon = TAG_ICONS[a.tag] || 'fa-book';
+                    var label = TAG_LABELS[a.tag] || a.tag;
+                    var card = document.createElement('a');
+                    card.href = href;
+                    card.className = 'blog-preview-card';
+                    card.innerHTML = '<div class="blog-preview-card__img">'+(a.image ? '<img src="'+esc(a.image)+'" alt="'+esc(a.title)+'" loading="lazy">' : '<div style="width:100%;height:100%;background:linear-gradient(135deg,rgba(234,88,12,0.2),rgba(249,115,22,0.1));display:flex;align-items:center;justify-content:center;"><i class="fas fa-newspaper" style="color:#f97316;font-size:2rem;"></i></div>')+'</div><div class="blog-preview-card__body"><span class="blog-preview-card__tag"><i class="fas '+esc(icon)+'"></i> '+esc(label)+'</span><h3 class="blog-preview-card__title">'+esc(a.title)+'</h3><p class="blog-preview-card__excerpt">'+esc(a.excerpt)+'</p><span class="blog-preview-card__meta">'+esc(a.date)+' &nbsp;&middot;&nbsp; '+esc(a.readTime)+'</span></div>';
+                    grid.appendChild(card);
+                });
+            })();
+        };
+        document.body.appendChild(s);
+    })();
+    </script>
 
     <!-- Analytics: self-hosted, no cookies, privacy-respecting -->
     <script>

@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
+
+# Block admin page from all crawlers
+User-agent: Googlebot
+Allow: /
+Disallow: /admin.html
 
 Sitemap: https://solomonleek.tech/sitemap.xml

@@ -31,7 +31,8 @@
       }
     }
     </script>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f4c81'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Sora,sans-serif' font-weight='800' font-size='13' fill='white'>SL</text></svg>">
+    <link rel="icon" type="image/jpeg" href="images/photo.jpg">
+    <link rel="apple-touch-icon" href="images/photo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap&subset=latin" rel="stylesheet">
@@ -40,6 +41,7 @@
     <!-- Analytics -->
     <script>
     (function(){
+        if (location.hostname !== 'solomonleek.tech') return;
         var API = (window.ANALYTICS_API_URL) || 'https://solomonleek.tech/api/analytics';
         function send(d){fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){});}
         send({page:location.pathname,referrer:document.referrer,event:'pageview'});
@@ -192,7 +194,7 @@
             <section class="b-feed">
 
                 <div class="b-feed__header">
-                    <h2 class="b-feed__title">All Articles <span class="b-feed__count" id="bFeedCount">5</span></h2>
+                    <h2 class="b-feed__title">All Articles <span class="b-feed__count" id="bFeedCount"></span></h2>
                 </div>
 
                 <!--
@@ -708,6 +710,7 @@
             e.preventDefault();
             const input = this.querySelector('input[type="email"]');
             const btn   = this.querySelector('button');
+            const statusEl = document.getElementById('newsletterStatus');
             if (!input || !btn) return;
             const email = input.value.trim();
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -715,18 +718,27 @@
                 setTimeout(() => input.style.borderColor = '', 2000);
                 return;
             }
-            const orig = btn.textContent;
-            btn.textContent = '✓ Subscribed!';
+            btn.textContent = 'Subscribing…';
             btn.disabled = true;
-            btn.style.background = 'rgba(34,197,94,0.2)';
-            btn.style.color = '#86efac';
-            input.value = '';
-            setTimeout(() => {
-                btn.textContent = orig;
+            fetch('https://solomonleek.tech/api/newsletter', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            })
+            .then(r => r.json())
+            .then(data => {
+                btn.textContent = '✓ Subscribed!';
+                btn.style.background = 'rgba(34,197,94,0.2)';
+                btn.style.color = '#86efac';
+                input.value = '';
+                if (statusEl) { statusEl.textContent = data.message || 'Subscribed!'; statusEl.style.display = 'block'; statusEl.style.color = '#86efac'; }
+                setTimeout(() => { btn.textContent = 'Subscribe'; btn.disabled = false; btn.style.background = ''; btn.style.color = ''; }, 3000);
+            })
+            .catch(() => {
+                btn.textContent = 'Subscribe';
                 btn.disabled = false;
-                btn.style.background = '';
-                btn.style.color = '';
-            }, 3000);
+                if (statusEl) { statusEl.textContent = 'Something went wrong. Try again.'; statusEl.style.display = 'block'; statusEl.style.color = '#ef4444'; }
+            });
         });
     }
 
@@ -774,6 +786,26 @@
         });
     });
 
+})();
+
+/* ── INJECT DYNAMIC ARTICLES FROM ADMIN ── */
+(function () {
+    var s = document.createElement('script');
+    s.src = 'js/admin.js';
+    s.onload = function () {
+        if (typeof window.admInjectBlogArticles === 'function') {
+            window.admInjectBlogArticles();
+        }
+        // Update article count dynamically
+        var countEl = document.getElementById('bFeedCount');
+        if (countEl) countEl.textContent = document.querySelectorAll('.b-post').length;
+    };
+    document.body.appendChild(s);
+    // Set initial count from static articles
+    document.addEventListener('DOMContentLoaded', function () {
+        var countEl = document.getElementById('bFeedCount');
+        if (countEl) countEl.textContent = document.querySelectorAll('.b-post').length;
+    });
 })();
 </script>
 </body>

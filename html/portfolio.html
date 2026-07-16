@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/portfolio.css">
     <script>
     (function(){
+        if (location.hostname !== 'solomonleek.tech') return;
         var API=(window.ANALYTICS_API_URL)||'https://solomonleek.tech/api/analytics';
         function send(d){fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){});}
         send({page:location.pathname,referrer:document.referrer,event:'pageview'});
@@ -250,7 +251,11 @@
 <!-- FOOTER -->
 <footer class="pf-footer">
     <div class="pf-footer__inner">
-        <p class="pf-footer__text">&copy; <span id="pfYear">2026</span> Solomon Thiong Garang Leek &nbsp;·&nbsp; <a href="html/index.html">Back to Portfolio</a> &nbsp;·&nbsp; <a href="mailto:s.leek@alustudent.com">Get in touch</a></p>
+        <p class="pf-footer__text">&copy; <span id="pfYear">2026</span> Solomon Thiong Garang Leek &nbsp;&middot;&nbsp; <a href="html/index.html">Back to Portfolio</a> &nbsp;&middot;&nbsp; <a href="mailto:s.leek@alustudent.com">Get in touch</a></p>
+    </div>
+</footer>
+
+<script> &nbsp;·&nbsp; <a href="html/index.html">Back to Portfolio</a> &nbsp;·&nbsp; <a href="mailto:s.leek@alustudent.com">Get in touch</a> &nbsp;·&nbsp; <a href="admin.html" style="opacity:0.35;font-size:0.78rem;"><i class="fas fa-lock"></i> Admin</a></p>
     </div>
 </footer>
 
@@ -335,6 +340,27 @@
     document.getElementById('pfSearch').addEventListener('input', function () {
         applySearch(this.value.trim().toLowerCase());
     });
+
+    /* ── INJECT DYNAMIC PROJECTS FROM ADMIN ── */
+    (function () {
+        var s = document.createElement('script');
+        s.src = 'js/admin.js';
+        s.onload = function () {
+            if (typeof window.admInjectPortfolioProjects === 'function') {
+                window.admInjectPortfolioProjects();
+            }
+            var d = document.querySelectorAll('#pf-design-grid .pf-card').length;
+            var v = document.querySelectorAll('#pf-dev-grid .pf-card').length;
+            var b = document.querySelectorAll('#pf-brand-grid .pf-card').length;
+            var map = { all: d + v + b, design: d, dev: v, brand: b };
+            document.querySelectorAll('.pf-filter-btn').forEach(function (btn) {
+                var c = btn.getAttribute('data-cat');
+                var el = btn.querySelector('.pf-filter-count');
+                if (el && map[c] !== undefined) el.textContent = map[c];
+            });
+        };
+        document.body.appendChild(s);
+    })();
 
 })();
 </script>

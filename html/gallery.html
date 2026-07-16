@@ -6,7 +6,8 @@
     <base href="../">
     <title>Gallery — Solomon Thiong Garang Leek</title>
     <meta name="description" content="Photo gallery of Solomon Thiong Garang Leek — design work, events, leadership, and personal moments.">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f4c81'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Sora,sans-serif' font-weight='800' font-size='13' fill='white'>SL</text></svg>">
+    <link rel="icon" type="image/jpeg" href="images/photo.jpg">
+    <link rel="apple-touch-icon" href="images/photo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,14 +19,14 @@
     <!-- Nav -->
     <nav class="g-nav">
         <div class="g-nav__inner">
-            <a href="index.html" class="g-nav__logo">
+            <a href="html/index.html" class="g-nav__logo">
                 <img src="images/photo.jpg" alt="Solomon Leek" class="g-nav__photo">
                 <span class="g-nav__name">Solomon Leek</span>
             </a>
             <div class="g-nav__links">
-                <a href="gallery.html" class="active">Gallery</a>
+                <a href="html/gallery.html" class="active">Gallery</a>
             </div>
-            <a href="index.html" class="g-nav__back">
+            <a href="html/index.html" class="g-nav__back">
                 <i class="fas fa-arrow-left"></i> Back to Portfolio
             </a>
         </div>
@@ -366,9 +367,11 @@
     <footer class="g-footer">
         <div class="g-footer__inner">
             <p>© 2025 Solomon Thiong Garang Leek. All rights reserved.</p>
-            <a href="index.html" class="g-footer__link">
-                <i class="fas fa-arrow-left"></i> Back to Portfolio
-            </a>
+            <div style="display:flex;align-items:center;gap:1.5rem;">
+                <a href="html/index.html" class="g-footer__link">
+                    <i class="fas fa-arrow-left"></i> Back to Portfolio
+                </a>
+            </div>
         </div>
     </footer>
 
@@ -481,6 +484,29 @@
         lightbox.addEventListener('click', e => {
             if (e.target === lightbox) closeLightbox();
         });
+
+        /* ── INJECT DYNAMIC GALLERY ITEMS FROM ADMIN ── */
+        (function () {
+            var s = document.createElement('script');
+            s.src = 'js/admin.js';
+            s.onload = function () {
+                if (typeof window.admInjectGalleryItems === 'function') {
+                    window.admInjectGalleryItems();
+                    // Re-bind zoom buttons for new items
+                    var newItems = document.querySelectorAll('.g-item');
+                    newItems.forEach(function (item) {
+                        var zoomBtn = item.querySelector('.g-item__zoom');
+                        if (zoomBtn && !zoomBtn._bound) {
+                            zoomBtn._bound = true;
+                            zoomBtn.addEventListener('click', function () { openLightbox(item); });
+                            item.querySelector('.g-item__img-wrap').addEventListener('click', function () { openLightbox(item); });
+                        }
+                    });
+                    updateVisibleItems();
+                }
+            };
+            document.body.appendChild(s);
+        })();
     </script>
 
 </body>
