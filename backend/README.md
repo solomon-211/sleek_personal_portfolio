@@ -116,3 +116,20 @@ curl -X POST https://your-app.onrender.com/api/contact \
 | `notify_requests.json` | Article notify-me requests |
 | `analytics.json` | Page view events |
 | `rate_limits.json` | Rate limit state (persists across restarts) |
+
+These contain visitor PII (names, emails, IPs) — never commit them. See the root `.gitignore`.
+
+---
+
+## Admin-only endpoints
+
+`GET /api/messages`, `GET /api/messages/count`, and `GET /api/analytics/summary` expose visitor
+data and require an `ADMIN_API_KEY` set in `.env`. Without it, they return `503` instead of
+leaking data. Call them with the key as a header:
+
+```bash
+curl -H "X-Admin-Key: <your-key>" https://solomonleek.tech/api/messages
+```
+
+`GET /api/analytics/views` is intentionally public (total view count only, no PII) — it powers
+the visitor-count badge in the site footer.

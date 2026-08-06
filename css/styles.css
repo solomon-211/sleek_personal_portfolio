@@ -128,8 +128,8 @@ body::before {
 
 /* ── NAVIGATION ────────────────────────────────────── */
 nav {
-  background: rgba(6,13,26,0.92) !important;
-  border-bottom: 1px solid var(--border-subtle) !important;
+  background: #0d1b2e !important;
+  border-bottom: 1px solid rgba(249,115,22,0.18) !important;
   box-shadow: 0 4px 24px rgba(0,0,0,0.4) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;

@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Environment secrets — never commit real credentials
+backend/.env
+.env
+
+# Backend runtime data — contains visitor PII (names, emails, IPs)
+backend/messages.json
+backend/newsletter.json
+backend/notify_requests.json
+backend/analytics.json
+backend/rate_limits.json
+
+# OS / editor
+.DS_Store
+Thumbs.db

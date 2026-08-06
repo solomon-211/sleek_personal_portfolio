@@ -50,13 +50,7 @@
     <link rel="stylesheet" href="css/styles.css?v=20260414">
     <link rel="stylesheet" href="css/case-study.css?v=20260414">
     <!-- Analytics -->
-    <script>
-    (function(){
-        var API = (window.ANALYTICS_API_URL) || 'https://solomonleek.tech/api/analytics';
-        function send(d){fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){});}
-        send({page:location.pathname,referrer:document.referrer,event:'pageview'});
-    })();
-    </script>
+    <script src="js/analytics.js"></script>
     <noscript><style>body{visibility:visible}</style></noscript>
 </head>
 <body>

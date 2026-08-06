@@ -6,6 +6,13 @@
     <base href="../">
     <title>Gallery — Solomon Thiong Garang Leek</title>
     <meta name="description" content="Photo gallery of Solomon Thiong Garang Leek — design work, events, leadership, and personal moments.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Gallery — Solomon Thiong Garang Leek">
+    <meta property="og:description" content="Photo gallery of Solomon Thiong Garang Leek — design work, events, leadership, and personal moments.">
+    <meta property="og:url" content="https://solomonleek.tech/html/gallery.html">
+    <meta property="og:image" content="https://solomonleek.tech/images/photo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://solomonleek.tech/html/gallery.html">
     <link rel="icon" type="image/jpeg" href="images/photo.jpg">
     <link rel="apple-touch-icon" href="images/photo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -485,28 +492,6 @@
             if (e.target === lightbox) closeLightbox();
         });
 
-        /* ── INJECT DYNAMIC GALLERY ITEMS FROM ADMIN ── */
-        (function () {
-            var s = document.createElement('script');
-            s.src = 'js/admin.js';
-            s.onload = function () {
-                if (typeof window.admInjectGalleryItems === 'function') {
-                    window.admInjectGalleryItems();
-                    // Re-bind zoom buttons for new items
-                    var newItems = document.querySelectorAll('.g-item');
-                    newItems.forEach(function (item) {
-                        var zoomBtn = item.querySelector('.g-item__zoom');
-                        if (zoomBtn && !zoomBtn._bound) {
-                            zoomBtn._bound = true;
-                            zoomBtn.addEventListener('click', function () { openLightbox(item); });
-                            item.querySelector('.g-item__img-wrap').addEventListener('click', function () { openLightbox(item); });
-                        }
-                    });
-                    updateVisibleItems();
-                }
-            };
-            document.body.appendChild(s);
-        })();
     </script>
 
 </body>

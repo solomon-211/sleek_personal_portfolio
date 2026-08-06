@@ -17,6 +17,7 @@ Features:
 import json
 import logging
 import os
+import secrets
 import smtplib
 import time
 from datetime import datetime, timezone
@@ -27,7 +28,7 @@ from typing import Dict, List, Optional
 from collections import defaultdict
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, Request, status
+from fastapi import Depends, FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
@@ -85,6 +86,23 @@ CONTACT_RATE_WINDOW = int(os.getenv("RATE_LIMIT_WINDOW", "3600"))   # seconds
 # Analytics gets a much tighter limit to prevent flooding
 ANALYTICS_RATE_MAX    = int(os.getenv("ANALYTICS_RATE_MAX", "120"))  # 120 events
 ANALYTICS_RATE_WINDOW = int(os.getenv("ANALYTICS_RATE_WINDOW", "60")) # per minute
+
+# ── Admin auth ──────────────────────────────────────────────────────────────────
+# Shared-secret gate for endpoints that expose visitor PII (names/emails/messages).
+ADMIN_API_KEY = os.getenv("ADMIN_API_KEY", "")
+
+
+def _require_admin_key(request: Request) -> None:
+    """Guard admin-only endpoints. Fails closed if no key is configured."""
+    if not ADMIN_API_KEY:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Admin endpoint disabled: ADMIN_API_KEY is not configured on the server.",
+        )
+    supplied = request.headers.get("X-Admin-Key", "")
+    if not secrets.compare_digest(supplied, ADMIN_API_KEY):
+        log.warning("Rejected admin request — invalid or missing X-Admin-Key")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid or missing admin key")
 
 
 def _check_rate_limit(ip: str, max_requests: int, window_seconds: int, bucket: str = "contact") -> None:
@@ -352,13 +370,13 @@ def health() -> dict:
     }
 
 
-@app.get("/api/messages/count")
+@app.get("/api/messages/count", dependencies=[Depends(_require_admin_key)])
 def message_count() -> dict:
     records = _read_json(LOG_FILE, [])
     return {"count": len(records) if isinstance(records, list) else 0}
 
 
-@app.get("/api/messages")
+@app.get("/api/messages", dependencies=[Depends(_require_admin_key)])
 def messages(limit: int = 50) -> dict:
     records = _read_json(LOG_FILE, [])
     if not isinstance(records, list):
@@ -369,7 +387,14 @@ def messages(limit: int = 50) -> dict:
     return {"count": len(records), "messages": recent_messages}
 
 
-@app.get("/api/analytics/summary")
+@app.get("/api/analytics/views")
+def analytics_total_views() -> dict:
+    """Public, non-sensitive total view count — powers the footer visitor badge."""
+    records = _read_json(ANALYTICS_FILE, [])
+    return {"total_views": len(records) if isinstance(records, list) else 0}
+
+
+@app.get("/api/analytics/summary", dependencies=[Depends(_require_admin_key)])
 def analytics_summary() -> dict:
     """Return aggregated analytics — page views, top sections, top referrers."""
     records = _read_json(ANALYTICS_FILE, [])

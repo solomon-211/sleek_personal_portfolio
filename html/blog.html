@@ -41,7 +41,6 @@
     <!-- Analytics -->
     <script>
     (function(){
-        if (location.hostname !== 'solomonleek.tech') return;
         var API = (window.ANALYTICS_API_URL) || 'https://solomonleek.tech/api/analytics';
         function send(d){fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){});}
         send({page:location.pathname,referrer:document.referrer,event:'pageview'});
@@ -62,54 +61,7 @@
                 <span class="b-logo-text">Solomon Leek</span>
             </a>
 
-            <!-- Desktop: Topics dropdown + search -->
-            <div class="b-nav__center">
-
-                <!-- Topics dropdown -->
-                <div class="b-topics-dropdown" id="bTopicsDropdown">
-                    <button class="b-topics-btn" id="bTopicsBtn" aria-expanded="false" aria-haspopup="true">
-                        <i class="fas fa-tag"></i>
-                        <span id="bTopicsLabel">All Topics</span>
-                        <i class="fas fa-chevron-down b-topics-chevron"></i>
-                    </button>
-                    <div class="b-topics-menu" id="bTopicsMenu" role="menu">
-                        <a href="#" class="b-topics-item b-topics-item--active" data-filter="all" role="menuitem">
-                            <i class="fas fa-border-all"></i> All Articles
-                        </a>
-                        <div class="b-topics-divider"></div>
-                        <a href="#" class="b-topics-item" data-filter="engineering" role="menuitem">
-                            <i class="fas fa-code"></i> Engineering
-                        </a>
-                        <a href="#" class="b-topics-item" data-filter="design" role="menuitem">
-                            <i class="fas fa-pen-nib"></i> Design
-                        </a>
-                        <a href="#" class="b-topics-item" data-filter="leadership" role="menuitem">
-                            <i class="fas fa-users"></i> Leadership
-                        </a>
-                        <a href="#" class="b-topics-item" data-filter="community" role="menuitem">
-                            <i class="fas fa-heart"></i> Community
-                        </a>
-                        <a href="#" class="b-topics-item" data-filter="africa" role="menuitem">
-                            <i class="fas fa-globe-africa"></i> Africa &amp; Tech
-                        </a>
-                        <a href="#" class="b-topics-item" data-filter="student" role="menuitem">
-                            <i class="fas fa-graduation-cap"></i> Student Life
-                        </a>
-                        <a href="#" class="b-topics-item" data-filter="case-study" role="menuitem">
-                            <i class="fas fa-star"></i> Case Study
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Search -->
-                <div class="b-search" id="bSearchWrap">
-                    <i class="fas fa-search b-search__icon"></i>
-                    <input type="search" class="b-search__input" id="bSearchInput" placeholder="Search articles…" aria-label="Search articles">
-                    <button class="b-search__clear" id="bSearchClear" aria-label="Clear search" style="display:none">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
+            <!-- No topic filter - clean nav -->
 
             <!-- Right actions -->
             <div class="b-nav__right">
@@ -125,63 +77,30 @@
         </div>
     </nav>
 
-    <!-- ── FEATURED HERO POST ── -->
-    <header class="b-hero">
-        <div class="b-hero__inner">
-            <div class="b-hero__content">
-                <div class="b-hero__top">
-                    <span class="b-tag b-tag--orange">
-                        <i class="fas fa-star"></i> Featured
-                    </span>
-                    <span class="b-tag b-tag--ghost">Case Study</span>
-                </div>
-                <h1 class="b-hero__title">Independence Day Campaign — Strategy, Craft, and Results</h1>
-                <p class="b-hero__excerpt">A complete breakdown of the creative process behind the Independence Day Campaign Poster — from brief and research to design execution, tooling decisions, and final delivery for community-facing communication.</p>
-
-                <div class="b-hero__author">
-                    <div class="b-avatar" style="overflow:hidden;padding:0;">
-                        <img src="images/photo.jpg" alt="Solomon Thiong Garang Leek" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                    </div>
-                    <div class="b-hero__author-info">
-                        <span class="b-hero__author-name">Solomon Thiong Garang Leek</span>
-                        <span class="b-hero__author-meta">
-                            <span>July 9, 2025</span>
-                            <span class="b-dot"></span>
-                            <span>6 min read</span>
-                            <span class="b-dot"></span>
-                            <span>1.2k views</span>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="b-hero__actions">
-                    <a href="html/case-study.html" class="b-btn b-btn--primary">
-                        Read Article <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <button class="b-btn b-btn--ghost" onclick="navigator.clipboard.writeText(window.location.href)" title="Copy link">
-                        <i class="fas fa-link"></i> Copy Link
-                    </button>
-                </div>
+    <!-- ── BLOG HEADER ── -->
+    <header class="b-page-header">
+        <div class="b-page-header__inner">
+            <div class="b-page-header__badge">
+                <span class="b-page-header__dot"></span>
+                <span>Writing &amp; Insights</span>
             </div>
-            <div class="b-hero__image">
-                <img src="images/Independence-day.jpg" alt="Independence Day Campaign Poster" loading="eager">
-                <div class="b-hero__image-overlay"></div>
-                <div class="b-hero__image-fade"></div>
-                <div class="b-hero__stats">
-                    <div class="b-hero__stat"><span class="b-hero__stat-num">3</span><span class="b-hero__stat-label">Iterations</span></div>
-                    <div class="b-hero__stat-sep"></div>
-                    <div class="b-hero__stat"><span class="b-hero__stat-num">2</span><span class="b-hero__stat-label">Tools</span></div>
-                    <div class="b-hero__stat-sep"></div>
-                    <div class="b-hero__stat"><span class="b-hero__stat-num">High</span><span class="b-hero__stat-label">Engagement</span></div>
+            <h1 class="b-page-header__title">The Blog</h1>
+            <p class="b-page-header__sub">Honest writing on software engineering, design, leadership, and building technology for Africa &mdash; from someone doing it in real time.</p>
+            <div class="b-page-header__stats">
+                <div class="b-page-header__stat">
+                    <span class="b-page-header__num">5</span>
+                    <span class="b-page-header__label">Published</span>
                 </div>
-            </div>
-        </div>
-        <div class="b-hero__scroll-hint">
-            <span>Scroll to explore</span>
-            <div class="b-hero__scroll-arrows">
-                <i class="fas fa-chevron-down b-scroll-arrow b-scroll-arrow--1"></i>
-                <i class="fas fa-chevron-down b-scroll-arrow b-scroll-arrow--2"></i>
-                <i class="fas fa-chevron-down b-scroll-arrow b-scroll-arrow--3"></i>
+                <div class="b-page-header__stat-sep"></div>
+                <div class="b-page-header__stat">
+                    <span class="b-page-header__num">4</span>
+                    <span class="b-page-header__label">Topics</span>
+                </div>
+                <div class="b-page-header__stat-sep"></div>
+                <div class="b-page-header__stat">
+                    <span class="b-page-header__num">2025</span>
+                    <span class="b-page-header__label">Since</span>
+                </div>
             </div>
         </div>
     </header>
@@ -220,8 +139,8 @@
                             <span class="b-tag b-tag--leadership">Leadership</span>
                             <span class="b-post__live"><i class="fas fa-circle"></i> Published</span>
                         </div>
-                        <h3 class="b-post__title">Aspire Leaders Program — Finally Get It Done!!!</h3>
-                        <p class="b-post__excerpt">I completed the Aspire Leaders Program from Aspire Institute — a Harvard-affiliated initiative equipping emerging leaders with leadership and social entrepreneurship skills to tackle real-world problems.</p>
+                        <h3 class="b-post__title">Aspire Leaders Program &mdash; What I Learned and Why It Matters</h3>
+                        <p class="b-post__excerpt">I completed the Aspire Leaders Program from Aspire Institute &mdash; a Harvard-affiliated initiative equipping emerging leaders with leadership and social entrepreneurship skills to tackle real-world problems.</p>
                         <div class="b-post__footer">
                             <div class="b-post__author">
                                 <div class="b-avatar b-avatar--sm" style="overflow:hidden;padding:0;">
@@ -392,35 +311,6 @@
                         <a href="html/index.html" class="b-btn b-btn--outline b-btn--full">View Portfolio</a>
                     </div>
                 </div>
-
-                <!-- PDF Resource -->
-                <div class="b-widget">
-                    <div class="b-newsletter">
-                        <div class="b-newsletter__icon"><i class="fas fa-file-pdf"></i></div>
-                        <h3 class="b-newsletter__title">Free Resource</h3>
-                        <p class="b-newsletter__sub">Financial Planning for Young Adults — offered by the University of Illinois. 8 modules covering budgeting, balance sheets, cash flow, and financial goals.</p>
-                        <a href="images/Financial planning for young adults.pdf" download class="b-btn b-btn--primary b-btn--full" style="text-align:center;">
-                            <i class="fas fa-download"></i> Download PDF
-                        </a>
-                        <p class="b-newsletter__note"><i class="fas fa-lock"></i> Free. No sign-up required.</p>
-                    </div>
-                </div>
-
-                <!-- Newsletter -->
-                <div class="b-widget">
-                    <div class="b-newsletter">
-                        <div class="b-newsletter__icon"><i class="fas fa-envelope-open-text"></i></div>
-                        <h3 class="b-newsletter__title">Stay Updated</h3>
-                        <p class="b-newsletter__sub">Get new articles delivered to your inbox. No spam, ever.</p>
-                        <form class="b-newsletter__form" id="newsletterForm" novalidate>
-                            <input type="email" id="newsletterEmail" placeholder="your@email.com" class="b-newsletter__input" aria-label="Email address" required>
-                            <button type="submit" class="b-btn b-btn--primary b-btn--full">Subscribe</button>
-                        </form>
-                        <p class="b-newsletter__status" id="newsletterStatus" role="status" aria-live="polite" style="display:none;font-size:0.8rem;margin-top:0.5rem;"></p>
-                        <p class="b-newsletter__note"><i class="fas fa-lock"></i> No spam. Unsubscribe anytime.</p>
-                    </div>
-                </div>
-
                 <!-- Recommended Reading -->
                 <div class="b-widget">
                     <h3 class="b-widget__title">Recommended Reading</h3>
@@ -788,25 +678,10 @@
 
 })();
 
-/* ── INJECT DYNAMIC ARTICLES FROM ADMIN ── */
-(function () {
-    var s = document.createElement('script');
-    s.src = 'js/admin.js';
-    s.onload = function () {
-        if (typeof window.admInjectBlogArticles === 'function') {
-            window.admInjectBlogArticles();
-        }
-        // Update article count dynamically
-        var countEl = document.getElementById('bFeedCount');
-        if (countEl) countEl.textContent = document.querySelectorAll('.b-post').length;
-    };
-    document.body.appendChild(s);
-    // Set initial count from static articles
-    document.addEventListener('DOMContentLoaded', function () {
-        var countEl = document.getElementById('bFeedCount');
-        if (countEl) countEl.textContent = document.querySelectorAll('.b-post').length;
-    });
-})();
+document.addEventListener('DOMContentLoaded', function () {
+    var countEl = document.getElementById('bFeedCount');
+    if (countEl) countEl.textContent = document.querySelectorAll('.b-post').length;
+});
 </script>
 </body>
 </html>

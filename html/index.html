@@ -32,6 +32,8 @@
     <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/card-effects.css">
+    <link rel="stylesheet" href="css/creative.css">
 
     <!-- Optional overrides for a separately hosted API.
          If unset, the frontend uses same-origin /api routes. -->
@@ -55,13 +57,13 @@
                 {
                     "@type": "ImageObject",
                     "url": "https://solomonleek.tech/images/photo.jpg",
-                    "name": "Solomon Thiong Garang Leek — Professional Portrait",
+                    "name": "Solomon Thiong Garang Leek Ã¢â‚¬â€ Professional Portrait",
                     "description": "Professional portrait of Solomon Thiong Garang Leek, Software Engineering student at ALU Kigali"
                 },
                 {
                     "@type": "ImageObject",
                     "url": "https://solomonleek.tech/images/solomon-hero.png",
-                    "name": "Solomon Thiong Garang Leek — Hero Photo",
+                    "name": "Solomon Thiong Garang Leek Ã¢â‚¬â€ Hero Photo",
                     "description": "Solomon Thiong Garang Leek, Software Engineer and Graphic Designer"
                 }
             ],
@@ -91,9 +93,9 @@
         {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "name": "Solomon Thiong Garang Leek — Portfolio",
+            "name": "Solomon Thiong Garang Leek Ã¢â‚¬â€ Portfolio",
             "url": "https://solomonleek.tech",
-            "description": "Portfolio of Solomon Thiong Garang Leek — Software Engineer, Graphic Designer, and Community Leader from South Sudan studying at ALU Kigali.",
+            "description": "Portfolio of Solomon Thiong Garang Leek Ã¢â‚¬â€ Software Engineer, Graphic Designer, and Community Leader from South Sudan studying at ALU Kigali.",
             "author": {
                 "@type": "Person",
                 "name": "Solomon Thiong Garang Leek"
@@ -109,20 +111,6 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <!-- AVAILABILITY BANNER -->
-    <div class="avail-banner" id="availBanner" role="banner" aria-label="Availability status">
-        <div class="avail-banner__inner">
-            <span class="avail-banner__dot"></span>
-            <span class="avail-banner__text">
-                <strong>Open to Work</strong> &mdash; Software Engineering Internships · Graphic Designer · Social Media &amp; Communications Manager · Remote or Kigali-based · 2026
-            </span>
-            <a href="#contact" class="avail-banner__cta">Get in touch <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <button class="avail-banner__close" id="availBannerClose" aria-label="Dismiss banner">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
 
     <!-- Page transition overlay -->
     <div class="page-transition" id="pageTransition"></div>
@@ -144,17 +132,44 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
+
+            <!-- Logo -->
             <a href="#home" class="logo">
                 <img src="images/photo.jpg" alt="Solomon Leek" class="logo-photo">
                 <span class="logo-text">Solomon Leek</span>
             </a>
+
+            <!-- Desktop nav links -->
+            <ul class="nav-links" id="navLinks">
+
+                <!-- Drawer header (mobile only) -->
+                <li class="nav-drawer-header">
+                    <div class="nav-drawer-brand">
+                        <img src="images/photo.jpg" alt="Solomon Leek" class="logo-photo">
+                        <span>Solomon Leek</span>
+                    </div>
+                    <button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </li>
+
+                <li class="nav-main-item"><a href="#home"     class="nav-link">Home</a></li>
+                <li class="nav-main-item"><a href="#about"    class="nav-link">About</a></li>
+                <li class="nav-main-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-main-item"><a href="html/portfolio.html" class="nav-link">Portfolio</a></li>
+                <li class="nav-main-item"><a href="#timeline" class="nav-link">Journey</a></li>
+                <li class="nav-main-item"><a href="#skills"   class="nav-link">Skills</a></li>
+                <li class="nav-main-item"><a href="#community" class="nav-link">Community</a></li>
+                <li class="nav-main-item"><a href="#contact"  class="nav-link">Contact</a></li>
+
+            </ul>
+
+            <!-- Right actions -->
             <div class="nav-right-group">
-                <!-- Command palette trigger -->
-                <button class="nav-search-btn" id="cmdOpenBtn" aria-label="Search" title="Search">
+                <button class="nav-search-btn" id="cmdOpenBtn" aria-label="Search" title="Search (Ctrl+K)">
                     <i class="fas fa-search"></i>
                 </button>
-                <!-- Theme toggle -->
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
                     <i class="fas fa-sun theme-icon-light"></i>
                     <i class="fas fa-moon theme-icon-dark"></i>
                 </button>
@@ -162,102 +177,22 @@
                     <i class="fas fa-bars" id="menuIcon"></i>
                 </button>
             </div>
-            <ul class="nav-links" id="navLinks">
 
-                <!-- Drawer header (mobile only) -->
-                <li class="nav-drawer-header">
-                    <span class="nav-drawer-title" id="navDrawerTitle">Menu</span>
-                    <button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </li>
-
-                <!-- Main pages -->
-                <li class="nav-main-item"><a href="#home"     class="nav-link">Home</a></li>
-                <li class="nav-main-item"><a href="#about"    class="nav-link">About</a></li>
-                <li class="nav-main-item"><a href="#projects" class="nav-link">Projects</a></li>
-                <li class="nav-main-item"><a href="html/portfolio.html" class="nav-link">Portfolio</a></li>
-                <li class="nav-main-item"><a href="#skills"   class="nav-link">Skills</a></li>
-                <li class="nav-main-item"><a href="#contact"  class="nav-link">Contact</a></li>
-
-                <!-- More Pages button (mobile only) -->
-                <li class="nav-main-item nav-more-btn-item">
-                    <button class="nav-link nav-more-trigger" id="navMoreToggle" type="button" aria-expanded="false">
-                        <i class="fas fa-grip-dots"></i> More
-                        <i class="fas fa-chevron-right nav-more-arrow"></i>
-                    </button>
-                </li>
-
-                <!-- Back button (mobile only) -->
-                <li class="nav-back-item" id="navBackItem">
-                    <button class="nav-link nav-back-btn" id="navBackBtn" type="button">
-                        <i class="fas fa-arrow-left"></i> Back
-                    </button>
-                </li>
-                <li class="nav-more-item"><a href="#timeline"  class="nav-link">Background</a></li>
-                <li class="nav-more-item"><a href="#community"  class="nav-link">Community</a></li>
-                <li class="nav-more-item"><a href="html/gallery.html" class="nav-link">Gallery</a></li>
-                <li class="nav-more-item"><a href="admin.html" class="nav-link" style="opacity:0.45;font-size:0.82rem;"><i class="fas fa-lock" style="font-size:0.7rem;"></i> Admin</a></li>
-
-                <!-- Desktop More dropdown (desktop only) -->
-                <li class="nav-more nav-desktop-more" id="navMore">
-                    <button class="nav-more-toggle" id="navMoreDesktop" type="button" aria-expanded="false">
-                        More <i class="fas fa-chevron-down nav-more-icon"></i>
-                    </button>
-                    <ul class="nav-more-menu" id="navMoreMenu">
-                        <li><a href="#timeline"  class="nav-link">Background</a></li>
-                        <li><a href="#community" class="nav-link">Community</a></li>
-                        <li><a href="html/gallery.html" class="nav-link">Gallery</a></li>
-                        <li><a href="admin.html" class="nav-link" style="opacity:0.45;font-size:0.82rem;"><i class="fas fa-lock" style="font-size:0.7rem;"></i> Admin</a></li>
-                    </ul>
-                </li>
-            </ul>
         </div>
     </nav>
 
     <main id="main-content">
-
-    <!-- Currently Working On — live activity strip -->
-    <div class="activity-strip" id="activityStrip" role="marquee" aria-label="Current work activity">
-        <div class="activity-strip__inner">
-            <span class="activity-strip__dot"></span>
-            <span class="activity-strip__items" id="activityItems">
-                <span class="activity-strip__item"><i class="fas fa-code"></i> Building full-stack projects at ALU · Kigali</span>
-                <span class="activity-strip__sep">·</span>
-                <span class="activity-strip__item"><i class="fas fa-pen-nib"></i> Designing campaign visuals for South Sudan communities</span>
-                <span class="activity-strip__sep">·</span>
-                <span class="activity-strip__item"><i class="fas fa-rocket"></i> Developing Sleek Nexus Creative brand system</span>
-                <span class="activity-strip__sep">·</span>
-                <span class="activity-strip__item"><i class="fas fa-graduation-cap"></i> Mastercard Foundation Scholar · Software Engineering</span>
-                <span class="activity-strip__sep">·</span>
-            </span>
-        </div>
-        <button class="activity-strip__close" id="activityClose" aria-label="Close" title="Close">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <!-- Animated background orbs -->
-        <div class="hero-bg" aria-hidden="true">
-            <div class="hero-grid-lines"></div>
-        </div>
-
         <div class="hero-container">
             <!-- LEFT: Content -->
             <div class="hero-content">
 
-                <!-- Availability badge -->
-                <div class="hero-badge reveal-left">
-                    <span class="hero-badge-dot"></span>
-                    <span>Available for Internships &amp; Collaborations · <span id="badgeYear">2026</span></span>
-                </div>
-
-                <!-- Kigali clock -->
+                                <!-- Kigali clock -->
                 <div class="kigali-clock reveal-left" aria-label="Current time in Kigali, Rwanda">
-                    <span class="kigali-clock__icon" id="kigaliIcon">&#x1F319;</span>
+                    <i class="fas fa-map-marker-alt kigali-clock__icon"></i>
                     <span class="kigali-clock__label">Kigali, Rwanda</span>
-                    <span class="kigali-clock__sep">·</span>
+                    <span class="kigali-clock__sep">&middot;</span>
                     <span class="kigali-clock__time" id="kigaliTime">--:-- --</span>
                     <span class="kigali-clock__tz">CAT</span>
                 </div>
@@ -316,7 +251,7 @@
                         <img src="images/ALU%20LOGO.jpg" alt="African Leadership University" class="hero-trust__logo">
                         <span>African Leadership University</span>
                     </a>
-                    <span class="hero-trust__sep">·</span>
+                    <span class="hero-trust__sep">&middot;</span>
                     <a href="#academics" class="hero-trust__item">
                         <img src="images/MCF%20LOGO.jpg" alt="Mastercard Foundation" class="hero-trust__logo">
                         <span>Mastercard Foundation Scholar</span>
@@ -348,10 +283,7 @@
             <!-- RIGHT: Image -->
             <div class="hero-image-wrap reveal-right">
                 <div class="hero-image-ring"></div>
-                <div class="hero-image-glow"></div>
-                <img src="images/solomon-hero.png" alt="Solomon Thiong Garang Leek &mdash; Software Engineer & Designer" width="380" height="380" loading="eager" decoding="async" fetchpriority="high" class="hero-photo"
-                     onload="this.removeAttribute('loading')"
-                     style="content-visibility:auto">
+                <img src="images/solomon-hero.png" alt="Solomon Thiong Garang Leek" width="380" height="380" loading="eager" decoding="async" fetchpriority="high" class="hero-photo">
             </div>
         </div>
 
@@ -370,7 +302,6 @@
     <!-- About Section -->
     <section id="about" class="section-bg-secondary">
 
-    <!-- Overview Section removed; homepage restored to original layout -->
         <!-- Wave divider from hero -->
         <div class="section-wave" aria-hidden="true">
             <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -588,7 +519,7 @@
                 <div class="projects-stat-divider"></div>
                 <div class="projects-stat-item">
                     <span class="projects-stat-num">4</span>
-                    <span class="projects-stat-label">Brand Works</span>
+                    <span class="projects-stat-label">Live &amp; Deployed</span>
                 </div>
             </div>
             <!-- 3 Featured Cards -->
@@ -624,8 +555,8 @@
                         <div class="project-code-preview" aria-hidden="true">
                             <span class="code-line"><span class="code-tag">NYC Urban Mobility</span></span>
                             <span class="code-line"><span class="code-attr">1M+ taxi records</span></span>
-                            <span class="code-line"><span class="code-val">min-heap · O(n log k)</span></span>
-                            <span class="code-line"><span class="code-tag">Flask · SQLite · Pandas</span></span>
+                            <span class="code-line"><span class="code-val">min-heap &middot; O(n log k)</span></span>
+                            <span class="code-line"><span class="code-tag">Flask &middot; SQLite &middot; Pandas</span></span>
                             <span class="code-line"><span class="code-attr">7 REST endpoints</span></span>
                         </div>
                         <div class="project-overlay">
@@ -655,26 +586,63 @@
                     </div>
                 </div>
 
-                <!-- Featured: Brand -->
-                <div class="project-card" data-category="design">
+                <!-- Featured: EduPortal South Sudan Ã¢â‚¬â€ Live -->
+                <div class="project-card" data-category="web">
                     <div class="project-image">
-                        <img src="images/Nexus.png" alt="Sleek Nexus Creative Brand Identity" loading="lazy" decoding="async">
+                        <div class="project-image--code" style="height:200px;background:linear-gradient(135deg,#0a1628,#0e1f38);display:flex;align-items:center;justify-content:center;">
+                            <div class="project-code-preview" aria-hidden="true">
+                                <span class="code-line"><span class="code-tag">EduPortal South Sudan</span></span>
+                                <span class="code-line"><span class="code-attr">Education Platform</span></span>
+                                <span class="code-line"><span class="code-val">Live &amp; Deployed</span></span>
+                                <span class="code-line"><span class="code-tag">HTML &middot; CSS &middot; JS</span></span>
+                            </div>
+                        </div>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="images/Nexus.png" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open brand identity">
+                                <a href="https://eduportalss.solomonleek.tech" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Visit EduPortal">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Sleek Nexus Creative &mdash; Brand Identity</h3>
-                        <span class="project-category-chip"><i class="fas fa-layer-group"></i> Brand</span>
-                        <p class="project-description">Full brand identity for Sleek Nexus Creative &mdash; logo system, color palette, and visual language for a tech innovation hub in South Sudan.</p>
+                        <div class="project-meta-row">
+                            <span class="project-status project-status--live"><i class="fas fa-circle"></i> Live</span>
+                        </div>
+                        <h3 class="project-title">EduPortal South Sudan</h3>
+                        <span class="project-category-chip"><i class="fas fa-code"></i> Dev</span>
+                        <p class="project-description">An education portal serving students and educators in South Sudan &mdash; providing accessible learning resources, course listings, and academic support for underserved communities.</p>
                         <div class="tech-tags">
+                            <span class="tech-tag">HTML/CSS/JS</span>
+                            <span class="tech-tag">Education</span>
+                            <span class="tech-tag">South Sudan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured: Sleek Nexus Creative Ã¢â‚¬â€ Live -->
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="images/SLEEK NEXUS CREATIVE.png" alt="Sleek Nexus Creative" loading="lazy" decoding="async" style="object-fit:contain;background:#0a1628;padding:1rem;">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://sleeknexuscreative.com" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Visit Sleek Nexus Creative">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta-row">
+                            <span class="project-status project-status--live"><i class="fas fa-circle"></i> Live</span>
+                        </div>
+                        <h3 class="project-title">Sleek Nexus Creative</h3>
+                        <span class="project-category-chip"><i class="fas fa-layer-group"></i> Brand &amp; Web</span>
+                        <p class="project-description">Official website for Sleek Nexus Creative &mdash; a creative and technology brand. Built and designed from scratch, combining brand identity with a live web presence.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Web Design</span>
                             <span class="tech-tag">Brand Identity</span>
-                            <span class="tech-tag">Logo Design</span>
-                            <span class="tech-tag">Adobe Illustrator</span>
+                            <span class="tech-tag">Live Site</span>
                         </div>
                     </div>
                 </div>
@@ -684,9 +652,9 @@
             <!-- CTA to full portfolio page -->
             <div style="text-align:center;">
                 <a href="html/portfolio.html" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;font-size:0.95rem;">
-                    <i class="fas fa-th-large"></i> View All 20+ Projects
+                    <i class="fas fa-th-large"></i> View All Projects
                 </a>
-                <p style="margin-top:0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.4);">Design · Dev Projects · Brands &amp; Identity</p>
+                <p style="margin-top:0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.4);">2 Live Sites &middot; Design &middot; Dev Projects &middot; Brands</p>
             </div>
 
         </div>
@@ -824,107 +792,154 @@
     </section>
 
     <!-- Timeline Section -->
-    <section id="timeline" class="section-bg-white">
+    <section id="timeline">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">My Journey</h2>
-                <p class="section-subtitle">The defining milestones that shaped my leadership, craft, and purpose</p>
+                <p class="section-subtitle">Key milestones in leadership, education, and professional growth</p>
             </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Feb 2019</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Student Leadership</span>
-                        <h3 class="timeline-title">Student Government President</h3>
-                        <p class="timeline-desc">Elected to lead student government, representing 500+ students and advancing policy improvements that strengthened academic support and campus welfare.</p>
+
+            <div class="jrn-list">
+
+                <div class="jrn-item">
+                    <div class="jrn-left">
+                        <span class="jrn-year">2019</span>
+                        <span class="jrn-type">Leadership</span>
+                    </div>
+                    <div class="jrn-connector">
+                        <div class="jrn-dot"></div>
+                        <div class="jrn-line"></div>
+                    </div>
+                    <div class="jrn-right">
+                        <div class="jrn-icon"><i class="fas fa-users"></i></div>
+                        <div class="jrn-body">
+                            <h3 class="jrn-title">Student Government President</h3>
+                            <p class="jrn-org">Secondary School &middot; South Sudan</p>
+                            <p class="jrn-desc">Elected to represent 500+ students, driving policy improvements that strengthened academic support and campus welfare.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">2019-2022</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Secondary Education</span>
-                        <h3 class="timeline-title">Darling Wisdom Academy &mdash; Secondary School</h3>
-                        <p class="timeline-desc">Completed secondary school with a strong academic foundation and early leadership exposure that prepared me for university-level engineering studies.</p>
-                        <p class="timeline-quote-lead">Inspired by the quote:</p>
-                        <blockquote class="timeline-quote">"One minute on a book does not lie."</blockquote>
-                        <p class="timeline-quote-author">&mdash; Noble Arem Riak</p>
+
+                <div class="jrn-item">
+                    <div class="jrn-left">
+                        <span class="jrn-year">2023</span>
+                        <span class="jrn-type">Teaching</span>
+                    </div>
+                    <div class="jrn-connector">
+                        <div class="jrn-dot"></div>
+                        <div class="jrn-line"></div>
+                    </div>
+                    <div class="jrn-right">
+                        <div class="jrn-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div class="jrn-body">
+                            <h3 class="jrn-title">Teacher</h3>
+                            <p class="jrn-org">Mission Garden Nursery &amp; Primary School &middot; 2023&ndash;2024</p>
+                            <p class="jrn-desc">Supported foundational learning and student development, strengthening communication and mentorship skills before starting university.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">2023-2024</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Teaching Experience</span>
-                        <h3 class="timeline-title">Mission Garden Nursery and Primary School &mdash; Teacher</h3>
-                        <p class="timeline-desc">Served as a teacher supporting foundational learning and student development, strengthening my communication and mentorship capabilities.</p>
+
+                <div class="jrn-item jrn-item--highlight">
+                    <div class="jrn-left">
+                        <span class="jrn-year">2025</span>
+                        <span class="jrn-type">University</span>
+                    </div>
+                    <div class="jrn-connector">
+                        <div class="jrn-dot jrn-dot--highlight"></div>
+                        <div class="jrn-line"></div>
+                    </div>
+                    <div class="jrn-right">
+                        <div class="jrn-icon jrn-icon--highlight"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="jrn-body">
+                            <h3 class="jrn-title">BSc Software Engineering &mdash; ALU</h3>
+                            <p class="jrn-org">African Leadership University &middot; Kigali, Rwanda &middot; Jan 2025 &mdash; Present</p>
+                            <p class="jrn-desc">Full Mastercard Foundation Scholarship. Building expertise in software engineering, data systems, and full-stack development with a focus on Africa-facing solutions.</p>
+                            <div class="jrn-tags"><span>Python</span><span>Flask</span><span>FastAPI</span><span>Data Engineering</span></div>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Jan 2025</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Higher Education</span>
-                        <h3 class="timeline-title">African Leadership University (ALU) &mdash; Software Engineering</h3>
-                        <p class="timeline-desc">Began undergraduate Software Engineering at ALU, Kigali, on a full scholarship &mdash; a defining step toward building technology solutions for Africa.</p>
+
+                <div class="jrn-item">
+                    <div class="jrn-left">
+                        <span class="jrn-year">2025</span>
+                        <span class="jrn-type">Global Program</span>
+                    </div>
+                    <div class="jrn-connector">
+                        <div class="jrn-dot"></div>
+                        <div class="jrn-line"></div>
+                    </div>
+                    <div class="jrn-right">
+                        <div class="jrn-icon"><i class="fas fa-globe"></i></div>
+                        <div class="jrn-body">
+                            <h3 class="jrn-title">Aspire Leaders Program</h3>
+                            <p class="jrn-org">Harvard-affiliated &middot; Global &middot; May 2025</p>
+                            <p class="jrn-desc">Selected for this globally competitive leadership initiative, completing intensive training in strategic thinking, ethical decision-making, and social impact design.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Jan 2025</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Design and Branding</span>
-                        <h3 class="timeline-title">Started Graphic Design</h3>
-                        <p class="timeline-desc">Began creating professional visual content &mdash; posters, branding, and social media graphics &mdash; combining creativity with communication to serve communities and organisations.</p>
+
+                <div class="jrn-item jrn-item--active">
+                    <div class="jrn-left">
+                        <span class="jrn-year">2026</span>
+                        <span class="jrn-badge"><i class="fas fa-circle"></i> Active</span>
+                    </div>
+                    <div class="jrn-connector">
+                        <div class="jrn-dot jrn-dot--active"></div>
+                        <div class="jrn-line"></div>
+                    </div>
+                    <div class="jrn-right">
+                        <div class="jrn-icon jrn-icon--active"><i class="fas fa-code"></i></div>
+                        <div class="jrn-body">
+                            <h3 class="jrn-title">Website Development Intern</h3>
+                            <p class="jrn-org">InzoziHub Platform &middot; May 2026 &mdash; Present</p>
+                            <p class="jrn-desc">Contributing responsive layouts, accessibility improvements, and feature work in collaboration with designers and backend engineers.</p>
+                            <div class="jrn-tags"><span>HTML/CSS/JS</span><span>Responsive Design</span><span>Accessibility</span></div>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">May 2025</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Global Leadership Program</span>
-                        <h3 class="timeline-title">Aspire Leaders Program</h3>
-                        <p class="timeline-desc">Selected for this globally competitive leadership initiative, completing intensive training in strategic thinking, ethical decision-making, and social impact design.</p>                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">May 2025</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag">Global Learning Experience (SIE)</span>
-                        <h3 class="timeline-title">ALU Marketing &amp; Outreach Team</h3>
-                        <p class="timeline-desc">Joined ALU's official marketing team, producing visual content and managing campaigns that strengthened the university's brand across digital platforms.</p>                    </div>
-                </div>
-                <div class="timeline-item timeline-item--active">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">May 2026 &mdash; Present</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag timeline-tag--active">Internship · Active</span>
-                        <h3 class="timeline-title">Website Development Intern &mdash; InzoziHub Platform</h3>
-                        <p class="timeline-desc">Contributing to InzoziHub's web presence by implementing responsive layouts, improving accessibility and performance, and collaborating with designers and backend engineers to ship features and fixes.</p>
+
+                <div class="jrn-item jrn-item--active">
+                    <div class="jrn-left">
+                        <span class="jrn-year">2026</span>
+                        <span class="jrn-badge"><i class="fas fa-circle"></i> Active</span>
+                    </div>
+                    <div class="jrn-connector">
+                        <div class="jrn-dot jrn-dot--active"></div>
+                        <div class="jrn-line"></div>
+                    </div>
+                    <div class="jrn-right">
+                        <div class="jrn-icon jrn-icon--active"><i class="fas fa-laptop-code"></i></div>
+                        <div class="jrn-body">
+                            <h3 class="jrn-title">Software Development Intern</h3>
+                            <p class="jrn-org">Elevanda Ventures &middot; May 2026 &mdash; Present</p>
+                            <p class="jrn-desc">Backend feature implementation, bug fixes, and code reviews in agile sprints to deliver product improvements.</p>
+                            <div class="jrn-tags"><span>Python</span><span>Backend</span><span>Agile</span></div>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item timeline-item--active">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">May 2026 &mdash; Present</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag timeline-tag--active">Internship · Active</span>
-                        <h3 class="timeline-title">Software Development Intern &mdash; Elevanda Ventures</h3>
-                        <p class="timeline-desc">Working on software development tasks including backend feature implementation, bug fixes, code reviews, and collaborating in agile sprints to deliver product improvements.</p>
+
+                <div class="jrn-item jrn-item--future">
+                    <div class="jrn-left">
+                        <span class="jrn-year">2028</span>
+                        <span class="jrn-type">Goal</span>
+                    </div>
+                    <div class="jrn-connector">
+                        <div class="jrn-dot jrn-dot--future"></div>
+                    </div>
+                    <div class="jrn-right">
+                        <div class="jrn-icon jrn-icon--future"><i class="fas fa-flag-checkered"></i></div>
+                        <div class="jrn-body">
+                            <h3 class="jrn-title">Graduation &mdash; BSc Software Engineering</h3>
+                            <p class="jrn-org">African Leadership University &middot; Expected Jul 2028</p>
+                            <p class="jrn-desc">Expected to graduate and contribute scalable technology solutions to real challenges across Africa.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item timeline-item--future">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Jul 2028</div>
-                    <div class="timeline-card">
-                        <span class="timeline-tag timeline-tag--future">Graduation Milestone</span>
-                        <h3 class="timeline-title">Expected Graduation &mdash; BSc Software Engineering, ALU</h3>
-                        <p class="timeline-desc">Expected to graduate with a BSc in Software Engineering, ready to build technology solutions for real challenges across Africa.</p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
+
 
     <!-- Academic Excellence Section -->
     <section id="academics" class="section-bg-white">
@@ -1029,51 +1044,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="section-bg-secondary">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Testimonials</h2>
-                <p class="section-subtitle">Feedback from mentors, collaborators, and community leaders</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-text">Solomon demonstrates exceptional dedication to both academic excellence and community impact. His ability to bridge technology and social good is truly remarkable.</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar-initials" aria-label="PM">PM</div>
-                        <div>
-                            <h4 class="testimonial-name">Pelin Mutanguha</h4>
-                            <p class="testimonial-role">Faculty Mentor · African Leadership University</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-text">His leadership in our community digital literacy program transformed lives. Solomon leads with empathy, vision, and technical skill that is rare to find.</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar-initials" aria-label="AK">AK</div>
-                        <div>
-                            <h4 class="testimonial-name">A. Kuol</h4>
-                            <p class="testimonial-role">Program Lead · South Sudan Youth Initiative</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-text">Working with Solomon on our branding project was outstanding. He delivered professional, creative work on time and exceeded every expectation.</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar-initials" aria-label="RL">RL</div>
-                        <div>
-                            <h4 class="testimonial-name">Rise Leadership Academy</h4>
-                            <p class="testimonial-role">Branding Client · Juba, South Sudan</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Blog Preview Section -->
     <section id="blog" class="section-bg-secondary">
         <div class="container">
@@ -1136,60 +1106,6 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Vision & Opportunities</h2>
-                <p class="section-subtitle">
-                    The future I am building toward and the opportunities I am ready to take on
-                </p>
-            </div>
-            <div class="about-content contact-vision">
-                <div class="about-text">
-                    <h3 class="contact-heading">My Vision</h3>
-                    <p class="contact-muted">
-                        Build software that solves real problems &mdash; starting with the communities I come from. I focus on practical technology for healthcare access, digital education, and economic inclusion across underserved African communities.
-                    </p>
-                    <h3 class="contact-heading section-heading-spaced">What I'm Looking For</h3>
-                    <p class="contact-muted">
-                        I am actively seeking <strong>software engineering internships</strong> (remote or Kigali-based) for 2026, as well as <strong>collaborative open-source projects</strong> in web development, Python, or civic tech. I am also open to <strong>mentorship</strong> from engineers working on social impact or African tech ecosystems. I bring discipline, a strong execution mindset, and the ability to work across design and engineering.
-                    </p>
-                    <ul class="contact-seeking-list">
-                        <li><i class="fas fa-check-circle"></i> Software engineering internship &mdash; remote or Kigali</li>
-                        <li><i class="fas fa-check-circle"></i> Open-source collaboration &mdash; web, Python, civic tech</li>
-                        <li><i class="fas fa-check-circle"></i> Mentorship from engineers in African tech or social impact</li>
-                        <li><i class="fas fa-check-circle"></i> Freelance design or frontend projects</li>
-                    </ul>
-                </div>
-                <div class="about-highlights">
-                    <div class="highlight-item contact-highlight-card">
-                        <div class="highlight-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <div>
-                            <h3 class="contact-heading">Sleek Nexus Creative</h3>
-                            <p class="contact-muted">Tech innovation hub &amp; incubator &mdash; South Sudan</p>
-                            <img src="images/SLEEK%20NEXUS%20CREATIVE.png" alt="Sleek Nexus Creative Logo" width="120" height="60" style="max-width:120px;margin-top:0.6rem;border-radius:6px;opacity:0.9;">
-                        </div>
-                    </div>
-                    <div class="highlight-item contact-highlight-card">
-                        <div class="highlight-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div>
-                            <h3 class="contact-heading">Education Access</h3>
-                            <p class="contact-muted">Expand digital learning opportunities</p>
-                        </div>
-                    </div>
-                    <div class="highlight-item contact-highlight-card">
-                        <div class="highlight-icon">
-                            <i class="fas fa-hands-helping"></i>
-                        </div>
-                        <div>
-                            <h3 class="contact-heading">Community Impact</h3>
-                            <p class="contact-muted">Mentor 1000+ young African developers</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="section-header">
                 <h2 class="section-title">Get In Touch</h2>
                 <p class="section-subtitle">
@@ -1346,13 +1262,13 @@
                 <div class="footer-links-group">
                     <p class="footer-links-title">Quick Links</p>
                     <ul class="footer-links-list">
-                        <li><a href="#home"><i class="fas fa-house"></i> Home</a></li>
-                        <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
-                        <li><a href="#projects"><i class="fas fa-th-large"></i> Projects</a></li>
-                        <li><a href="html/portfolio.html"><i class="fas fa-layer-group"></i> Portfolio</a></li>
-                        <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
-                        <li><a href="#timeline"><i class="fas fa-road"></i> Journey</a></li>
-                        <li><a href="#contact"><i class="fas fa-paper-plane"></i> Contact</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="html/portfolio.html">Portfolio</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#timeline">Journey</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
 
@@ -1360,37 +1276,11 @@
                 <div class="footer-links-group">
                     <p class="footer-links-title">Work &amp; Resources</p>
                     <ul class="footer-links-list">
-                        <li><a href="#community"><i class="fas fa-heart"></i> Community</a></li>
-                        <li><a href="#academics"><i class="fas fa-graduation-cap"></i> Academics</a></li>
-                        <li><a href="html/blog.html"><i class="fas fa-book-open"></i> Blog</a></li>
-                        <li>
-                            <a href="https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing" target="_blank" rel="noopener noreferrer" id="resumeLink">
-                                <i class="fas fa-file-lines"></i> Resume
-                            </a>
-                        </li>
-                        <li><a href="admin.html" style="opacity:0.35;font-size:0.78rem;" title="Admin"><i class="fas fa-lock"></i> Admin</a></li>
+                        <li><a href="#community">Community</a></li>
+                        <li><a href="#academics">Academics</a></li>
+                        <li><a href="html/blog.html">Blog</a></li>
+                        <li><a href="https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing" target="_blank" rel="noopener noreferrer" id="resumeLink">Resume</a></li>
                     </ul>
-                </div>
-
-                <!-- Newsletter -->
-                <div class="footer-links-group footer-newsletter-col">
-                    <div class="footer-newsletter-header">
-                        <span class="footer-newsletter-icon"><i class="fas fa-envelope-open-text"></i></span>
-                        <p class="footer-links-title">Stay in the Loop</p>
-                    </div>
-                    <p class="footer-newsletter-sub">Articles on engineering, design, and building for Africa &mdash; delivered when it matters, not every day.</p>
-                    <form class="footer-newsletter-form" id="footerNewsletterForm" novalidate>
-                        <input type="email" id="footerNewsletterEmail" class="footer-newsletter-input" placeholder="Enter your email address" aria-label="Email address" required>
-                        <button type="submit" class="footer-newsletter-btn" aria-label="Subscribe">
-                            Subscribe <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </form>
-                    <p class="footer-newsletter-status" id="footerNewsletterStatus" role="status" aria-live="polite"></p>
-                    <div class="footer-newsletter-trust">
-                        <span><i class="fas fa-shield-halved"></i> No spam, ever</span>
-                        <span><i class="fas fa-rotate-left"></i> Unsubscribe anytime</span>
-                        <span><i class="fas fa-users"></i> Join the community</span>
-                    </div>
                 </div>
 
             </div>
@@ -1439,74 +1329,10 @@
     </div>
 
     <script src="js/main.js?v=20260414"></script>
-    <!-- Inject dynamic content from admin -->
-    <script>
-    (function(){
-        var s = document.createElement('script');
-        s.src = 'js/admin.js';
-        s.onload = function(){
-            // Inject featured projects into homepage grid
-            (function(){
-                var projects = (window.admLoad && window.admLoad('adm_projects')) || [];
-                var featured = projects.filter(function(p){ return p.featured; }).slice(0,3);
-                if (!featured.length) return;
-                var grid = document.querySelector('#projects .projects-grid');
-                if (!grid) return;
-                function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-                featured.forEach(function(p){
-                    var tags = p.tags ? p.tags.split(',').map(function(t){ return '<span class="tech-tag">'+esc(t.trim())+'</span>'; }).join('') : '';
-                    var card = document.createElement('div');
-                    card.className = 'project-card';
-                    card.dataset.category = p.category || 'design';
-                    card.innerHTML = '<div class="project-image">'+(p.image ? '<img src="'+esc(p.image)+'" alt="'+esc(p.title)+'" loading="lazy">' : '<div class="project-code-preview" aria-hidden="true"><span class="code-tag">'+esc(p.title)+'</span></div>')+'<div class="project-overlay"><div class="project-links">'+(p.liveUrl ? '<a href="'+esc(p.liveUrl)+'" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>' : '')+(p.githubUrl ? '<a href="'+esc(p.githubUrl)+'" target="_blank" class="project-link"><i class="fab fa-github"></i></a>' : '')+'</div></div></div><div class="project-content"><div class="project-meta-row"><span class="project-featured-badge"><i class="fas fa-star"></i> Featured</span></div><h3 class="project-title">'+esc(p.title)+'</h3><p class="project-description">'+esc(p.description)+'</p><div class="tech-tags">'+tags+'</div></div>';
-                    grid.appendChild(card);
-                });
-            })();
-            // Inject latest blog articles into homepage blog preview
-            (function(){
-                var articles = (window.admLoad && window.admLoad('adm_articles')) || [];
-                if (!articles.length) return;
-                var grid = document.querySelector('#blog .projects-grid');
-                if (!grid) return;
-                function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-                var TAG_ICONS = { engineering:'fa-code', design:'fa-pen-nib', leadership:'fa-users', community:'fa-globe-africa', africa:'fa-globe-africa', student:'fa-graduation-cap', 'case-study':'fa-star', 'personal-growth':'fa-chart-line' };
-                var TAG_LABELS = { engineering:'Engineering', design:'Design', leadership:'Leadership', community:'Community', africa:'Africa & Tech', student:'Student Life', 'case-study':'Case Study', 'personal-growth':'Personal Growth' };
-                articles.slice(0,3).forEach(function(a){
-                    var href = a.slug ? 'html/articles/'+a.slug+'.html' : '#';
-                    var icon = TAG_ICONS[a.tag] || 'fa-book';
-                    var label = TAG_LABELS[a.tag] || a.tag;
-                    var card = document.createElement('a');
-                    card.href = href;
-                    card.className = 'blog-preview-card';
-                    card.innerHTML = '<div class="blog-preview-card__img">'+(a.image ? '<img src="'+esc(a.image)+'" alt="'+esc(a.title)+'" loading="lazy">' : '<div style="width:100%;height:100%;background:linear-gradient(135deg,rgba(234,88,12,0.2),rgba(249,115,22,0.1));display:flex;align-items:center;justify-content:center;"><i class="fas fa-newspaper" style="color:#f97316;font-size:2rem;"></i></div>')+'</div><div class="blog-preview-card__body"><span class="blog-preview-card__tag"><i class="fas '+esc(icon)+'"></i> '+esc(label)+'</span><h3 class="blog-preview-card__title">'+esc(a.title)+'</h3><p class="blog-preview-card__excerpt">'+esc(a.excerpt)+'</p><span class="blog-preview-card__meta">'+esc(a.date)+' &nbsp;&middot;&nbsp; '+esc(a.readTime)+'</span></div>';
-                    grid.appendChild(card);
-                });
-            })();
-        };
-        document.body.appendChild(s);
-    })();
-    </script>
+    <script src="js/card-effects.js"></script>
 
     <!-- Analytics: self-hosted, no cookies, privacy-respecting -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function(){
-        // Only run analytics on the live domain to prevent console errors locally
-        if (location.hostname !== 'solomonleek.tech') return;
-        var API = (window.ANALYTICS_API_URL) || 'https://solomonleek.tech/api/analytics';
-        function send(data){ fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true}).catch(function(){}); }
-        send({page:location.pathname,referrer:document.referrer,event:'pageview'});
-        if('IntersectionObserver' in window){
-            var obs = new IntersectionObserver(function(entries){
-                entries.forEach(function(e){
-                    if(e.isIntersecting && e.target.id){
-                        send({page:location.pathname,section:e.target.id,event:'section_view'});
-                    }
-                });
-            },{threshold:0.4});
-            document.querySelectorAll('section[id]').forEach(function(s){obs.observe(s);});
-        }
-    });
-    </script>
+    <script src="js/analytics.js"></script>
 </body>
 </html>
 

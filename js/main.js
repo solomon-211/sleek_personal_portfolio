@@ -74,6 +74,132 @@ if (roleEl && !prefersReducedMotion) {
     roleEl.textContent = 'Software Engineer';
 }
 
+// ── Cinematic hero canvas — drifting constellation that links near the cursor ─
+(function () {
+    const canvas = document.getElementById('heroCanvas');
+    const heroSection = document.getElementById('home');
+    if (!canvas || !heroSection) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    const DENSITY = 14000;       // px^2 per particle — keeps density moderate
+    const MAX_LINK_DIST = 140;   // particle-to-particle line distance
+    const MOUSE_LINK_DIST = 180; // particle-to-cursor line distance
+
+    let particles = [];
+    let width = 0, height = 0;
+    let rafId = null;
+    const mouse = { x: null, y: null };
+
+    function seedParticles() {
+        const count = Math.min(90, Math.max(30, Math.floor((width * height) / DENSITY)));
+        particles = [];
+        for (let i = 0; i < count; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.25,
+                vy: (Math.random() - 0.5) * 0.25,
+                r: Math.random() * 1.4 + 0.6
+            });
+        }
+    }
+
+    function resize() {
+        const rect = heroSection.getBoundingClientRect();
+        width = rect.width;
+        height = rect.height;
+        canvas.width = width * DPR;
+        canvas.height = height * DPR;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        seedParticles();
+    }
+
+    function drawStatic() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(function (p) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255,255,255,0.35)';
+            ctx.fill();
+        });
+    }
+
+    function step() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > width)  p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
+
+            for (let j = i + 1; j < particles.length; j++) {
+                const q = particles[j];
+                const dx = p.x - q.x, dy = p.y - q.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < MAX_LINK_DIST) {
+                    ctx.strokeStyle = 'rgba(249,115,22,' + (0.16 * (1 - dist / MAX_LINK_DIST)).toFixed(3) + ')';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(q.x, q.y);
+                    ctx.stroke();
+                }
+            }
+
+            if (mouse.x !== null) {
+                const mdx = p.x - mouse.x, mdy = p.y - mouse.y;
+                const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+                if (mdist < MOUSE_LINK_DIST) {
+                    ctx.strokeStyle = 'rgba(249,115,22,' + (0.35 * (1 - mdist / MOUSE_LINK_DIST)).toFixed(3) + ')';
+                    ctx.lineWidth = 1.2;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.stroke();
+                }
+            }
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.fill();
+        }
+
+        rafId = requestAnimationFrame(step);
+    }
+
+    resize();
+
+    if (prefersReducedMotion) {
+        drawStatic();
+    } else {
+        step();
+        heroSection.addEventListener('mousemove', function (e) {
+            const rect = heroSection.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+        heroSection.addEventListener('mouseleave', function () {
+            mouse.x = null;
+            mouse.y = null;
+        });
+        window.addEventListener('resize', resize);
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) {
+                if (rafId) cancelAnimationFrame(rafId);
+            } else {
+                step();
+            }
+        });
+    }
+})();
+
 // ── Loading screen ────────────────────────────────────────────────────────────
 window.addEventListener('load', function () {
     if (!loadingEl) return;
@@ -333,7 +459,21 @@ function validateForm(name, email, subject, message) {
     return null;
 }
 
-async function sendViaEmailJS(payload) {
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+async function subscribeToNewsletter(email) {
+    const res = await fetch(ANALYTICS_API_BASE + '/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+    });
+    const data = await res.json().catch(() => ({}));
+    return { ok: res.ok, message: data.message };
+}
+
+async function postContactForm(payload) {
     // POST to backend. Falls back to mailto if backend is unreachable.
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 12000);
@@ -430,7 +570,7 @@ if (contactForm) {
         submitBtn.disabled  = true;
 
         try {
-            const result = await sendViaEmailJS({
+            const result = await postContactForm({
                 name,
                 email,
                 subject,
@@ -637,12 +777,40 @@ document.querySelectorAll('a[href]').forEach(link => {
 });
 
 // ── Skill bar animations ──────────────────────────────────────────────────────
+function skillBarPct(bar) {
+    const raw = bar.style.getPropertyValue('--pct') || bar.getAttribute('style') || '';
+    const match = /(\d+(?:\.\d+)?)/.exec(raw);
+    return match ? parseFloat(match[1]) : 0;
+}
+
+function animateSkillBarPct(bar, duration) {
+    const label = bar.closest('.skill-bar-item')?.querySelector('.skill-bar-label');
+    if (!label) return;
+    let pctEl = label.querySelector('.skill-bar-pct');
+    if (!pctEl) {
+        pctEl = document.createElement('span');
+        pctEl.className = 'skill-bar-pct';
+        label.appendChild(pctEl);
+    }
+    const target = skillBarPct(bar);
+    const start = performance.now();
+    function tick(now) {
+        const t = Math.min(1, (now - start) / duration);
+        pctEl.textContent = Math.round(t * target) + '%';
+        if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+}
+
 if ('IntersectionObserver' in window && !prefersReducedMotion) {
     const skillBarObserver = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
             entry.target.querySelectorAll('.skill-bar-fill').forEach((bar, i) => {
-                setTimeout(() => bar.classList.add('animated'), i * 120);
+                setTimeout(() => {
+                    bar.classList.add('animated');
+                    animateSkillBarPct(bar, 1200);
+                }, i * 120);
             });
             skillBarObserver.unobserve(entry.target);
         });
@@ -650,8 +818,17 @@ if ('IntersectionObserver' in window && !prefersReducedMotion) {
 
     document.querySelectorAll('.skill-category').forEach(el => skillBarObserver.observe(el));
 } else {
-    // No animation — just set widths immediately
-    document.querySelectorAll('.skill-bar-fill').forEach(bar => bar.classList.add('animated'));
+    // No animation — just set widths and percentages immediately
+    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        bar.classList.add('animated');
+        const label = bar.closest('.skill-bar-item')?.querySelector('.skill-bar-label');
+        if (label && !label.querySelector('.skill-bar-pct')) {
+            const pctEl = document.createElement('span');
+            pctEl.className = 'skill-bar-pct';
+            pctEl.textContent = skillBarPct(bar) + '%';
+            label.appendChild(pctEl);
+        }
+    });
 }
 
 // ── Copy buttons (email + phone) ─────────────────────────────────────────────
@@ -776,6 +953,109 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
     setInterval(tick, 1000);
 })();
 
+// ── Signature terminal easter egg ─────────────────────────────────────────────
+function openTerminal() {
+    if (document.getElementById('termOverlay')) return;
+
+    const lines = [
+        { prompt: true,  text: 'whoami' },
+        { prompt: false, text: 'Solomon Thiong Garang Leek — Software Engineer & Graphic Designer' },
+        { prompt: true,  text: 'cat mission.txt' },
+        { prompt: false, text: 'Build software that solves real problems, starting with the' },
+        { prompt: false, text: 'communities I come from — education, healthcare access, and' },
+        { prompt: false, text: 'economic inclusion across South Sudan and beyond.' },
+        { prompt: true,  text: 'ls skills/' },
+        { prompt: false, text: 'design/  engineering/  leadership/  community/' },
+        { prompt: true,  text: 'cat contact.txt' },
+        { prompt: false, text: 's.leek@alustudent.com' },
+        { prompt: false, text: 'github.com/solomon-211' }
+    ];
+
+    function esc(s) { return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    const PROMPT_HTML = '<span class="term-prompt">visitor@solomonleek.tech ~ %</span> ';
+
+    const overlay = document.createElement('div');
+    overlay.id = 'termOverlay';
+    overlay.className = 'term-overlay';
+    overlay.innerHTML =
+        '<div class="term-window" role="dialog" aria-modal="true" aria-label="Terminal easter egg">' +
+            '<div class="term-titlebar">' +
+                '<span class="term-dot term-dot--red"></span>' +
+                '<span class="term-dot term-dot--yellow"></span>' +
+                '<span class="term-dot term-dot--green"></span>' +
+                '<span class="term-titlebar__label">visitor@solomonleek.tech — zsh</span>' +
+                '<button class="term-close" aria-label="Close terminal">&times;</button>' +
+            '</div>' +
+            '<div class="term-body" id="termBody"></div>' +
+        '</div>';
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+
+    const body = overlay.querySelector('#termBody');
+
+    function close() {
+        overlay.remove();
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', escHandler);
+    }
+    function escHandler(e) { if (e.key === 'Escape') close(); }
+    document.addEventListener('keydown', escHandler);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    overlay.querySelector('.term-close').addEventListener('click', close);
+
+    if (prefersReducedMotion) {
+        body.innerHTML = lines.map(function (l) {
+            return '<div class="term-line">' + (l.prompt ? PROMPT_HTML : '') + esc(l.text) + '</div>';
+        }).join('') + '<div class="term-line">' + PROMPT_HTML + '<span class="term-cursor"></span></div>';
+        return;
+    }
+
+    let lineIdx = 0;
+    function typeLine() {
+        if (lineIdx >= lines.length) {
+            const finalLine = document.createElement('div');
+            finalLine.className = 'term-line';
+            finalLine.innerHTML = PROMPT_HTML + '<span class="term-cursor"></span>';
+            body.appendChild(finalLine);
+            return;
+        }
+        const l = lines[lineIdx++];
+        const row = document.createElement('div');
+        row.className = 'term-line';
+        row.innerHTML = (l.prompt ? PROMPT_HTML : '') + '<span class="term-typed"></span>';
+        body.appendChild(row);
+        const typedEl = row.querySelector('.term-typed');
+        const chars = l.text.split('');
+        let ci = 0;
+        const speed = l.prompt ? 45 : 8;
+        (function typeChar() {
+            if (ci < chars.length) {
+                typedEl.textContent += chars[ci++];
+                body.scrollTop = body.scrollHeight;
+                setTimeout(typeChar, speed);
+            } else {
+                setTimeout(typeLine, l.prompt ? 250 : 120);
+            }
+        })();
+    }
+    typeLine();
+}
+
+// ── Konami code — alternate way to trigger the terminal easter egg ───────────
+(function () {
+    const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let pos = 0;
+    document.addEventListener('keydown', function (e) {
+        const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+        if (key === seq[pos]) {
+            pos++;
+            if (pos === seq.length) { pos = 0; openTerminal(); }
+        } else {
+            pos = (key === seq[0]) ? 1 : 0;
+        }
+    });
+})();
+
 // ── #1 Command Palette ────────────────────────────────────────────────────────
 (function () {
     const palette  = document.getElementById('cmdPalette');
@@ -793,7 +1073,6 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
         { label: 'Academics',    icon: 'fas fa-graduation-cap',action: () => scrollTo('#academics') },
         { label: 'Awards & Leadership', icon: 'fas fa-trophy', action: () => scrollTo('#impact') },
         { label: 'Community',    icon: 'fas fa-heart',         action: () => scrollTo('#community') },
-        { label: 'Testimonials', icon: 'fas fa-quote-left',    action: () => scrollTo('#testimonials') },
         { label: 'Contact',      icon: 'fas fa-paper-plane',   action: () => scrollTo('#contact') },
         { label: 'Gallery',      icon: 'fas fa-images',        action: () => { window.location.href = 'html/gallery.html'; } },
         { label: 'Blog',         icon: 'fas fa-newspaper',     action: () => { window.location.href = 'html/blog.html'; } },
@@ -801,6 +1080,7 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
         { label: 'Resume',       icon: 'fas fa-file-lines',    action: () => window.open('https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing', '_blank', 'noopener,noreferrer') },
         { label: 'GitHub',       icon: 'fab fa-github',        action: () => window.open('https://github.com/solomon-211', '_blank', 'noopener,noreferrer') },
         { label: 'LinkedIn',     icon: 'fab fa-linkedin',      action: () => window.open('https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345', '_blank', 'noopener,noreferrer') },
+        { label: 'Open Terminal', icon: 'fas fa-terminal',     action: () => openTerminal() },
     ];
 
     function scrollTo(selector) {
@@ -919,7 +1199,7 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
     const wrapEl    = document.getElementById('footerVisitors');
     if (!countEl || !wrapEl) return;
 
-    fetch(ANALYTICS_API_BASE + '/api/analytics/summary', { method: 'GET' })
+    fetch(ANALYTICS_API_BASE + '/api/analytics/views', { method: 'GET' })
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (data) {
             if (!data || !data.total_views) return;
@@ -943,7 +1223,7 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
         const email = emailEl.value.trim();
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (!isValidEmail(email)) {
             statusEl.textContent = 'Please enter a valid email address.';
             statusEl.style.color = '#f97316';
             statusEl.style.display = 'block';
@@ -955,16 +1235,11 @@ document.querySelectorAll('.copy-email-btn').forEach(function (btn) {
         if (btn) { btn.textContent = 'Subscribing…'; btn.disabled = true; }
 
         try {
-            const res = await fetch(ANALYTICS_API_BASE + '/api/newsletter', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            });
-            const data = await res.json().catch(() => ({}));
-            statusEl.textContent = data.message || 'Subscribed!';
-            statusEl.style.color = res.ok ? '#22c55e' : '#f97316';
+            const { ok, message } = await subscribeToNewsletter(email);
+            statusEl.textContent = message || 'Subscribed!';
+            statusEl.style.color = ok ? '#22c55e' : '#f97316';
             statusEl.style.display = 'block';
-            if (res.ok) { emailEl.value = ''; }
+            if (ok) { emailEl.value = ''; }
         } catch (err) {
             statusEl.textContent = 'Could not subscribe right now. Try again later.';
             statusEl.style.color = '#f97316';
@@ -1168,12 +1443,10 @@ function showNotifyModal(articleTitle, onConfirm) {
     const statusEl = document.getElementById('footerNewsletterStatus');
     if (!form || !emailEl || !statusEl) return;
 
-    const apiBase = ANALYTICS_API_BASE;
-
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
         const email = emailEl.value.trim();
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (!isValidEmail(email)) {
             statusEl.textContent = 'Please enter a valid email.';
             statusEl.className = 'footer-newsletter-status visible error';
             return;
@@ -1181,15 +1454,10 @@ function showNotifyModal(articleTitle, onConfirm) {
         const btn = form.querySelector('button');
         if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; }
         try {
-            const res = await fetch(apiBase + '/api/newsletter', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            });
-            const data = await res.json().catch(() => ({}));
-            statusEl.textContent = data.message || 'Subscribed!';
-            statusEl.className = 'footer-newsletter-status visible';
-            if (res.ok) emailEl.value = '';
+            const { ok, message } = await subscribeToNewsletter(email);
+            statusEl.textContent = message || 'Subscribed!';
+            statusEl.className = 'footer-newsletter-status visible' + (ok ? '' : ' error');
+            if (ok) emailEl.value = '';
         } catch {
             statusEl.textContent = 'Could not subscribe. Try again later.';
             statusEl.className = 'footer-newsletter-status visible error';
