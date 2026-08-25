@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #060d1a;
+            background: #131f27;
             color: rgba(255,255,255,0.85);
             min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
@@ -26,7 +26,7 @@
             content: '';
             position: fixed; inset: 0; pointer-events: none;
             background:
-                radial-gradient(600px circle at 20% 30%, rgba(234,88,12,0.08), transparent 55%),
+                radial-gradient(600px circle at 20% 30%, rgba(254,127,45,0.08), transparent 55%),
                 radial-gradient(400px circle at 80% 70%, rgba(251,146,60,0.05), transparent 50%);
         }
         .wrap { max-width: 520px; position: relative; z-index: 1; }
@@ -37,7 +37,7 @@
         }
         .logo-icon {
             width: 36px; height: 36px; border-radius: 8px;
-            background: linear-gradient(135deg, #ea580c, #f97316);
+            background: linear-gradient(135deg, #FE7F2D, #FE7F2D);
             color: #fff; font-size: 0.85rem; font-weight: 800;
             display: flex; align-items: center; justify-content: center;
         }
@@ -45,7 +45,7 @@
             font-family: 'Sora', sans-serif;
             font-size: clamp(5rem, 20vw, 9rem);
             font-weight: 800; line-height: 1;
-            background: linear-gradient(135deg, #ea580c, #f97316, #fb923c);
+            background: linear-gradient(135deg, #FE7F2D, #FE7F2D, #ff9448);
             -webkit-background-clip: text; background-clip: text; color: transparent;
             margin-bottom: 1rem;
             animation: pulse-num 3s ease-in-out infinite alternate;
@@ -66,10 +66,10 @@
         .btn-primary {
             display: inline-flex; align-items: center; gap: 0.5rem;
             padding: 0.75rem 1.5rem; border-radius: 8px;
-            background: linear-gradient(135deg, #ea580c, #f97316);
+            background: linear-gradient(135deg, #FE7F2D, #FE7F2D);
             color: #fff; text-decoration: none;
             font-weight: 700; font-size: 0.9rem;
-            box-shadow: 0 8px 24px rgba(234,88,12,0.35);
+            box-shadow: 0 8px 24px rgba(254,127,45,0.35);
             transition: transform 0.2s, opacity 0.2s;
         }
         .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
@@ -91,7 +91,7 @@
             font-size: 0.85rem; color: rgba(255,255,255,0.4);
             text-decoration: none; transition: color 0.2s;
         }
-        .links a:hover { color: #f97316; }
+        .links a:hover { color: #FE7F2D; }
     </style>
 </head>
 <body>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -49,22 +49,13 @@
 
     <nav class="ar-nav">
         <div class="ar-nav__inner">
-            <a href="html/blog.html" class="ar-nav__back">
-                <i class="fas fa-arrow-left"></i> Blog
-            </a>
-            <a href="html/index.html" class="ar-nav__logo">
+            <a href="index.html" class="ar-nav__logo">
                 <img src="images/photo.jpg" alt="Solomon Leek" class="logo-photo">
                 <span class="ar-logo-text">Solomon Leek</span>
             </a>
-            <div class="ar-nav__actions">
-                <button class="ar-theme-toggle" id="arThemeToggle" aria-label="Toggle theme" title="Toggle theme">
-                    <i class="fas fa-sun ar-theme-icon-light"></i>
-                    <i class="fas fa-moon ar-theme-icon-dark"></i>
-                </button>
-                <button class="ar-share-btn" id="arShareBtn" title="Copy link" aria-label="Copy link">
-                    <i class="fas fa-link"></i>
-                </button>
-            </div>
+            <a href="html/blog.html" class="ar-nav__back">
+                <i class="fas fa-arrow-left"></i> Blog
+            </a>
         </div>
     </nav>
 
@@ -72,13 +63,6 @@
 
         <header class="ar-header">
             <div class="ar-header__inner">
-                <nav class="breadcrumb" aria-label="Breadcrumb">
-                    <a href="html/index.html">Home</a>
-                    <span class="breadcrumb__sep"><i class="fas fa-chevron-right"></i></span>
-                    <a href="html/blog.html">Blog</a>
-                    <span class="breadcrumb__sep"><i class="fas fa-chevron-right"></i></span>
-                    <span class="breadcrumb__current">ALU Marketing Extern — Nairobi Nexus</span>
-                </nav>
                 <div class="ar-header__tags">
                     <span class="ar-tag ar-tag--community">Community</span>
                     <span class="ar-tag ar-tag--ghost">ALU</span>
@@ -219,32 +203,18 @@
                         <a href="#" class="ar-social ar-social--linkedin" id="arLinkedInBtn2" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
                             <i class="fa-brands fa-linkedin-in"></i>
                         </a>
-                        <button class="ar-social ar-social--copy" id="arCopyBtn" aria-label="Copy link">
-                            <i class="fas fa-link" id="arCopyIcon"></i>
-                        </button>
+
                     </div>
                 </div>
-                <div class="ar-author-bio">
-                    <div class="ar-author-bio__avatar" style="overflow:hidden;padding:0;">
-                        <img src="images/photo.jpg" alt="Solomon Thiong Garang Leek" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                    </div>
-                    <div class="ar-author-bio__content">
-                        <span class="ar-author-bio__name">Solomon Thiong Garang Leek</span>
-                        <p class="ar-author-bio__text">Software Engineering student at ALU, Kigali, on a Mastercard Foundation Scholarship. Originally from South Sudan. Building practical technology for Africa — writing about engineering, design, leadership, and community impact.</p>
-                        <div class="ar-author-bio__links">
-                            <a href="html/index.html">Portfolio</a>
-                            <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer">GitHub</a>
-                            <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="ar-nav-links">
-                    <a href="html/blog.html" class="ar-back-link">
-                        <i class="fas fa-arrow-left"></i> Back to Blog
-                    </a>
-                    <a href="html/index.html#contact" class="ar-contact-link">
-                        Get In Touch <i class="fas fa-paper-plane"></i>
-                    </a>
+                <!-- Comments -->
+                <div class="ar-comments">
+                    <p class="ar-comments__title">Comments</p>
+                    <form class="ar-comment-form" id="arCommentForm">
+                        <input type="text" id="arCommentName" placeholder="Your name" maxlength="60" required>
+                        <textarea id="arCommentText" placeholder="Share your thoughts…" maxlength="600" required></textarea>
+                        <button type="submit" class="ar-comment-submit">Post Comment</button>
+                    </form>
+                    <div class="ar-comment-list" id="arCommentList"></div>
                 </div>
             </div>
         </footer>
@@ -254,18 +224,6 @@
     <script>
     (function () {
         const ARTICLE_KEY = 'article-alu-nairobi-nexus';
-        const themeBtn = document.getElementById('arThemeToggle');
-        const html = document.documentElement;
-        const STORAGE_KEY = 'portfolio-theme';
-        const saved = localStorage.getItem(STORAGE_KEY);
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (saved === 'light' || (!saved && !prefersDark)) html.classList.add('light-mode');
-        if (themeBtn) {
-            themeBtn.addEventListener('click', function () {
-                const isLight = html.classList.toggle('light-mode');
-                localStorage.setItem(STORAGE_KEY, isLight ? 'light' : 'dark');
-            });
-        }
         const progress = document.getElementById('arProgress');
         window.addEventListener('scroll', function () {
             const h = document.documentElement.scrollHeight - window.innerHeight;
@@ -289,27 +247,15 @@
             renderLike();
         });
         renderLike();
-        const copyBtn  = document.getElementById('arCopyBtn');
-        const copyIcon = document.getElementById('arCopyIcon');
-        if (copyBtn) {
-            copyBtn.addEventListener('click', function () {
-                navigator.clipboard.writeText(window.location.href).then(function () {
-                    copyIcon.className = 'fas fa-check';
-                    setTimeout(() => copyIcon.className = 'fas fa-link', 2000);
-                });
-            });
-        }
-        const shareBtn = document.getElementById('arShareBtn');
-        if (shareBtn) {
-            shareBtn.addEventListener('click', function () {
-                navigator.clipboard.writeText(window.location.href).then(function () {
-                    this.innerHTML = '<i class="fas fa-check"></i>';
-                    setTimeout(() => this.innerHTML = '<i class="fas fa-link"></i>', 2000);
-                }.bind(this));
-            });
-        }
         const url   = encodeURIComponent(window.location.href);
         const title = encodeURIComponent(document.title);
+        const shareBtn = document.getElementById('arShareBtn');
+        if (shareBtn) shareBtn.addEventListener('click', function () {
+            navigator.clipboard.writeText(window.location.href).then(function () {
+                shareBtn.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(function () { shareBtn.innerHTML = '<i class="fas fa-link"></i>'; }, 2000);
+            });
+        });
         ['arTweetBtn','arTweetBtn2'].forEach(function (id) {
             const el = document.getElementById(id);
             if (el) el.href = 'https://twitter.com/intent/tweet?text=' + title + '&url=' + url + '&via=teeghee_4';
@@ -345,6 +291,29 @@
                 });
             }, { passive: true });
         }
+        /* Comments */
+        const COMMENTS_KEY = ARTICLE_KEY + '-comments';
+        const commentForm = document.getElementById('arCommentForm');
+        const commentList = document.getElementById('arCommentList');
+        function renderComments() {
+            const comments = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '[]');
+            commentList.innerHTML = comments.length ? '' : '<p class="ar-comment-empty">Be the first to comment.</p>';
+            comments.forEach(function(c) {
+                commentList.innerHTML += '<div class="ar-comment-item"><div class="ar-comment-item__header"><span class="ar-comment-item__name">' + c.name + '</span><span class="ar-comment-item__date">' + c.date + '</span></div><p class="ar-comment-item__text">' + c.text + '</p></div>';
+            });
+        }
+        renderComments();
+        commentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('arCommentName').value.trim();
+            const text = document.getElementById('arCommentText').value.trim();
+            if (!name || !text) return;
+            const comments = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '[]');
+            comments.push({ name: name, text: text, date: new Date().toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'}) });
+            localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments));
+            commentForm.reset();
+            renderComments();
+        });
     })();
     </script>
 

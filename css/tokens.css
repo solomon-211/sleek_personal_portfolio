@@ -1,0 +1,84 @@
+/* =====================================================
+   DESIGN TOKENS — Single source of truth
+   Brand palette: #233D4D (dark teal) · #FE7F2D (orange) · #FFFFFF (white)
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* ── Brand palette (3 colors only) ───────────────── */
+  --brand-dark:   #233D4D;   /* dark teal — backgrounds, nav, cards  */
+  --brand-orange: #FE7F2D;   /* vivid orange — accents, CTAs, links  */
+  --brand-white:  #FFFFFF;   /* white — text, surfaces               */
+
+  /* ── Tonal scale derived from brand-dark ─────────── */
+  --dark-900: #131f27;   /* deepest — page bg                   */
+  --dark-800: #1a2d3a;   /* section alt bg                      */
+  --dark-700: #233D4D;   /* base brand dark                     */
+  --dark-600: #2c4e62;   /* slightly lighter (hover, borders)   */
+  --dark-card: #1e3545;  /* card bg                             */
+  --dark-card-hover: #264455; /* card hover bg                  */
+
+  /* ── Orange tonal scale ──────────────────────────── */
+  --orange-600: #d4651c;
+  --orange-500: #FE7F2D;   /* primary accent                      */
+  --orange-400: #ff9448;   /* lighter variant for hover           */
+  --orange-300: #ffaa68;   /* muted/tag variant                   */
+  --orange-glow: rgba(254, 127, 45, 0.18);
+
+  /* ── Semantic colors ──────────────────────────────── */
+  --color-bg:       var(--dark-900);
+  --color-bg-alt:   var(--dark-800);
+  --color-card:     var(--dark-card);
+  --color-accent:   var(--orange-500);
+  --color-accent-2: var(--orange-400);
+  --color-text:     rgba(255, 255, 255, 0.90);
+  --color-text-2:   rgba(255, 255, 255, 0.68);
+  --color-text-3:   rgba(255, 255, 255, 0.45);
+
+  /* ── Borders ──────────────────────────────────────── */
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-mid:    rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.20);
+  --border-accent: rgba(254, 127, 45, 0.40);
+
+  /* ── Shadows ──────────────────────────────────────── */
+  --shadow-sm:     0 4px 16px rgba(0, 0, 0, 0.30);
+  --shadow-card:   0 8px 32px rgba(0, 0, 0, 0.40);
+  --shadow-hover:  0 16px 48px rgba(0, 0, 0, 0.55);
+  --shadow-orange: 0 8px 28px rgba(254, 127, 45, 0.28);
+
+  /* ── Radius ───────────────────────────────────────── */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+
+  /* ── Typography ───────────────────────────────────── */
+  --font-sans:    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Sora', var(--font-sans);
+
+  /* ── Spacing ──────────────────────────────────────── */
+  --nav-h: 64px;
+  --banner-h: 0px;
+}
+
+/* ── LIGHT MODE TOKENS ────────────────────────────── */
+html.light-mode {
+  --color-bg:     #f5f7f8;
+  --color-bg-alt: #eaeff2;
+  --color-card:   #ffffff;
+  --color-accent: #FE7F2D;
+  --color-text:   #131f27;
+  --color-text-2: #2c4e62;
+  --color-text-3: #5a7a8a;
+
+  --border-subtle: rgba(35, 61, 77, 0.08);
+  --border-mid:    rgba(35, 61, 77, 0.14);
+  --border-strong: rgba(35, 61, 77, 0.22);
+  --border-accent: rgba(254, 127, 45, 0.40);
+
+  --shadow-sm:    0 2px 8px rgba(35, 61, 77, 0.08);
+  --shadow-card:  0 2px 12px rgba(35, 61, 77, 0.10);
+  --shadow-hover: 0 8px 24px rgba(35, 61, 77, 0.15);
+}

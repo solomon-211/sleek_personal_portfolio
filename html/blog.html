@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,8 +37,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap&subset=latin" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="theme-color" content="#FE7F2D">
+    <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/blog.css">
-    <!-- Analytics -->
     <script>
     (function(){
         var API = (window.ANALYTICS_API_URL) || 'https://solomonleek.tech/api/analytics';
@@ -56,20 +57,41 @@
         <div class="b-nav__inner">
 
             <!-- Logo -->
-            <a href="html/index.html" class="b-nav__logo">
+            <a href="index.html" class="b-nav__logo">
                 <img src="images/photo.jpg" alt="Solomon Leek" class="logo-photo">
                 <span class="b-logo-text">Solomon Leek</span>
             </a>
 
-            <!-- No topic filter - clean nav -->
+            <!-- Center: topic dropdown + search -->
+            <div class="b-nav__center">
+                <!-- Topics dropdown -->
+                <div class="b-topics-dropdown">
+                    <button class="b-topics-btn" id="bTopicsBtn" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-layer-group"></i>
+                        <span id="bTopicsLabel">All Topics</span>
+                        <i class="fas fa-chevron-down b-topics-chevron"></i>
+                    </button>
+                    <div class="b-topics-menu" id="bTopicsMenu" role="menu">
+                        <div class="b-topics-item b-topics-item--active" data-filter="all" role="menuitem"><i class="fas fa-border-all"></i> All Topics</div>
+                        <div class="b-topics-divider"></div>
+                        <div class="b-topics-item" data-filter="leadership" role="menuitem"><i class="fas fa-star"></i> Leadership</div>
+                        <div class="b-topics-item" data-filter="community" role="menuitem"><i class="fas fa-users"></i> Community</div>
+                        <div class="b-topics-item" data-filter="student" role="menuitem"><i class="fas fa-graduation-cap"></i> Student Life</div>
+                        <div class="b-topics-item" data-filter="design" role="menuitem"><i class="fas fa-pen-nib"></i> Design</div>
+                        <div class="b-topics-item" data-filter="engineering" role="menuitem"><i class="fas fa-code"></i> Engineering</div>
+                    </div>
+                </div>
+                <!-- Search -->
+                <div class="b-search" id="bSearchBox">
+                    <i class="fas fa-search b-search__icon"></i>
+                    <input type="search" class="b-search__input" placeholder="Search articles…" aria-label="Search articles">
+                    <button class="b-search__clear" id="bSearchClear" aria-label="Clear search" style="display:none"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
 
             <!-- Right actions -->
             <div class="b-nav__right">
-                <button class="b-theme-toggle" id="bThemeToggle" aria-label="Toggle light/dark mode" title="Toggle theme">
-                    <i class="fas fa-sun b-theme-icon-light"></i>
-                    <i class="fas fa-moon b-theme-icon-dark"></i>
-                </button>
-                <a href="html/index.html" class="b-nav__portfolio">
+                <a href="index.html" class="b-nav__portfolio">
                     <i class="fas fa-arrow-left"></i>
                     <span class="b-nav__portfolio-text">Portfolio</span>
                 </a>
@@ -113,7 +135,12 @@
             <section class="b-feed">
 
                 <div class="b-feed__header">
-                    <h2 class="b-feed__title">All Articles <span class="b-feed__count" id="bFeedCount"></span></h2>
+                    <h2 class="b-feed__title">All Articles <span class="b-feed__count" id="bFeedCount">5</span></h2>
+                    <div class="b-feed__sort">
+                        <span class="b-sort-label">Sort:</span>
+                        <button class="b-sort-btn b-sort-btn--active">Latest</button>
+                        <button class="b-sort-btn">Oldest</button>
+                    </div>
                 </div>
 
                 <!--
@@ -186,7 +213,7 @@
                         </div>
                     </div>
                     <div class="b-post__thumb">
-                        <img src="images/1747700819023.jpg" alt="ALU Marketing & Outreach — Nairobi Nexus" loading="lazy">
+                        <img src="images/1747700819023.jpg" alt="ALU Marketing & Outreach — Nairobi Nexus" loading="lazy" style="object-position: top center;">
                     </div>
                 </article>
 
@@ -215,7 +242,7 @@
                         </div>
                     </div>
                     <div class="b-post__thumb">
-                        <img src="images/photo.jpg" alt="Solomon Thiong at ALU" loading="lazy" style="object-position: top;">
+                        <img src="images/MCF LOGO.jpg" alt="Mastercard Foundation Scholarship — ALU" loading="lazy" style="object-fit: contain; background: #1a2d3a; padding: 6px;">
                     </div>
                 </article>
 
@@ -270,8 +297,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="b-post__thumb b-post__thumb--placeholder" style="background:linear-gradient(135deg,rgba(234,88,12,0.15),rgba(249,115,22,0.08));">
-                        <i class="fas fa-chart-line" style="color:#f97316;"></i>
+                    <div class="b-post__thumb b-post__thumb--placeholder" style="background:linear-gradient(135deg,rgba(254,127,45,0.15),rgba(254,127,45,0.08));">
+                        <i class="fas fa-chart-line" style="color:#FE7F2D;"></i>
                     </div>
                 </article>
 
@@ -304,14 +331,13 @@
                             <div class="b-author-stat"><span class="b-author-stat__num">2025</span><span class="b-author-stat__label">Since</span></div>
                         </div>
                         <div class="b-author-card__socials">
-                            <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
                             <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                             <a href="https://x.com/teeghee_4" target="_blank" rel="noopener noreferrer" aria-label="X"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg></a>
                         </div>
-                        <a href="html/index.html" class="b-btn b-btn--outline b-btn--full">View Portfolio</a>
+                        <a href="index.html" class="b-btn b-btn--outline b-btn--full">View Portfolio</a>
                     </div>
                 </div>
-                <!-- Recommended Reading -->
+<!-- Recommended Reading -->
                 <div class="b-widget">
                     <h3 class="b-widget__title">Recommended Reading</h3>
                     <div class="b-reading-list">
@@ -355,13 +381,12 @@
         <div class="b-footer__inner">
             <div class="b-footer__grid">
                 <div class="b-footer__col b-footer__col--brand">
-                    <a href="html/index.html" class="b-nav__logo">
+                    <a href="index.html" class="b-nav__logo">
                         <img src="images/photo.jpg" alt="Solomon Leek" class="logo-photo">
                         <span class="b-logo-text">Solomon Leek</span>
                     </a>
                     <p class="b-footer__tagline">Writing about engineering, design, leadership, and building technology for Africa.</p>
                     <div class="b-footer__socials">
-                        <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
                         <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="https://x.com/teeghee_4" target="_blank" rel="noopener noreferrer" aria-label="X/Twitter"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg></a>
                         <a href="https://www.instagram.com/sleek_tg001" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -370,10 +395,10 @@
                 <div class="b-footer__col">
                     <h4 class="b-footer__col-title">Navigate</h4>
                     <ul class="b-footer__col-links">
-                        <li><a href="html/index.html">Portfolio</a></li>
-                        <li><a href="html/index.html#projects">Projects</a></li>
-                        <li><a href="html/index.html#about">About</a></li>
-                        <li><a href="html/index.html#contact">Contact</a></li>
+                        <li><a href="index.html">Portfolio</a></li>
+                        <li><a href="index.html#projects">Projects</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
                         <li><a href="html/case-study.html">Case Study</a></li>
                     </ul>
                 </div>
@@ -391,11 +416,9 @@
             <div class="b-footer__bottom">
                 <p class="b-footer__copy">© 2025 Solomon Thiong Garang Leek. All rights reserved.</p>
                 <div class="b-footer__bottom-links">
-                    <a href="html/index.html#contact">Contact</a>
+                    <a href="index.html#contact">Contact</a>
                     <span>·</span>
-                    <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <span>·</span>
-                    <a href="html/index.html">Portfolio</a>
+                    <a href="index.html">Portfolio</a>
                 </div>
             </div>
         </div>
@@ -403,19 +426,6 @@
 
 <script>
 (function () {
-    /* ── THEME TOGGLE ── */
-    const bThemeBtn = document.getElementById('bThemeToggle');
-    const html = document.documentElement;
-    const STORAGE_KEY = 'portfolio-theme';
-    const saved = localStorage.getItem(STORAGE_KEY);
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (saved === 'light' || (!saved && !prefersDark)) html.classList.add('light-mode');
-    if (bThemeBtn) {
-        bThemeBtn.addEventListener('click', function () {
-            const isLight = html.classList.toggle('light-mode');
-            localStorage.setItem(STORAGE_KEY, isLight ? 'light' : 'dark');
-        });
-    }
     /* ── TOPIC FILTER ── */
     const pills    = document.querySelectorAll('.b-tag-pill[data-filter]');
     const posts    = document.querySelectorAll('.b-post[data-tags]');
@@ -550,9 +560,13 @@
 
     /* ── SEARCH ── */
     const searchInput = document.querySelector('.b-search__input');
+    const searchClear = document.getElementById('bSearchClear');
+    const searchBox   = document.getElementById('bSearchBox');
     if (searchInput) {
         searchInput.addEventListener('input', function () {
             const q = this.value.trim().toLowerCase();
+            if (searchClear) searchClear.style.display = q ? 'block' : 'none';
+            if (searchBox)   searchBox.classList.toggle('has-value', !!q);
             if (!q) {
                 filterPosts('all');
                 /* Reset topics dropdown label */
@@ -591,6 +605,15 @@
                 this.blur();
             }
         });
+
+        /* Clear button click */
+        if (searchClear) {
+            searchClear.addEventListener('click', function () {
+                searchInput.value = '';
+                searchInput.dispatchEvent(new Event('input'));
+                searchInput.focus();
+            });
+        }
     }
 
     /* ── NEWSLETTER FORM ── */

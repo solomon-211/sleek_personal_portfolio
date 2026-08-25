@@ -1,0 +1,68 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Auto-Deploy — Solomon Thiong Garang Leek Portfolio
+#
+# Triggers on every push to main.
+# Deploys the static frontend to GitHub Pages at solomonleek.tech.
+#
+# Setup steps (one-time):
+#   1. GitHub repo → Settings → Pages
+#      • Source: "GitHub Actions"
+#   2. GitHub repo → Settings → Pages → Custom domain
+#      • Enter: solomonleek.tech
+#      • Enable "Enforce HTTPS"
+#   3. Add a CNAME record in your DNS provider:
+#      Type: CNAME  |  Name: @  |  Value: solomon-211.github.io
+# ─────────────────────────────────────────────────────────────────────────────
+
+name: Deploy Portfolio
+
+on:
+  push:
+    branches:
+      - main
+  # Allow manual trigger from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages:    write
+  id-token: write
+
+# Only one deployment runs at a time; cancel any in-progress run on new push
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+
+  # ── Build ────────────────────────────────────────────────────────────────
+  build:
+    name: Prepare static site
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create CNAME file for custom domain
+        run: echo "solomonleek.tech" > CNAME
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Deploy the whole repo root (all HTML, CSS, JS, images)
+          path: "."
+
+  # ── Deploy ───────────────────────────────────────────────────────────────
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

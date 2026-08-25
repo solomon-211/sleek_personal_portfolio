@@ -1,10 +1,9 @@
-
+﻿
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const loadingEl   = document.getElementById('loading');
 const nav         = document.querySelector('nav');
 const progressBar = document.getElementById('scrollProgress');
-const parallaxBg  = document.getElementById('parallaxBg');
 const formStatus  = document.getElementById('formStatus');
 const fabBtn      = document.getElementById('fabBtn');
 
@@ -13,192 +12,15 @@ function getApiUrl(configKey, relativePath, productionFallback) {
     if (typeof configured === 'string' && configured.trim()) {
         return configured.trim();
     }
-
     if (window.location.protocol === 'file:') {
         return productionFallback;
     }
-
     return relativePath;
 }
 
 const CONTACT_API_URL = getApiUrl('CONTACT_API_URL', '/api/contact', 'https://solomonleek.tech/api/contact');
 const ANALYTICS_API_URL = getApiUrl('ANALYTICS_API_URL', '/api/analytics', 'https://solomonleek.tech/api/analytics');
 const ANALYTICS_API_BASE = ANALYTICS_API_URL.replace(/\/api\/analytics\/?$/, '');
-
-// ── Theme toggle ──────────────────────────────────────────────────────────────
-(function () {
-    const btn = document.getElementById('themeToggle');
-    const html = document.documentElement;
-    const STORAGE_KEY = 'portfolio-theme';
-
-    // Apply saved or system preference on load
-    const saved = localStorage.getItem(STORAGE_KEY);
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (saved === 'light' || (!saved && !prefersDark)) {
-        html.classList.add('light-mode');
-    }
-
-    if (btn) {
-        btn.addEventListener('click', function () {
-            const isLight = html.classList.toggle('light-mode');
-            localStorage.setItem(STORAGE_KEY, isLight ? 'light' : 'dark');
-        });
-    }
-})();
-
-// ── Rotating hero roles ──────────────────────────────────────────────────────
-const roleEl = document.getElementById('roleText');
-if (roleEl && !prefersReducedMotion) {
-    const roles = ['Software Engineer', 'Graphic Designer', 'Community Leader', 'Public Speaker', 'Python Developer'];
-    let roleIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
-
-    function typeRole() {
-        const current = roles[roleIndex];
-        roleEl.textContent = deleting ? current.slice(0, charIndex--) : current.slice(0, charIndex++);
-
-        if (!deleting && charIndex > current.length) {
-            deleting = true;
-            setTimeout(typeRole, 1800);
-            return;
-        }
-        if (deleting && charIndex < 0) {
-            deleting = false;
-            roleIndex = (roleIndex + 1) % roles.length;
-        }
-        setTimeout(typeRole, deleting ? 45 : 90);
-    }
-    setTimeout(typeRole, 1000);
-} else if (roleEl) {
-    roleEl.textContent = 'Software Engineer';
-}
-
-// ── Cinematic hero canvas — drifting constellation that links near the cursor ─
-(function () {
-    const canvas = document.getElementById('heroCanvas');
-    const heroSection = document.getElementById('home');
-    if (!canvas || !heroSection) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const DPR = Math.min(window.devicePixelRatio || 1, 2);
-    const DENSITY = 14000;       // px^2 per particle — keeps density moderate
-    const MAX_LINK_DIST = 140;   // particle-to-particle line distance
-    const MOUSE_LINK_DIST = 180; // particle-to-cursor line distance
-
-    let particles = [];
-    let width = 0, height = 0;
-    let rafId = null;
-    const mouse = { x: null, y: null };
-
-    function seedParticles() {
-        const count = Math.min(90, Math.max(30, Math.floor((width * height) / DENSITY)));
-        particles = [];
-        for (let i = 0; i < count; i++) {
-            particles.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 0.25,
-                vy: (Math.random() - 0.5) * 0.25,
-                r: Math.random() * 1.4 + 0.6
-            });
-        }
-    }
-
-    function resize() {
-        const rect = heroSection.getBoundingClientRect();
-        width = rect.width;
-        height = rect.height;
-        canvas.width = width * DPR;
-        canvas.height = height * DPR;
-        canvas.style.width = width + 'px';
-        canvas.style.height = height + 'px';
-        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-        seedParticles();
-    }
-
-    function drawStatic() {
-        ctx.clearRect(0, 0, width, height);
-        particles.forEach(function (p) {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255,255,255,0.35)';
-            ctx.fill();
-        });
-    }
-
-    function step() {
-        ctx.clearRect(0, 0, width, height);
-
-        for (let i = 0; i < particles.length; i++) {
-            const p = particles[i];
-            p.x += p.vx;
-            p.y += p.vy;
-            if (p.x < 0 || p.x > width)  p.vx *= -1;
-            if (p.y < 0 || p.y > height) p.vy *= -1;
-
-            for (let j = i + 1; j < particles.length; j++) {
-                const q = particles[j];
-                const dx = p.x - q.x, dy = p.y - q.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < MAX_LINK_DIST) {
-                    ctx.strokeStyle = 'rgba(249,115,22,' + (0.16 * (1 - dist / MAX_LINK_DIST)).toFixed(3) + ')';
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(q.x, q.y);
-                    ctx.stroke();
-                }
-            }
-
-            if (mouse.x !== null) {
-                const mdx = p.x - mouse.x, mdy = p.y - mouse.y;
-                const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-                if (mdist < MOUSE_LINK_DIST) {
-                    ctx.strokeStyle = 'rgba(249,115,22,' + (0.35 * (1 - mdist / MOUSE_LINK_DIST)).toFixed(3) + ')';
-                    ctx.lineWidth = 1.2;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(mouse.x, mouse.y);
-                    ctx.stroke();
-                }
-            }
-
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255,255,255,0.5)';
-            ctx.fill();
-        }
-
-        rafId = requestAnimationFrame(step);
-    }
-
-    resize();
-
-    if (prefersReducedMotion) {
-        drawStatic();
-    } else {
-        step();
-        heroSection.addEventListener('mousemove', function (e) {
-            const rect = heroSection.getBoundingClientRect();
-            mouse.x = e.clientX - rect.left;
-            mouse.y = e.clientY - rect.top;
-        });
-        heroSection.addEventListener('mouseleave', function () {
-            mouse.x = null;
-            mouse.y = null;
-        });
-        window.addEventListener('resize', resize);
-        document.addEventListener('visibilitychange', function () {
-            if (document.hidden) {
-                if (rafId) cancelAnimationFrame(rafId);
-            } else {
-                step();
-            }
-        });
-    }
-})();
 
 // ── Loading screen ────────────────────────────────────────────────────────────
 window.addEventListener('load', function () {
@@ -614,10 +436,6 @@ function handleScrollEffects() {
     if (progressBar) {
         const pct = scrollHeight > 0 ? (scrollY / scrollHeight) * 100 : 0;
         progressBar.style.setProperty('--scroll-pct', `${pct}%`);
-    }
-
-    if (parallaxBg && !prefersReducedMotion) {
-        parallaxBg.style.transform = `translateY(${scrollY * 0.5}px)`;
     }
 
     // FAB: toggle class instead of inline opacity/pointerEvents

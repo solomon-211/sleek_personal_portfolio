@@ -1,20 +1,35 @@
-# Python
+# ── Python ────────────────────────────────────────────
 __pycache__/
 *.pyc
+*.pyo
 venv/
 .venv/
+*.egg-info/
 
-# Environment secrets — never commit real credentials
+# ── Environment secrets — NEVER commit ───────────────
 backend/.env
 .env
+*.env
 
-# Backend runtime data — contains visitor PII (names, emails, IPs)
+# ── Backend runtime data (contains visitor PII) ───────
 backend/messages.json
 backend/newsletter.json
 backend/notify_requests.json
 backend/analytics.json
 backend/rate_limits.json
 
-# OS / editor
+# ── OS / editor ───────────────────────────────────────
 .DS_Store
 Thumbs.db
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
+
+# ── Node (if ever added) ───────────────────────────────
+node_modules/
+npm-debug.log*
+
+# ── Build artifacts ───────────────────────────────────
+dist/
+build/

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,12 +28,12 @@
     <link rel="icon" type="image/jpeg" href="images/photo.jpg">
     <link rel="apple-touch-icon" href="images/photo.jpg">
     <link rel="canonical" href="https://solomonleek.tech/">
-    <meta name="theme-color" content="#ea580c">
+    <meta name="theme-color" content="#FE7F2D">
     <script>document.documentElement.classList.add('js');</script>
+    <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/card-effects.css">
-    <link rel="stylesheet" href="css/creative.css">
 
     <!-- Optional overrides for a separately hosted API.
          If unset, the frontend uses same-origin /api routes. -->
@@ -82,7 +82,6 @@
             "knowsAbout": ["Software Engineering", "Graphic Design", "Python", "Flask", "JavaScript", "Brand Identity", "Community Leadership"],
             "email": "s.leek@alustudent.com",
             "sameAs": [
-                "https://github.com/solomon-211",
                 "https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345",
                 "https://x.com/teeghee_4",
                 "https://www.instagram.com/sleek_tg001"
@@ -157,22 +156,14 @@
                 <li class="nav-main-item"><a href="#about"    class="nav-link">About</a></li>
                 <li class="nav-main-item"><a href="#projects" class="nav-link">Projects</a></li>
                 <li class="nav-main-item"><a href="html/portfolio.html" class="nav-link">Portfolio</a></li>
-                <li class="nav-main-item"><a href="#timeline" class="nav-link">Journey</a></li>
-                <li class="nav-main-item"><a href="#skills"   class="nav-link">Skills</a></li>
-                <li class="nav-main-item"><a href="#community" class="nav-link">Community</a></li>
+                <li class="nav-main-item"><a href="html/blog.html" class="nav-link">Blog</a></li>
+                <li class="nav-main-item"><a href="html/experience.html" class="nav-link">Experience</a></li>
                 <li class="nav-main-item"><a href="#contact"  class="nav-link">Contact</a></li>
 
             </ul>
 
             <!-- Right actions -->
             <div class="nav-right-group">
-                <button class="nav-search-btn" id="cmdOpenBtn" aria-label="Search" title="Search (Ctrl+K)">
-                    <i class="fas fa-search"></i>
-                </button>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
-                    <i class="fas fa-sun theme-icon-light"></i>
-                    <i class="fas fa-moon theme-icon-dark"></i>
-                </button>
                 <button class="menu-toggle" id="menuToggleBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" title="Toggle menu">
                     <i class="fas fa-bars" id="menuIcon"></i>
                 </button>
@@ -225,28 +216,8 @@
                     </a>
                 </div>
 
-                <!-- Stats row -->
-                <div class="hero-stats reveal-left">
-                    <div class="hero-stat">
-                        <span class="hero-stat-num" data-count="8" data-suffix="+">8+</span>
-                        <span class="hero-stat-label">Projects Built</span>
-                    </div>
-                    <div class="hero-stat-divider"></div>
-                    <div class="hero-stat">
-                        <span class="hero-stat-num" data-count="3" data-suffix="+">3+</span>
-                        <span class="hero-stat-label">Years Design</span>
-                    </div>
-                    <div class="hero-stat-divider"></div>
-                    <div class="hero-stat">
-                        <span class="hero-stat-num" data-count="50" data-suffix="+">50+</span>
-                        <span class="hero-stat-label">Students Mentored</span>
-                    </div>
-
-                </div>
-
-                <!-- Institution trust bar -->
-                <div class="hero-trust reveal-left">
-                    <span class="hero-trust__label">Studying at</span>
+                <!-- Trust bar + Resume -->
+                <div class="hero-trust reveal-left" style="align-items:center;gap:1rem;flex-wrap:wrap;">
                     <a href="#academics" class="hero-trust__item">
                         <img src="images/ALU%20LOGO.jpg" alt="African Leadership University" class="hero-trust__logo">
                         <span>African Leadership University</span>
@@ -256,23 +227,7 @@
                         <img src="images/MCF%20LOGO.jpg" alt="Mastercard Foundation" class="hero-trust__logo">
                         <span>Mastercard Foundation Scholar</span>
                     </a>
-                </div>
-
-                <!-- Social links -->
-                <div class="hero-socials reveal-left">
-                    <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" class="hero-social" aria-label="GitHub">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer" class="hero-social" aria-label="LinkedIn">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://x.com/teeghee_4" target="_blank" rel="noopener noreferrer" class="hero-social" aria-label="X / Twitter">
-                        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg>
-                    </a>
-                    <a href="mailto:s.leek@alustudent.com" class="hero-social" aria-label="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <span class="hero-social-divider"></span>
+                    <span class="hero-trust__sep">&middot;</span>
                     <a href="https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="hero-resume-link" id="resumeLink">
                         <i class="fas fa-file-lines"></i> Resume
                     </a>
@@ -305,7 +260,7 @@
         <!-- Wave divider from hero -->
         <div class="section-wave" aria-hidden="true">
             <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,48 C360,0 1080,0 1440,48 L1440,0 L0,0 Z" fill="var(--wave-fill, #060d1a)"/>
+                <path d="M0,48 C360,0 1080,0 1440,48 L1440,0 L0,0 Z" fill="var(--wave-fill, #131f27)"/>
             </svg>
         </div>
         <div class="container">
@@ -390,29 +345,7 @@
                         </div>
                     </div>
 
-                    <!-- GitHub activity widget -->
-                    <div class="github-widget">
-                        <div class="github-widget__header">
-                            <i class="fa-brands fa-github github-widget__icon"></i>
-                            <span class="github-widget__title">GitHub Activity</span>
-                            <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" class="github-widget__link">
-                                solomon-211 <i class="fas fa-arrow-up-right-from-square"></i>
-                            </a>
-                        </div>
-                        <div class="github-widget__stats">
-                            <div class="github-widget__stat">
-                                <i class="fas fa-code-branch"></i>
-                                <span>Active on GitHub</span>
-                            </div>
-                            <div class="github-widget__stat">
-                                <i class="fas fa-star"></i>
-                                <span>Open source projects</span>
-                            </div>
-                        </div>
-                        <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" class="github-widget__cta">
-                            <i class="fa-brands fa-github"></i> View Profile &amp; Repositories
-                        </a>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -461,10 +394,6 @@
                     <span>JavaScript</span>
                 </div>
                 <div class="tools-strip__sep"></div>
-                <div class="tools-strip__item" title="GitHub">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                </div>
                 <div class="tools-strip__item" title="VS Code">
                     <i class="fas fa-code"></i>
                     <span>VS Code</span>
@@ -489,6 +418,104 @@
             </div>
         </div>
     </div>
+
+    <!-- ── HOW I WORK SECTION ── -->
+    <section id="how-i-work" class="section-bg-secondary">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How I Work</h2>
+                <p class="section-subtitle">
+                    Three disciplines. One standard &mdash; work that performs, communicates clearly, and creates real value.
+                </p>
+            </div>
+
+            <!-- Discipline cards -->
+            <div class="hiw-grid">
+
+                <!-- Card 1: Software Engineering -->
+                <div class="hiw-card">
+                    <div class="hiw-card__accent hiw-card__accent--dev"></div>
+                    <div class="hiw-card__icon" style="background:linear-gradient(135deg,#22c55e,#16a34a)">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="hiw-card__title">Software Engineering</h3>
+                    <p class="hiw-card__desc">Every project starts with a problem statement, not a tech stack. I build with Python, Flask, FastAPI, HTML, CSS, and JavaScript &mdash; from REST APIs and data pipelines to full-stack web apps. Clean architecture, readable code, and proper documentation are non-negotiable.</p>
+                    <ul class="hiw-card__list">
+                        <li><i class="fas fa-check-circle"></i> Full-stack web applications</li>
+                        <li><i class="fas fa-check-circle"></i> REST APIs &amp; database design</li>
+                        <li><i class="fas fa-check-circle"></i> Data engineering &amp; dashboards</li>
+                        <li><i class="fas fa-check-circle"></i> Education &amp; healthcare platforms</li>
+                    </ul>
+                    <div class="hiw-card__process">
+                        <span><i class="fas fa-circle-dot"></i> Define</span>
+                        <span class="hiw-card__arrow"><i class="fas fa-arrow-right"></i></span>
+                        <span><i class="fas fa-circle-dot"></i> Build &amp; Test</span>
+                        <span class="hiw-card__arrow"><i class="fas fa-arrow-right"></i></span>
+                        <span><i class="fas fa-circle-dot"></i> Deploy</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Graphic Design -->
+                <div class="hiw-card hiw-card--featured">
+                    <div class="hiw-card__accent hiw-card__accent--design"></div>
+                    <div class="hiw-card__badge">Most Requested</div>
+                    <div class="hiw-card__icon" style="background:linear-gradient(135deg,#FE7F2D,#ff9448)">
+                        <i class="fas fa-pen-nib"></i>
+                    </div>
+                    <h3 class="hiw-card__title">Graphic Design</h3>
+                    <p class="hiw-card__desc">Design is communication. Before opening any tool, I rank content priority &mdash; hierarchy drives every layout decision. I work across campaign posters, event flyers, social media graphics, and UI design, always testing at multiple sizes for digital and print.</p>
+                    <ul class="hiw-card__list">
+                        <li><i class="fas fa-check-circle"></i> Campaign &amp; event posters</li>
+                        <li><i class="fas fa-check-circle"></i> Social media graphics</li>
+                        <li><i class="fas fa-check-circle"></i> UI design &amp; web layouts</li>
+                        <li><i class="fas fa-check-circle"></i> Print-ready materials</li>
+                    </ul>
+                    <div class="hiw-card__process">
+                        <span><i class="fas fa-circle-dot"></i> Brief</span>
+                        <span class="hiw-card__arrow"><i class="fas fa-arrow-right"></i></span>
+                        <span><i class="fas fa-circle-dot"></i> Hierarchy</span>
+                        <span class="hiw-card__arrow"><i class="fas fa-arrow-right"></i></span>
+                        <span><i class="fas fa-circle-dot"></i> Deliver</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Brand Identity -->
+                <div class="hiw-card">
+                    <div class="hiw-card__accent hiw-card__accent--brand"></div>
+                    <div class="hiw-card__icon" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="hiw-card__title">Brand &amp; Identity</h3>
+                    <p class="hiw-card__desc">A brand is a system, not a logo. I design logos, color palettes, typography, and apparel graphics that hold together across every surface &mdash; from a phone screen to a printed hoodie. My work for Sleek Nexus Creative covers the full identity system.</p>
+                    <ul class="hiw-card__list">
+                        <li><i class="fas fa-check-circle"></i> Logo &amp; logomark systems</li>
+                        <li><i class="fas fa-check-circle"></i> Color &amp; typography systems</li>
+                        <li><i class="fas fa-check-circle"></i> Apparel &amp; merchandise design</li>
+                        <li><i class="fas fa-check-circle"></i> Full visual identity guides</li>
+                    </ul>
+                    <div class="hiw-card__process">
+                        <span><i class="fas fa-circle-dot"></i> Strategy</span>
+                        <span class="hiw-card__arrow"><i class="fas fa-arrow-right"></i></span>
+                        <span><i class="fas fa-circle-dot"></i> System</span>
+                        <span class="hiw-card__arrow"><i class="fas fa-arrow-right"></i></span>
+                        <span><i class="fas fa-circle-dot"></i> Scale</span>
+                    </div>
+                </div>
+
+            </div><!-- /hiw-grid -->
+
+            <!-- CTA -->
+            <div style="text-align:center;margin-top:2.5rem;">
+                <a href="html/portfolio.html" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;">
+                    <i class="fas fa-th-large"></i> See All Projects
+                </a>
+                <a href="#contact" class="btn btn-secondary" style="display:inline-flex;align-items:center;gap:0.5rem;margin-left:0.75rem;">
+                    <i class="fas fa-paper-plane"></i> Work With Me
+                </a>
+            </div>
+
+        </div>
+    </section>
 
     <!-- Projects Section -->
     <section id="projects" class="section-bg-secondary">
@@ -531,7 +558,7 @@
                         <img src="images/Independence-day.jpg" alt="Independence Day Campaign Poster" loading="lazy" decoding="async">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="images/Independence-day.jpg" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Open poster">
+                                <a href="html/case-study.html" class="project-link" aria-label="View case study">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
@@ -549,47 +576,10 @@
                     </div>
                 </div>
 
-                <!-- Featured: Dev Project -->
-                <div class="project-card" data-category="web">
-                    <div class="project-image project-image--code">
-                        <div class="project-code-preview" aria-hidden="true">
-                            <span class="code-line"><span class="code-tag">NYC Urban Mobility</span></span>
-                            <span class="code-line"><span class="code-attr">1M+ taxi records</span></span>
-                            <span class="code-line"><span class="code-val">min-heap &middot; O(n log k)</span></span>
-                            <span class="code-line"><span class="code-tag">Flask &middot; SQLite &middot; Pandas</span></span>
-                            <span class="code-line"><span class="code-attr">7 REST endpoints</span></span>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/solomon-211/Urban_Mobility_Data_Explorer_Summative" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View on GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="https://youtu.be/V8WMKv5jU2s" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Watch demo">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-meta-row">
-                            <span class="project-featured-badge"><i class="fas fa-star"></i> Featured</span>
-                        </div>
-                        <h3 class="project-title">NYC Urban Mobility Data Explorer</h3>
-                        <span class="project-category-chip"><i class="fas fa-code"></i> Dev</span>
-                        <p class="project-description">Full-stack data engineering &mdash; 1M+ taxi records, 7-step cleaning pipeline, min-heap algorithm, 7 REST endpoints, and an interactive choropleth dashboard.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">Pandas</span>
-                            <span class="tech-tag">Chart.js</span>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Featured: EduPortal South Sudan Ã¢â‚¬â€ Live -->
                 <div class="project-card" data-category="web">
                     <div class="project-image">
-                        <div class="project-image--code" style="height:200px;background:linear-gradient(135deg,#0a1628,#0e1f38);display:flex;align-items:center;justify-content:center;">
+                        <div class="project-image--code" style="height:200px;background:linear-gradient(135deg,#1a2d3a,#233D4D);display:flex;align-items:center;justify-content:center;">
                             <div class="project-code-preview" aria-hidden="true">
                                 <span class="code-line"><span class="code-tag">EduPortal South Sudan</span></span>
                                 <span class="code-line"><span class="code-attr">Education Platform</span></span>
@@ -606,9 +596,6 @@
                         </div>
                     </div>
                     <div class="project-content">
-                        <div class="project-meta-row">
-                            <span class="project-status project-status--live"><i class="fas fa-circle"></i> Live</span>
-                        </div>
                         <h3 class="project-title">EduPortal South Sudan</h3>
                         <span class="project-category-chip"><i class="fas fa-code"></i> Dev</span>
                         <p class="project-description">An education portal serving students and educators in South Sudan &mdash; providing accessible learning resources, course listings, and academic support for underserved communities.</p>
@@ -623,7 +610,7 @@
                 <!-- Featured: Sleek Nexus Creative Ã¢â‚¬â€ Live -->
                 <div class="project-card" data-category="web">
                     <div class="project-image">
-                        <img src="images/SLEEK NEXUS CREATIVE.png" alt="Sleek Nexus Creative" loading="lazy" decoding="async" style="object-fit:contain;background:#0a1628;padding:1rem;">
+                        <img src="images/SLEEK NEXUS CREATIVE.png" alt="Sleek Nexus Creative" loading="lazy" decoding="async" style="object-fit:contain;background:#1a2d3a;padding:1rem;">
                         <div class="project-overlay">
                             <div class="project-links">
                                 <a href="https://sleeknexuscreative.com" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Visit Sleek Nexus Creative">
@@ -633,9 +620,6 @@
                         </div>
                     </div>
                     <div class="project-content">
-                        <div class="project-meta-row">
-                            <span class="project-status project-status--live"><i class="fas fa-circle"></i> Live</span>
-                        </div>
                         <h3 class="project-title">Sleek Nexus Creative</h3>
                         <span class="project-category-chip"><i class="fas fa-layer-group"></i> Brand &amp; Web</span>
                         <p class="project-description">Official website for Sleek Nexus Creative &mdash; a creative and technology brand. Built and designed from scratch, combining brand identity with a live web presence.</p>
@@ -654,344 +638,11 @@
                 <a href="html/portfolio.html" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;font-size:0.95rem;">
                     <i class="fas fa-th-large"></i> View All Projects
                 </a>
-                <p style="margin-top:0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.4);">2 Live Sites &middot; Design &middot; Dev Projects &middot; Brands</p>
+                <p style="margin-top:0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.4);">3 Live Projects &middot; Design &middot; Dev &middot; Brands</p>
             </div>
 
         </div>
     </section>
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Skills & Expertise</h2>
-                <p class="section-subtitle">
-                    The capabilities I apply across design, software development, and engineering delivery
-                </p>
-            </div>
-            <div class="skills-grid">
-
-                <!-- Card 1: Graphic Design -->
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
-                        <h3 class="skill-title">Graphic Design</h3>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Adobe Photoshop</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:95%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Adobe Illustrator</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:90%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Figma</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:85%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Canva</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:95%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Brand Identity</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:90%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">UI/UX &amp; Wireframing</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:85%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Design Systems</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:88%"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2: Full-Stack Engineering -->
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-layer-group"></i></div>
-                        <h3 class="skill-title">Full-Stack Engineering</h3>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <!-- Frontend -->
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">HTML5 &amp; CSS3</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:95%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">JavaScript</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:85%"></div></div>
-                        </div>
-                        <!-- Backend -->
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Python &amp; Flask</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:88%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">FastAPI</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:80%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">REST API Design</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:85%"></div></div>
-                        </div>
-                        <!-- Database -->
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">MySQL &amp; SQLite</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:88%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Database Design &amp; ERD</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:82%"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3: Leadership & Soft Skills -->
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-icon" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)"><i class="fas fa-users"></i></div>
-                        <h3 class="skill-title">Leadership &amp; Communication</h3>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Team Leadership</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:90%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Public Speaking</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:85%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Community Organizing</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:92%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Project Management</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:80%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Strategic Communication</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:88%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Mentorship &amp; Training</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:90%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-label"><span class="skill-bar-name">Problem Solving</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:92%"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section id="timeline">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">My Journey</h2>
-                <p class="section-subtitle">Key milestones in leadership, education, and professional growth</p>
-            </div>
-
-            <div class="jrn-list">
-
-                <div class="jrn-item">
-                    <div class="jrn-left">
-                        <span class="jrn-year">2019</span>
-                        <span class="jrn-type">Leadership</span>
-                    </div>
-                    <div class="jrn-connector">
-                        <div class="jrn-dot"></div>
-                        <div class="jrn-line"></div>
-                    </div>
-                    <div class="jrn-right">
-                        <div class="jrn-icon"><i class="fas fa-users"></i></div>
-                        <div class="jrn-body">
-                            <h3 class="jrn-title">Student Government President</h3>
-                            <p class="jrn-org">Secondary School &middot; South Sudan</p>
-                            <p class="jrn-desc">Elected to represent 500+ students, driving policy improvements that strengthened academic support and campus welfare.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="jrn-item">
-                    <div class="jrn-left">
-                        <span class="jrn-year">2023</span>
-                        <span class="jrn-type">Teaching</span>
-                    </div>
-                    <div class="jrn-connector">
-                        <div class="jrn-dot"></div>
-                        <div class="jrn-line"></div>
-                    </div>
-                    <div class="jrn-right">
-                        <div class="jrn-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                        <div class="jrn-body">
-                            <h3 class="jrn-title">Teacher</h3>
-                            <p class="jrn-org">Mission Garden Nursery &amp; Primary School &middot; 2023&ndash;2024</p>
-                            <p class="jrn-desc">Supported foundational learning and student development, strengthening communication and mentorship skills before starting university.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="jrn-item jrn-item--highlight">
-                    <div class="jrn-left">
-                        <span class="jrn-year">2025</span>
-                        <span class="jrn-type">University</span>
-                    </div>
-                    <div class="jrn-connector">
-                        <div class="jrn-dot jrn-dot--highlight"></div>
-                        <div class="jrn-line"></div>
-                    </div>
-                    <div class="jrn-right">
-                        <div class="jrn-icon jrn-icon--highlight"><i class="fas fa-graduation-cap"></i></div>
-                        <div class="jrn-body">
-                            <h3 class="jrn-title">BSc Software Engineering &mdash; ALU</h3>
-                            <p class="jrn-org">African Leadership University &middot; Kigali, Rwanda &middot; Jan 2025 &mdash; Present</p>
-                            <p class="jrn-desc">Full Mastercard Foundation Scholarship. Building expertise in software engineering, data systems, and full-stack development with a focus on Africa-facing solutions.</p>
-                            <div class="jrn-tags"><span>Python</span><span>Flask</span><span>FastAPI</span><span>Data Engineering</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="jrn-item">
-                    <div class="jrn-left">
-                        <span class="jrn-year">2025</span>
-                        <span class="jrn-type">Global Program</span>
-                    </div>
-                    <div class="jrn-connector">
-                        <div class="jrn-dot"></div>
-                        <div class="jrn-line"></div>
-                    </div>
-                    <div class="jrn-right">
-                        <div class="jrn-icon"><i class="fas fa-globe"></i></div>
-                        <div class="jrn-body">
-                            <h3 class="jrn-title">Aspire Leaders Program</h3>
-                            <p class="jrn-org">Harvard-affiliated &middot; Global &middot; May 2025</p>
-                            <p class="jrn-desc">Selected for this globally competitive leadership initiative, completing intensive training in strategic thinking, ethical decision-making, and social impact design.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="jrn-item jrn-item--active">
-                    <div class="jrn-left">
-                        <span class="jrn-year">2026</span>
-                        <span class="jrn-badge"><i class="fas fa-circle"></i> Active</span>
-                    </div>
-                    <div class="jrn-connector">
-                        <div class="jrn-dot jrn-dot--active"></div>
-                        <div class="jrn-line"></div>
-                    </div>
-                    <div class="jrn-right">
-                        <div class="jrn-icon jrn-icon--active"><i class="fas fa-code"></i></div>
-                        <div class="jrn-body">
-                            <h3 class="jrn-title">Website Development Intern</h3>
-                            <p class="jrn-org">InzoziHub Platform &middot; May 2026 &mdash; Present</p>
-                            <p class="jrn-desc">Contributing responsive layouts, accessibility improvements, and feature work in collaboration with designers and backend engineers.</p>
-                            <div class="jrn-tags"><span>HTML/CSS/JS</span><span>Responsive Design</span><span>Accessibility</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="jrn-item jrn-item--active">
-                    <div class="jrn-left">
-                        <span class="jrn-year">2026</span>
-                        <span class="jrn-badge"><i class="fas fa-circle"></i> Active</span>
-                    </div>
-                    <div class="jrn-connector">
-                        <div class="jrn-dot jrn-dot--active"></div>
-                        <div class="jrn-line"></div>
-                    </div>
-                    <div class="jrn-right">
-                        <div class="jrn-icon jrn-icon--active"><i class="fas fa-laptop-code"></i></div>
-                        <div class="jrn-body">
-                            <h3 class="jrn-title">Software Development Intern</h3>
-                            <p class="jrn-org">Elevanda Ventures &middot; May 2026 &mdash; Present</p>
-                            <p class="jrn-desc">Backend feature implementation, bug fixes, and code reviews in agile sprints to deliver product improvements.</p>
-                            <div class="jrn-tags"><span>Python</span><span>Backend</span><span>Agile</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="jrn-item jrn-item--future">
-                    <div class="jrn-left">
-                        <span class="jrn-year">2028</span>
-                        <span class="jrn-type">Goal</span>
-                    </div>
-                    <div class="jrn-connector">
-                        <div class="jrn-dot jrn-dot--future"></div>
-                    </div>
-                    <div class="jrn-right">
-                        <div class="jrn-icon jrn-icon--future"><i class="fas fa-flag-checkered"></i></div>
-                        <div class="jrn-body">
-                            <h3 class="jrn-title">Graduation &mdash; BSc Software Engineering</h3>
-                            <p class="jrn-org">African Leadership University &middot; Expected Jul 2028</p>
-                            <p class="jrn-desc">Expected to graduate and contribute scalable technology solutions to real challenges across Africa.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Academic Excellence Section -->
-    <section id="academics" class="section-bg-white">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Academic Excellence</h2>
-                <p class="section-subtitle">
-                    A high-performance academic journey shaped by discipline, curiosity, and continuous growth
-                </p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-graduation-cap"></i></div>
-                        <h3 class="skill-title">Current Studies</h3>
-                    </div>
-                    <div class="skill-list">
-                        <span class="skill-item">Software Engineering - ALU</span>
-                        <span class="skill-item">Expected Graduation: 2028</span>
-                        <span class="skill-item">Kigali, Rwanda Campus</span>
-                        <span class="skill-item">Full Scholarship Recipient</span>
-                    </div>
-                </div>
-                <!-- Academic Achievements removed per request -->
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-book"></i></div>
-                        <h3 class="skill-title">Key Coursework</h3>
-                    </div>
-                    <div class="skill-list">
-                        <span class="skill-item">Data Structures & Algorithms</span>
-                        <span class="skill-item">Software Engineering Principles</span>
-                        <span class="skill-item">Database Management Systems</span>
-                        <span class="skill-item">Human-Computer Interaction</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-certificate"></i></div>
-                        <h3 class="skill-title">Certifications</h3>
-                    </div>
-                    <div class="skill-list">
-                        <span class="skill-item">Google IT Support Certificate</span>
-                        <span class="skill-item">Adobe Certified Expert</span>
-                        <span class="skill-item">Python Programming Certificate</span>
-                        <span class="skill-item">Web Development Bootcamp</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Community Service Section -->
     <section id="community" class="section-bg-white">
         <div class="container">
@@ -1137,15 +788,6 @@
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon contact-icon--github">
-                            <i class="fa-brands fa-github"></i>
-                        </div>
-                        <div>
-                            <h3>GitHub</h3>
-                            <p><a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" class="contact-link">solomon-211</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
                         <div class="contact-icon contact-icon--linkedin">
                             <i class="fa-brands fa-linkedin"></i>
                         </div>
@@ -1162,9 +804,6 @@
                         <div class="contact-social-row">
                             <a class="contact-social-icon contact-social-icon--linkedin" href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                                 <i class="fa-brands fa-linkedin-in"></i>
-                            </a>
-                            <a class="contact-social-icon contact-social-icon--github" href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                                <i class="fa-brands fa-github"></i>
                             </a>
                             <a class="contact-social-icon contact-social-icon--email" href="mailto:s.leek@alustudent.com?cc=thionggarang11@gmail.com" aria-label="Email">
                                 <i class="fas fa-envelope"></i>
@@ -1232,30 +871,6 @@
                     <p class="footer-tagline">Software Engineer &middot; Designer &middot; Community Leader</p>
                     <p class="footer-bio">Building practical technology solutions for Africa &mdash; from campaign visuals and brand identity to full-stack web applications and REST APIs.</p>
 
-                    <!-- Availability pill -->
-                    <div class="footer-avail">
-                        <span class="footer-avail__dot"></span>
-                        <span>Open to internships &middot; Remote or Kigali</span>
-                    </div>
-
-                    <!-- Social icons -->
-                    <div class="footer-socials">
-                        <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="GitHub" title="GitHub">
-                            <i class="fa-brands fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn" title="LinkedIn">
-                            <i class="fa-brands fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://x.com/teeghee_4" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="X / Twitter" title="X">
-                            <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg>
-                        </a>
-                        <a href="https://www.instagram.com/sleek_tg001" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram" title="Instagram">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="mailto:s.leek@alustudent.com" class="footer-social" aria-label="Email" title="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
                 </div>
 
                 <!-- Quick Links -->
@@ -1266,8 +881,7 @@
                         <li><a href="#about">About</a></li>
                         <li><a href="#projects">Projects</a></li>
                         <li><a href="html/portfolio.html">Portfolio</a></li>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#timeline">Journey</a></li>
+                        <li><a href="html/experience.html">Experience</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -1277,7 +891,6 @@
                     <p class="footer-links-title">Work &amp; Resources</p>
                     <ul class="footer-links-list">
                         <li><a href="#community">Community</a></li>
-                        <li><a href="#academics">Academics</a></li>
                         <li><a href="html/blog.html">Blog</a></li>
                         <li><a href="https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing" target="_blank" rel="noopener noreferrer" id="resumeLink">Resume</a></li>
                     </ul>

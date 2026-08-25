@@ -1,4 +1,4 @@
-/* ── Tactile 3D tilt + flip reveal for project cards ──────────────────────────
+﻿/* ── Tactile 3D tilt + flip reveal for project cards ──────────────────────────
    Loaded after base/styles/portfolio CSS so these rules win the cascade
    over the existing (!important) hover transforms — same lift, added tilt. */
 
@@ -35,7 +35,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  background: linear-gradient(135deg, #ea580c, #f97316);
+  background: linear-gradient(135deg, #FE7F2D, #FE7F2D);
   padding: 1.25rem;
   text-align: center;
 }
@@ -56,7 +56,7 @@
   font-size: 0.9rem;
   transition: transform 0.2s, background 0.2s, color 0.2s;
 }
-.card-flip__link:hover { background: #fff; color: #ea580c; transform: scale(1.1); }
+.card-flip__link:hover { background: #fff; color: #FE7F2D; transform: scale(1.1); }
 
 @media (prefers-reduced-motion: reduce) {
   .project-card:hover,
