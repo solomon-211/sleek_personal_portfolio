@@ -1,4 +1,4 @@
-# ── Python ────────────────────────────────────────────
+﻿# ── Python ────────────────────────────────────────────
 __pycache__/
 *.pyc
 *.pyo
@@ -22,7 +22,6 @@ backend/rate_limits.json
 .DS_Store
 Thumbs.db
 .idea/
-.vscode/settings.json
 *.swp
 *.swo
 
