@@ -37,7 +37,7 @@
         }
         .logo-icon {
             width: 36px; height: 36px; border-radius: 8px;
-            background: linear-gradient(135deg, #FE7F2D, #FE7F2D);
+            background: linear-gradient(135deg, #FE7F2D, #ff9448);
             color: #fff; font-size: 0.85rem; font-weight: 800;
             display: flex; align-items: center; justify-content: center;
         }
@@ -96,15 +96,15 @@
 </head>
 <body>
     <div class="wrap">
-        <a href="html/index.html" class="logo">
-            <div class="logo-icon">SK</div>
-            Sleek
+        <a href="index.html" class="logo">
+            <div class="logo-icon">SL</div>
+            Solomon Leek
         </a>
         <div class="code">404</div>
         <h1>Page not found</h1>
         <p>The page you're looking for doesn't exist or may have been moved.<br>Let's get you back on track.</p>
         <div class="actions">
-            <a href="html/index.html" class="btn-primary">
+            <a href="index.html" class="btn-primary">
                 <i class="fas fa-house"></i> Back to Portfolio
             </a>
             <a href="html/blog.html" class="btn-ghost">
@@ -112,11 +112,28 @@
             </a>
         </div>
         <div class="links">
-            <a href="html/index.html#projects">Projects</a>
-            <a href="html/index.html#about">About</a>
-            <a href="html/index.html#contact">Contact</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
             <a href="html/blog.html">Blog</a>
         </div>
+        <script>
+        // Smart redirect: map old/dead URLs to their new destinations
+        (function () {
+            var redirects = {
+                'experience':     'index.html',
+                'how-i-work':     'index.html#how-i-work',
+                'article-template': 'html/blog.html'
+            };
+            var path = window.location.pathname.toLowerCase();
+            for (var key in redirects) {
+                if (path.indexOf(key) !== -1) {
+                    window.location.replace(redirects[key]);
+                    break;
+                }
+            }
+        })();
+        </script>
     </div>
 </body>
 </html>
