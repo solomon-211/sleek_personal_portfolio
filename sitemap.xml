@@ -30,6 +30,14 @@
     </image:image>
   </url>
 
+  <!-- ── Experience / How I Work ──────────────────── -->
+  <url>
+    <loc>https://solomonleek.tech/html/experience.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <!-- ── Full work portfolio page ──────────────────── -->
   <url>
     <loc>https://solomonleek.tech/html/portfolio.html</loc>
