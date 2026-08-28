@@ -121,11 +121,18 @@
         // Smart redirect: map old/dead URLs to their new destinations
         (function () {
             var redirects = {
-                'experience':     'index.html',
-                'how-i-work':     'index.html#how-i-work',
-                'article-template': 'html/blog.html'
+                '/html/index.html':      '/',
+                '/html/blog.html':       '/blog.html',
+                '/html/portfolio.html':  '/portfolio.html',
+                '/html/gallery.html':    '/gallery.html',
+                '/html/experience.html': '/experience.html',
+                '/html/case-study.html': '/case-study.html',
+                '/html/articles/':       '/articles/',
+                'experience':            'index.html',
+                'how-i-work':            'index.html#how-i-work',
+                'article-template':      'blog.html'
             };
-            var path = window.location.pathname.toLowerCase();
+            var path = window.location.pathname;
             for (var key in redirects) {
                 if (path.indexOf(key) !== -1) {
                     window.location.replace(redirects[key]);
