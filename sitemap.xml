@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <!-- ── Home / Main portfolio ─────────────────────── -->
   <url>
-    <loc>https://solomonleek.tech/</loc>
+    <loc>https://solomonleek.com/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://solomonleek.tech/images/photo.jpg</image:loc>
+      <image:loc>https://solomonleek.com/images/photo.jpg</image:loc>
       <image:title>Solomon Thiong Garang Leek — Software Engineer &amp; Designer</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://solomonleek.tech/images/solomon-hero.png</image:loc>
+      <image:loc>https://solomonleek.com/images/solomon-hero.png</image:loc>
       <image:title>Solomon Thiong Garang Leek — Portfolio Hero</image:title>
     </image:image>
   </url>
 
   <!-- ── Experience page ───────────────────────────── -->
   <url>
-    <loc>https://solomonleek.tech/experience.html</loc>
+    <loc>https://solomonleek.com/experience/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
@@ -28,31 +28,31 @@
 
   <!-- ── Full work portfolio ───────────────────────── -->
   <url>
-    <loc>https://solomonleek.tech/portfolio.html</loc>
+    <loc>https://solomonleek.com/portfolio/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://solomonleek.tech/images/Independence-day.jpg</image:loc>
+      <image:loc>https://solomonleek.com/images/Independence-day.jpg</image:loc>
       <image:title>Independence Day Campaign Poster — Solomon Thiong Garang Leek</image:title>
     </image:image>
   </url>
 
   <!-- ── Blog ──────────────────────────────────────── -->
   <url>
-    <loc>https://solomonleek.tech/blog.html</loc>
+    <loc>https://solomonleek.com/blog/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://solomonleek.tech/images/photo.jpg</image:loc>
+      <image:loc>https://solomonleek.com/images/photo.jpg</image:loc>
       <image:title>Solomon Thiong Garang Leek — Blog</image:title>
     </image:image>
   </url>
 
   <!-- ── Gallery ───────────────────────────────────── -->
   <url>
-    <loc>https://solomonleek.tech/gallery.html</loc>
+    <loc>https://solomonleek.com/gallery/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -60,63 +60,63 @@
 
   <!-- ── Case Study ────────────────────────────────── -->
   <url>
-    <loc>https://solomonleek.tech/case-study.html</loc>
+    <loc>https://solomonleek.com/case-study/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.80</priority>
     <image:image>
-      <image:loc>https://solomonleek.tech/images/Independence-day.jpg</image:loc>
+      <image:loc>https://solomonleek.com/images/Independence-day.jpg</image:loc>
       <image:title>Independence Day Campaign — Case Study</image:title>
     </image:image>
   </url>
 
   <!-- ── Articles ──────────────────────────────────── -->
   <url>
-    <loc>https://solomonleek.tech/articles/alu-nairobi-nexus-light-academy.html</loc>
+    <loc>https://solomonleek.com/articles/alu-nairobi-nexus-light-academy/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.80</priority>
     <image:image>
-      <image:loc>https://solomonleek.tech/images/1747700820321.jpg</image:loc>
+      <image:loc>https://solomonleek.com/images/1747700820321.jpg</image:loc>
       <image:title>What I Saw at Light Academy Nairobi — Solomon Thiong Garang Leek</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://solomonleek.tech/articles/alu-scholarship-journey.html</loc>
+    <loc>https://solomonleek.com/articles/alu-scholarship-journey/</loc>
     <lastmod>2026-01-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.80</priority>
     <image:image>
-      <image:loc>https://solomonleek.tech/images/photo.jpg</image:loc>
+      <image:loc>https://solomonleek.com/images/photo.jpg</image:loc>
       <image:title>How I Got a Full Scholarship to ALU — Solomon Thiong Garang Leek</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://solomonleek.tech/articles/aspire-leaders-program.html</loc>
+    <loc>https://solomonleek.com/articles/aspire-leaders-program/</loc>
     <lastmod>2025-05-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://solomonleek.tech/images/1754355782432.jpg</image:loc>
+      <image:loc>https://solomonleek.com/images/1754355782432.jpg</image:loc>
       <image:title>Aspire Leaders Program — Solomon Thiong Garang Leek</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://solomonleek.tech/articles/alu-marketing-extern-nairobi.html</loc>
+    <loc>https://solomonleek.com/articles/alu-marketing-extern-nairobi/</loc>
     <lastmod>2025-05-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://solomonleek.tech/images/1747700819023.jpg</image:loc>
+      <image:loc>https://solomonleek.com/images/1747700819023.jpg</image:loc>
       <image:title>ALU Marketing Extern — Nairobi Nexus</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://solomonleek.tech/articles/financial-planning-young-adults.html</loc>
+    <loc>https://solomonleek.com/articles/financial-planning-young-adults/</loc>
     <lastmod>2025-01-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.65</priority>
@@ -124,7 +124,7 @@
 
   <!-- ── 404 ───────────────────────────────────────── -->
   <url>
-    <loc>https://solomonleek.tech/404.html</loc>
+    <loc>https://solomonleek.com/404.html</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.10</priority>

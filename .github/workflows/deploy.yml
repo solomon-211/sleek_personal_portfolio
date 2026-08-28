@@ -1,14 +1,14 @@
-# ─────────────────────────────────────────────────────────────────────────────
+﻿# ─────────────────────────────────────────────────────────────────────────────
 # Auto-Deploy — Solomon Thiong Garang Leek Portfolio
 #
 # Triggers on every push to main.
-# Deploys the static frontend to GitHub Pages at solomonleek.tech.
+# Deploys the static frontend to GitHub Pages at solomonleek.com.
 #
 # Setup steps (one-time):
 #   1. GitHub repo → Settings → Pages
 #      • Source: "GitHub Actions"
 #   2. GitHub repo → Settings → Pages → Custom domain
-#      • Enter: solomonleek.tech
+#      • Enter: solomonleek.com
 #      • Enable "Enforce HTTPS"
 #   3. Add a CNAME record in your DNS provider:
 #      Type: CNAME  |  Name: @  |  Value: solomon-211.github.io
@@ -45,7 +45,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create CNAME file for custom domain
-        run: echo "solomonleek.tech" > CNAME
+        run: echo "solomonleek.com" > CNAME
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3

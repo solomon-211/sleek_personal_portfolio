@@ -1,4 +1,4 @@
-# Portfolio Backend API
+﻿# Portfolio Backend API
 
 FastAPI backend for Solomon Thiong Garang Leek's portfolio.
 Handles contact form submissions, newsletter subscriptions, article notify requests, and analytics.
@@ -39,7 +39,7 @@ CONTACT_TO_EMAIL=s.leek@alustudent.com
 CONTACT_FROM_EMAIL=your-gmail@gmail.com
 
 # Your live domain (CORS)
-ALLOWED_ORIGINS=https://solomonleek.tech
+ALLOWED_ORIGINS=https://solomonleek.com
 ```
 
 ### Step 3 — Get a Gmail App Password
@@ -128,7 +128,7 @@ data and require an `ADMIN_API_KEY` set in `.env`. Without it, they return `503`
 leaking data. Call them with the key as a header:
 
 ```bash
-curl -H "X-Admin-Key: <your-key>" https://solomonleek.tech/api/messages
+curl -H "X-Admin-Key: <your-key>" https://solomonleek.com/api/messages
 ```
 
 `GET /api/analytics/views` is intentionally public (total view count only, no PII) — it powers

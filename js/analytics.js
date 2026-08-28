@@ -1,8 +1,8 @@
-/* ── Self-hosted analytics: pageviews + section views, no cookies ── */
+﻿/* ── Self-hosted analytics: pageviews + section views, no cookies ── */
 (function () {
-    if (location.hostname !== 'solomonleek.tech') return;
+    if (location.hostname !== 'solomonleek.com') return;
 
-    var API = window.ANALYTICS_API_URL || 'https://solomonleek.tech/api/analytics';
+    var API = window.ANALYTICS_API_URL || 'https://solomonleek.com/api/analytics';
 
     function send(data) {
         fetch(API, {

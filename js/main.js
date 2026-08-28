@@ -18,8 +18,8 @@ function getApiUrl(configKey, relativePath, productionFallback) {
     return relativePath;
 }
 
-const CONTACT_API_URL = getApiUrl('CONTACT_API_URL', '/api/contact', 'https://solomonleek.tech/api/contact');
-const ANALYTICS_API_URL = getApiUrl('ANALYTICS_API_URL', '/api/analytics', 'https://solomonleek.tech/api/analytics');
+const CONTACT_API_URL = getApiUrl('CONTACT_API_URL', '/api/contact', 'https://solomonleek.com/api/contact');
+const ANALYTICS_API_URL = getApiUrl('ANALYTICS_API_URL', '/api/analytics', 'https://solomonleek.com/api/analytics');
 const ANALYTICS_API_BASE = ANALYTICS_API_URL.replace(/\/api\/analytics\/?$/, '');
 
 // ── Loading screen ────────────────────────────────────────────────────────────
@@ -790,7 +790,7 @@ function openTerminal() {
     ];
 
     function esc(s) { return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-    const PROMPT_HTML = '<span class="term-prompt">visitor@solomonleek.tech ~ %</span> ';
+    const PROMPT_HTML = '<span class="term-prompt">visitor@solomonleek.com ~ %</span> ';
 
     const overlay = document.createElement('div');
     overlay.id = 'termOverlay';
@@ -801,7 +801,7 @@ function openTerminal() {
                 '<span class="term-dot term-dot--red"></span>' +
                 '<span class="term-dot term-dot--yellow"></span>' +
                 '<span class="term-dot term-dot--green"></span>' +
-                '<span class="term-titlebar__label">visitor@solomonleek.tech — zsh</span>' +
+                '<span class="term-titlebar__label">visitor@solomonleek.com — zsh</span>' +
                 '<button class="term-close" aria-label="Close terminal">&times;</button>' +
             '</div>' +
             '<div class="term-body" id="termBody"></div>' +

@@ -1,0 +1,656 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head><base href="../">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Experience — Solomon Thiong Garang Leek</title>
+    <meta name="description" content="Professional experience, education, and skills of Solomon Thiong Garang Leek — Software Engineering intern at InzoziHub and Elevanda Ventures, ALU Marketing Extern in Nairobi, Aspire Leaders Program graduate, and ALU scholar.">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Experience — Solomon Thiong Garang Leek">
+    <meta property="og:description" content="Work experience at InzoziHub, Elevanda Ventures, and Mission Garden; ALU Marketing Extern; Aspire Leaders Program; and BSc Software Engineering at ALU Kigali.">
+    <meta property="og:url" content="https://solomonleek.com/experience/">
+    <meta property="og:image" content="https://solomonleek.com/images/photo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://solomonleek.com/experience/">
+    <link rel="icon" type="image/jpeg" href="images/photo.jpg">
+    <link rel="apple-touch-icon" href="images/photo.jpg">
+    <meta name="theme-color" content="#FE7F2D">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+/* ── PAGE SHELL ─────────────────────────────────── */
+body { background: #131f27; color: rgba(255,255,255,0.88); }
+
+/* ── TOP NAV ────────────────────────────────────── */
+.xp-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+    height: 64px;
+    background: rgba(19,31,39,0.92);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(254,127,45,0.15);
+    display: flex; align-items: center; padding: 0 1.5rem;
+}
+.xp-nav__inner {
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.xp-nav__back {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.85rem; font-weight: 600;
+    color: rgba(255,255,255,0.6); transition: color 0.2s;
+}
+.xp-nav__back:hover { color: #FE7F2D; }
+.xp-nav__back i { font-size: 0.75rem; }
+.xp-nav__logo {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: 'Sora', sans-serif; font-weight: 800;
+    font-size: 1rem; color: #fff;
+}
+.xp-nav__logo img {
+    width: 32px; height: 32px; border-radius: 50%;
+    object-fit: cover; object-position: top;
+    border: 2px solid rgba(254,127,45,0.45); flex-shrink: 0;
+}
+
+
+/* ── HERO ────────────────────────────────────────── */
+.xp-hero {
+    background: linear-gradient(135deg, #131f27 0%, #1a2d3a 60%, #233D4D 100%);
+    padding: 5.5rem 1.5rem 4rem;
+    border-bottom: 1px solid rgba(254,127,45,0.12);
+    margin-top: 64px;
+}
+.xp-hero__inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;
+}
+@media (max-width: 640px) { .xp-hero__inner { grid-template-columns: 1fr; } }
+.xp-hero__photo {
+    width: 100px; height: 100px; border-radius: 50%;
+    object-fit: cover; object-position: top;
+    border: 3px solid rgba(254,127,45,0.4);
+    box-shadow: 0 0 0 6px rgba(254,127,45,0.08);
+    flex-shrink: 0;
+}
+.xp-hero__name {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800; color: #fff; line-height: 1.15;
+    margin-bottom: 0.35rem;
+}
+.xp-hero__name span { color: #FE7F2D; }
+.xp-hero__role {
+    font-size: 1rem; color: rgba(255,255,255,0.6);
+    margin-bottom: 1rem; line-height: 1.6;
+}
+.xp-hero__pills {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+}
+.xp-pill {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.3rem 0.8rem; border-radius: 999px;
+    font-size: 0.75rem; font-weight: 600;
+    background: rgba(254,127,45,0.08);
+    border: 1px solid rgba(254,127,45,0.22);
+    color: rgba(255,255,255,0.75);
+}
+.xp-pill i { color: #FE7F2D; font-size: 0.7rem; }
+.xp-pill--live {
+    background: rgba(34,197,94,0.1);
+    border-color: rgba(34,197,94,0.3);
+    color: #86efac;
+}
+.xp-pill--live i { color: #22c55e; animation: pulse-dot 1.5s infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+/* ── MAIN LAYOUT ─────────────────────────────────── */
+.xp-main {
+    max-width: 1100px; margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem; align-items: start;
+}
+@media (max-width: 860px) {
+    .xp-main { grid-template-columns: 1fr; }
+    .xp-sidebar { order: -1; }
+}
+
+/* ── SECTION LABEL ───────────────────────────────── */
+.xp-section { margin-bottom: 3.5rem; }
+.xp-section__label {
+    font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.1em; color: #FE7F2D;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.6rem;
+}
+.xp-section__label::after {
+    content: ''; flex: 1; height: 1px;
+    background: rgba(254,127,45,0.2);
+}
+
+/* ── EXPERIENCE ENTRIES ──────────────────────────── */
+.xp-list { display: flex; flex-direction: column; gap: 0; }
+
+.xp-entry {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0 1.25rem;
+    padding-bottom: 2.25rem;
+    position: relative;
+}
+.xp-entry:last-child { padding-bottom: 0; }
+
+/* vertical line */
+.xp-entry:not(:last-child) .xp-entry__line {
+    position: absolute;
+    left: 23px; top: 48px; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(254,127,45,0.35) 0%, rgba(254,127,45,0.05) 100%);
+}
+
+/* icon circle */
+.xp-entry__icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: #fff; flex-shrink: 0;
+    position: relative; z-index: 1;
+}
+.xp-entry__icon--dev    { background: linear-gradient(135deg,#22c55e,#16a34a); }
+.xp-entry__icon--code   { background: linear-gradient(135deg,#FE7F2D,#ff9448); }
+.xp-entry__icon--teach  { background: linear-gradient(135deg,#3b82f6,#1d4ed8); }
+.xp-entry__icon--alu    { background: linear-gradient(135deg,#FE7F2D,#d4651c); box-shadow: 0 4px 14px rgba(254,127,45,0.35); }
+
+.xp-entry__body { min-width: 0; }
+
+.xp-entry__header {
+    display: flex; align-items: flex-start;
+    justify-content: space-between; gap: 0.75rem;
+    margin-bottom: 0.3rem; flex-wrap: wrap;
+}
+.xp-entry__title {
+    font-family: 'Sora', sans-serif;
+    font-size: 1rem; font-weight: 800; color: #fff; margin: 0;
+}
+.xp-entry__badge {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.55rem;
+    border-radius: 999px; white-space: nowrap; flex-shrink: 0;
+}
+.xp-entry__badge--active {
+    background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3);
+    color: #86efac;
+}
+.xp-entry__badge--active i { font-size: 0.4rem; animation: pulse-dot 1.5s infinite; }
+.xp-entry__badge--edu {
+    background: rgba(254,127,45,0.12); border: 1px solid rgba(254,127,45,0.3);
+    color: #FE7F2D;
+}
+.xp-entry__badge--past {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.4);
+}
+
+.xp-entry__org {
+    font-size: 0.82rem; font-weight: 600; color: #FE7F2D; margin-bottom: 0.2rem;
+}
+.xp-entry__period {
+    font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.4rem;
+}
+.xp-entry__period i { font-size: 0.7rem; }
+
+.xp-entry__desc {
+    font-size: 0.875rem; color: rgba(255,255,255,0.65);
+    line-height: 1.75; margin-bottom: 0.75rem;
+}
+
+.xp-entry__tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+}
+.xp-entry__tag {
+    padding: 0.2rem 0.6rem; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600;
+    background: rgba(254,127,45,0.08);
+    border: 1px solid rgba(254,127,45,0.18);
+    color: rgba(255,255,255,0.7);
+}
+
+/* ── SIDEBAR ─────────────────────────────────────── */
+.xp-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.xp-widget {
+    background: #1e3545;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; overflow: hidden;
+}
+.xp-widget__title {
+    font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.08em; color: rgba(255,255,255,0.4);
+    padding: 1rem 1.25rem 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+/* Skill bars */
+.xp-skills { padding: 1rem 1.25rem 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.xp-skill-item { display: flex; flex-direction: column; gap: 0.3rem; }
+.xp-skill-label {
+    display: flex; justify-content: space-between;
+    font-size: 0.8rem; font-weight: 600;
+    color: rgba(255,255,255,0.8);
+}
+.xp-skill-label span:last-child { color: #FE7F2D; font-family: 'Sora', sans-serif; font-size: 0.72rem; }
+.xp-skill-track {
+    height: 5px; border-radius: 3px;
+    background: rgba(254,127,45,0.1); overflow: hidden;
+}
+.xp-skill-fill {
+    height: 100%; border-radius: 3px;
+    background: linear-gradient(90deg, #FE7F2D, #ff9448);
+    width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Tool tags in sidebar */
+.xp-tag-group { padding: 0.75rem 1.25rem 1.25rem; }
+.xp-tag-group__name {
+    font-size: 0.68rem; font-weight: 700; color: rgba(255,255,255,0.35);
+    text-transform: uppercase; letter-spacing: 0.07em;
+    margin-bottom: 0.5rem;
+}
+.xp-tag-wrap { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.xp-tag {
+    padding: 0.22rem 0.6rem; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7);
+}
+
+/* Info list */
+.xp-info-list { padding: 0.75rem 1.25rem 1.25rem; display: flex; flex-direction: column; gap: 0.65rem; }
+.xp-info-item {
+    display: flex; align-items: center; gap: 0.65rem;
+    font-size: 0.82rem; color: rgba(255,255,255,0.65);
+}
+.xp-info-item i { width: 16px; text-align: center; color: #FE7F2D; font-size: 0.8rem; flex-shrink: 0; }
+.xp-info-item a { color: #FE7F2D; transition: opacity 0.2s; }
+.xp-info-item a:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="xp-nav">
+        <div class="xp-nav__inner">
+            <a href="../" class="xp-nav__logo">
+                <img src="images/photo.jpg" alt="Solomon Leek">
+                Solomon Leek
+            </a>
+            <a href="../" class="xp-nav__back">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="xp-hero"><base href="../">
+        <div class="xp-hero__inner">
+            <img src="images/photo.jpg" alt="Solomon Thiong Garang Leek" class="xp-hero__photo">
+            <div>
+                <h1 class="xp-hero__name">
+                    Solomon <span>Thiong Garang Leek</span>
+                </h1>
+                <p class="xp-hero__role">
+                    Software Engineer &nbsp;&middot;&nbsp; Graphic Designer &nbsp;&middot;&nbsp; Community Leader<br>
+                    BSc Software Engineering &mdash; African Leadership University, Kigali
+                </p>
+                <div class="xp-hero__pills">
+                    <span class="xp-pill"><i class="fas fa-briefcase"></i> 3 Internships &amp; Programs</span>
+                    <span class="xp-pill">
+                        <i class="fas fa-map-marker-alt"></i> Kigali, Rwanda
+                    </span>
+                    <span class="xp-pill">
+                        <i class="fas fa-graduation-cap"></i> ALU &mdash; Class of 2028
+                    </span>
+                    <span class="xp-pill">
+                        <i class="fas fa-medal"></i> Mastercard Foundation Scholar
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="xp-main">
+
+        <!-- LEFT: Timeline -->
+        <div class="xp-content">
+
+            <!-- Work Experience -->
+            <div class="xp-section">
+                <p class="xp-section__label"><i class="fas fa-briefcase"></i> Work Experience</p>
+                <div class="xp-list">
+
+                    <!-- InzoziHub -->
+                    <div class="xp-entry">
+                        <div class="xp-entry__line"></div>
+                        <div class="xp-entry__icon xp-entry__icon--dev">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="xp-entry__body">
+                            <div class="xp-entry__header">
+                                <h2 class="xp-entry__title">Website Development Intern</h2>
+                                <span class="xp-entry__badge xp-entry__badge--past">Completed</span>
+                            </div>
+                            <p class="xp-entry__org">InzoziHub Platform</p>
+                            <p class="xp-entry__period">
+                                <i class="fas fa-calendar-alt"></i> May 2026 &mdash; Aug 2026 &nbsp;&middot;&nbsp; Kigali, Rwanda
+                            </p>
+                            <p class="xp-entry__desc">
+                                Contributing responsive layouts, accessibility improvements, and feature development in collaboration with designers and backend engineers.
+                            </p>
+                            <div class="xp-entry__tags">
+                                <span class="xp-entry__tag">HTML/CSS/JS</span>
+                                <span class="xp-entry__tag">Responsive Design</span>
+                                <span class="xp-entry__tag">Accessibility</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Elevanda Ventures -->
+                    <div class="xp-entry">
+                        <div class="xp-entry__line"></div>
+                        <div class="xp-entry__icon xp-entry__icon--code">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="xp-entry__body">
+                            <div class="xp-entry__header">
+                                <h2 class="xp-entry__title">Software Development Intern</h2>
+                                <span class="xp-entry__badge xp-entry__badge--past">Completed</span>
+                            </div>
+                            <p class="xp-entry__org">Elevanda Ventures</p>
+                            <p class="xp-entry__period">
+                                <i class="fas fa-calendar-alt"></i> May 2026 &mdash; Aug 2026 &nbsp;&middot;&nbsp; Remote
+                            </p>
+                            <p class="xp-entry__desc">
+                                Backend feature implementation, bug fixes, and code reviews in Python-based services.
+                            </p>
+                            <div class="xp-entry__tags">
+                                <span class="xp-entry__tag">Python</span>
+                                <span class="xp-entry__tag">Backend</span>
+                                <span class="xp-entry__tag">Code Review</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mission Garden -->
+                    <div class="xp-entry">
+                        <div class="xp-entry__icon xp-entry__icon--teach">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="xp-entry__body">
+                            <div class="xp-entry__header">
+                                <h2 class="xp-entry__title">Teacher</h2>
+                                <span class="xp-entry__badge xp-entry__badge--past">2023 – 2024</span>
+                            </div>
+                            <p class="xp-entry__org">Mission Garden Nursery &amp; Primary School</p>
+                            <p class="xp-entry__period">
+                                <i class="fas fa-calendar-alt"></i> 2023 &mdash; 2024 &nbsp;&middot;&nbsp; South Sudan
+                            </p>
+                            <p class="xp-entry__desc">
+                                Delivered lessons and supported student development before starting university.
+                            </p>
+                            <div class="xp-entry__tags">
+                                <span class="xp-entry__tag">Teaching</span>
+                                <span class="xp-entry__tag">Mentorship</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Leadership & Global Programs -->
+            <div class="xp-section">
+                <p class="xp-section__label"><i class="fas fa-globe"></i> Leadership &amp; Global Programs</p>
+                <div class="xp-list">
+
+                    <!-- ALU Marketing Extern — Nairobi -->
+                    <div class="xp-entry">
+                        <div class="xp-entry__line"></div>
+                        <div class="xp-entry__icon" style="background:linear-gradient(135deg,#FE7F2D,#d4651c);">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="xp-entry__body">
+                            <div class="xp-entry__header">
+                                <h2 class="xp-entry__title">Marketing &amp; Outreach Extern</h2>
+                                <span class="xp-entry__badge xp-entry__badge--past">May 2025</span>
+                            </div>
+                            <p class="xp-entry__org">African Leadership University (ALU) &mdash; Nairobi Nexus</p>
+                            <p class="xp-entry__period">
+                                <i class="fas fa-calendar-alt"></i> May 2025
+                                &nbsp;&middot;&nbsp;
+                                <i class="fas fa-map-marker-alt"></i> Nairobi, Kenya
+                            </p>
+                            <a href="/articles/alu-marketing-extern-nairobi/" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#FE7F2D;margin-top:0.25rem;">
+                                <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i> Read: ALU Marketing &amp; Outreach Extern — Nairobi Nexus
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Aspire Leaders Program -->
+                    <div class="xp-entry">
+                        <div class="xp-entry__icon" style="background:linear-gradient(135deg,#6366f1,#4f46e5);">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="xp-entry__body">
+                            <div class="xp-entry__header">
+                                <h2 class="xp-entry__title">Aspire Leaders Program</h2>
+                                <span class="xp-entry__badge xp-entry__badge--past">May 2025</span>
+                            </div>
+                            <p class="xp-entry__org">Aspire Institute &mdash; Harvard-affiliated &nbsp;&middot;&nbsp; Global</p>
+                            <p class="xp-entry__period">
+                                <i class="fas fa-calendar-alt"></i> May 2025
+                                &nbsp;&middot;&nbsp;
+                                <i class="fas fa-globe"></i> Global Learning Experience
+                            </p>
+                            <a href="/articles/aspire-leaders-program/" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#FE7F2D;margin-top:0.25rem;">
+                                <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i> Read: Aspire Leaders Program — What I Learned and Why It Matters
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- ALU Recruitment Nairobi Nexus — 2026 -->
+                    <div class="xp-entry">
+                        <div class="xp-entry__icon xp-entry__icon--line" style="background:linear-gradient(135deg,#FE7F2D,#ff9448);">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="xp-entry__body">
+                            <div class="xp-entry__header">
+                                <h2 class="xp-entry__title">ALU Recruitment Team &mdash; Nairobi Nexus</h2>
+                                <span class="xp-entry__badge xp-entry__badge--past">Completed</span>
+                            </div>
+                            <p class="xp-entry__org">African Leadership University (ALU)</p>
+                            <p class="xp-entry__period">
+                                <i class="fas fa-calendar-alt"></i> August 2026 &mdash; Aug 2026
+                                &nbsp;&middot;&nbsp;
+                                <i class="fas fa-map-marker-alt"></i> Nairobi, Kenya
+                            </p>
+                            <a href="/articles/alu-nairobi-nexus-light-academy/" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#FE7F2D;margin-top:0.25rem;">
+                                <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i> Read: What I Saw at Light Academy Nairobi — College Transition &amp; Why It Matters
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="xp-section">
+                <p class="xp-section__label"><i class="fas fa-graduation-cap"></i> Education</p>
+                <div class="xp-list">
+
+                    <!-- ALU -->
+                    <div class="xp-entry">
+                        <div class="xp-entry__icon xp-entry__icon--alu">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="xp-entry__body">
+                            <div class="xp-entry__header">
+                                <h2 class="xp-entry__title">BSc Software Engineering</h2>
+                                <span class="xp-entry__badge xp-entry__badge--edu">
+                                    <i class="fas fa-star"></i> Full Scholarship
+                                </span>
+                            </div>
+                            <p class="xp-entry__org">African Leadership University (ALU) &mdash; Kigali, Rwanda</p>
+                            <p class="xp-entry__period">
+                                <i class="fas fa-calendar-alt"></i> January 2025 &mdash; Expected July 2028
+                            </p>
+                            <a href="/articles/alu-scholarship-journey/" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#FE7F2D;margin-top:0.25rem;">
+                                <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i> Read: How I Got a Full Scholarship to ALU — My Application Journey
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- /xp-content -->
+
+        <!-- RIGHT: Sidebar -->
+        <aside class="xp-sidebar">
+
+            <!-- Quick info -->
+            <div class="xp-widget">
+                <p class="xp-widget__title">Contact &amp; Links</p>
+                <div class="xp-info-list">
+                    <div class="xp-info-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:s.leek@alustudent.com">s.leek@alustudent.com</a>
+                    </div>
+                    <div class="xp-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kigali, Rwanda</span>
+                    </div>
+                    <div class="xp-info-item">
+                        <i class="fa-brands fa-github"></i>
+                        <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer">github.com/solomon-211</a>
+                    </div>
+                    <div class="xp-info-item">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical skills -->
+            <div class="xp-widget">
+                <p class="xp-widget__title">Technical Skills</p>
+                <div class="xp-skills">
+                    <div class="xp-skill-item">
+                        <div class="xp-skill-label"><span>Python &amp; Flask</span><span>88%</span></div>
+                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="88%"></div></div>
+                    </div>
+                    <div class="xp-skill-item">
+                        <div class="xp-skill-label"><span>HTML / CSS / JS</span><span>95%</span></div>
+                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="95%"></div></div>
+                    </div>
+                    <div class="xp-skill-item">
+                        <div class="xp-skill-label"><span>FastAPI &amp; REST</span><span>80%</span></div>
+                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="80%"></div></div>
+                    </div>
+                    <div class="xp-skill-item">
+                        <div class="xp-skill-label"><span>MySQL &amp; SQLite</span><span>85%</span></div>
+                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="85%"></div></div>
+                    </div>
+                    <div class="xp-skill-item">
+                        <div class="xp-skill-label"><span>Adobe Photoshop</span><span>95%</span></div>
+                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="95%"></div></div>
+                    </div>
+                    <div class="xp-skill-item">
+                        <div class="xp-skill-label"><span>Illustrator &amp; Figma</span><span>88%</span></div>
+                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="88%"></div></div>
+                    </div>
+                    <div class="xp-skill-item">
+                        <div class="xp-skill-label"><span>Brand Identity</span><span>90%</span></div>
+                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="90%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design tools -->
+            <div class="xp-widget">
+                <p class="xp-widget__title">Tools</p>
+                <div class="xp-tag-group">
+                    <p class="xp-tag-group__name">Development</p>
+                    <div class="xp-tag-wrap">
+                        <span class="xp-tag">Python</span>
+                        <span class="xp-tag">Flask</span>
+                        <span class="xp-tag">FastAPI</span>
+                        <span class="xp-tag">HTML5</span>
+                        <span class="xp-tag">CSS3</span>
+                        <span class="xp-tag">JavaScript</span>
+                        <span class="xp-tag">SQLite</span>
+                        <span class="xp-tag">MySQL</span>
+                        <span class="xp-tag">GitHub</span>
+                    </div>
+                </div>
+                <div class="xp-tag-group">
+                    <p class="xp-tag-group__name">Design</p>
+                    <div class="xp-tag-wrap">
+                        <span class="xp-tag">Photoshop</span>
+                        <span class="xp-tag">Illustrator</span>
+                        <span class="xp-tag">Figma</span>
+                        <span class="xp-tag">Canva</span>
+                    </div>
+                </div>
+                <div class="xp-tag-group">
+                    <p class="xp-tag-group__name">Soft Skills</p>
+                    <div class="xp-tag-wrap">
+                        <span class="xp-tag">Leadership</span>
+                        <span class="xp-tag">Public Speaking</span>
+                        <span class="xp-tag">Mentorship</span>
+                        <span class="xp-tag">Community Organizing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="xp-widget" style="background:rgba(254,127,45,0.06);border-color:rgba(254,127,45,0.22);">
+                <div style="padding:1.5rem;display:flex;flex-direction:column;gap:0.75rem;">
+                    <p style="font-family:'Sora',sans-serif;font-size:0.95rem;font-weight:800;color:#fff;margin:0;">
+                        Open to opportunities
+                    </p>
+                    <p style="font-size:0.82rem;color:rgba(255,255,255,0.55);margin:0;line-height:1.6;">
+                        Internships, freelance work, and collaborations &mdash; Kigali or remote.
+                    </p>
+                    <a href="../#contact" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.85rem;justify-content:center;">
+                        <i class="fas fa-paper-plane"></i> Get In Touch
+                    </a>
+                </div>
+            </div>
+
+        </aside>
+    </main>
+
+    <script>
+    // Animate skill bars on load
+    window.addEventListener('load', function () {
+        var fills = document.querySelectorAll('.xp-skill-fill');
+        setTimeout(function () {
+            fills.forEach(function (el) {
+                el.style.width = el.getAttribute('data-w');
+            });
+        }, 300);
+    });
+    </script>
+    <script src="js/analytics.js"></script>
+</body>
+</html>

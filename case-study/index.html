@@ -1,0 +1,639 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head><base href="../">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Case Study — Independence Day Campaign | Solomon Leek</title>
+    <meta name="description" content="Full design case study for the Independence Day Campaign Poster by Solomon Thiong Garang Leek — challenge, research, process, tools, and outcomes.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Independence Day Campaign — Strategy, Craft, and Results">
+    <meta property="og:description" content="A complete design breakdown — from brief and research to creative execution, tooling decisions, and delivery for community-facing Independence Day communication.">
+    <meta property="og:url" content="https://solomonleek.com/case-study/">
+    <meta property="og:image" content="https://solomonleek.com/images/Independence-day.jpg">
+    <meta property="og:image:alt" content="Independence Day Campaign Poster by Solomon Thiong Garang Leek">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Independence Day Campaign — Strategy, Craft, and Results">
+    <meta name="twitter:description" content="A complete design breakdown — from brief and research to creative execution, tooling decisions, and delivery.">
+    <meta name="twitter:image" content="https://solomonleek.com/images/Independence-day.jpg">
+    <link rel="canonical" href="https://solomonleek.com/case-study/">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Independence Day Campaign — Strategy, Craft, and Results",
+      "description": "A complete design breakdown of the Independence Day Campaign Poster — challenge, research, process, tools, and outcomes.",
+      "image": "https://solomonleek.com/images/Independence-day.jpg",
+      "datePublished": "2025-07-09",
+      "dateModified": "2026-05-10",
+      "author": {
+        "@type": "Person",
+        "name": "Solomon Thiong Garang Leek",
+        "url": "https://solomonleek.com"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Solomon Thiong Garang Leek",
+        "logo": { "@type": "ImageObject", "url": "https://solomonleek.com/images/photo.jpg" }
+      },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://solomonleek.com/case-study.html" },
+      "timeRequired": "PT6M",
+      "keywords": ["graphic design", "campaign poster", "Independence Day", "South Sudan", "Adobe Photoshop", "Adobe Illustrator"]
+    }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f4c81'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Sora,sans-serif' font-weight='800' font-size='13' fill='white'>SL</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/styles.css?v=20260414">
+    <link rel="stylesheet" href="css/case-study.css?v=20260414">
+    <!-- Analytics -->
+    <script src="js/analytics.js"></script>
+    <noscript><style>body{visibility:visible}</style></noscript>
+</head>
+<body>
+
+    <nav class="cs-nav">
+        <div class="cs-nav__inner">
+            <a href="../" class="cs-nav__logo">
+                <img src="images/photo.jpg" alt="Solomon Leek" class="cs-nav__logo-photo">
+                <span class="cs-nav__logo-text">Solomon Leek</span>
+            </a>
+            <a href="../blog/" class="cs-nav__back">
+                <i class="fas fa-arrow-left"></i> Blog
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="cs-hero">
+        <div class="cs-hero-inner">
+            <span class="cs-badge"><i class="fas fa-star"></i> Featured Case Study</span>
+            <h1>Independence Day<br>Campaign Poster</h1>
+            <p class="cs-hero-subtitle">
+                A complete design breakdown, from brief and research to creative execution,
+                tooling decisions, and delivery for community-facing Independence Day communication.
+            </p>
+            <div class="cs-hero-actions">
+                <a href="../blog/" class="cs-btn-back">
+                    <i class="fas fa-arrow-left"></i> Back to Blog
+                </a>
+                <a href="../#projects" class="cs-btn-back">
+                    <i class="fas fa-house"></i> Portfolio
+                </a>
+                <button class="cs-btn-view" id="csPosterBtn" type="button">
+                    <i class="fas fa-image"></i> View Full Poster
+                </button>
+            </div>
+
+            <!-- Lightbox overlay -->
+            <div class="cs-lightbox" id="csLightbox" role="dialog" aria-modal="true" aria-label="Full poster view" style="display:none">
+                <button class="cs-lightbox__close" id="csLightboxClose" aria-label="Close poster">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="cs-lightbox__backdrop" id="csLightboxBackdrop"></div>
+                <div class="cs-lightbox__content">
+                    <img src="images/Independence-day.jpg" alt="Independence Day Campaign Poster — Full Size" loading="lazy">
+                    <a href="images/Independence-day.jpg" download="Independence-Day-Poster.jpg" class="cs-lightbox__download">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview bar -->
+    <div class="cs-overview">
+        <div class="cs-overview-inner">
+            <div class="cs-overview-item">
+                <span class="cs-overview-label">Project Type</span>
+                <span class="cs-overview-value">Campaign Poster</span>
+            </div>
+            <div class="cs-overview-item">
+                <span class="cs-overview-label">Tools Used</span>
+                <span class="cs-overview-value">Photoshop · Illustrator · Canva</span>
+            </div>
+            <div class="cs-overview-item">
+                <span class="cs-overview-label">Deliverable</span>
+                <span class="cs-overview-value">Print &amp; Digital</span>
+            </div>
+            <div class="cs-overview-item">
+                <span class="cs-overview-label">Iterations</span>
+                <span class="cs-overview-value">3 Design Rounds</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Body -->
+    <main class="cs-body">
+
+        <!-- Poster preview -->
+        <div class="cs-poster-preview">
+            <img src="images/Independence-day.jpg" alt="Independence Day Campaign Poster — Final Design" loading="eager">
+            <p class="cs-poster-caption">
+                <i class="fas fa-image"></i>
+                Final delivered poster — optimized for both social media and print distribution.
+            </p>
+        </div>
+
+        <div class="cs-divider"></div>
+
+        <!-- Challenge -->
+        <div class="cs-section">
+            <span class="cs-section-label"><i class="fas fa-bullseye"></i> The Challenge</span>
+            <h2>Communicating national pride in a crowded visual environment</h2>
+            <p>
+                Independence Day events create a flood of competing visuals across social media and physical spaces.
+                The brief required a poster that could stand out quickly, communicate celebration and national pride,
+                and still present event information with immediate clarity.
+            </p>
+            <p>
+                The central tension was emotional impact versus functional readability. The audience ranged from
+                youth on social platforms to community members viewing printed copies, so the design had to perform
+                at multiple sizes and in both digital and physical contexts.
+            </p>
+        </div>
+
+        <div class="cs-divider"></div>
+
+        <!-- Research -->
+        <div class="cs-section">
+            <span class="cs-section-label"><i class="fas fa-search"></i> Research &amp; Brief</span>
+            <h2>Understanding audience behavior and visual context</h2>
+            <p>
+                Before opening any design tool, I reviewed Independence Day visuals from South Sudan and neighboring
+                East African countries to identify recurring patterns and avoid common mistakes.
+                Many references relied on heavy patriotic imagery but weak hierarchy, making key details hard to scan.
+            </p>
+            <p>
+                Key insights from this research phase:
+            </p>
+            <div class="cs-steps">
+                <div class="cs-step">
+                    <div class="cs-step-num">1</div>
+                    <div class="cs-step-content">
+                        <h4>Audience split</h4>
+                        <p>Primary audience: people aged 18-35 on social media. Secondary audience: community members viewing printed A3 posters at events and notice boards.</p>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">2</div>
+                    <div class="cs-step-content">
+                        <h4>Competitor analysis</h4>
+                        <p>Reviewed 12 similar campaign posters. Common failure: important event details were buried under decorative elements, creating visual noise and weak communication.</p>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">3</div>
+                    <div class="cs-step-content">
+                        <h4>Color psychology</h4>
+                        <p>National colors carry strong emotional weight. The challenge was to use them boldly without creating a generic, template-like result.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cs-divider"></div>
+
+        <!-- Process -->
+        <div class="cs-section">
+            <span class="cs-section-label"><i class="fas fa-pencil-ruler"></i> Design Process</span>
+            <h2>From content hierarchy to final composition</h2>
+            <p>
+                I used a structured process to ensure every design decision supported communication goals,
+                not aesthetics alone.
+            </p>
+            <div class="cs-steps">
+                <div class="cs-step">
+                    <div class="cs-step-num">1</div>
+                    <div class="cs-step-content">
+                        <h4>Content mapping</h4>
+                        <p>Mapped all required information and ranked priority: event name -> date/time -> location -> supporting details. This hierarchy drove every layout decision.</p>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">2</div>
+                    <div class="cs-step-content">
+                        <h4>Thumbnail sketching</h4>
+                        <p>Produced six rough layout thumbnails across centered, asymmetric, and layered compositions. Selected the strongest two concepts for digital development.</p>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">3</div>
+                    <div class="cs-step-content">
+                        <h4>Color palette development</h4>
+                        <p>Built a palette from national colors with adjusted saturation and contrast ratios to maintain WCAG AA readability across light and dark surfaces.</p>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">4</div>
+                    <div class="cs-step-content">
+                        <h4>Typography treatment</h4>
+                        <p>Paired a bold display typeface for headlines with a clean sans-serif for supporting information, then tested legibility at 25%, 50%, and 100% scale.</p>
+                    </div>
+                </div>
+                <div class="cs-step">
+                    <div class="cs-step-num">5</div>
+                    <div class="cs-step-content">
+                        <h4>Iteration &amp; feedback</h4>
+                        <p>Completed three design rounds: Round 1 defined structure, Round 2 refined color balance and spacing, and Round 3 finalized export-ready assets for social (1080x1080px) and print (A3 at 300dpi).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cs-divider"></div>
+
+        <!-- Tools -->
+        <div class="cs-section">
+            <span class="cs-section-label"><i class="fas fa-tools"></i> Tools &amp; Why</span>
+            <h2>The right tool for each stage</h2>
+            <p>Each tool was selected deliberately based on the specific output required at that phase.</p>
+            <div class="cs-tools">
+                <div class="cs-tool">
+                    <div class="cs-tool-icon"><i class="fas fa-paint-brush"></i></div>
+                    <div>
+                        <div class="cs-tool-name">Adobe Photoshop</div>
+                        <div class="cs-tool-use">Photo compositing, color grading, texture overlays, and export optimization for social media formats.</div>
+                    </div>
+                </div>
+                <div class="cs-tool">
+                    <div class="cs-tool-icon"><i class="fas fa-vector-square"></i></div>
+                    <div>
+                        <div class="cs-tool-name">Adobe Illustrator</div>
+                        <div class="cs-tool-use">Vector elements, logo treatment, scalable typography, and print-ready artwork preparation at 300dpi.</div>
+                    </div>
+                </div>
+                <div class="cs-tool">
+                    <div class="cs-tool-icon"><i class="fas fa-th-large"></i></div>
+                    <div>
+                        <div class="cs-tool-name">Canva (Reference)</div>
+                        <div class="cs-tool-use">Used for rapid thumbnail exploration before moving to production-grade tools for final execution.</div>
+                    </div>
+                </div>
+                <div class="cs-tool">
+                    <div class="cs-tool-icon"><i class="fas fa-eye"></i></div>
+                    <div>
+                        <div class="cs-tool-name">Contrast Checker</div>
+                        <div class="cs-tool-use">Validated text-to-background contrast ratios against WCAG AA accessibility standards.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cs-divider"></div>
+
+        <!-- Outcomes -->
+        <div class="cs-section">
+            <span class="cs-section-label"><i class="fas fa-chart-line"></i> Outcomes</span>
+            <h2>What the final design achieved</h2>
+            <p>
+                The final poster met all brief requirements and was deployed across community-facing
+                Independence Day communication channels in both digital and physical formats.
+            </p>
+            <div class="cs-outcomes">
+                <div class="cs-outcome">
+                    <div class="cs-outcome-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="cs-outcome-title">Brief Met 100%</div>
+                    <div class="cs-outcome-desc">All required information delivered with clear visual hierarchy.</div>
+                </div>
+                <div class="cs-outcome">
+                    <div class="cs-outcome-icon"><i class="fas fa-print"></i></div>
+                    <div class="cs-outcome-title">Dual Format</div>
+                    <div class="cs-outcome-desc">Delivered print-ready A3 at 300dpi and social-optimized 1080px versions.</div>
+                </div>
+                <div class="cs-outcome">
+                    <div class="cs-outcome-icon"><i class="fas fa-universal-access"></i></div>
+                    <div class="cs-outcome-title">Accessible</div>
+                    <div class="cs-outcome-desc">All text passed WCAG AA contrast ratio requirements.</div>
+                </div>
+                <div class="cs-outcome">
+                    <div class="cs-outcome-icon"><i class="fas fa-users"></i></div>
+                    <div class="cs-outcome-title">Community Used</div>
+                    <div class="cs-outcome-desc">Used across community channels to support Independence Day engagement.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cs-divider"></div>
+
+        <!-- Lessons learned -->
+        <div class="cs-section">
+            <span class="cs-section-label"><i class="fas fa-lightbulb"></i> Lessons Learned</span>
+            <h2>What this project taught me</h2>
+            <div class="cs-lessons">
+                <div class="cs-lesson">
+                    <i class="fas fa-lightbulb cs-lesson-icon"></i>
+                    <p><strong>Hierarchy before aesthetics.</strong> Ranking content before touching any tool made every visual decision clearer and more intentional.</p>
+                </div>
+                <div class="cs-lesson">
+                    <i class="fas fa-lightbulb cs-lesson-icon"></i>
+                    <p><strong>Design for the smallest size first.</strong> Early thumbnail testing exposed hierarchy issues that were not visible at full size, reducing rework later in the process.</p>
+                </div>
+                <div class="cs-lesson">
+                    <i class="fas fa-lightbulb cs-lesson-icon"></i>
+                    <p><strong>Emotional resonance requires restraint.</strong> The strongest version used fewer decorative elements. Removing visual noise let national colors carry the emotional tone more effectively.</p>
+                </div>
+                <div class="cs-lesson">
+                    <i class="fas fa-lightbulb cs-lesson-icon"></i>
+                    <p><strong>Accessibility is non-negotiable.</strong> Contrast checks flagged two color combinations that looked acceptable on screen but risked failing in print, preventing a costly reprint scenario.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cs-divider"></div>
+
+        <!-- ── LIKE & SHARE ── -->
+        <div class="cs-engage">
+            <div class="cs-engage-left">
+                <button class="cs-like-btn" id="csLikeBtn" aria-label="Like this article" aria-pressed="false">
+                    <i class="fas fa-heart cs-like-icon" id="csLikeIcon"></i>
+                    <span class="cs-like-label">Like this article</span>
+                    <span class="cs-like-count" id="csLikeCount">24</span>
+                </button>
+            </div>
+            <div class="cs-engage-right">
+                <span class="cs-share-label">Share</span>
+                <a href="https://twitter.com/intent/tweet?text=Independence+Day+Campaign+Case+Study+by+%40teeghee_4&url=https://solomonleek.com/case-study.html"
+                   target="_blank" rel="noopener noreferrer" class="cs-share-btn cs-share-btn--twitter" aria-label="Share on X">
+                    <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://solomonleek.com/case-study.html"
+                   target="_blank" rel="noopener noreferrer" class="cs-share-btn cs-share-btn--linkedin" aria-label="Share on LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <button class="cs-share-btn cs-share-btn--copy" id="csCopyBtn" aria-label="Copy link">
+                    <i class="fas fa-link" id="csCopyIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="cs-divider"></div>
+
+        <!-- ── COMMENTS ── -->
+        <div class="cs-comments" id="csComments">
+            <div class="cs-comments-header">
+                <h2 class="cs-comments-title">
+                    <i class="fas fa-comments"></i> Discussion
+                    <span class="cs-comments-count" id="csCommentCount">0</span>
+                </h2>
+                <p class="cs-comments-sub">Share your thoughts, feedback, or questions about this case study.</p>
+            </div>
+
+            <!-- Comment form -->
+            <form class="cs-comment-form" id="csCommentForm" novalidate>
+                <div class="cs-comment-form-row">
+                    <div class="cs-form-group">
+                        <label for="csCommentName">Name <span aria-hidden="true">*</span></label>
+                        <input type="text" id="csCommentName" name="name" placeholder="Your name" required maxlength="60" autocomplete="name">
+                    </div>
+                    <div class="cs-form-group">
+                        <label for="csCommentEmail">Email <span aria-hidden="true">*</span></label>
+                        <input type="email" id="csCommentEmail" name="email" placeholder="your@email.com (not published)" required maxlength="120" autocomplete="email">
+                    </div>
+                </div>
+                <div class="cs-form-group">
+                    <label for="csCommentText">Comment <span aria-hidden="true">*</span></label>
+                    <textarea id="csCommentText" name="comment" rows="4" placeholder="What are your thoughts on this case study?" required maxlength="1000"></textarea>
+                    <span class="cs-char-count"><span id="csCharLeft">1000</span> characters remaining</span>
+                </div>
+                <div class="cs-form-actions">
+                    <button type="submit" class="cs-btn-view cs-comment-submit" id="csCommentSubmit">
+                        <i class="fas fa-paper-plane"></i> Post Comment
+                    </button>
+                    <p class="cs-form-note"><i class="fas fa-lock"></i> Your email is never published.</p>
+                </div>
+                <p class="cs-comment-status" id="csCommentStatus" role="status" aria-live="polite"></p>
+            </form>
+
+            <!-- Comment list -->
+            <div class="cs-comment-list" id="csCommentList">
+                <!-- Comments rendered by JS -->
+            </div>
+
+            <p class="cs-comments-empty" id="csCommentsEmpty">
+                No comments yet. Be the first to share your thoughts.
+            </p>
+        </div>
+
+        <div class="cs-divider"></div>
+
+        <!-- Next CTA -->
+        <div class="cs-next">
+            <h3>Explore More Work</h3>
+            <p>See the full design portfolio or get in touch to discuss a project.</p>
+            <div class="cs-next-actions">
+                <a href="../#projects" class="cs-btn-view">
+                    <i class="fas fa-th-large"></i> View All Projects
+                </a>
+                <a href="../#contact" class="cs-btn-back">
+                    <i class="fas fa-paper-plane"></i> Get In Touch
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Page transition -->
+    <div class="page-transition" id="pageTransition"></div>
+    <script src="js/main.js?v=20260414"></script>
+    <script>
+    /* ── LIGHTBOX ── */
+    const posterBtn       = document.getElementById('csPosterBtn');
+    const lightbox        = document.getElementById('csLightbox');
+    const lightboxClose   = document.getElementById('csLightboxClose');
+    const lightboxBackdrop = document.getElementById('csLightboxBackdrop');
+
+    function openLightbox() {
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        lightboxClose.focus();
+    }
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = '';
+        posterBtn.focus();
+    }
+
+    if (posterBtn)        posterBtn.addEventListener('click', openLightbox);
+    if (lightboxClose)    lightboxClose.addEventListener('click', closeLightbox);
+    if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox && lightbox.style.display !== 'none') closeLightbox();
+    });
+    (function () {
+        const ARTICLE_KEY = 'cs-independence-day';
+        const LIKE_KEY    = ARTICLE_KEY + '-liked';
+        const LIKES_KEY   = ARTICLE_KEY + '-likes';
+        const COMMENTS_KEY = ARTICLE_KEY + '-comments';
+
+        /* ── LIKE BUTTON ── */
+        const likeBtn   = document.getElementById('csLikeBtn');
+        const likeIcon  = document.getElementById('csLikeIcon');
+        const likeCount = document.getElementById('csLikeCount');
+
+        let likes   = parseInt(localStorage.getItem(LIKES_KEY) || '24', 10);
+        let liked   = localStorage.getItem(LIKE_KEY) === 'true';
+
+        function renderLike() {
+            likeCount.textContent = likes;
+            likeBtn.classList.toggle('liked', liked);
+            likeBtn.setAttribute('aria-pressed', String(liked));
+            likeBtn.querySelector('.cs-like-label').textContent = liked ? 'Liked!' : 'Like this article';
+        }
+
+        likeBtn.addEventListener('click', function () {
+            liked = !liked;
+            likes = liked ? likes + 1 : Math.max(0, likes - 1);
+            localStorage.setItem(LIKE_KEY, String(liked));
+            localStorage.setItem(LIKES_KEY, String(likes));
+            renderLike();
+        });
+
+        renderLike();
+
+        /* ── COPY LINK ── */
+        const copyBtn  = document.getElementById('csCopyBtn');
+        const copyIcon = document.getElementById('csCopyIcon');
+        copyBtn.addEventListener('click', function () {
+            navigator.clipboard.writeText(window.location.href).then(function () {
+                copyIcon.className = 'fas fa-check';
+                copyBtn.classList.add('copied');
+                setTimeout(function () {
+                    copyIcon.className = 'fas fa-link';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+
+        /* ── COMMENTS ── */
+        const form        = document.getElementById('csCommentForm');
+        const nameInput   = document.getElementById('csCommentName');
+        const emailInput  = document.getElementById('csCommentEmail');
+        const textInput   = document.getElementById('csCommentText');
+        const submitBtn   = document.getElementById('csCommentSubmit');
+        const statusEl    = document.getElementById('csCommentStatus');
+        const listEl      = document.getElementById('csCommentList');
+        const emptyEl     = document.getElementById('csCommentsEmpty');
+        const countEl     = document.getElementById('csCommentCount');
+        const charLeft    = document.getElementById('csCharLeft');
+
+        /* Character counter */
+        textInput.addEventListener('input', function () {
+            charLeft.textContent = 1000 - this.value.length;
+        });
+
+        /* Load saved comments */
+        function loadComments() {
+            try { return JSON.parse(localStorage.getItem(COMMENTS_KEY) || '[]'); }
+            catch (e) { return []; }
+        }
+
+        function saveComments(comments) {
+            localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments));
+        }
+
+        function initials(name) {
+            return name.trim().split(/\s+/).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+        }
+
+        function timeAgo(ts) {
+            const diff = Date.now() - ts;
+            const m = Math.floor(diff / 60000);
+            if (m < 1)  return 'just now';
+            if (m < 60) return m + 'm ago';
+            const h = Math.floor(m / 60);
+            if (h < 24) return h + 'h ago';
+            const d = Math.floor(h / 24);
+            if (d < 30) return d + 'd ago';
+            return new Date(ts).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+        }
+
+        function renderComments() {
+            const comments = loadComments();
+            countEl.textContent = comments.length;
+            listEl.innerHTML = '';
+            emptyEl.style.display = comments.length ? 'none' : 'block';
+
+            comments.slice().reverse().forEach(function (c, idx) {
+                const realIdx = comments.length - 1 - idx;
+                const item = document.createElement('div');
+                item.className = 'cs-comment-item';
+                item.innerHTML =
+                    '<div class="cs-comment-avatar">' + initials(c.name) + '</div>' +
+                    '<div class="cs-comment-body">' +
+                        '<div class="cs-comment-meta">' +
+                            '<span class="cs-comment-name">' + escHtml(c.name) + '</span>' +
+                            '<span class="cs-comment-time">' + timeAgo(c.ts) + '</span>' +
+                        '</div>' +
+                        '<p class="cs-comment-text">' + escHtml(c.text) + '</p>' +
+                        '<button class="cs-comment-like' + (c.liked ? ' liked' : '') + '" data-idx="' + realIdx + '" aria-label="Like comment">' +
+                            '<i class="fas fa-heart"></i> ' + (c.likes || 0) +
+                        '</button>' +
+                    '</div>';
+                listEl.appendChild(item);
+            });
+
+            /* Comment like buttons */
+            listEl.querySelectorAll('.cs-comment-like').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const comments = loadComments();
+                    const i = parseInt(this.dataset.idx, 10);
+                    comments[i].liked = !comments[i].liked;
+                    comments[i].likes = (comments[i].likes || 0) + (comments[i].liked ? 1 : -1);
+                    saveComments(comments);
+                    renderComments();
+                });
+            });
+        }
+
+        function escHtml(str) {
+            return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        function setStatus(msg, type) {
+            statusEl.textContent = msg;
+            statusEl.className = 'cs-comment-status ' + type;
+        }
+
+        /* Submit */
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const text = textInput.value.trim();
+
+            if (!name || name.length < 2) { setStatus('Please enter your name (at least 2 characters).', 'error'); nameInput.focus(); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus('Please enter a valid email address.', 'error'); emailInput.focus(); return; }
+            if (!text || text.length < 5) { setStatus('Comment must be at least 5 characters.', 'error'); textInput.focus(); return; }
+
+            const originalHTML = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
+            submitBtn.disabled = true;
+
+            /* Simulate a brief save delay for UX */
+            setTimeout(function () {
+                const comments = loadComments();
+                comments.push({ name: name, text: text, ts: Date.now(), likes: 0, liked: false });
+                saveComments(comments);
+                form.reset();
+                charLeft.textContent = '1000';
+                setStatus('Comment posted! Thank you for your feedback.', 'success');
+                renderComments();
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.disabled = false;
+                /* Scroll to new comment */
+                listEl.firstElementChild && listEl.firstElementChild.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 600);
+        });
+
+        renderComments();
+    })();
+    </script>
+</body>
+</html>
+
+
+
