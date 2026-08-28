@@ -39,8 +39,8 @@ a:hover { color: #ff9448; }
 .logo-photo { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid rgba(254,127,45,0.5); flex-shrink: 0; display: block; }
 
 /* ── ARTICLE HEADER ───────────────────────────────── */
-.ar-header { background: #131f27; padding: 4rem 1.5rem 0; position: relative; overflow: hidden; }
-.ar-header__inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+.ar-header { background: #131f27; padding: 3.5rem 1.5rem 0; position: relative; overflow: hidden; }
+.ar-header__inner { max-width: 740px; margin: 0 auto; position: relative; z-index: 1; }
 
 /* Tags */
 .ar-header__tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
