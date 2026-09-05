@@ -576,7 +576,7 @@ def _send_newsletter_confirmation(to_email: str) -> None:
             Thanks for subscribing. You'll get an email when new articles are published on topics like
             software engineering, design, leadership, and building technology for Africa.
           </p>
-          <a href="https://solomonleek.tech/html/blog.html"
+          <a href="https://solomonleek.com/blog/"
              style="display:inline-block;background:linear-gradient(135deg,#ea580c,#f97316);
                     color:#fff;font-size:14px;font-weight:700;padding:12px 24px;
                     border-radius:8px;text-decoration:none;">

@@ -1,5 +1,5 @@
 /* ── Tactile 3D tilt + flip reveal for project cards ──────────────────────────
-   Shared by html/index.html (.project-card) and html/portfolio.html (.pf-card).
+    Shared by index.html (.project-card) and portfolio/index.html (.pf-card).
    Progressive enhancement: builds the flip structure at runtime so the
    underlying HTML stays plain markup + an <img>/<code-preview> + overlay link. */
 (function () {

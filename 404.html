@@ -107,7 +107,7 @@
             <a href="index.html" class="btn-primary">
                 <i class="fas fa-house"></i> Back to Portfolio
             </a>
-            <a href="html/blog.html" class="btn-ghost">
+            <a href="/blog/" class="btn-ghost">
                 <i class="fas fa-pen-nib"></i> Read Blog
             </a>
         </div>
@@ -115,22 +115,19 @@
             <a href="index.html#projects">Projects</a>
             <a href="index.html#about">About</a>
             <a href="index.html#contact">Contact</a>
-            <a href="html/blog.html">Blog</a>
+            <a href="/blog/">Blog</a>
         </div>
         <script>
-        // Smart redirect: map old/dead URLs to their new destinations
+        // Preserve useful legacy URLs while keeping the folder URLs canonical.
         (function () {
             var redirects = {
                 '/html/index.html':      '/',
-                '/html/blog.html':       '/blog.html',
-                '/html/portfolio.html':  '/portfolio.html',
-                '/html/gallery.html':    '/gallery.html',
-                '/html/experience.html': '/experience.html',
-                '/html/case-study.html': '/case-study.html',
-                '/html/articles/':       '/articles/',
-                'experience':            'index.html',
-                'how-i-work':            'index.html#how-i-work',
-                'article-template':      'blog.html'
+                '/html/blog.html':       '/blog/',
+                '/html/portfolio.html':  '/portfolio/',
+                '/html/gallery.html':    '/gallery/',
+                '/html/experience.html': '/experience/',
+                '/html/case-study.html': '/case-study/',
+                '/html/articles/':       '/articles/'
             };
             var path = window.location.pathname;
             for (var key in redirects) {

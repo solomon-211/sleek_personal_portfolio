@@ -892,8 +892,8 @@ function openTerminal() {
         { label: 'Awards & Leadership', icon: 'fas fa-trophy', action: () => scrollTo('#impact') },
         { label: 'Community',    icon: 'fas fa-heart',         action: () => scrollTo('#community') },
         { label: 'Contact',      icon: 'fas fa-paper-plane',   action: () => scrollTo('#contact') },
-        { label: 'Gallery',      icon: 'fas fa-images',        action: () => { window.location.href = 'html/gallery.html'; } },
-        { label: 'Blog',         icon: 'fas fa-newspaper',     action: () => { window.location.href = 'html/blog.html'; } },
+        { label: 'Gallery',      icon: 'fas fa-images',        action: () => { window.location.href = '/gallery/'; } },
+        { label: 'Blog',         icon: 'fas fa-newspaper',     action: () => { window.location.href = '/blog/'; } },
         { label: 'Toggle Theme', icon: 'fas fa-circle-half-stroke', action: () => document.getElementById('themeToggle')?.click() },
         { label: 'Resume',       icon: 'fas fa-file-lines',    action: () => window.open('https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing', '_blank', 'noopener,noreferrer') },
         { label: 'GitHub',       icon: 'fab fa-github',        action: () => window.open('https://github.com/solomon-211', '_blank', 'noopener,noreferrer') },
@@ -1244,8 +1244,8 @@ function showNotifyModal(articleTitle, onConfirm) {
         });
     });
 
-    // Handle ?cat= query param on portfolio.html to auto-filter
-    if (window.location.pathname.includes('portfolio.html')) {
+    // Handle ?cat= query param on the portfolio page to auto-filter
+    if (window.location.pathname === '/portfolio/' || window.location.pathname.endsWith('/portfolio/')) {
         var params = new URLSearchParams(window.location.search);
         var cat = params.get('cat');
         if (cat && window.pfFilter) {

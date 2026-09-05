@@ -33,15 +33,17 @@ Live: https://solomonleek.com
 
 ```
 sleek_personal_portfolio/
-├── index.html              ← Root redirect to html/index.html
+├── index.html              ← Main portfolio page
 ├── 404.html                ← Custom 404 page
 ├── robots.txt
 ├── sitemap.xml
 ├── README.md
-├── html/
-│   ├── index.html          ← Main portfolio page
-│   ├── blog.html           ← Blog page
-│   └── case-study.html     ← Case study page
+├── blog/index.html         ← Blog page (/blog/)
+├── portfolio/index.html    ← Full portfolio (/portfolio/)
+├── experience/index.html   ← Experience page (/experience/)
+├── gallery/index.html      ← Gallery page (/gallery/)
+├── case-study/index.html   ← Case study (/case-study/)
+├── articles/               ← Articles with clean folder URLs
 ├── css/
 │   ├── base.css            ← Base layout styles
 │   ├── styles.css          ← Dark navy theme
@@ -65,7 +67,7 @@ sleek_personal_portfolio/
 Open directly in browser:
 
 ```
-html/index.html
+index.html
 ```
 
 Or use a local server (recommended so asset paths resolve correctly):
@@ -290,14 +292,9 @@ server {
     gzip_types      text/plain text/css application/javascript application/json image/svg+xml;
     gzip_min_length 1000;
 
-    # Root redirect
-    location = / {
-        return 301 /html/index.html;
-    }
-
-    # Static HTML pages
-    location /html/ {
-        try_files $uri $uri/ /html/index.html;
+    # Clean folder URLs resolve to each directory's index.html.
+    location / {
+        try_files $uri $uri/ =404;
     }
 
     # API → FastAPI backend via load balancer upstream
