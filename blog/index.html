@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head><base href="../">
     <meta charset="UTF-8">
@@ -38,699 +38,210 @@
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap&subset=latin" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta name="theme-color" content="#FE7F2D">
-    <link rel="stylesheet" href="css/tokens.css">
-    <link rel="stylesheet" href="css/blog.css">
-    <script>
-    (function(){
-        var API = (window.ANALYTICS_API_URL) || 'https://solomonleek.com/api/analytics';
-        function send(d){fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){});}
-        send({page:location.pathname,referrer:document.referrer,event:'pageview'});
-    })();
-    </script>
+    <script src="js/analytics.js" defer></script>
+    <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="css/journal.css">
 </head>
-<body>
+<body class="page-journal">
 
-    <div class="b-progress-bar" id="bProgressBar"></div>
 
     <!-- ── TOP NAV ── -->
-    <nav class="b-nav">
-        <div class="b-nav__inner">
-
-            <!-- Logo -->
-            <a href="../" class="b-nav__logo">
-                <img src="images/photo.jpg" alt="Solomon Leek" class="logo-photo">
-                <span class="b-logo-text">Solomon Leek</span>
+    <header class="site-header" id="siteHeader">
+        <div class="site-header__inner">
+            <a href="./" class="site-brand" aria-label="Solomon Leek, home">
+                <img src="images/photo.jpg" alt="" class="site-brand__photo" width="34" height="34">
+                <span class="site-brand__name">Solomon Leek</span>
             </a>
-
-            <!-- Center: topic dropdown + search -->
-            <div class="b-nav__center">
-                <!-- Topics dropdown -->
-                <div class="b-topics-dropdown">
-                    <button class="b-topics-btn" id="bTopicsBtn" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-layer-group"></i>
-                        <span id="bTopicsLabel">All Topics</span>
-                        <i class="fas fa-chevron-down b-topics-chevron"></i>
-                    </button>
-                    <div class="b-topics-menu" id="bTopicsMenu" role="menu">
-                        <div class="b-topics-item b-topics-item--active" data-filter="all" role="menuitem"><i class="fas fa-border-all"></i> All Topics</div>
-                        <div class="b-topics-divider"></div>
-                        <div class="b-topics-item" data-filter="leadership" role="menuitem"><i class="fas fa-star"></i> Leadership</div>
-                        <div class="b-topics-item" data-filter="community" role="menuitem"><i class="fas fa-users"></i> Community</div>
-                        <div class="b-topics-item" data-filter="student" role="menuitem"><i class="fas fa-graduation-cap"></i> Student Life</div>
-                        <div class="b-topics-item" data-filter="design" role="menuitem"><i class="fas fa-pen-nib"></i> Design</div>
-                        <div class="b-topics-item" data-filter="engineering" role="menuitem"><i class="fas fa-code"></i> Engineering</div>
-                    </div>
-                </div>
-                <!-- Search -->
-                <div class="b-search" id="bSearchBox">
-                    <i class="fas fa-search b-search__icon"></i>
-                    <input type="search" class="b-search__input" placeholder="Search articles…" aria-label="Search articles">
-                    <button class="b-search__clear" id="bSearchClear" aria-label="Clear search" style="display:none"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-
-            <!-- Right actions -->
-            <div class="b-nav__right">
-                <a href="../" class="b-nav__portfolio">
-                    <i class="fas fa-arrow-left"></i>
-                    <span class="b-nav__portfolio-text">Portfolio</span>
-                </a>
-            </div>
+            <nav class="site-nav" id="siteNav" aria-label="Primary">
+                <ul class="site-nav__list">
+                    <li><a href="./" data-nav="home">Home</a></li>
+                    <li><a href="./#about" data-nav="about">About</a></li>
+                    <li><a href="portfolio/" data-nav="portfolio">Portfolio</a></li>
+                    <li><a href="experience/" data-nav="experience">Experience</a></li>
+                    <li><a href="blog/" data-nav="blog">Blog</a></li>
+                </ul>
+            </nav>
+            <a href="./#contact" class="site-header__cta">Contact</a>
+            <button class="site-menu-btn" id="siteMenuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-    </nav>
+    </header>
 
     <!-- ── BLOG HEADER ── -->
-    <header class="b-page-header"><base href="../">
-        <div class="b-page-header__inner">
-            <div class="b-page-header__badge">
-                <span class="b-page-header__dot"></span>
-                <span>Writing &amp; Insights</span>
-            </div>
-            <h1 class="b-page-header__title">The Blog</h1>
-            <p class="b-page-header__sub">Honest writing on software engineering, design, leadership, and building technology for Africa &mdash; from someone doing it in real time.</p>
-            <div class="b-page-header__stats">
-                <div class="b-page-header__stat">
-                    <span class="b-page-header__num">6</span>
-                    <span class="b-page-header__label">Articles</span>
-                </div>
-                <div class="b-page-header__stat-sep"></div>
-                <div class="b-page-header__stat">
-                    <span class="b-page-header__num">4</span>
-                    <span class="b-page-header__label">Topics</span>
-                </div>
-                <div class="b-page-header__stat-sep"></div>
-                <div class="b-page-header__stat">
-                    <span class="b-page-header__num">2025</span>
-                    <span class="b-page-header__label">Since</span>
-                </div>
-            </div>
+    <header class="page-hero">
+        <div class="page-hero__inner">
+            <p class="page-hero__eyebrow">Writing</p>
+            <h1 class="page-hero__title">Notes from the journey</h1>
+            <p class="page-hero__lead">Honest writing on software engineering, design, leadership and building technology for Africa &mdash; from someone doing it in real time.</p>
         </div>
     </header>
 
     <!-- ── MAIN CONTENT + SIDEBAR ── -->
-    <main class="b-main">
-        <div class="b-main__inner">
+    <main class="journal" id="main-content">
 
-            <!-- LEFT: Article feed -->
-            <section class="b-feed">
+        <!-- Featured: latest story -->
+        <article class="feature" data-topics="community leadership">
+            <a class="feature__media" href="articles/alu-nairobi-nexus-light-academy/" tabindex="-1" aria-hidden="true">
+                <img src="images/1747700820321.jpg" alt="" width="1280" height="1706" loading="eager">
+            </a>
+            <div class="feature__body">
+                <p class="kicker"><span class="kicker__accent">Latest</span> Community &middot; Aug 2026 &middot; 6 min read</p>
+                <h2 class="feature__title"><a href="articles/alu-nairobi-nexus-light-academy/">What I Saw at Light Academy Nairobi &mdash; College Transition &amp; Why It Matters</a></h2>
+                <p class="feature__excerpt">As part of the ALU Nairobi Nexus recruitment team, I visited Light Academy as a panelist. Their alumni wall stopped me &mdash; here is what I saw, and why every school should do the same.</p>
+                <a class="link-cta" href="articles/alu-nairobi-nexus-light-academy/">Read the article <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </article>
 
-                <div class="b-feed__header">
-                    <h2 class="b-feed__title">All Articles <span class="b-feed__count" id="bFeedCount">6</span></h2>
-                    <div class="b-feed__sort">
-                        <span class="b-sort-label">Sort:</span>
-                        <button class="b-sort-btn b-sort-btn--active">Latest</button>
-                        <button class="b-sort-btn">Oldest</button>
-                    </div>
+        <!-- Index -->
+        <section class="index" aria-labelledby="indexTitle">
+            <div class="index__bar">
+                <div class="index__heading">
+                    <h2 class="index__title" id="indexTitle">All writing</h2>
+                    <p class="index__count" id="indexCount" aria-live="polite"></p>
                 </div>
-
-
-
-                <!-- ── PUBLISHED ARTICLES (move new ones here) ── -->
-
-                <!-- Article: Light Academy Nairobi — PUBLISHED -->
-                <article class="b-post b-post--published" data-tags="community leadership alu" data-href="/articles/alu-nairobi-nexus-light-academy/">
-                    <div class="b-post__body">
-                        <div class="b-post__top">
-                            <span class="b-tag b-tag--community">Community</span>
-                            <span class="b-tag b-tag--leadership">Leadership</span>
-                            <span class="b-post__live"><i class="fas fa-circle"></i> Published</span>
-                        </div>
-                        <h3 class="b-post__title">What I Saw at Light Academy Nairobi &mdash; College Transition &amp; Why It Matters</h3>
-                        <p class="b-post__excerpt">As part of the ALU Nairobi Nexus Recruitment Team, I visited Light Academy in Nairobi as a panelist. Their alumni wall stopped me. Here is what I saw and why every institution should follow suit.</p>
-                        <div class="b-post__footer">
-                            <div class="b-post__author">
-                                <div class="b-avatar b-avatar--sm" style="overflow:hidden;padding:0;">
-                                    <img src="images/photo.jpg" alt="Solomon Thiong" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                                </div>
-                                <div>
-                                    <span class="b-post__author-name">Solomon Thiong</span>
-                                    <span class="b-post__meta">August 2026 &nbsp;·&nbsp; 6 min read</span>
-                                </div>
-                            </div>
-                            <div class="b-post__actions">
-                                <a href="/articles/alu-nairobi-nexus-light-academy/" class="b-post__read-btn">Read <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="b-post__thumb">
-                        <img src="images/1747700820321.jpg" alt="ALU Nairobi Nexus — Light Academy" loading="lazy">
-                    </div>
-                </article>
-
-                <!-- Article: Aspire Leaders Program — PUBLISHED -->
-                <article class="b-post b-post--published" data-tags="leadership student" data-href="/articles/aspire-leaders-program/">
-                    <div class="b-post__body">
-                        <div class="b-post__top">
-                            <span class="b-tag b-tag--leadership">Leadership</span>
-                            <span class="b-post__live"><i class="fas fa-circle"></i> Published</span>
-                        </div>
-                        <h3 class="b-post__title">Aspire Leaders Program &mdash; What I Learned and Why It Matters</h3>
-                        <p class="b-post__excerpt">I completed the Aspire Leaders Program from Aspire Institute &mdash; a Harvard-affiliated initiative equipping emerging leaders with leadership and social entrepreneurship skills to tackle real-world problems.</p>
-                        <div class="b-post__footer">
-                            <div class="b-post__author">
-                                <div class="b-avatar b-avatar--sm" style="overflow:hidden;padding:0;">
-                                    <img src="images/photo.jpg" alt="Solomon Thiong" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                                </div>
-                                <div>
-                                    <span class="b-post__author-name">Solomon Thiong</span>
-                                    <span class="b-post__meta">May 2025 &nbsp;·&nbsp; 5 min read</span>
-                                </div>
-                            </div>
-                            <div class="b-post__actions">
-                                <a href="/articles/aspire-leaders-program/" class="b-post__read-btn">Read <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="b-post__thumb">
-                        <img src="images/1754355782432.jpg" alt="Aspire Leaders Program" loading="lazy">
-                    </div>
-                </article>
-
-                <!-- Article: ALU Marketing Extern Nairobi Nexus — PUBLISHED -->
-                <article class="b-post b-post--published" data-tags="community student alu" data-href="/articles/alu-marketing-extern-nairobi/">
-                    <div class="b-post__body">
-                        <div class="b-post__top">
-                            <span class="b-tag b-tag--community">Community</span>
-                            <span class="b-post__live"><i class="fas fa-circle"></i> Published</span>
-                        </div>
-                        <h3 class="b-post__title">ALU Marketing &amp; Outreach Team Extern — Nairobi Nexus</h3>
-                        <p class="b-post__excerpt">I kicked off the Nairobi Nexus — a Signature Immersive Experience themed Learning by Doing: Through Education and Enterprises in East Africa — as an ALU Marketing &amp; Outreach extern in Kenya.</p>
-                        <div class="b-post__footer">
-                            <div class="b-post__author">
-                                <div class="b-avatar b-avatar--sm" style="overflow:hidden;padding:0;">
-                                    <img src="images/photo.jpg" alt="Solomon Thiong" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                                </div>
-                                <div>
-                                    <span class="b-post__author-name">Solomon Thiong</span>
-                                    <span class="b-post__meta">May 2025 &nbsp;·&nbsp; 4 min read</span>
-                                </div>
-                            </div>
-                            <div class="b-post__actions">
-                                <a href="/articles/alu-marketing-extern-nairobi/" class="b-post__read-btn">Read <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="b-post__thumb">
-                        <img src="images/1747700819023.jpg" alt="ALU Marketing & Outreach — Nairobi Nexus" loading="lazy" style="object-position: top center;">
-                    </div>
-                </article>
-
-                <!-- Article: ALU Scholarship Journey — PUBLISHED -->
-                <article class="b-post b-post--published" data-tags="student alu" data-href="/articles/alu-scholarship-journey/">
-                    <div class="b-post__body">
-                        <div class="b-post__top">
-                            <span class="b-tag b-tag--student">Student Life</span>
-                            <span class="b-post__live"><i class="fas fa-circle"></i> Published</span>
-                        </div>
-                        <h3 class="b-post__title">How I Got a Full Scholarship to ALU — My Application Journey</h3>
-                        <p class="b-post__excerpt">I applied twice. The first time I received a grant. The second time I got the scholarship. Here is the full story — what I did differently and what I would tell anyone applying today.</p>
-                        <div class="b-post__footer">
-                            <div class="b-post__author">
-                                <div class="b-avatar b-avatar--sm" style="overflow:hidden;padding:0;">
-                                    <img src="images/photo.jpg" alt="Solomon Thiong" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                                </div>
-                                <div>
-                                    <span class="b-post__author-name">Solomon Thiong</span>
-                                    <span class="b-post__meta">January 2026 &nbsp;·&nbsp; 6 min read</span>
-                                </div>
-                            </div>
-                            <div class="b-post__actions">
-                                <a href="/articles/alu-scholarship-journey/" class="b-post__read-btn">Read <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="b-post__thumb">
-                        <img src="images/MCF LOGO.jpg" alt="Mastercard Foundation Scholarship — ALU" loading="lazy" style="object-fit: contain; background: #1a2d3a; padding: 6px;">
-                    </div>
-                </article>
-
-                <!-- Article: Independence Day Campaign — PUBLISHED -->
-                <article class="b-post b-post--published" data-tags="design case-study" data-href="../case-study/">
-                    <div class="b-post__body">
-                        <div class="b-post__top">
-                            <span class="b-tag b-tag--orange">Case Study</span>
-                            <span class="b-post__live"><i class="fas fa-circle"></i> Published</span>
-                        </div>
-                        <h3 class="b-post__title">Independence Day Campaign — Strategy, Craft, and Results</h3>
-                        <p class="b-post__excerpt">A complete breakdown of the creative process behind the Independence Day Campaign Poster — from brief and research to design execution, tooling decisions, and final delivery.</p>
-                        <div class="b-post__footer">
-                            <div class="b-post__author">
-                                <div class="b-avatar b-avatar--sm">ST</div>
-                                <div>
-                                    <span class="b-post__author-name">Solomon Thiong</span>
-                                    <span class="b-post__meta">July 9, 2025 &nbsp;·&nbsp; 6 min read</span>
-                                </div>
-                            </div>
-                            <div class="b-post__actions">
-                                <a href="../case-study/" class="b-post__read-btn">Read <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="b-post__thumb">
-                        <img src="images/Independence-day.jpg" alt="Independence Day Campaign Poster" loading="lazy">
-                    </div>
-                </article>
-
-                <!-- Article: Financial Planning — PUBLISHED -->
-                <article class="b-post b-post--published" data-tags="student personal-growth" data-href="/articles/financial-planning-young-adults/">
-                    <div class="b-post__body">
-                        <div class="b-post__top">
-                            <span class="b-tag b-tag--student">Personal Growth</span>
-                            <span class="b-post__live"><i class="fas fa-circle"></i> Published</span>
-                        </div>
-                        <h3 class="b-post__title">Financial Planning for Young Adults — University of Illinois</h3>
-                        <p class="b-post__excerpt">I enrolled in the University of Illinois financial planning course on Canvas and completed all eight modules. Here is what I learned about personal balance sheets, budgeting, cash flow management, and the financial goal list — and how this course broke my habit of quitting halfway through online courses.</p>
-                        <div class="b-post__footer">
-                            <div class="b-post__author">
-                                <div class="b-avatar b-avatar--sm" style="overflow:hidden;padding:0;">
-                                    <img src="images/photo.jpg" alt="Solomon Thiong" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                                </div>
-                                <div>
-                                    <span class="b-post__author-name">Solomon Thiong</span>
-                                    <span class="b-post__meta">2025 &nbsp;·&nbsp; 5 min read &nbsp;·&nbsp; University of Illinois</span>
-                                </div>
-                            </div>
-                            <div class="b-post__actions">
-                                <a href="/articles/financial-planning-young-adults/" class="b-post__read-btn">Read <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="b-post__thumb b-post__thumb--placeholder" style="background:linear-gradient(135deg,rgba(254,127,45,0.15),rgba(254,127,45,0.08));">
-                        <i class="fas fa-chart-line" style="color:#FE7F2D;"></i>
-                    </div>
-                </article>
-
-                <!-- Empty state -->
-                <div class="b-feed__empty" id="bFeedEmpty" style="display:none">
-                    <i class="fas fa-search"></i>
-                    <p>No articles found for this topic yet.</p>
-                    <button class="b-tag-pill" onclick="document.querySelector('[data-filter=all]').click()">Show all articles</button>
+                <label class="search" for="journalSearch">
+                    <i class="fas fa-magnifying-glass search__icon" aria-hidden="true"></i>
+                    <input class="search__input" id="journalSearch" type="search" placeholder="Search articles" autocomplete="off" spellcheck="false" aria-label="Search articles">
+                    <kbd class="search__key" aria-hidden="true">/</kbd>
+                </label>
+                <div class="seg" role="tablist" aria-label="Filter articles by topic">
+                    <span class="seg__indicator" aria-hidden="true"></span>
+                    <button class="seg__btn" role="tab" aria-selected="true" data-filter="all">All</button>
+                    <button class="seg__btn" role="tab" aria-selected="false" data-filter="community">Community</button>
+                    <button class="seg__btn" role="tab" aria-selected="false" data-filter="leadership">Leadership</button>
+                    <button class="seg__btn" role="tab" aria-selected="false" data-filter="student">Student life</button>
+                    <button class="seg__btn" role="tab" aria-selected="false" data-filter="design">Design</button>
                 </div>
+            </div>
 
-            </section>
+            <div class="year" data-period="2026">
+                <h3 class="year__label">2026</h3>
+                <ol class="entries">
+                    <li class="entry" data-topics="student">
+                        <a class="entry__link" href="articles/alu-scholarship-journey/">
+                            <span class="entry__date">Jan</span>
+                            <span class="entry__main">
+                                <span class="entry__title">How I Got a Full Scholarship to ALU &mdash; My Application Journey</span>
+                                <span class="entry__excerpt">I applied twice: the first time I received a grant, the second time the full scholarship. What I did differently, and what I&rsquo;d tell anyone applying now.</span>
+                            </span>
+                            <span class="entry__meta"><span>Student life</span><span>6 min</span></span>
+                            <i class="fas fa-arrow-right entry__arrow" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ol>
+            </div>
 
-            <!-- RIGHT: Sidebar -->
-            <aside class="b-sidebar">
+            <div class="year" data-period="2025">
+                <h3 class="year__label">2025</h3>
+                <ol class="entries">
+                    <li class="entry" data-topics="design" data-preview="images/Independence-day.jpg">
+                        <a class="entry__link" href="case-study/">
+                            <span class="entry__date">Jul</span>
+                            <span class="entry__main">
+                                <span class="entry__title">Independence Day Campaign &mdash; Strategy, Craft and Results</span>
+                                <span class="entry__excerpt">A full breakdown of the campaign poster: brief and research, design execution, tooling decisions and delivery.</span>
+                            </span>
+                            <span class="entry__meta"><span>Case study</span><span>6 min</span></span>
+                            <i class="fas fa-arrow-right entry__arrow" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="entry" data-topics="leadership" data-preview="images/1754355782438.jpg">
+                        <a class="entry__link" href="articles/aspire-leaders-program/">
+                            <span class="entry__date">May</span>
+                            <span class="entry__main">
+                                <span class="entry__title">Aspire Leaders Program &mdash; What I Learned and Why It Matters</span>
+                                <span class="entry__excerpt">Completing the Harvard-affiliated Aspire Institute programme on leadership and social entrepreneurship for real-world problems.</span>
+                            </span>
+                            <span class="entry__meta"><span>Leadership</span><span>5 min</span></span>
+                            <i class="fas fa-arrow-right entry__arrow" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="entry" data-topics="community" data-preview="images/1747700819023.jpg">
+                        <a class="entry__link" href="articles/alu-marketing-extern-nairobi/">
+                            <span class="entry__date">May</span>
+                            <span class="entry__main">
+                                <span class="entry__title">ALU Marketing &amp; Outreach Extern &mdash; Nairobi Nexus</span>
+                                <span class="entry__excerpt">Launching the Nairobi Nexus immersion &mdash; learning by doing through education and enterprise in East Africa.</span>
+                            </span>
+                            <span class="entry__meta"><span>Community</span><span>4 min</span></span>
+                            <i class="fas fa-arrow-right entry__arrow" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="entry" data-topics="student">
+                        <a class="entry__link" href="articles/financial-planning-young-adults/">
+                            <span class="entry__date">&mdash;</span>
+                            <span class="entry__main">
+                                <span class="entry__title">Financial Planning for Young Adults &mdash; University of Illinois</span>
+                                <span class="entry__excerpt">Eight modules on balance sheets, budgeting and cash flow &mdash; and how the course broke my habit of quitting online courses halfway.</span>
+                            </span>
+                            <span class="entry__meta"><span>Student life</span><span>5 min</span></span>
+                            <i class="fas fa-arrow-right entry__arrow" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ol>
+            </div>
 
-                <!-- Author card -->
-                <div class="b-widget">
-                    <div class="b-author-card">
-                        <div class="b-author-card__avatar">
-                            <img src="images/photo.jpg" alt="Solomon Thiong Garang Leek" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                        </div>
-                        <h3 class="b-author-card__name">Solomon Thiong Garang Leek</h3>
-                        <p class="b-author-card__role">Software Engineer · Designer · Community Leader</p>
-                        <p class="b-author-card__bio">Software Engineering student at ALU, Kigali. Writing about engineering, design, leadership, and building for Africa.</p>
-                        <div class="b-author-card__stats">
-                            <div class="b-author-stat"><span class="b-author-stat__num">6</span><span class="b-author-stat__label">Articles</span></div>
-                            <div class="b-author-stat__sep"></div>
-                            <div class="b-author-stat"><span class="b-author-stat__num">400+</span><span class="b-author-stat__label">Readers</span></div>
-                            <div class="b-author-stat__sep"></div>
-                            <div class="b-author-stat"><span class="b-author-stat__num">2025</span><span class="b-author-stat__label">Since</span></div>
-                        </div>
-                        <div class="b-author-card__socials">
-                            <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="https://x.com/teeghee_4" target="_blank" rel="noopener noreferrer" aria-label="X"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg></a>
-                        </div>
-                        <a href="../" class="b-btn b-btn--outline b-btn--full">View Portfolio</a>
-                    </div>
-                </div>
-<!-- Recommended Reading -->
-                <div class="b-widget">
-                    <h3 class="b-widget__title">Recommended Reading</h3>
-                    <div class="b-reading-list">
-                        <a href="/articles/aspire-leaders-program/" class="b-reading-item" title="Read article">
-                            <div class="b-reading-item__num">01</div>
-                            <div>
-                                <p class="b-reading-item__title">Aspire Leaders Program — What I Learned and Why It Matters</p>
-                                <span class="b-reading-item__meta"><i class="fas fa-circle-check" style="color:#22c55e;font-size:0.65rem"></i> Available &nbsp;·&nbsp; 5 min read · Leadership</span>
-                            </div>
-                        </a>
-                        <a href="/articles/alu-marketing-extern-nairobi/" class="b-reading-item" title="Read article">
-                            <div class="b-reading-item__num">02</div>
-                            <div>
-                                <p class="b-reading-item__title">ALU Marketing &amp; Outreach Extern — Nairobi Nexus</p>
-                                <span class="b-reading-item__meta"><i class="fas fa-circle-check" style="color:#22c55e;font-size:0.65rem"></i> Available &nbsp;·&nbsp; 4 min read · Community</span>
-                            </div>
-                        </a>
-                        <a href="/articles/alu-scholarship-journey/" class="b-reading-item" title="Read article">
-                            <div class="b-reading-item__num">03</div>
-                            <div>
-                                <p class="b-reading-item__title">How I Got a Full Scholarship to ALU</p>
-                                <span class="b-reading-item__meta"><i class="fas fa-circle-check" style="color:#22c55e;font-size:0.65rem"></i> Available &nbsp;·&nbsp; 6 min read · Student Life</span>
-                            </div>
-                        </a>
-                        <a href="../case-study/" class="b-reading-item" title="Read article">
-                            <div class="b-reading-item__num">04</div>
-                            <div>
-                                <p class="b-reading-item__title">Independence Day Campaign — Strategy, Craft, and Results</p>
-                                <span class="b-reading-item__meta"><i class="fas fa-circle-check" style="color:#22c55e;font-size:0.65rem"></i> Available &nbsp;·&nbsp; 6 min read · Design</span>
-                            </div>
-                        </a>
-                        <a href="/articles/alu-nairobi-nexus-light-academy/" class="b-reading-item" title="Read article">
-                            <div class="b-reading-item__num">05</div>
-                            <div>
-                                <p class="b-reading-item__title">Light Academy Nairobi &mdash; College Transition &amp; Why It Matters</p>
-                                <span class="b-reading-item__meta"><i class="fas fa-circle-check" style="color:#22c55e;font-size:0.65rem"></i> Available &nbsp;&middot;&nbsp; 6 min read &middot; Community</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+            <div class="index__empty" hidden><p>Nothing matches that yet.</p><button type="button" class="index__reset">Clear filters</button></div>
+        </section>
 
-            </aside>
-        </div>
+        <!-- Cursor-following preview (desktop, decorative) -->
+        <div class="peek" aria-hidden="true"><img src="" alt=""></div>
     </main>
 
     <!-- ── FOOTER ── -->
-    <footer class="b-footer">
-        <div class="b-footer__inner">
-            <div class="b-footer__grid">
-                <div class="b-footer__col b-footer__col--brand">
-                    <a href="../" class="b-nav__logo">
-                        <img src="images/photo.jpg" alt="Solomon Leek" class="logo-photo">
-                        <span class="b-logo-text">Solomon Leek</span>
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <div class="site-footer__top">
+                <div class="site-footer__brand">
+                    <a href="./" class="site-brand">
+                        <img src="images/photo.jpg" alt="" class="site-brand__photo" width="34" height="34">
+                        <span class="site-brand__name">Solomon Leek</span>
                     </a>
-                    <p class="b-footer__tagline">Writing about engineering, design, leadership, and building technology for Africa.</p>
-                    <div class="b-footer__socials">
+                    <p class="site-footer__tagline">Software Engineer &middot; Graphic Designer &middot; Community Leader</p>
+                    <p class="site-footer__bio">Building practical technology for Africa &mdash; from brand identity and campaign visuals to full-stack web applications.</p>
+                    <div class="site-footer__social">
                         <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://x.com/teeghee_4" target="_blank" rel="noopener noreferrer" aria-label="X/Twitter"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg></a>
+                        <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://x.com/teeghee_4" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg></a>
                         <a href="https://www.instagram.com/sleek_tg001" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     </div>
                 </div>
-                <div class="b-footer__col">
-                    <h4 class="b-footer__col-title">Navigate</h4>
-                    <ul class="b-footer__col-links">
-                        <li><a href="../">Portfolio</a></li>
-                        <li><a href="../#projects">Projects</a></li>
-                        <li><a href="../#about">About</a></li>
-                        <li><a href="../#contact">Contact</a></li>
-                        <li><a href="../case-study/">Case Study</a></li>
+                <div class="site-footer__col">
+                    <p class="site-footer__title">Explore</p>
+                    <ul class="site-footer__list">
+                        <li><a href="./">Home</a></li>
+                        <li><a href="./#about">About</a></li>
+                        <li><a href="portfolio/">Portfolio</a></li>
+                        <li><a href="experience/">Experience</a></li>
                     </ul>
                 </div>
-                <div class="b-footer__col">
-                    <h4 class="b-footer__col-title">Topics</h4>
-                    <ul class="b-footer__col-links">
-                        <li><a href="#" data-filter="engineering">Engineering</a></li>
-                        <li><a href="#" data-filter="design">Design</a></li>
-                        <li><a href="#" data-filter="leadership">Leadership</a></li>
-                        <li><a href="#" data-filter="community">Community</a></li>
-                        <li><a href="#" data-filter="africa">Africa &amp; Tech</a></li>
+                <div class="site-footer__col">
+                    <p class="site-footer__title">Writing</p>
+                    <ul class="site-footer__list">
+                        <li><a href="blog/">Blog</a></li>
+                        <li><a href="case-study/">Case Study</a></li>
+                        <li><a href="https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a></li>
+                    </ul>
+                </div>
+                <div class="site-footer__col site-footer__col--contact">
+                    <p class="site-footer__title">Contact</p>
+                    <ul class="site-footer__list">
+                        <li><a href="mailto:s.leek@alustudent.com"><i class="fas fa-envelope" aria-hidden="true"></i> s.leek@alustudent.com</a></li>
+                        <li><a href="tel:+211925277700"><i class="fas fa-phone" aria-hidden="true"></i> +211 925 277 700</a></li>
+                        <li><span><i class="fas fa-location-dot" aria-hidden="true"></i> Kigali, Rwanda</span></li>
                     </ul>
                 </div>
             </div>
-            <div class="b-footer__bottom">
-                <p class="b-footer__copy">© 2025 Solomon Thiong Garang Leek. All rights reserved.</p>
-                <div class="b-footer__bottom-links">
-                    <a href="../#contact">Contact</a>
-                    <span>·</span>
-                    <a href="../">Portfolio</a>
-                </div>
+            <div class="site-footer__bottom">
+                <p>&copy; <span data-year>2026</span> Solomon Thiong Garang Leek. All rights reserved.</p>
+                <a href="#" class="site-footer__totop" data-totop>Back to top <i class="fas fa-arrow-up" aria-hidden="true"></i></a>
             </div>
         </div>
     </footer>
 
-<script>
-(function () {
-    /* ── TOPIC FILTER ── */
-    const pills    = document.querySelectorAll('.b-tag-pill[data-filter]');
-    const posts    = document.querySelectorAll('.b-post[data-tags]');
-    const emptyEl  = document.getElementById('bFeedEmpty');
-    const countEl  = document.querySelector('.b-feed__title');
-
-    function filterPosts(tag) {
-        let visible = 0;
-        posts.forEach(function (post) {
-            const tags = post.dataset.tags || '';
-            const show = tag === 'all' || tags.split(' ').includes(tag);
-            post.classList.toggle('b-hidden', !show);
-            if (show) {
-                post.classList.remove('b-fade-in');
-                void post.offsetWidth; // reflow
-                post.classList.add('b-fade-in');
-                visible++;
-            }
-        });
-        if (emptyEl) emptyEl.style.display = visible === 0 ? 'flex' : 'none';
-    }
-
-    pills.forEach(function (pill) {
-        pill.addEventListener('click', function () {
-            pills.forEach(p => p.classList.remove('b-tag-pill--active'));
-            this.classList.add('b-tag-pill--active');
-            const filter = this.dataset.filter;
-            filterPosts(filter);
-            /* Sync nav category bar */
-            document.querySelectorAll('.b-nav__cat').forEach(function (cat) {
-                cat.classList.toggle('b-nav__cat--active', cat.dataset.filter === filter);
-            });
-        });
-    });
-
-    /* ── TOPICS DROPDOWN ── */
-    const topicsBtn  = document.getElementById('bTopicsBtn');
-    const topicsMenu = document.getElementById('bTopicsMenu');
-    const topicsLabel = document.getElementById('bTopicsLabel');
-
-    function closeTopics() {
-        if (!topicsBtn || !topicsMenu) return;
-        topicsBtn.classList.remove('open');
-        topicsMenu.classList.remove('open');
-        topicsBtn.setAttribute('aria-expanded', 'false');
-    }
-
-    if (topicsBtn && topicsMenu) {
-        topicsBtn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            const isOpen = topicsMenu.classList.contains('open');
-            if (isOpen) { closeTopics(); } else {
-                topicsBtn.classList.add('open');
-                topicsMenu.classList.add('open');
-                topicsBtn.setAttribute('aria-expanded', 'true');
-            }
-        });
-
-        topicsMenu.querySelectorAll('.b-topics-item').forEach(function (item) {
-            item.addEventListener('click', function (e) {
-                e.preventDefault();
-                const filter = this.dataset.filter || 'all';
-                const label  = this.textContent.trim();
-
-                /* Update dropdown active state */
-                topicsMenu.querySelectorAll('.b-topics-item').forEach(i => i.classList.remove('b-topics-item--active'));
-                this.classList.add('b-topics-item--active');
-
-                /* Update button label */
-                topicsLabel.textContent = filter === 'all' ? 'All Topics' : label;
-
-                /* Sync sidebar pills */
-                pills.forEach(p => p.classList.remove('b-tag-pill--active'));
-                const matchPill = document.querySelector('.b-tag-pill[data-filter="' + filter + '"]');
-                if (matchPill) matchPill.classList.add('b-tag-pill--active');
-
-                filterPosts(filter);
-                closeTopics();
-                document.querySelector('.b-feed').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-
-        /* Close on outside click */
-        document.addEventListener('click', function (e) {
-            if (!topicsBtn.contains(e.target) && !topicsMenu.contains(e.target)) closeTopics();
-        });
-
-        /* Close on Escape */
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') closeTopics();
-        });
-    }
-
-    /* ── NAV CATEGORY FILTER (legacy — kept for compatibility) ── */
-    document.querySelectorAll('.b-nav__cat').forEach(function (cat) {
-        cat.addEventListener('click', function (e) {
-            e.preventDefault();
-            const filter = this.dataset.filter || 'all';
-            /* Sync active state on nav */
-            document.querySelectorAll('.b-nav__cat').forEach(c => c.classList.remove('b-nav__cat--active'));
-            this.classList.add('b-nav__cat--active');
-            /* Trigger the matching pill */
-            const matchPill = document.querySelector('.b-tag-pill[data-filter="' + filter + '"]');
-            if (matchPill) {
-                pills.forEach(p => p.classList.remove('b-tag-pill--active'));
-                matchPill.classList.add('b-tag-pill--active');
-            }
-            filterPosts(filter);
-            /* Scroll to feed */
-            document.querySelector('.b-feed').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
-
-    /* ── SORT BUTTONS ── */
-    const sortBtns = document.querySelectorAll('.b-sort-btn');
-    sortBtns.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            sortBtns.forEach(b => b.classList.remove('b-sort-btn--active'));
-            this.classList.add('b-sort-btn--active');
-            /* Visual feedback only — real sort would need server data */
-        });
-    });
-
-    /* ── PUBLISHED ARTICLE CLICK ── */
-    document.querySelectorAll('.b-post--published[data-href]').forEach(function (post) {
-        post.addEventListener('click', function (e) {
-            if (e.target.closest('a')) return; /* let real links work */
-            window.location.href = this.dataset.href;
-        });
-        post.style.cursor = 'pointer';
-    });
-
-    /* ── SEARCH ── */
-    const searchInput = document.querySelector('.b-search__input');
-    const searchClear = document.getElementById('bSearchClear');
-    const searchBox   = document.getElementById('bSearchBox');
-    if (searchInput) {
-        searchInput.addEventListener('input', function () {
-            const q = this.value.trim().toLowerCase();
-            if (searchClear) searchClear.style.display = q ? 'block' : 'none';
-            if (searchBox)   searchBox.classList.toggle('has-value', !!q);
-            if (!q) {
-                filterPosts('all');
-                /* Reset topics dropdown label */
-                if (topicsLabel) topicsLabel.textContent = 'All Topics';
-                if (topicsMenu) {
-                    topicsMenu.querySelectorAll('.b-topics-item').forEach(i => i.classList.remove('b-topics-item--active'));
-                    const allItem = topicsMenu.querySelector('[data-filter="all"]');
-                    if (allItem) allItem.classList.add('b-topics-item--active');
-                }
-                return;
-            }
-            let visible = 0;
-            posts.forEach(function (post) {
-                /* Search only title + excerpt for cleaner results */
-                const title   = (post.querySelector('.b-post__title')   || {}).textContent || '';
-                const excerpt = (post.querySelector('.b-post__excerpt')  || {}).textContent || '';
-                const tags    = post.dataset.tags || '';
-                const haystack = (title + ' ' + excerpt + ' ' + tags).toLowerCase();
-                const show = haystack.includes(q);
-                post.classList.toggle('b-hidden', !show);
-                if (show) visible++;
-            });
-            /* Hide dividers when searching */
-            document.querySelectorAll('.b-feed__divider').forEach(d => d.style.display = q ? 'none' : '');
-            if (emptyEl) emptyEl.style.display = visible === 0 ? 'flex' : 'none';
-            /* Clear active pill and update dropdown */
-            pills.forEach(p => p.classList.remove('b-tag-pill--active'));
-            if (topicsLabel) topicsLabel.textContent = 'Searching…';
-        });
-
-        /* Clear search on Escape */
-        searchInput.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') {
-                this.value = '';
-                this.dispatchEvent(new Event('input'));
-                this.blur();
-            }
-        });
-
-        /* Clear button click */
-        if (searchClear) {
-            searchClear.addEventListener('click', function () {
-                searchInput.value = '';
-                searchInput.dispatchEvent(new Event('input'));
-                searchInput.focus();
-            });
-        }
-    }
-
-    /* ── NEWSLETTER FORM ── */
-    const newsletterForm = document.querySelector('.b-newsletter__form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const input = this.querySelector('input[type="email"]');
-            const btn   = this.querySelector('button');
-            const statusEl = document.getElementById('newsletterStatus');
-            if (!input || !btn) return;
-            const email = input.value.trim();
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                input.style.borderColor = '#ef4444';
-                setTimeout(() => input.style.borderColor = '', 2000);
-                return;
-            }
-            btn.textContent = 'Subscribing…';
-            btn.disabled = true;
-            fetch('https://solomonleek.com/api/newsletter', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            })
-            .then(r => r.json())
-            .then(data => {
-                btn.textContent = '✓ Subscribed!';
-                btn.style.background = 'rgba(34,197,94,0.2)';
-                btn.style.color = '#86efac';
-                input.value = '';
-                if (statusEl) { statusEl.textContent = data.message || 'Subscribed!'; statusEl.style.display = 'block'; statusEl.style.color = '#86efac'; }
-                setTimeout(() => { btn.textContent = 'Subscribe'; btn.disabled = false; btn.style.background = ''; btn.style.color = ''; }, 3000);
-            })
-            .catch(() => {
-                btn.textContent = 'Subscribe';
-                btn.disabled = false;
-                if (statusEl) { statusEl.textContent = 'Something went wrong. Try again.'; statusEl.style.display = 'block'; statusEl.style.color = '#ef4444'; }
-            });
-        });
-    }
-
-    /* ── READING PROGRESS BAR ── */
-    const progressBar = document.getElementById('bProgressBar');
-    if (progressBar) {
-        window.addEventListener('scroll', function () {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            progressBar.style.width = docHeight > 0 ? (scrollTop / docHeight * 100) + '%' : '0%';
-        }, { passive: true });
-    }
-
-    /* ── NOTIFY ME BUTTONS ── */
-    document.querySelectorAll('.b-notify-btn').forEach(function (btn) {
-        btn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            const key = 'notify-' + (this.closest('.b-post')?.querySelector('.b-post__title')?.textContent?.slice(0, 20) || Math.random());
-            const already = localStorage.getItem(key);
-            if (already) {
-                this.classList.remove('notified');
-                this.title = 'Get notified when published';
-                localStorage.removeItem(key);
-            } else {
-                this.classList.add('notified');
-                this.title = 'Notification set ✓';
-                localStorage.setItem(key, '1');
-            }
-        });
-        /* Restore state */
-        const key = 'notify-' + (btn.closest('.b-post')?.querySelector('.b-post__title')?.textContent?.slice(0, 20) || '');
-        if (localStorage.getItem(key)) btn.classList.add('notified');
-    });
-
-    /* ── FOOTER TOPIC LINKS ── */
-    document.querySelectorAll('.b-footer__col-links a[data-filter]').forEach(function (link) {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-            const filter = this.dataset.filter;
-            const pill = document.querySelector('.b-tag-pill[data-filter="' + filter + '"]');
-            if (pill) {
-                pill.click();
-                document.querySelector('.b-feed').scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    });
-
-})();
-
-document.addEventListener('DOMContentLoaded', function () {
-    var countEl = document.getElementById('bFeedCount');
-    if (countEl) countEl.textContent = document.querySelectorAll('.b-post').length;
-});
-</script>
+<script src="js/journal.js" defer></script>
+    <script src="js/site.js" defer></script>
 </body>
 </html>
 

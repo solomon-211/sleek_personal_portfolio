@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head><base href="../">
     <meta charset="UTF-8">
@@ -103,11 +103,11 @@ body { background: #131f27; color: rgba(255,255,255,0.88); }
 }
 .xp-pill i { color: #FE7F2D; font-size: 0.7rem; }
 .xp-pill--live {
-    background: rgba(34,197,94,0.1);
-    border-color: rgba(34,197,94,0.3);
-    color: #86efac;
+    background: rgba(254,127,45,0.1);
+    border-color: rgba(254,127,45,0.3);
+    color: #ffaa68;
 }
-.xp-pill--live i { color: #22c55e; animation: pulse-dot 1.5s infinite; }
+.xp-pill--live i { color: #FE7F2D; animation: pulse-dot 1.5s infinite; }
 @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
 /* ── MAIN LAYOUT ─────────────────────────────────── */
@@ -163,9 +163,9 @@ body { background: #131f27; color: rgba(255,255,255,0.88); }
     font-size: 1.1rem; color: #fff; flex-shrink: 0;
     position: relative; z-index: 1;
 }
-.xp-entry__icon--dev    { background: linear-gradient(135deg,#22c55e,#16a34a); }
+.xp-entry__icon--dev    { background: linear-gradient(135deg,#FE7F2D,#FE7F2D); }
 .xp-entry__icon--code   { background: linear-gradient(135deg,#FE7F2D,#ff9448); }
-.xp-entry__icon--teach  { background: linear-gradient(135deg,#3b82f6,#1d4ed8); }
+.xp-entry__icon--teach  { background: linear-gradient(135deg,#FE7F2D,#FE7F2D); }
 .xp-entry__icon--alu    { background: linear-gradient(135deg,#FE7F2D,#d4651c); box-shadow: 0 4px 14px rgba(254,127,45,0.35); }
 
 .xp-entry__body { min-width: 0; }
@@ -185,8 +185,8 @@ body { background: #131f27; color: rgba(255,255,255,0.88); }
     border-radius: 999px; white-space: nowrap; flex-shrink: 0;
 }
 .xp-entry__badge--active {
-    background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3);
-    color: #86efac;
+    background: rgba(254,127,45,0.12); border: 1px solid rgba(254,127,45,0.3);
+    color: #ffaa68;
 }
 .xp-entry__badge--active i { font-size: 0.4rem; animation: pulse-dot 1.5s infinite; }
 .xp-entry__badge--edu {
@@ -283,47 +283,44 @@ body { background: #131f27; color: rgba(255,255,255,0.88); }
 .xp-info-item a { color: #FE7F2D; transition: opacity 0.2s; }
 .xp-info-item a:hover { opacity: 0.8; }
     </style>
+    <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
 
     <!-- Nav -->
-    <nav class="xp-nav">
-        <div class="xp-nav__inner">
-            <a href="../" class="xp-nav__logo">
-                <img src="images/photo.jpg" alt="Solomon Leek">
-                Solomon Leek
+    <header class="site-header" id="siteHeader">
+        <div class="site-header__inner">
+            <a href="./" class="site-brand" aria-label="Solomon Leek, home">
+                <img src="images/photo.jpg" alt="" class="site-brand__photo" width="34" height="34">
+                <span class="site-brand__name">Solomon Leek</span>
             </a>
-            <a href="../" class="xp-nav__back">
-                <i class="fas fa-arrow-left"></i> Back to Portfolio
-            </a>
+            <nav class="site-nav" id="siteNav" aria-label="Primary">
+                <ul class="site-nav__list">
+                    <li><a href="./" data-nav="home">Home</a></li>
+                    <li><a href="./#about" data-nav="about">About</a></li>
+                    <li><a href="portfolio/" data-nav="portfolio">Portfolio</a></li>
+                    <li><a href="experience/" data-nav="experience">Experience</a></li>
+                    <li><a href="blog/" data-nav="blog">Blog</a></li>
+                </ul>
+            </nav>
+            <a href="./#contact" class="site-header__cta">Contact</a>
+            <button class="site-menu-btn" id="siteMenuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero -->
-    <header class="xp-hero"><base href="../">
-        <div class="xp-hero__inner">
-            <img src="images/photo.jpg" alt="Solomon Thiong Garang Leek" class="xp-hero__photo">
-            <div>
-                <h1 class="xp-hero__name">
-                    Solomon <span>Thiong Garang Leek</span>
-                </h1>
-                <p class="xp-hero__role">
-                    Software Engineer &nbsp;&middot;&nbsp; Graphic Designer &nbsp;&middot;&nbsp; Community Leader<br>
-                    BSc Software Engineering &mdash; African Leadership University, Kigali
-                </p>
-                <div class="xp-hero__pills">
-                    <span class="xp-pill"><i class="fas fa-briefcase"></i> 3 Internships &amp; Programs</span>
-                    <span class="xp-pill">
-                        <i class="fas fa-map-marker-alt"></i> Kigali, Rwanda
-                    </span>
-                    <span class="xp-pill">
-                        <i class="fas fa-graduation-cap"></i> ALU &mdash; Class of 2028
-                    </span>
-                    <span class="xp-pill">
-                        <i class="fas fa-medal"></i> Mastercard Foundation Scholar
-                    </span>
-                </div>
-            </div>
+    <header class="page-hero">
+        <div class="page-hero__inner">
+            <p class="page-hero__eyebrow">Experience</p>
+            <h1 class="page-hero__title">Roles, programmes &amp; skills</h1>
+            <p class="page-hero__lead">Software Engineer &middot; Graphic Designer &middot; Community Leader. BSc Software Engineering at African Leadership University, Kigali.</p>
+            <dl class="page-hero__meta">
+                <div><dt>Based in</dt><dd>Kigali, Rwanda</dd></div>
+                <div><dt>Class of</dt><dd>2028</dd></div>
+                <div><dt>Scholarship</dt><dd>Mastercard Foundation</dd></div>
+            </dl>
         </div>
     </header>
 
@@ -439,7 +436,7 @@ body { background: #131f27; color: rgba(255,255,255,0.88); }
                                 &nbsp;&middot;&nbsp;
                                 <i class="fas fa-map-marker-alt"></i> Nairobi, Kenya
                             </p>
-                            <a href="/articles/alu-marketing-extern-nairobi/" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#FE7F2D;margin-top:0.25rem;">
+                            <a href="articles/alu-marketing-extern-nairobi/" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#FE7F2D;margin-top:0.25rem;">
                                 <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i> Read: ALU Marketing &amp; Outreach Extern — Nairobi Nexus
                             </a>
                         </div>
@@ -447,7 +444,7 @@ body { background: #131f27; color: rgba(255,255,255,0.88); }
 
                     <!-- Aspire Leaders Program -->
                     <div class="xp-entry">
-                        <div class="xp-entry__icon" style="background:linear-gradient(135deg,#6366f1,#4f46e5);">
+                        <div class="xp-entry__icon" style="background:linear-gradient(135deg,#FE7F2D,#FE7F2D);">
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="xp-entry__body">
@@ -461,7 +458,7 @@ body { background: #131f27; color: rgba(255,255,255,0.88); }
                                 &nbsp;&middot;&nbsp;
                                 <i class="fas fa-globe"></i> Global Learning Experience
                             </p>
-                            <a href="/articles/aspire-leaders-program/" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#FE7F2D;margin-top:0.25rem;">
+                            <a href="articles/aspire-leaders-program/" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#FE7F2D;margin-top:0.25rem;">
                                 <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i> Read: Aspire Leaders Program — What I Learned and Why It Matters
                             </a>
                         </div>
@@ -483,7 +480,7 @@ body { background: #131f27; color: rgba(255,255,255,0.88); }
                                 &nbsp;&middot;&nbsp;
                                 <i class="fas fa-map-marker-alt"></i> Nairobi, Kenya
                             </p>
-                            <a href="/articles/alu-nairobi-nexus-light-academy/" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#FE7F2D;margin-top:0.25rem;">
+                            <a href="articles/alu-nairobi-nexus-light-academy/" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#FE7F2D;margin-top:0.25rem;">
                                 <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i> Read: What I Saw at Light Academy Nairobi — College Transition &amp; Why It Matters
                             </a>
                         </div>
@@ -513,7 +510,7 @@ body { background: #131f27; color: rgba(255,255,255,0.88); }
                             <p class="xp-entry__period">
                                 <i class="fas fa-calendar-alt"></i> January 2025 &mdash; Expected July 2028
                             </p>
-                            <a href="/articles/alu-scholarship-journey/" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#FE7F2D;margin-top:0.25rem;">
+                            <a href="articles/alu-scholarship-journey/" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#FE7F2D;margin-top:0.25rem;">
                                 <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i> Read: How I Got a Full Scholarship to ALU — My Application Journey
                             </a>
                         </div>
@@ -546,41 +543,6 @@ body { background: #131f27; color: rgba(255,255,255,0.88); }
                     <div class="xp-info-item">
                         <i class="fa-brands fa-linkedin-in"></i>
                         <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Technical skills -->
-            <div class="xp-widget">
-                <p class="xp-widget__title">Technical Skills</p>
-                <div class="xp-skills">
-                    <div class="xp-skill-item">
-                        <div class="xp-skill-label"><span>Python &amp; Flask</span><span>88%</span></div>
-                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="88%"></div></div>
-                    </div>
-                    <div class="xp-skill-item">
-                        <div class="xp-skill-label"><span>HTML / CSS / JS</span><span>95%</span></div>
-                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="95%"></div></div>
-                    </div>
-                    <div class="xp-skill-item">
-                        <div class="xp-skill-label"><span>FastAPI &amp; REST</span><span>80%</span></div>
-                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="80%"></div></div>
-                    </div>
-                    <div class="xp-skill-item">
-                        <div class="xp-skill-label"><span>MySQL &amp; SQLite</span><span>85%</span></div>
-                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="85%"></div></div>
-                    </div>
-                    <div class="xp-skill-item">
-                        <div class="xp-skill-label"><span>Adobe Photoshop</span><span>95%</span></div>
-                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="95%"></div></div>
-                    </div>
-                    <div class="xp-skill-item">
-                        <div class="xp-skill-label"><span>Illustrator &amp; Figma</span><span>88%</span></div>
-                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="88%"></div></div>
-                    </div>
-                    <div class="xp-skill-item">
-                        <div class="xp-skill-label"><span>Brand Identity</span><span>90%</span></div>
-                        <div class="xp-skill-track"><div class="xp-skill-fill" data-w="90%"></div></div>
                     </div>
                 </div>
             </div>
@@ -622,21 +584,6 @@ body { background: #131f27; color: rgba(255,255,255,0.88); }
                 </div>
             </div>
 
-            <!-- CTA -->
-            <div class="xp-widget" style="background:rgba(254,127,45,0.06);border-color:rgba(254,127,45,0.22);">
-                <div style="padding:1.5rem;display:flex;flex-direction:column;gap:0.75rem;">
-                    <p style="font-family:'Sora',sans-serif;font-size:0.95rem;font-weight:800;color:#fff;margin:0;">
-                        Open to opportunities
-                    </p>
-                    <p style="font-size:0.82rem;color:rgba(255,255,255,0.55);margin:0;line-height:1.6;">
-                        Internships, freelance work, and collaborations &mdash; Kigali or remote.
-                    </p>
-                    <a href="../#contact" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.85rem;justify-content:center;">
-                        <i class="fas fa-paper-plane"></i> Get In Touch
-                    </a>
-                </div>
-            </div>
-
         </aside>
     </main>
 
@@ -652,5 +599,55 @@ body { background: #131f27; color: rgba(255,255,255,0.88); }
     });
     </script>
     <script src="js/analytics.js"></script>
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <div class="site-footer__top">
+                <div class="site-footer__brand">
+                    <a href="./" class="site-brand">
+                        <img src="images/photo.jpg" alt="" class="site-brand__photo" width="34" height="34">
+                        <span class="site-brand__name">Solomon Leek</span>
+                    </a>
+                    <p class="site-footer__tagline">Software Engineer &middot; Graphic Designer &middot; Community Leader</p>
+                    <p class="site-footer__bio">Building practical technology for Africa &mdash; from brand identity and campaign visuals to full-stack web applications.</p>
+                    <div class="site-footer__social">
+                        <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://x.com/teeghee_4" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg></a>
+                        <a href="https://www.instagram.com/sleek_tg001" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="site-footer__col">
+                    <p class="site-footer__title">Explore</p>
+                    <ul class="site-footer__list">
+                        <li><a href="./">Home</a></li>
+                        <li><a href="./#about">About</a></li>
+                        <li><a href="portfolio/">Portfolio</a></li>
+                        <li><a href="experience/">Experience</a></li>
+                    </ul>
+                </div>
+                <div class="site-footer__col">
+                    <p class="site-footer__title">Writing</p>
+                    <ul class="site-footer__list">
+                        <li><a href="blog/">Blog</a></li>
+                        <li><a href="case-study/">Case Study</a></li>
+                        <li><a href="https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a></li>
+                    </ul>
+                </div>
+                <div class="site-footer__col site-footer__col--contact">
+                    <p class="site-footer__title">Contact</p>
+                    <ul class="site-footer__list">
+                        <li><a href="mailto:s.leek@alustudent.com"><i class="fas fa-envelope" aria-hidden="true"></i> s.leek@alustudent.com</a></li>
+                        <li><a href="tel:+211925277700"><i class="fas fa-phone" aria-hidden="true"></i> +211 925 277 700</a></li>
+                        <li><span><i class="fas fa-location-dot" aria-hidden="true"></i> Kigali, Rwanda</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                <p>&copy; <span data-year>2026</span> Solomon Thiong Garang Leek. All rights reserved.</p>
+                <a href="#" class="site-footer__totop" data-totop>Back to top <i class="fas fa-arrow-up" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/site.js" defer></script>
 </body>
 </html>

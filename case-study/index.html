@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head><base href="../">
     <meta charset="UTF-8">
@@ -52,40 +52,46 @@
     <!-- Analytics -->
     <script src="js/analytics.js"></script>
     <noscript><style>body{visibility:visible}</style></noscript>
+    <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
 
-    <nav class="cs-nav">
-        <div class="cs-nav__inner">
-            <a href="../" class="cs-nav__logo">
-                <img src="images/photo.jpg" alt="Solomon Leek" class="cs-nav__logo-photo">
-                <span class="cs-nav__logo-text">Solomon Leek</span>
+    <header class="site-header" id="siteHeader">
+        <div class="site-header__inner">
+            <a href="./" class="site-brand" aria-label="Solomon Leek, home">
+                <img src="images/photo.jpg" alt="" class="site-brand__photo" width="34" height="34">
+                <span class="site-brand__name">Solomon Leek</span>
             </a>
-            <a href="../blog/" class="cs-nav__back">
-                <i class="fas fa-arrow-left"></i> Blog
-            </a>
+            <nav class="site-nav" id="siteNav" aria-label="Primary">
+                <ul class="site-nav__list">
+                    <li><a href="./" data-nav="home">Home</a></li>
+                    <li><a href="./#about" data-nav="about">About</a></li>
+                    <li><a href="portfolio/" data-nav="portfolio">Portfolio</a></li>
+                    <li><a href="experience/" data-nav="experience">Experience</a></li>
+                    <li><a href="blog/" data-nav="blog">Blog</a></li>
+                </ul>
+            </nav>
+            <a href="./#contact" class="site-header__cta">Contact</a>
+            <button class="site-menu-btn" id="siteMenuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero -->
     <section class="cs-hero">
         <div class="cs-hero-inner">
-            <span class="cs-badge"><i class="fas fa-star"></i> Featured Case Study</span>
-            <h1>Independence Day<br>Campaign Poster</h1>
+            <p class="cs-kicker"><a href="blog/">Writing</a><span aria-hidden="true">/</span>Case study</p>
+            <h1>Independence Day Campaign Poster</h1>
             <p class="cs-hero-subtitle">
                 A complete design breakdown, from brief and research to creative execution,
                 tooling decisions, and delivery for community-facing Independence Day communication.
             </p>
             <div class="cs-hero-actions">
-                <a href="../blog/" class="cs-btn-back">
-                    <i class="fas fa-arrow-left"></i> Back to Blog
-                </a>
-                <a href="../#projects" class="cs-btn-back">
-                    <i class="fas fa-house"></i> Portfolio
-                </a>
                 <button class="cs-btn-view" id="csPosterBtn" type="button">
-                    <i class="fas fa-image"></i> View Full Poster
+                    View full poster <i class="fas fa-expand" aria-hidden="true"></i>
                 </button>
+                <a href="portfolio/" class="cs-btn-back">All work</a>
             </div>
 
             <!-- Lightbox overlay -->
@@ -142,7 +148,7 @@
 
         <!-- Challenge -->
         <div class="cs-section">
-            <span class="cs-section-label"><i class="fas fa-bullseye"></i> The Challenge</span>
+            <span class="cs-section-label">The Challenge</span>
             <h2>Communicating national pride in a crowded visual environment</h2>
             <p>
                 Independence Day events create a flood of competing visuals across social media and physical spaces.
@@ -160,7 +166,7 @@
 
         <!-- Research -->
         <div class="cs-section">
-            <span class="cs-section-label"><i class="fas fa-search"></i> Research &amp; Brief</span>
+            <span class="cs-section-label">Research &amp; Brief</span>
             <h2>Understanding audience behavior and visual context</h2>
             <p>
                 Before opening any design tool, I reviewed Independence Day visuals from South Sudan and neighboring
@@ -199,7 +205,7 @@
 
         <!-- Process -->
         <div class="cs-section">
-            <span class="cs-section-label"><i class="fas fa-pencil-ruler"></i> Design Process</span>
+            <span class="cs-section-label">Design Process</span>
             <h2>From content hierarchy to final composition</h2>
             <p>
                 I used a structured process to ensure every design decision supported communication goals,
@@ -248,7 +254,7 @@
 
         <!-- Tools -->
         <div class="cs-section">
-            <span class="cs-section-label"><i class="fas fa-tools"></i> Tools &amp; Why</span>
+            <span class="cs-section-label">Tools &amp; Why</span>
             <h2>The right tool for each stage</h2>
             <p>Each tool was selected deliberately based on the specific output required at that phase.</p>
             <div class="cs-tools">
@@ -287,7 +293,7 @@
 
         <!-- Outcomes -->
         <div class="cs-section">
-            <span class="cs-section-label"><i class="fas fa-chart-line"></i> Outcomes</span>
+            <span class="cs-section-label">Outcomes</span>
             <h2>What the final design achieved</h2>
             <p>
                 The final poster met all brief requirements and was deployed across community-facing
@@ -321,7 +327,7 @@
 
         <!-- Lessons learned -->
         <div class="cs-section">
-            <span class="cs-section-label"><i class="fas fa-lightbulb"></i> Lessons Learned</span>
+            <span class="cs-section-label">Lessons Learned</span>
             <h2>What this project taught me</h2>
             <div class="cs-lessons">
                 <div class="cs-lesson">
@@ -347,13 +353,6 @@
 
         <!-- ── LIKE & SHARE ── -->
         <div class="cs-engage">
-            <div class="cs-engage-left">
-                <button class="cs-like-btn" id="csLikeBtn" aria-label="Like this article" aria-pressed="false">
-                    <i class="fas fa-heart cs-like-icon" id="csLikeIcon"></i>
-                    <span class="cs-like-label">Like this article</span>
-                    <span class="cs-like-count" id="csLikeCount">24</span>
-                </button>
-            </div>
             <div class="cs-engage-right">
                 <span class="cs-share-label">Share</span>
                 <a href="https://twitter.com/intent/tweet?text=Independence+Day+Campaign+Case+Study+by+%40teeghee_4&url=https://solomonleek.com/case-study/"
@@ -372,67 +371,21 @@
 
         <div class="cs-divider"></div>
 
-        <!-- ── COMMENTS ── -->
-        <div class="cs-comments" id="csComments">
-            <div class="cs-comments-header">
-                <h2 class="cs-comments-title">
-                    <i class="fas fa-comments"></i> Discussion
-                    <span class="cs-comments-count" id="csCommentCount">0</span>
-                </h2>
-                <p class="cs-comments-sub">Share your thoughts, feedback, or questions about this case study.</p>
-            </div>
-
-            <!-- Comment form -->
-            <form class="cs-comment-form" id="csCommentForm" novalidate>
-                <div class="cs-comment-form-row">
-                    <div class="cs-form-group">
-                        <label for="csCommentName">Name <span aria-hidden="true">*</span></label>
-                        <input type="text" id="csCommentName" name="name" placeholder="Your name" required maxlength="60" autocomplete="name">
-                    </div>
-                    <div class="cs-form-group">
-                        <label for="csCommentEmail">Email <span aria-hidden="true">*</span></label>
-                        <input type="email" id="csCommentEmail" name="email" placeholder="your@email.com (not published)" required maxlength="120" autocomplete="email">
-                    </div>
-                </div>
-                <div class="cs-form-group">
-                    <label for="csCommentText">Comment <span aria-hidden="true">*</span></label>
-                    <textarea id="csCommentText" name="comment" rows="4" placeholder="What are your thoughts on this case study?" required maxlength="1000"></textarea>
-                    <span class="cs-char-count"><span id="csCharLeft">1000</span> characters remaining</span>
-                </div>
-                <div class="cs-form-actions">
-                    <button type="submit" class="cs-btn-view cs-comment-submit" id="csCommentSubmit">
-                        <i class="fas fa-paper-plane"></i> Post Comment
-                    </button>
-                    <p class="cs-form-note"><i class="fas fa-lock"></i> Your email is never published.</p>
-                </div>
-                <p class="cs-comment-status" id="csCommentStatus" role="status" aria-live="polite"></p>
-            </form>
-
-            <!-- Comment list -->
-            <div class="cs-comment-list" id="csCommentList">
-                <!-- Comments rendered by JS -->
-            </div>
-
-            <p class="cs-comments-empty" id="csCommentsEmpty">
-                No comments yet. Be the first to share your thoughts.
-            </p>
-        </div>
-
-        <div class="cs-divider"></div>
-
-        <!-- Next CTA -->
-        <div class="cs-next">
-            <h3>Explore More Work</h3>
-            <p>See the full design portfolio or get in touch to discuss a project.</p>
-            <div class="cs-next-actions">
-                <a href="../#projects" class="cs-btn-view">
-                    <i class="fas fa-th-large"></i> View All Projects
+        <nav class="ar-continue cs-continue" aria-label="Continue reading">
+            <p class="ar-continue__title">Continue reading</p>
+            <div class="ar-continue__grid">
+                <a class="ar-next ar-next--newer" href="articles/alu-scholarship-journey/">
+                    <span class="ar-next__label">&larr; Newer</span>
+                    <span class="ar-next__title">How I Got a Full Scholarship to ALU &mdash; My Application Journey</span>
+                    <span class="ar-next__meta">Student life &middot; Jan 2026 &middot; 6 min</span>
                 </a>
-                <a href="../#contact" class="cs-btn-back">
-                    <i class="fas fa-paper-plane"></i> Get In Touch
+                <a class="ar-next ar-next--older" href="articles/aspire-leaders-program/">
+                    <span class="ar-next__label">Older &rarr;</span>
+                    <span class="ar-next__title">Aspire Leaders Program &mdash; What I Learned and Why It Matters</span>
+                    <span class="ar-next__meta">Leadership &middot; May 2025 &middot; 5 min</span>
                 </a>
             </div>
-        </div>
+        </nav>
 
     </main>
 
@@ -464,39 +417,10 @@
         if (e.key === 'Escape' && lightbox && lightbox.style.display !== 'none') closeLightbox();
     });
     (function () {
-        const ARTICLE_KEY = 'cs-independence-day';
-        const LIKE_KEY    = ARTICLE_KEY + '-liked';
-        const LIKES_KEY   = ARTICLE_KEY + '-likes';
-        const COMMENTS_KEY = ARTICLE_KEY + '-comments';
-
-        /* ── LIKE BUTTON ── */
-        const likeBtn   = document.getElementById('csLikeBtn');
-        const likeIcon  = document.getElementById('csLikeIcon');
-        const likeCount = document.getElementById('csLikeCount');
-
-        let likes   = parseInt(localStorage.getItem(LIKES_KEY) || '24', 10);
-        let liked   = localStorage.getItem(LIKE_KEY) === 'true';
-
-        function renderLike() {
-            likeCount.textContent = likes;
-            likeBtn.classList.toggle('liked', liked);
-            likeBtn.setAttribute('aria-pressed', String(liked));
-            likeBtn.querySelector('.cs-like-label').textContent = liked ? 'Liked!' : 'Like this article';
-        }
-
-        likeBtn.addEventListener('click', function () {
-            liked = !liked;
-            likes = liked ? likes + 1 : Math.max(0, likes - 1);
-            localStorage.setItem(LIKE_KEY, String(liked));
-            localStorage.setItem(LIKES_KEY, String(likes));
-            renderLike();
-        });
-
-        renderLike();
-
-        /* ── COPY LINK ── */
+        /* Copy link */
         const copyBtn  = document.getElementById('csCopyBtn');
         const copyIcon = document.getElementById('csCopyIcon');
+        if (!copyBtn || !navigator.clipboard) return;
         copyBtn.addEventListener('click', function () {
             navigator.clipboard.writeText(window.location.href).then(function () {
                 copyIcon.className = 'fas fa-check';
@@ -507,131 +431,58 @@
                 }, 2000);
             });
         });
-
-        /* ── COMMENTS ── */
-        const form        = document.getElementById('csCommentForm');
-        const nameInput   = document.getElementById('csCommentName');
-        const emailInput  = document.getElementById('csCommentEmail');
-        const textInput   = document.getElementById('csCommentText');
-        const submitBtn   = document.getElementById('csCommentSubmit');
-        const statusEl    = document.getElementById('csCommentStatus');
-        const listEl      = document.getElementById('csCommentList');
-        const emptyEl     = document.getElementById('csCommentsEmpty');
-        const countEl     = document.getElementById('csCommentCount');
-        const charLeft    = document.getElementById('csCharLeft');
-
-        /* Character counter */
-        textInput.addEventListener('input', function () {
-            charLeft.textContent = 1000 - this.value.length;
-        });
-
-        /* Load saved comments */
-        function loadComments() {
-            try { return JSON.parse(localStorage.getItem(COMMENTS_KEY) || '[]'); }
-            catch (e) { return []; }
-        }
-
-        function saveComments(comments) {
-            localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments));
-        }
-
-        function initials(name) {
-            return name.trim().split(/\s+/).slice(0, 2).map(w => w[0].toUpperCase()).join('');
-        }
-
-        function timeAgo(ts) {
-            const diff = Date.now() - ts;
-            const m = Math.floor(diff / 60000);
-            if (m < 1)  return 'just now';
-            if (m < 60) return m + 'm ago';
-            const h = Math.floor(m / 60);
-            if (h < 24) return h + 'h ago';
-            const d = Math.floor(h / 24);
-            if (d < 30) return d + 'd ago';
-            return new Date(ts).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
-        }
-
-        function renderComments() {
-            const comments = loadComments();
-            countEl.textContent = comments.length;
-            listEl.innerHTML = '';
-            emptyEl.style.display = comments.length ? 'none' : 'block';
-
-            comments.slice().reverse().forEach(function (c, idx) {
-                const realIdx = comments.length - 1 - idx;
-                const item = document.createElement('div');
-                item.className = 'cs-comment-item';
-                item.innerHTML =
-                    '<div class="cs-comment-avatar">' + initials(c.name) + '</div>' +
-                    '<div class="cs-comment-body">' +
-                        '<div class="cs-comment-meta">' +
-                            '<span class="cs-comment-name">' + escHtml(c.name) + '</span>' +
-                            '<span class="cs-comment-time">' + timeAgo(c.ts) + '</span>' +
-                        '</div>' +
-                        '<p class="cs-comment-text">' + escHtml(c.text) + '</p>' +
-                        '<button class="cs-comment-like' + (c.liked ? ' liked' : '') + '" data-idx="' + realIdx + '" aria-label="Like comment">' +
-                            '<i class="fas fa-heart"></i> ' + (c.likes || 0) +
-                        '</button>' +
-                    '</div>';
-                listEl.appendChild(item);
-            });
-
-            /* Comment like buttons */
-            listEl.querySelectorAll('.cs-comment-like').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    const comments = loadComments();
-                    const i = parseInt(this.dataset.idx, 10);
-                    comments[i].liked = !comments[i].liked;
-                    comments[i].likes = (comments[i].likes || 0) + (comments[i].liked ? 1 : -1);
-                    saveComments(comments);
-                    renderComments();
-                });
-            });
-        }
-
-        function escHtml(str) {
-            return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-        }
-
-        function setStatus(msg, type) {
-            statusEl.textContent = msg;
-            statusEl.className = 'cs-comment-status ' + type;
-        }
-
-        /* Submit */
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const name = nameInput.value.trim();
-            const email = emailInput.value.trim();
-            const text = textInput.value.trim();
-
-            if (!name || name.length < 2) { setStatus('Please enter your name (at least 2 characters).', 'error'); nameInput.focus(); return; }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus('Please enter a valid email address.', 'error'); emailInput.focus(); return; }
-            if (!text || text.length < 5) { setStatus('Comment must be at least 5 characters.', 'error'); textInput.focus(); return; }
-
-            const originalHTML = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
-            submitBtn.disabled = true;
-
-            /* Simulate a brief save delay for UX */
-            setTimeout(function () {
-                const comments = loadComments();
-                comments.push({ name: name, text: text, ts: Date.now(), likes: 0, liked: false });
-                saveComments(comments);
-                form.reset();
-                charLeft.textContent = '1000';
-                setStatus('Comment posted! Thank you for your feedback.', 'success');
-                renderComments();
-                submitBtn.innerHTML = originalHTML;
-                submitBtn.disabled = false;
-                /* Scroll to new comment */
-                listEl.firstElementChild && listEl.firstElementChild.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 600);
-        });
-
-        renderComments();
     })();
     </script>
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <div class="site-footer__top">
+                <div class="site-footer__brand">
+                    <a href="./" class="site-brand">
+                        <img src="images/photo.jpg" alt="" class="site-brand__photo" width="34" height="34">
+                        <span class="site-brand__name">Solomon Leek</span>
+                    </a>
+                    <p class="site-footer__tagline">Software Engineer &middot; Graphic Designer &middot; Community Leader</p>
+                    <p class="site-footer__bio">Building practical technology for Africa &mdash; from brand identity and campaign visuals to full-stack web applications.</p>
+                    <div class="site-footer__social">
+                        <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://x.com/teeghee_4" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg></a>
+                        <a href="https://www.instagram.com/sleek_tg001" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="site-footer__col">
+                    <p class="site-footer__title">Explore</p>
+                    <ul class="site-footer__list">
+                        <li><a href="./">Home</a></li>
+                        <li><a href="./#about">About</a></li>
+                        <li><a href="portfolio/">Portfolio</a></li>
+                        <li><a href="experience/">Experience</a></li>
+                    </ul>
+                </div>
+                <div class="site-footer__col">
+                    <p class="site-footer__title">Writing</p>
+                    <ul class="site-footer__list">
+                        <li><a href="blog/">Blog</a></li>
+                        <li><a href="case-study/">Case Study</a></li>
+                        <li><a href="https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a></li>
+                    </ul>
+                </div>
+                <div class="site-footer__col site-footer__col--contact">
+                    <p class="site-footer__title">Contact</p>
+                    <ul class="site-footer__list">
+                        <li><a href="mailto:s.leek@alustudent.com"><i class="fas fa-envelope" aria-hidden="true"></i> s.leek@alustudent.com</a></li>
+                        <li><a href="tel:+211925277700"><i class="fas fa-phone" aria-hidden="true"></i> +211 925 277 700</a></li>
+                        <li><span><i class="fas fa-location-dot" aria-hidden="true"></i> Kigali, Rwanda</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                <p>&copy; <span data-year>2026</span> Solomon Thiong Garang Leek. All rights reserved.</p>
+                <a href="#" class="site-footer__totop" data-totop>Back to top <i class="fas fa-arrow-up" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/site.js" defer></script>
 </body>
 </html>
 

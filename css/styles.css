@@ -14,7 +14,7 @@
   --navy-700: #233D4D;
   --navy-600: #2c4e62;
   --navy-500: #2c4e62;
-  --navy-400: #1e3d6e;
+  --navy-400: #233d4d;
   --navy-card: #1e3545;
   --navy-card-hover: #264455;
 
@@ -183,7 +183,7 @@ nav {
 .description strong { color: var(--white) !important; }
 
 /* Badge */
-.hero-badge { background: rgba(34,197,94,0.1) !important; border-color: rgba(34,197,94,0.25) !important; color: #86efac !important; }
+.hero-badge { background: rgba(254,127,45,0.1) !important; border-color: rgba(254,127,45,0.25) !important; color: #ffaa68 !important; }
 
 /* Stats panel */
 .hero-stats { background: rgba(255,255,255,0.04) !important; border-color: var(--border-subtle) !important; }
@@ -326,7 +326,7 @@ html.light-mode .contact .section-title {
 .testimonial-card,
 .language-card,
 .timeline-card {
-  background: linear-gradient(180deg, rgba(19, 40, 72, 0.98) 0%, rgba(30,53,69, 0.96) 100%) !important;
+  background: linear-gradient(180deg, rgba(26,45,58, 0.98) 0%, rgba(30,53,69, 0.96) 100%) !important;
   border: 1px solid rgba(255,255,255,0.14) !important;
   box-shadow: 0 4px 14px rgba(0,0,0,0.22) !important;
   border-radius: var(--radius-card) !important;
@@ -341,7 +341,7 @@ html.light-mode .contact .section-title {
   transform: translateY(-5px) !important;
   box-shadow: 0 8px 24px rgba(0,0,0,0.32) !important;
   border-color: var(--border-accent) !important;
-  background: linear-gradient(180deg, rgba(21, 39, 68, 1) 0%, rgba(18, 33, 58, 0.98) 100%) !important;
+  background: linear-gradient(180deg, rgba(26,45,58, 1) 0%, rgba(26,45,58, 0.98) 100%) !important;
 }
 
 /* Card text */
@@ -625,9 +625,9 @@ section .highlight-item p {
   background: linear-gradient(90deg, var(--slate-400), var(--slate-300)) !important;
 }
 
-.level-native  { background: rgba(22,163,74,0.15) !important; color: #86efac !important; }
+.level-native  { background: rgba(254,127,45,0.15) !important; color: #ffaa68 !important; }
 .level-fluent  { background: rgba(254,127,45,0.15) !important; color: var(--orange-300) !important; }
-.level-conversational { background: rgba(251,191,36,0.12) !important; color: #fde68a !important; }
+.level-conversational { background: rgba(254,127,45,0.12) !important; color: #ffaa68 !important; }
 
 /* ── VISION SECTION ────────────────────────────────── */
 .contact {
@@ -791,7 +791,7 @@ a:hover {
 }
 
 /* ── FAB ────────────────────────────────────────────── */
-.fab {
+.fab-btn {
   background: linear-gradient(135deg, var(--orange-500), var(--orange-400)) !important;
   box-shadow: 0 8px 24px rgba(254,127,45,0.4) !important;
 }
@@ -965,7 +965,7 @@ html.light-mode .timeline-tag--active {
 
 /* ── BADGE OVERRIDES ───────────────────────────────── */
 .availability-badge {
-  color: #86efac !important;
+  color: #ffaa68 !important;
 }
 
 .mission-card--primary .mission-badge {
@@ -1006,10 +1006,10 @@ b {
 .contact-follow { background: var(--navy-card) !important; border-color: var(--border-mid) !important; }
 
 /* Contact icon brand colours */
-.contact-icon--phone    { background: linear-gradient(135deg, #22c55e, #16a34a) !important; }
+.contact-icon--phone    { background: linear-gradient(135deg, #FE7F2D, #FE7F2D) !important; }
 .contact-icon--email    { background: linear-gradient(135deg, #FE7F2D, #FE7F2D) !important; }
 .contact-icon--github   { background: linear-gradient(135deg, #24292e, #3d444d) !important; }
-.contact-icon--linkedin { background: linear-gradient(135deg, #0A66C2, #0077b5) !important; }
+.contact-icon--linkedin { background: linear-gradient(135deg, #FE7F2D, #FE7F2D) !important; }
 
 /* ── FOOTER ────────────────────────────────────────── */
 footer { background: var(--navy-800) !important; border-top: 1px solid var(--border-mid) !important; }
@@ -1030,8 +1030,8 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
 .project-code-preview { color: var(--white-50) !important; }
 
 /* Better syntax highlighting in code preview */
-.project-image--code .code-tag  { color: #7dd3fc !important; }  /* blue — tags/labels */
-.project-image--code .code-attr { color: #86efac !important; }  /* green — functions/keys */
+.project-image--code .code-tag  { color: #ffaa68 !important; }  /* blue — tags/labels */
+.project-image--code .code-attr { color: #ffaa68 !important; }  /* green — functions/keys */
 .project-image--code .code-val  { color: #fca5a5 !important; }  /* red/pink — values */
 
 /* ── PROJECTS STATS BAR ────────────────────────────── */
@@ -1112,9 +1112,9 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
   font-weight: 700;
   padding: 0.15rem 0.5rem;
   border-radius: 999px;
-  background: rgba(99,102,241,0.12);
-  border: 1px solid rgba(99,102,241,0.25);
-  color: #a5b4fc;
+  background: rgba(254,127,45,0.12);
+  border: 1px solid rgba(254,127,45,0.25);
+  color: #ffaa68;
   letter-spacing: 0.02em;
 }
 
@@ -1145,15 +1145,15 @@ footer { background: var(--navy-800) !important; border-top: 1px solid var(--bor
 }
 /* :hover merged into Contact social icons block above */
 
-/* LinkedIn — #0A66C2 */
+/* LinkedIn — #FE7F2D */
 .contact-social-icon--linkedin {
-  color: #0A66C2 !important;
-  border-color: rgba(10,102,194,0.35) !important;
+  color: #FE7F2D !important;
+  border-color: rgba(254,127,45,0.35) !important;
 }
 .contact-social-icon--linkedin:hover {
-  background: #0A66C2 !important;
+  background: #FE7F2D !important;
   color: #fff !important;
-  border-color: #0A66C2 !important;
+  border-color: #FE7F2D !important;
 }
 
 /* GitHub — dark on dark, dark on light */
@@ -1207,36 +1207,36 @@ html.light-mode .contact-social-icon--twitter:hover {
 
 /* Instagram — pink/purple */
 .contact-social-icon--instagram {
-  color: #E1306C !important;
-  border-color: rgba(225,48,108,0.35) !important;
+  color: #FE7F2D !important;
+  border-color: rgba(254,127,45,0.35) !important;
 }
 .contact-social-icon--instagram:hover {
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) !important;
+  background: radial-gradient(circle at 30% 107%, #ffaa68 0%, #ffaa68 5%, #FE7F2D 45%, #FE7F2D 60%, #FE7F2D 90%) !important;
   color: #fff !important;
-  border-color: #d6249f !important;
+  border-color: #FE7F2D !important;
 }
 
-/* Facebook — #1877F2 */
+/* Facebook — #FE7F2D */
 .contact-social-icon--facebook {
-  color: #1877F2 !important;
-  border-color: rgba(24,119,242,0.35) !important;
+  color: #FE7F2D !important;
+  border-color: rgba(254,127,45,0.35) !important;
 }
 .contact-social-icon--facebook:hover {
-  background: #1877F2 !important;
+  background: #FE7F2D !important;
   color: #fff !important;
-  border-color: #1877F2 !important;
+  border-color: #FE7F2D !important;
 }
 
 /* TikTok — cyan */
 .contact-social-icon--tiktok {
-  color: #69C9D0 !important;
-  border-color: rgba(105,201,208,0.35) !important;
+  color: #FE7F2D !important;
+  border-color: rgba(254,127,45,0.35) !important;
 }
 .contact-social-icon--tiktok:hover {
   background: #010101 !important;
-  color: #69C9D0 !important;
-  border-color: #69C9D0 !important;
-  box-shadow: 2px 0 0 #69C9D0, -2px 0 0 #EE1D52 !important;
+  color: #FE7F2D !important;
+  border-color: #FE7F2D !important;
+  box-shadow: 2px 0 0 #FE7F2D, -2px 0 0 #FE7F2D !important;
 }
 
 /* ── SECTION WAVE DIVIDERS ─────────────────────────── */
@@ -1251,12 +1251,12 @@ html.light-mode .contact-social-icon--twitter:hover {
 .nav-links a.active-nav::after { display: none !important; }
 
 /* ── FAB — more prominent ──────────────────────────── */
-.fab {
+.fab-btn {
   background: linear-gradient(135deg, var(--orange-500), var(--orange-400)) !important;
   box-shadow: 0 8px 28px rgba(254,127,45,0.45) !important;
   border-radius: 14px !important;
 }
-.fab:hover { transform: translateY(-3px) scale(1.05) !important; }
+.fab-btn:hover { transform: translateY(-3px) scale(1.05) !important; }
 
 /* ── ABOUT PHOTO ───────────────────────────────────── */
 .about-photo { border-color: rgba(254,127,45,0.3) !important; }
@@ -1375,7 +1375,7 @@ html.light-mode .hero-stat-num           { color: #FE7F2D !important; }
 html.light-mode .hero-stat-label         { color: #5a7a8a !important; }
 html.light-mode .hero-stats              { background: rgba(0,0,0,0.04) !important; border-color: rgba(0,0,0,0.1) !important; }
 html.light-mode .hero-social             { border-color: rgba(0,0,0,0.12) !important; color: #3d657a !important; }
-html.light-mode .hero-badge              { background: rgba(34,197,94,0.1) !important; border-color: rgba(34,197,94,0.3) !important; color: #16a34a !important; }
+html.light-mode .hero-badge              { background: rgba(254,127,45,0.1) !important; border-color: rgba(254,127,45,0.3) !important; color: #FE7F2D !important; }
 html.light-mode .hero-resume-link        { color: #FE7F2D !important; border-color: rgba(254,127,45,0.4) !important; }
 html.light-mode .hero-scroll-hint        { color: #7a9aaa !important; }
 
@@ -1392,9 +1392,9 @@ html.light-mode .contact-follow-label    { color: #131f27 !important; }
 html.light-mode .contact-follow-sub      { color: #5a7a8a !important; }
 html.light-mode .contact-social-icon     { border-color: rgba(0,0,0,0.12) !important; }
 /* Keep brand colours visible on white background */
-html.light-mode .contact-social-icon--linkedin  { color: #0A66C2 !important; border-color: rgba(10,102,194,0.3) !important; }
-html.light-mode .contact-social-icon--instagram { color: #E1306C !important; border-color: rgba(225,48,108,0.3) !important; }
-html.light-mode .contact-social-icon--facebook  { color: #1877F2 !important; border-color: rgba(24,119,242,0.3) !important; }
+html.light-mode .contact-social-icon--linkedin  { color: #FE7F2D !important; border-color: rgba(254,127,45,0.3) !important; }
+html.light-mode .contact-social-icon--instagram { color: #FE7F2D !important; border-color: rgba(254,127,45,0.3) !important; }
+html.light-mode .contact-social-icon--facebook  { color: #FE7F2D !important; border-color: rgba(254,127,45,0.3) !important; }
 html.light-mode .contact-social-icon--tiktok    { color: #010101 !important; border-color: rgba(0,0,0,0.2) !important; }
 html.light-mode .contact-social-icon--email     { color: #FE7F2D !important; border-color: rgba(254,127,45,0.3) !important; }
 
@@ -1505,7 +1505,7 @@ html.light-mode .project-image--code     { background: #1a2d3a !important; }
 html.light-mode .projects-stats-bar      { background: #eaeff2 !important; border-color: rgba(0,0,0,0.08) !important; }
 html.light-mode .projects-stat-label     { color: #5a7a8a !important; }
 html.light-mode .projects-stat-divider   { background: rgba(0,0,0,0.1) !important; }
-html.light-mode .project-category-chip   { background: rgba(99,102,241,0.08) !important; border-color: rgba(99,102,241,0.2) !important; color: #6366f1 !important; }
+html.light-mode .project-category-chip   { background: rgba(254,127,45,0.08) !important; border-color: rgba(254,127,45,0.2) !important; color: #FE7F2D !important; }
 html.light-mode .project-featured-badge  { background: rgba(254,127,45,0.08) !important; border-color: rgba(254,127,45,0.2) !important; }
 html.light-mode .filter-count            { background: rgba(0,0,0,0.1) !important; }
 
@@ -1731,9 +1731,9 @@ html.light-mode #timeline .timeline-tag--active {
 }
 html.light-mode .language-name           { color: #131f27 !important; }
 html.light-mode .language-bar            { background: rgba(0,0,0,0.08) !important; }
-html.light-mode .level-native            { background: rgba(22,163,74,0.1) !important; color: #16a34a !important; }
+html.light-mode .level-native            { background: rgba(254,127,45,0.1) !important; color: #FE7F2D !important; }
 html.light-mode .level-fluent            { background: rgba(254,127,45,0.1) !important; color: #d4651c !important; }
-html.light-mode .level-conversational    { background: rgba(202,138,4,0.1) !important; color: #a16207 !important; }
+html.light-mode .level-conversational    { background: rgba(254,127,45,0.1) !important; color: #a16207 !important; }
 
 /* ── Leadership section ─────────────────────────────── */
 html.light-mode #leadership              { background: #f4f7f9 !important; }
@@ -1858,7 +1858,7 @@ html.light-mode .case-study-banner-desc  { color: #2c4e62 !important; }
 html.light-mode .cs-stat-label           { color: #5a7a8a !important; }
 
 /* ── FAB & scroll progress ──────────────────────────── */
-html.light-mode .fab                     { box-shadow: 0 8px 24px rgba(254,127,45,0.3) !important; }
+html.light-mode .fab-btn                     { box-shadow: 0 8px 24px rgba(254,127,45,0.3) !important; }
 html.light-mode .scroll-progress         { background: linear-gradient(90deg, #FE7F2D, #FE7F2D) !important; }
 
 /* ── Loading screen ─────────────────────────────────── */
@@ -1909,7 +1909,7 @@ html.light-mode .btn-primary:hover { background: linear-gradient(135deg, #FE7F2D
 html.light-mode .section-title { color: #FE7F2D !important; }
 html.light-mode .section-title::after { background: linear-gradient(90deg, #FE7F2D, #e8650b) !important; }
 html.light-mode .hero-content .highlight { color: #FE7F2D !important; }
-html.light-mode .fab { background: linear-gradient(135deg, #FE7F2D, #e8650b) !important; }
+html.light-mode .fab-btn { background: linear-gradient(135deg, #FE7F2D, #e8650b) !important; }
 html.light-mode .scroll-progress { background: linear-gradient(90deg, #FE7F2D, #e8650b) !important; }
 html.light-mode .about-seeking { border-left-color: #FE7F2D !important; }
 html.light-mode .hero-resume-link { color: #FE7F2D !important; border-color: rgba(212,101,28,0.4) !important; }
@@ -2219,9 +2219,9 @@ html.light-mode .contact-social-icon:hover {
 
 /* LinkedIn */
 html.light-mode .contact-social-icon--linkedin:hover {
-  background: #0A66C2 !important;
+  background: #FE7F2D !important;
   color: #fff !important;
-  border-color: #0A66C2 !important;
+  border-color: #FE7F2D !important;
 }
 
 /* GitHub */
@@ -2247,23 +2247,23 @@ html.light-mode .contact-social-icon--twitter:hover {
 
 /* Instagram */
 html.light-mode .contact-social-icon--instagram:hover {
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) !important;
+  background: radial-gradient(circle at 30% 107%, #ffaa68 0%, #ffaa68 5%, #FE7F2D 45%, #FE7F2D 60%, #FE7F2D 90%) !important;
   color: #fff !important;
-  border-color: #d6249f !important;
+  border-color: #FE7F2D !important;
 }
 
 /* Facebook */
 html.light-mode .contact-social-icon--facebook:hover {
-  background: #1877F2 !important;
+  background: #FE7F2D !important;
   color: #fff !important;
-  border-color: #1877F2 !important;
+  border-color: #FE7F2D !important;
 }
 
 /* TikTok */
 html.light-mode .contact-social-icon--tiktok:hover {
   background: #010101 !important;
-  color: #69C9D0 !important;
-  border-color: #69C9D0 !important;
+  color: #FE7F2D !important;
+  border-color: #FE7F2D !important;
 }
 
 /* Ensure icon children inside the buttons also stay white on hover */
@@ -2424,8 +2424,8 @@ html.light-mode .blog-preview-card__meta { color: #7a9aaa !important; }
   flex-shrink: 0;
 }
 .proj-urban-visual__dot--r { background: #ff5f57; }
-.proj-urban-visual__dot--y { background: #febc2e; }
-.proj-urban-visual__dot--g { background: #28c840; }
+.proj-urban-visual__dot--y { background: #FE7F2D; }
+.proj-urban-visual__dot--g { background: #FE7F2D; }
 .proj-urban-visual__title {
   font-size: 0.7rem;
   font-weight: 700;
@@ -2568,10 +2568,10 @@ section > * { position: relative; z-index: 1; }
   border-radius: 50%;
 }
 .hero-avail__pulse::before {
-  background: #22c55e;
+  background: #FE7F2D;
 }
 .hero-avail__pulse::after {
-  background: rgba(34, 197, 94, 0.35);
+  background: rgba(254,127,45, 0.35);
   animation: avail-ping 1.8s ease-out infinite;
 }
 @keyframes avail-ping {
@@ -2679,9 +2679,9 @@ section > * { position: relative; z-index: 1; }
   height: 3px;
   border-radius: var(--radius-card) var(--radius-card) 0 0;
 }
-.hiw-card__accent--dev    { background: linear-gradient(90deg, #22c55e, #16a34a); }
+.hiw-card__accent--dev    { background: linear-gradient(90deg, #FE7F2D, #FE7F2D); }
 .hiw-card__accent--design { background: linear-gradient(90deg, #FE7F2D, #ff9448); }
-.hiw-card__accent--brand  { background: linear-gradient(90deg, #8b5cf6, #7c3aed); }
+.hiw-card__accent--brand  { background: linear-gradient(90deg, #FE7F2D, #FE7F2D); }
 
 /* featured card */
 .hiw-card--featured {

@@ -1,7 +1,6 @@
 ﻿
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const loadingEl   = document.getElementById('loading');
 const nav         = document.querySelector('nav');
 const progressBar = document.getElementById('scrollProgress');
 const formStatus  = document.getElementById('formStatus');
@@ -21,12 +20,6 @@ function getApiUrl(configKey, relativePath, productionFallback) {
 const CONTACT_API_URL = getApiUrl('CONTACT_API_URL', '/api/contact', 'https://solomonleek.com/api/contact');
 const ANALYTICS_API_URL = getApiUrl('ANALYTICS_API_URL', '/api/analytics', 'https://solomonleek.com/api/analytics');
 const ANALYTICS_API_BASE = ANALYTICS_API_URL.replace(/\/api\/analytics\/?$/, '');
-
-// ── Loading screen ────────────────────────────────────────────────────────────
-window.addEventListener('load', function () {
-    if (!loadingEl) return;
-    setTimeout(() => loadingEl.classList.add('hidden'), prefersReducedMotion ? 0 : 800);
-});
 
 // ── Mobile menu ───────────────────────────────────────────────────────────────
 const menuToggleBtn  = document.getElementById('menuToggleBtn');
@@ -239,7 +232,7 @@ function showSuccessAnimation(message) {
     document.body.appendChild(overlay);
 
     // Confetti burst
-    const colours = ['#ea580c','#f97316','#fb923c','#22c55e','#3b82f6','#a855f7','#fbbf24'];
+    const colours = ['#ea580c','#f97316','#fb923c','#FE7F2D','#FE7F2D','#FE7F2D','#FE7F2D'];
     for (let i = 0; i < 60; i++) {
         const p = document.createElement('div');
         p.className = 'confetti-particle';
@@ -529,6 +522,20 @@ if (prefersReducedMotion || !('IntersectionObserver' in window)) {
 
     revealElements.forEach(el => revealObserver.observe(el));
     document.querySelectorAll('.skill-category').forEach(el => revealObserver.observe(el));
+
+    // Stagger items outside any reveal container (e.g. project card tags) reveal on their own
+    document.querySelectorAll('.stagger-item').forEach(item => {
+        if (!item.closest(revealSelector + ', .skill-category')) revealObserver.observe(item);
+    });
+
+    // Failsafe: never leave content hidden if an observer callback is missed
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('active');
+            });
+        }, 1200);
+    });
 }
 
 // ── Magnetic effect ───────────────────────────────────────────────────────────
@@ -576,23 +583,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Run once on load to set initial state
 handleScrollEffects();
-
-// ── Page transition ───────────────────────────────────────────────────────────
-const pageTransition = document.getElementById('pageTransition');
-
-document.querySelectorAll('a[href]').forEach(link => {
-    const href = link.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('mailto') ||
-        href.startsWith('tel') || href.startsWith('http') ||
-        link.getAttribute('target') === '_blank') return;
-
-    link.addEventListener('click', e => {
-        if (!pageTransition || prefersReducedMotion) return;
-        e.preventDefault();
-        pageTransition.classList.add('active');
-        setTimeout(() => { window.location.href = href; }, 350);
-    });
-});
 
 // ── Skill bar animations ──────────────────────────────────────────────────────
 function skillBarPct(bar) {
@@ -892,8 +882,7 @@ function openTerminal() {
         { label: 'Awards & Leadership', icon: 'fas fa-trophy', action: () => scrollTo('#impact') },
         { label: 'Community',    icon: 'fas fa-heart',         action: () => scrollTo('#community') },
         { label: 'Contact',      icon: 'fas fa-paper-plane',   action: () => scrollTo('#contact') },
-        { label: 'Gallery',      icon: 'fas fa-images',        action: () => { window.location.href = '/gallery/'; } },
-        { label: 'Blog',         icon: 'fas fa-newspaper',     action: () => { window.location.href = '/blog/'; } },
+        { label: 'Blog',         icon: 'fas fa-newspaper',     action: () => { window.location.href = 'blog/'; } },
         { label: 'Toggle Theme', icon: 'fas fa-circle-half-stroke', action: () => document.getElementById('themeToggle')?.click() },
         { label: 'Resume',       icon: 'fas fa-file-lines',    action: () => window.open('https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing', '_blank', 'noopener,noreferrer') },
         { label: 'GitHub',       icon: 'fab fa-github',        action: () => window.open('https://github.com/solomon-211', '_blank', 'noopener,noreferrer') },
@@ -1055,7 +1044,7 @@ function openTerminal() {
         try {
             const { ok, message } = await subscribeToNewsletter(email);
             statusEl.textContent = message || 'Subscribed!';
-            statusEl.style.color = ok ? '#22c55e' : '#f97316';
+            statusEl.style.color = ok ? '#FE7F2D' : '#f97316';
             statusEl.style.display = 'block';
             if (ok) { emailEl.value = ''; }
         } catch (err) {
@@ -1076,7 +1065,7 @@ function showNotifyToast(message, type) {
     toast.id = 'notifyToast';
     toast.style.cssText =
         'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);' +
-        'background:' + (type === 'error' ? '#dc2626' : '#16a34a') + ';' +
+        'background:' + (type === 'error' ? '#dc2626' : '#FE7F2D') + ';' +
         'color:#fff;padding:0.75rem 1.5rem;border-radius:8px;font-size:0.9rem;' +
         'font-weight:600;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,0.3);' +
         'transition:opacity 0.3s ease;';
@@ -1097,7 +1086,7 @@ function showNotifyModal(articleTitle, onConfirm) {
 
     const box = document.createElement('div');
     box.style.cssText =
-        'background:#0f1e35;border:1px solid rgba(255,255,255,0.12);border-radius:16px;' +
+        'background:#1a2d3a;border:1px solid rgba(255,255,255,0.12);border-radius:16px;' +
         'padding:2rem;max-width:420px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.5);';
 
     const heading = document.createElement('p');
@@ -1177,7 +1166,7 @@ function showNotifyModal(articleTitle, onConfirm) {
                     const data = await res.json().catch(() => ({}));
                     btn.innerHTML = '<i class="fas fa-check"></i>';
                     btn.title = data.message || "You're on the list!";
-                    btn.style.color = '#22c55e';
+                    btn.style.color = '#FE7F2D';
                 } catch (err) {
                     btn.innerHTML = '<i class="fas fa-bell"></i>';
                     btn.disabled = false;
