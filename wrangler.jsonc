@@ -1,0 +1,15 @@
+// Cloudflare Worker that serves solomonleek.com (static assets only).
+// Deploy: `npx wrangler deploy`, or connect this repo under
+// Workers & Pages → sleek-personal-portfolio → Settings → Builds.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "sleek-personal-portfolio",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": ".",
+    // /portfolio → /portfolio/ and serves portfolio/index.html
+    "html_handling": "auto-trailing-slash",
+    // Unknown paths get the custom 404.html with a 404 status
+    "not_found_handling": "404-page"
+  }
+}
