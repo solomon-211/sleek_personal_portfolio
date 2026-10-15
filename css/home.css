@@ -105,13 +105,18 @@ body.home {
   gap: clamp(2.5rem, 6vw, 5rem);
 }
 .hero__copy .eyebrow { margin-bottom: 1.5rem; }
+.hero__copy { container-type: inline-size; min-width: 0; }
 .hero__title {
-  font-size: clamp(2.1rem, 4.6vw, 3.7rem);
+  font-size: clamp(1.6rem, 4.4vw, 3.5rem);
+  /* Scale to the column so the longest line ("AFRICAN COMMUNITIES.") always fits */
+  font-size: min(3.5rem, 7.4cqi);
   font-weight: 800; letter-spacing: -0.015em; line-height: 1.05;
   text-transform: uppercase;
-  max-width: 19ch; text-wrap: balance;
+  max-width: none; text-wrap: balance;
 }
 .hero__title em { font-style: normal; color: var(--site-orange); }
+/* Three fixed lines: I ENGINEER SOFTWARE / AND DESIGN FOR / AFRICAN COMMUNITIES. */
+.hero__title-line { display: block; white-space: nowrap; }
 .hero__lead {
   margin-top: 1.5rem; max-width: 54ch;
   font-size: clamp(1.02rem, 1.4vw, 1.15rem); line-height: 1.75;
@@ -417,7 +422,6 @@ body.home {
   .post__arrow { grid-column: 2; grid-row: 1 / 4; }
 }
 @media (max-width: 560px) {
-  .hero__title { font-size: clamp(1.75rem, 8.4vw, 2.3rem); }
   .hero__actions .btn { flex: 1 1 100%; }
   .hero__creds { flex-direction: column; gap: 0.75rem; }
   .work__meta { grid-template-columns: 1fr; }
