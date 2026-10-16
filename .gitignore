@@ -32,3 +32,6 @@ npm-debug.log*
 # ── Build artifacts ───────────────────────────────────
 dist/
 build/
+
+# ── Cloudflare Wrangler local cache ───────────────────
+.wrangler/

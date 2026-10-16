@@ -192,16 +192,14 @@ body.home {
 }
 .work__media:hover img { transform: scale(1.025); }
 /* Posters are portrait — show them whole on a framed backdrop instead of cropping faces/text */
-.work__media--poster { background: radial-gradient(circle at 50% 40%, #233D4D, #0f1a21 75%); }
-.work__media--poster img {
-  width: auto; height: 86%;
-  position: absolute; left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-  object-fit: contain;
-  border-radius: 6px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+/* Posters are 3:4 portrait: give them a matching frame so the artwork fills it edge to edge, uncropped */
+.work__media--poster {
+  aspect-ratio: 3 / 4;
+  width: 100%; max-width: 440px;
+  justify-self: center;
+  background: #0f1a21;
 }
-.work__media--poster:hover img { transform: translate(-50%, -50%) scale(1.03); }
+.work__media--poster img { object-fit: cover; object-position: center; }
 
 .work__index {
   font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em;

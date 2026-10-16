@@ -53,14 +53,8 @@
     if (segment) {
         setActive(sectionMap[segment]);
     } else {
-        // Homepage: follow the section in view
+        // The homepage is the portfolio itself: Home stays active while scrolling
         setActive('home');
-        const about = document.getElementById('about');
-        if (about && 'IntersectionObserver' in window) {
-            new IntersectionObserver(entries => {
-                entries.forEach(entry => setActive(entry.isIntersecting ? 'about' : 'home'));
-            }, { rootMargin: '-45% 0px -50% 0px' }).observe(about);
-        }
     }
 
     // ── Footer ────────────────────────────────────────────────────────────────
