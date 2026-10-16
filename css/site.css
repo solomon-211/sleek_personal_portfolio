@@ -428,8 +428,8 @@ html.light-mode .site-menu-btn span { background: #131f27; }
 .xp-entry__period i { display: none; }
 .xp-entry__desc { color: var(--site-text-2) !important; max-width: 62ch; line-height: 1.75 !important; }
 
-.xp-sidebar { position: sticky; top: calc(var(--site-header-h) + 1.5rem); align-self: start; }
-@media (max-width: 900px) { .xp-sidebar { position: static; } }
+/* Sidebar is taller than the viewport now, so it scrolls with the page */
+.xp-sidebar { position: static !important; align-self: start; }
 
 /* ── Segmented filter (shared by Portfolio and Blog) ── */
 .seg {
@@ -491,3 +491,37 @@ nav.ar-continue {
   background: none !important; border: 0 !important; box-shadow: none !important;
   backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
 }
+
+/* ── Experience: duty bullets, read links, plain sidebar lists ── */
+.xp-entry__points {
+  margin: 0.85rem 0 0; padding: 0; list-style: none;
+  display: grid; gap: 0.55rem; max-width: 64ch;
+}
+.xp-entry__points li {
+  position: relative; padding-left: 1.1rem;
+  color: var(--site-text-2); font-size: 0.95rem; line-height: 1.7;
+}
+.xp-entry__points li::before {
+  content: ''; position: absolute; left: 0; top: 0.72em;
+  width: 6px; height: 1px; background: var(--site-orange);
+}
+.xp-entry__desc + .xp-entry__desc { margin-top: 0.6rem !important; }
+.xp-entry__desc strong { color: #fff; font-weight: 600; }
+.xp-entry__tags { margin-top: 1rem !important; }
+.xp-entry__read {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  margin-top: 0.9rem;
+  font-size: 0.88rem; font-weight: 600;
+  color: var(--site-orange) !important; text-decoration: none;
+}
+.xp-entry__read i { font-size: 0.75em; transition: transform 0.2s var(--site-ease); }
+.xp-entry__read:hover i { transform: translateX(3px); }
+
+.xp-plain-list { list-style: none; margin: 0; padding: 0.25rem 1.25rem 1.25rem; display: grid; }
+.xp-plain-list li {
+  padding: 0.6rem 0; border-bottom: 1px solid var(--site-line);
+  font-size: 0.9rem; color: var(--site-text-2);
+}
+.xp-plain-list li:last-child { border-bottom: 0; }
+.xp-plain-list--split li { display: flex; justify-content: space-between; gap: 1rem; }
+.xp-plain-list--split li span:first-child { color: #fff; font-weight: 600; }
