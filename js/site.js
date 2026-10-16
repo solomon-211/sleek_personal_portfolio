@@ -53,8 +53,31 @@
     if (segment) {
         setActive(sectionMap[segment]);
     } else {
-        // The homepage is the portfolio itself: Home stays active while scrolling
-        setActive('home');
+        // Homepage: About while the About section holds the middle of the screen, Home everywhere else
+        const about = document.getElementById('about');
+        let ticking = false;
+        let lockUntil = 0;
+        function syncHomeLink() {
+            ticking = false;
+            if (Date.now() < lockUntil) return;
+            if (!about) { setActive('home'); return; }
+            const r = about.getBoundingClientRect();
+            const mid = window.innerHeight * 0.4;
+            setActive(r.top <= mid && r.bottom > mid ? 'about' : 'home');
+        }
+        syncHomeLink();
+        window.addEventListener('scroll', () => {
+            if (!ticking) { ticking = true; requestAnimationFrame(syncHomeLink); }
+        }, { passive: true });
+        window.addEventListener('hashchange', syncHomeLink);
+        window.addEventListener('load', syncHomeLink);
+        // Reflect the click immediately instead of waiting for the smooth scroll to arrive
+        links.forEach(a => a.addEventListener('click', () => {
+            if (a.dataset.nav !== 'about') return;
+            setActive('about');
+            lockUntil = Date.now() + 1200;
+            setTimeout(syncHomeLink, 1250);
+        }));
     }
 
     // ── Footer ────────────────────────────────────────────────────────────────
