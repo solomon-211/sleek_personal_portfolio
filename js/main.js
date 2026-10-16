@@ -884,7 +884,6 @@ function openTerminal() {
         { label: 'Contact',      icon: 'fas fa-paper-plane',   action: () => scrollTo('#contact') },
         { label: 'Blog',         icon: 'fas fa-newspaper',     action: () => { window.location.href = 'blog/'; } },
         { label: 'Toggle Theme', icon: 'fas fa-circle-half-stroke', action: () => document.getElementById('themeToggle')?.click() },
-        { label: 'Resume',       icon: 'fas fa-file-lines',    action: () => window.open('https://docs.google.com/document/d/1Y8judOMAjjuVqvKzCDJqeOyL4D0ZNkG2gjZwv9u-gXI/edit?usp=sharing', '_blank', 'noopener,noreferrer') },
         { label: 'GitHub',       icon: 'fab fa-github',        action: () => window.open('https://github.com/solomon-211', '_blank', 'noopener,noreferrer') },
         { label: 'LinkedIn',     icon: 'fab fa-linkedin',      action: () => window.open('https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345', '_blank', 'noopener,noreferrer') },
         { label: 'Open Terminal', icon: 'fas fa-terminal',     action: () => openTerminal() },
@@ -983,21 +982,6 @@ function openTerminal() {
 
     msgArea.addEventListener('input', updateCount);
     updateCount(); // initialise
-})();
-
-// ── Resume download tracking ──────────────────────────────────────────────────
-(function () {
-    const resumeLink = document.getElementById('resumeLink');
-    if (!resumeLink) return;
-
-    resumeLink.addEventListener('click', function () {
-        fetch(ANALYTICS_API_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ page: location.pathname, section: 'resume-download', event: 'resume_click' }),
-            keepalive: true
-        }).catch(function () {});
-    });
 })();
 
 // ── Visitor counter (fetches from analytics summary) ─────────────────────────
