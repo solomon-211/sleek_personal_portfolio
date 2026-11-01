@@ -3,7 +3,7 @@
    ===================================================== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
-body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; color: #233D4D; line-height: 1.7; overflow-x: hidden; }
+body { font-family: 'Inter', sans-serif; background: #ffffff; color: #233D4D; line-height: 1.7; overflow-x: hidden; }
 img { max-width: 100%; height: auto; display: block; }
 a { text-decoration: none; color: var(--site-orange-ink); transition: color 0.2s; }
 a:hover { color: var(--site-orange-ink); }
@@ -25,7 +25,7 @@ a:hover { color: var(--site-orange-ink); }
 .ar-header__inner { max-width: 740px; margin: 0 auto; position: relative; z-index: 1; }
 
 /* Title + subtitle */
-.ar-title { font-family: 'Sora', sans-serif; font-size: clamp(1.75rem, 4vw, 2.8rem); font-weight: 800; color: #233D4D; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.03em; }
+.ar-title { font-family: 'Inter', sans-serif; font-size: clamp(1.75rem, 4vw, 2.8rem); font-weight: 800; color: #233D4D; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.03em; }
 .ar-subtitle { font-size: 1.15rem; color: #4a6473; line-height: 1.8; max-width: 60ch; margin-bottom: 1.75rem; }
 
 /* Social share icons */
@@ -44,9 +44,9 @@ a:hover { color: var(--site-orange-ink); }
 
 .ar-lead { font-size: 1.2rem; color: #233D4D; line-height: 1.85; font-weight: 500; padding-bottom: 1.75rem; border-bottom: 1px solid rgba(35,61,77,0.07); margin-bottom: 2rem; }
 .ar-body__inner p { font-size: 1.02rem; color: #233D4D; line-height: 1.9; margin-bottom: 1.6rem; letter-spacing: 0.01em; }
-.ar-body__inner h2 { font-family: 'Sora', sans-serif; font-size: 1.55rem; font-weight: 800; color: #233D4D; margin: 3rem 0 1.1rem; line-height: 1.2; letter-spacing: -0.02em; padding-top: 0.5rem; border-top: 1px solid rgba(35,61,77,0.06); }
+.ar-body__inner h2 { font-family: 'Inter', sans-serif; font-size: 1.55rem; font-weight: 800; color: #233D4D; margin: 3rem 0 1.1rem; line-height: 1.2; letter-spacing: -0.02em; padding-top: 0.5rem; border-top: 1px solid rgba(35,61,77,0.06); }
 .ar-body__inner h2::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #FE7F2D; margin-right: 0.6rem; vertical-align: middle; margin-bottom: 2px; }
-.ar-body__inner h3 { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 700; color: #233D4D; margin: 2.25rem 0 0.85rem; }
+.ar-body__inner h3 { font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 700; color: #233D4D; margin: 2.25rem 0 0.85rem; }
 .ar-body__inner strong { color: #233D4D; font-weight: 700; }
 .ar-body__inner em { color: #233D4D; font-style: italic; }
 .ar-body__inner a { color: var(--site-orange-ink); border-bottom: 1px solid rgba(254,127,45,0.3); transition: border-color 0.2s; }
@@ -68,13 +68,13 @@ a:hover { color: var(--site-orange-ink); }
 
 /* Blockquote */
 .ar-quote { padding: 1.5rem 2rem; border-left: 5px solid #FE7F2D; background: rgba(35,61,77,0.03); border-radius: 0 16px 16px 0; margin: 2.5rem 0; position: relative; overflow: hidden; }
-.ar-quote::before { content: '\201C'; position: absolute; top: -1rem; left: 1rem; font-size: 5rem; color: rgba(254,127,45,0.12); font-family: 'Sora', sans-serif; font-weight: 800; line-height: 1; pointer-events: none; }
+.ar-quote::before { content: '\201C'; position: absolute; top: -1rem; left: 1rem; font-size: 5rem; color: rgba(254,127,45,0.12); font-family: 'Inter', sans-serif; font-weight: 800; line-height: 1; pointer-events: none; }
 .ar-quote p, .ar-quote { font-size: 1.1rem !important; line-height: 1.8 !important; color: #233D4D !important; margin-bottom: 0.5rem !important; font-style: italic; }
 .ar-quote cite { font-size: 0.85rem; color: var(--site-orange-ink); font-weight: 600; font-style: normal; display: block; margin-top: 0.75rem; }
 
 /* ── TABLE OF CONTENTS ────────────────────────────── */
 .ar-toc { grid-area: toc; position: sticky; top: 80px; padding: 2rem 1rem 2rem 0; max-height: calc(100vh - 100px); overflow-y: auto; }
-.ar-toc__title { font-family: 'Sora', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #4a6473; margin-bottom: 0.85rem; }
+.ar-toc__title { font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #4a6473; margin-bottom: 0.85rem; }
 .ar-toc__list { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; }
 .ar-toc__item a { display: block; font-size: 0.8rem; color: #4a6473; padding: 0.3rem 0.65rem; border-left: 2px solid rgba(35,61,77,0.08); border-radius: 0 5px 5px 0; transition: color 0.2s, border-color 0.2s, background 0.2s; line-height: 1.4; }
 .ar-toc__item a:hover, .ar-toc__item a.ar-toc--active { color: var(--site-orange-ink); border-left-color: #FE7F2D; background: rgba(254,127,45,0.06); }
