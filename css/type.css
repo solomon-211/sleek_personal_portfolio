@@ -136,3 +136,9 @@ body { font-size: var(--fs-16); line-height: 1.7; }
 @media (max-width: 700px) {
   .ar-title { font-size: 1.2rem !important; letter-spacing: 0 !important; }
 }
+
+/* Capabilities */
+.cap-card__num { font-size: var(--fs-38); }
+.cap-card h3 { font-size: var(--fs-24); line-height: 1.25; letter-spacing: -0.015em; }
+.cap-card > p, .caps-head__lead { font-size: var(--fs-16); line-height: 1.7; }
+.cap-card__label { font-size: var(--fs-12); letter-spacing: 0.1em; }

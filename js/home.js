@@ -19,7 +19,7 @@
 
     // ── Reveal on scroll (content stays visible if JS or observers fail) ──────
     if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-        const targets = document.querySelectorAll('.section__head, .work, .about-split__head, .about-split__lead, .about-chapter, .about-facts, .split__aside, .cap-row, .xp-row, .impact-card, .story, .contact__grid');
+        const targets = document.querySelectorAll('.section__head, .work, .about-split__head, .about-split__lead, .about-chapter, .about-facts, .caps-head, .cap-card, .xp-row, .impact-card, .story, .contact__grid');
         document.documentElement.classList.add('js-reveal');
         targets.forEach(el => el.classList.add('reveal'));
         const io = new IntersectionObserver(entries => {
