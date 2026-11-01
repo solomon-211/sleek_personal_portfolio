@@ -112,15 +112,16 @@ body.home {
 /* ── Selected work: one feature card, two poster cards ── */
 .work-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
 .work {
-  display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  display: grid; grid-template-columns: 265px minmax(0, 1fr);
+  min-height: 353px;
   background: #fff;
   border: var(--site-stroke); border-radius: 14px; overflow: hidden;
   transition: border-color 0.2s ease;
 }
 .work:hover { border-color: var(--site-orange); }
-.work:first-child { grid-column: 1 / -1; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+.work:first-child { grid-column: 1 / -1; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); min-height: 400px; }
 .work-list .work__media {
-  display: block; position: relative; min-height: 100%;
+  display: block; position: relative; min-width: 0; overflow: hidden;
   background: var(--site-surface);
   border: 0 !important; border-radius: 0 !important;
   border-right: var(--site-stroke) !important;
@@ -129,9 +130,7 @@ body.home {
   position: absolute; inset: 0;
   width: 100%; height: 100%; object-fit: cover;
 }
-.work:first-child .work__media { aspect-ratio: 16 / 10; }
 .work:first-child .work__media img { object-position: left top; }
-.work__media--poster { aspect-ratio: 3 / 4; }
 .work__body {
   display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
   padding: clamp(1.25rem, 2.4vw, 2rem);
@@ -532,10 +531,12 @@ body.home {
 
 @media (max-width: 1000px) {
   .work-list { grid-template-columns: 1fr; }
-  .work:first-child { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .work { grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr); }
+  .work:first-child { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); min-height: 300px; }
+  .work { grid-template-columns: 265px minmax(0, 1fr); }
 }
 @media (max-width: 640px) {
   .work, .work:first-child { grid-template-columns: 1fr; }
-  .work-list .work__media { min-height: 0; border-right: 0 !important; border-bottom: var(--site-stroke) !important; }
+  .work, .work:first-child { min-height: 0; }
+  .work-list .work__media { aspect-ratio: 16 / 10; border-right: 0 !important; border-bottom: var(--site-stroke) !important; }
+  .work-list .work__media--poster { aspect-ratio: 3 / 4; }
 }
