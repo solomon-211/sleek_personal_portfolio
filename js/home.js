@@ -161,7 +161,7 @@
                     setStatus('Too many messages recently — please try again in an hour.', 'error');
                 } else {
                     mailtoFallback(fields);
-                    setStatus('Couldn’t reach the server, so your email app has been opened instead.', 'error');
+                    setStatus('Your email app should open with your message ready to send. If it doesn’t, email me at s.leek@alustudent.com.', '');
                 }
             } finally {
                 clearTimeout(timer);

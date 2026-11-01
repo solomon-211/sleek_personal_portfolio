@@ -71,7 +71,7 @@ body { font-size: var(--fs-16); line-height: 1.7; }
 /* ── 14: supporting text, controls, navigation ──────── */
 .site-nav__list a, .site-header__cta, .site-footer__nav a, .site-footer__bottom,
 .action-link, .seg__btn, .form__topics button, .field label, .form__topics legend, .field__hint,
-.work__meta dd, .about-facts dd, .role__when span, .role__org, .tags li, .chips li, .xp-row p, .xp-row__date,
+.work__meta dd, .about-facts dd, .role__when span, .role__org, .tags li, .xp-row p, .xp-row__date,
 .entry__date, .entry__meta, .index__count, .search__input,
 .ar-next__meta, .ar-byline__info, .ar-byline__name, .impact-photo figcaption,
 .cs-overview-value, .cs-step-content p, .cs-tool-use, .cs-outcome-desc, .cs-poster-caption, .ar-toc__item a,
@@ -132,9 +132,6 @@ body { font-size: var(--fs-16); line-height: 1.7; }
 @media (max-width: 700px) {
   .ar-title { font-size: 1.2rem !important; letter-spacing: 0 !important; }
 }
-.cap-card h3 { font-size: var(--fs-24); line-height: 1.25; letter-spacing: -0.015em; }
-.cap-card > p{ font-size: var(--fs-16); line-height: 1.7; }
-.cap-card__label { font-size: var(--fs-12); letter-spacing: 0.1em; }
 
 /* Article header text spans the cover image, edge to edge */
 .ar-header__inner { padding-right: 0 !important; container-type: inline-size; }
@@ -148,13 +145,12 @@ body { font-size: var(--fs-16); line-height: 1.7; }
 
 /* ── Plain finish: no lifts, gradients, outlined numbers or counters ── */
 .tile:hover, .story:hover, .story--quote:hover, .feature:hover, .impact-card:hover, .ar-next:hover,
-.role__card:hover, .program:hover, .skill:hover, .cap-card:hover, .cs-tool:hover, .cs-outcome:hover,
+.role__card:hover, .program:hover, .skill:hover, .cs-tool:hover, .cs-outcome:hover,
 a.work__media:hover, a.feature__media:hover {
   transform: none !important; box-shadow: none !important;
 }
 .tile:hover, .feature:hover, .impact-card:hover, .ar-next:hover, .role__card:hover, .program:hover,
-.skill:hover, .cap-card:hover, a.work__media:hover { border-color: var(--site-orange) !important; }
-.cap-card--teal:hover { border-color: var(--site-ink) !important; }
+.skill:hover, a.work__media:hover { border-color: var(--site-orange) !important; }
 .site-header__cta, .hero--video .btn--primary, .hero--video .btn--primary:hover, .cs-btn-view {
   background: var(--site-orange) !important; filter: none !important;
 }
@@ -164,15 +160,12 @@ a.work__media:hover, a.feature__media:hover {
 .about-chapter { border-top: var(--site-stroke); }
 .ar-body__inner h2[id]::before, .ar-toc__item a::before, .cs-section-label::before { content: none !important; }
 .ar-toc__item a { display: block !important; }
-.cap-card h3 { margin-top: 0; }
-.cap-cards { margin-top: 0; }
-.caps-head { display: block; }
 
 /* Contact card sits on the same page edges as every other section */
 .contact__grid { width: min(calc(var(--site-max) - 2 * var(--site-gutter)), calc(100% - 2 * var(--site-gutter))); }
 
 /* Selected work wall */
-.wall__piece--site .wall__name { font-size: var(--fs-30); line-height: 1.15; }
+.wall__piece--site .wall__name, .wall__piece--wide .wall__name { font-size: var(--fs-30); line-height: 1.15; }
 .wall__name { font-size: var(--fs-20); line-height: 1.2; }
 .wall__type { font-size: var(--fs-14); }
 .wall__desc { font-size: var(--fs-16); line-height: 1.7; }

@@ -365,3 +365,11 @@ html, html body { background: var(--site-bg) !important; color: var(--site-text)
 
 /* Article covers: tall enough that a portrait photo keeps the head in frame */
 .ar-hero img { aspect-ratio: 16 / 9; }
+
+/* Text links keep their look but get a larger tap area on touch screens */
+@media (pointer: coarse) {
+  .action-link, .site-footer__nav a:not(.site-header__cta), .site-footer__bottom a { position: relative; }
+  .action-link::after, .site-footer__nav a:not(.site-header__cta)::after, .site-footer__bottom a::after {
+    content: ''; position: absolute; inset: -0.6rem -0.25rem;
+  }
+}
