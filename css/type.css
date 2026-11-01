@@ -202,3 +202,4 @@ a.work__media:hover, a.feature__media:hover {
 }
 .ar-toc__item a:hover, .ar-toc__item a.ar-toc--active { border-color: var(--site-orange); background: none; }
 .ar-body { padding-top: 2rem; }
+.ar-body { padding-left: 1.5rem; padding-right: 1.5rem; }
