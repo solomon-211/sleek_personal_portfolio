@@ -1,6 +1,6 @@
 /* =====================================================
    JOURNAL — blog index: featured story, year-grouped
-   editorial index, cursor preview. Uses site.css tokens.
+   editorial index. Uses site.css tokens.
    ===================================================== */
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -147,22 +147,6 @@ body.page-journal {
 .entry__link:hover .entry__title { color: var(--site-orange-ink); }
 .entry__link:hover .entry__arrow { color: var(--site-orange-ink); transform: translateX(4px); }
 
-/* ── Cursor preview (pointer devices only) ──────────── */
-.peek {
-  position: fixed; left: 0; top: 0; z-index: 50;
-  width: 240px; aspect-ratio: 4 / 3;
-  border-radius: 12px; overflow: hidden;
-  border: 1px solid rgba(35,61,77,0.14);
-  box-shadow: 0 24px 50px rgba(35,61,77,0.16);
-  pointer-events: none;
-  opacity: 0;
-  transform: translate3d(var(--peek-x, 0), var(--peek-y, 0), 0) scale(0.92) rotate(-3deg);
-  transition: opacity 0.25s ease, transform 0.35s var(--site-ease);
-}
-.peek.is-on { opacity: 1; transform: translate3d(var(--peek-x, 0), var(--peek-y, 0), 0) scale(1) rotate(-2deg); }
-.peek img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
-@media (hover: none), (max-width: 900px) { .peek { display: none; } }
-
 /* ── Responsive ─────────────────────────────────────── */
 @media (max-width: 900px) {
   .feature { grid-template-columns: 1fr; }
@@ -182,7 +166,7 @@ body.page-journal {
   .entry__arrow { grid-column: 2; grid-row: 1 / 4; align-self: center; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .feature__media img, .entry__link::before, .peek { transition: none; }
+  .feature__media img, .entry__link::before { transition: none; }
 }
 
 /* ── Index toolbar: heading + count, search, topic filter ── */

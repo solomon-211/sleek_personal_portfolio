@@ -1,4 +1,4 @@
-// Blog index: topic filter + search (with URL state), counts, cursor preview.
+// Blog index: topic filter + search (with URL state) and counts.
 (function () {
     const seg = document.querySelector('.index .seg');
     if (!seg) return;
@@ -133,30 +133,4 @@
     window.addEventListener('popstate', () => { readUrl(); render(false); });
     window.addEventListener('resize', () => moveIndicator(buttons.find(b => b.getAttribute('aria-selected') === 'true') || buttons[0]));
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => render(false));
-
-    // ── Cursor preview ────────────────────────────────────────────────────────
-    const peek = document.querySelector('.peek');
-    const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!peek || !fine || reduce) return;
-
-    const peekImg = peek.querySelector('img');
-    let frame = null;
-
-    document.querySelectorAll('.entry[data-preview]').forEach(entry => {
-        const src = entry.dataset.preview;
-        new Image().src = src; // warm the cache so the preview appears instantly
-        entry.addEventListener('mouseenter', () => { peekImg.src = src; peek.classList.add('is-on'); });
-        entry.addEventListener('mouseleave', () => peek.classList.remove('is-on'));
-        entry.addEventListener('mousemove', e => {
-            if (frame) return;
-            frame = requestAnimationFrame(() => {
-                frame = null;
-                const x = Math.min(e.clientX + 28, window.innerWidth - peek.offsetWidth - 16);
-                const y = Math.max(16, e.clientY - peek.offsetHeight - 24);
-                peek.style.setProperty('--peek-x', x + 'px');
-                peek.style.setProperty('--peek-y', y + 'px');
-            });
-        });
-    });
 })();
