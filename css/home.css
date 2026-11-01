@@ -558,3 +558,6 @@ body.home {
 }
 @keyframes hero-caret { to { visibility: hidden; } }
 .hero--video .hero__creds { align-items: center; }
+
+/* Moving hero headline */
+.hero--video .hero__title { font-family: 'Playfair Display', Georgia, serif; font-weight: 800; letter-spacing: 0; line-height: 1.12; }
