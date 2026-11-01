@@ -562,3 +562,6 @@ body.home {
 /* Moving hero headline */
 .hero--video .hero__title { font-family: 'Playfair Display', Georgia, serif; font-weight: 800; letter-spacing: 0; line-height: 1.12; }
 .hero--video .hero__title { text-transform: none; }
+
+/* Full name in the hero intro */
+.hero--video .hero__lead strong { font-family: 'Cormorant Upright', Georgia, serif; font-size: 1.3em; font-weight: 600; line-height: 1; }
