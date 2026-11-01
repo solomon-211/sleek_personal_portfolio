@@ -151,17 +151,21 @@ body { background: #ffffff; color: #233D4D; }
 .xp-info-item a { color: var(--site-orange-ink); transition: opacity 0.2s; }
 .xp-info-item a:hover { opacity: 0.8; }
     </style>
-    <link rel="stylesheet" href="css/site.css?v=20261101">
+    <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/site.css?v=20261101b">
 </head>
 <body>
 
     <!-- Nav -->
+    <div class="site-masthead">
+        <a href="./" class="site-sign" aria-label="Solomon Leek, home">
+                <span class="site-sign__name">Solomon Leek</span>
+                <span class="site-sign__role">Engineer <i>|</i> Designer <i>|</i> Leader</span>
+            </a>
+    </div>
     <header class="site-header" id="siteHeader">
         <div class="site-header__inner">
-            <a href="./" class="site-brand" aria-label="Solomon Leek, home">
-                <img src="images/photo.jpg" alt="" class="site-brand__photo" width="34" height="34">
-                <span class="site-brand__name">Solomon Leek</span>
-            </a>
+            <a href="./" class="site-header__mark" tabindex="-1" aria-hidden="true">Solomon Leek</a>
             <nav class="site-nav" id="siteNav" aria-label="Primary">
                 <ul class="site-nav__list">
                     <li><a href="./" data-nav="home">Home</a></li>
@@ -487,33 +491,34 @@ body { background: #ffffff; color: #233D4D; }
         }, 300);
     });
     </script>
-    <script src="js/analytics.js?v=20261101"></script>
+    <script src="js/analytics.js?v=20261101b"></script>
     <footer class="site-footer">
         <div class="site-footer__inner">
-            <div class="site-footer__top">
-                <div class="site-footer__brand">
-                    <a href="./" class="site-brand">
-                        <img src="images/photo.jpg" alt="" class="site-brand__photo" width="34" height="34">
-                        <span class="site-brand__name">Solomon Leek</span>
-                    </a>
-                    <p class="site-footer__bio">Software, design and community work from Kigali.</p>
-                </div>
-                <div class="site-footer__reach">
-                    <a class="site-footer__email" href="mailto:s.leek@alustudent.com">s.leek@alustudent.com</a>
-                    <div class="site-footer__social">
-                        <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://x.com/teeghee_4" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg></a>
-                        <a href="https://www.instagram.com/sleek_tg001" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    </div>
-                </div>
+            <a href="./" class="site-sign" aria-label="Solomon Leek, home">
+                <span class="site-sign__name">Solomon Leek</span>
+                <span class="site-sign__role">Engineer <i>|</i> Designer <i>|</i> Leader</span>
+            </a>
+            <nav class="site-footer__nav" aria-label="Footer">
+                <a href="./">Home</a>
+                <a href="./#about">About</a>
+                <a href="portfolio/">Portfolio</a>
+                <a href="experience/">Experience</a>
+                <a href="blog/">Blog</a>
+                <a href="./#contact" class="site-header__cta">Contact</a>
+            </nav>
+            <div class="site-footer__social">
+                <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://x.com/teeghee_4" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg></a>
+                <a href="https://www.instagram.com/sleek_tg001" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
             </div>
             <div class="site-footer__bottom">
                 <p>&copy; <span data-year>2026</span> Solomon Thiong Garang Leek</p>
+                <a href="mailto:s.leek@alustudent.com">s.leek@alustudent.com</a>
                 <a href="#" class="site-footer__totop" data-totop>Back to top <i class="fas fa-arrow-up" aria-hidden="true"></i></a>
             </div>
         </div>
     </footer>
-    <script src="js/site.js?v=20261101" defer></script>
+    <script src="js/site.js?v=20261101b" defer></script>
 </body>
 </html>

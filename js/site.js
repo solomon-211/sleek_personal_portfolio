@@ -3,10 +3,11 @@
     const header  = document.getElementById('siteHeader');
     const menuBtn = document.getElementById('siteMenuBtn');
     const navEl   = document.getElementById('siteNav');
+    const masthead = document.querySelector('.site-masthead');
 
     // ── Scrolled state ────────────────────────────────────────────────────────
     function onScroll() {
-        if (header) header.classList.toggle('is-scrolled', window.scrollY > 12);
+        if (header) header.classList.toggle('is-scrolled', window.scrollY >= (masthead ? masthead.offsetHeight : 12));
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();

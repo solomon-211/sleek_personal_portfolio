@@ -26,8 +26,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/site.css?v=20261101">
-    <link rel="stylesheet" href="css/home.css?v=20261101">
+    <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/site.css?v=20261101b">
+    <link rel="stylesheet" href="css/home.css?v=20261101b">
 
     <!-- Optional overrides for a separately hosted API.
          If unset, the frontend uses same-origin /api routes. -->
@@ -101,15 +102,18 @@
 <body class="home">
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <header class="site-header site-header--fixed" id="siteHeader">
-        <div class="site-header__inner">
-            <a href="./" class="site-brand" aria-label="Solomon Leek, home">
-                <img src="images/photo.jpg" alt="" class="site-brand__photo" width="34" height="34">
-                <span class="site-brand__name">Solomon Leek</span>
+    <div class="site-masthead">
+        <a href="#home" class="site-sign" aria-label="Solomon Leek, home">
+                <span class="site-sign__name">Solomon Leek</span>
+                <span class="site-sign__role">Engineer <i>|</i> Designer <i>|</i> Leader</span>
             </a>
+    </div>
+    <header class="site-header" id="siteHeader">
+        <div class="site-header__inner">
+            <a href="#home" class="site-header__mark" tabindex="-1" aria-hidden="true">Solomon Leek</a>
             <nav class="site-nav" id="siteNav" aria-label="Primary">
                 <ul class="site-nav__list">
-                    <li><a href="./" data-nav="home">Home</a></li>
+                    <li><a href="#home" data-nav="home">Home</a></li>
                     <li><a href="#about" data-nav="about">About</a></li>
                     <li><a href="portfolio/" data-nav="portfolio">Portfolio</a></li>
                     <li><a href="experience/" data-nav="experience">Experience</a></li>
@@ -126,7 +130,7 @@
     <main id="main-content">
 
         <!-- ── HERO ─────────────────────────────────────── -->
-        <section class="hero" id="home" aria-labelledby="heroTitle">
+        <section class="hero hero--photo" id="home" aria-labelledby="heroTitle">
             <div class="wrap hero__grid">
                 <div class="hero__copy">
                     <p class="eyebrow">Software Engineer &middot; Graphic Designer</p>
@@ -219,15 +223,20 @@
         </section>
 
         <!-- ── ABOUT ────────────────────────────────────── -->
-        <section class="section section--alt" id="about" aria-labelledby="aboutTitle">
-            <div class="wrap about">
-                <header class="section__head about__head">
-                    <p class="eyebrow"><span>02</span> About</p>
-                    <h2 class="section__title" id="aboutTitle">A designer&rsquo;s eye, an engineer&rsquo;s discipline</h2>
-                    <img src="images/photo.jpg" alt="Portrait of Solomon Thiong Garang Leek" class="about__photo" width="600" height="600" loading="lazy">
-                </header>
-                <div class="about__body">
-                    <p>I began with graphic design, which taught me clarity, structure and storytelling. That foundation grew into full-stack development and Python, and now into machine learning and artificial intelligence &mdash; turning ideas into products people can actually use.</p>
+        <section class="about-split" id="about" aria-labelledby="aboutTitle">
+            <header class="about-split__head">
+                <p class="eyebrow">About</p>
+                <h2 class="about-split__title" id="aboutTitle">A designer&rsquo;s eye, an engineer&rsquo;s discipline</h2>
+            </header>
+            <div class="about-split__grid">
+                <figure class="about-split__photo">
+                    <img src="images/about-portrait.jpg" alt="Solomon Thiong Garang Leek at the ALU Nairobi Nexus" width="1000" height="1333" loading="lazy">
+                </figure>
+                <div class="about-split__body">
+                    <p>I began with graphic design, which taught me clarity, structure and storytelling.</p>
+                    <h3>Then I started building what I designed.</h3>
+                    <p>That foundation grew into full-stack development and Python, and now into machine learning and artificial intelligence &mdash; turning ideas into products people can actually use.</p>
+                    <h3>The work goes beyond the screen.</h3>
                     <p>Alongside my degree I have taught primary school in South Sudan, recruited students for ALU across East Africa and served as Student Government President.</p>
                     <dl class="facts">
                         <div><dt>Degree</dt><dd>BSc (Hons) Software Engineering, Class of 2028</dd></div>
@@ -242,7 +251,7 @@
         <section class="section" id="capabilities" aria-labelledby="capTitle">
             <div class="wrap split">
                 <header class="split__aside">
-                    <p class="eyebrow"><span>03</span> Capabilities</p>
+                    <p class="eyebrow"><span>02</span> Capabilities</p>
                     <h2 class="section__title" id="capTitle">Three disciplines, one standard</h2>
                     <p class="split__lead">Every piece of work &mdash; code, poster or brand system &mdash; is judged the same way: does it perform, does it communicate, does it create value?</p>
                 </header>
@@ -285,7 +294,7 @@
         <section class="section section--alt" id="experience" aria-labelledby="xpTitle">
             <div class="wrap">
                 <header class="section__head">
-                    <p class="eyebrow"><span>04</span> Experience</p>
+                    <p class="eyebrow"><span>03</span> Experience</p>
                     <div class="section__head-row">
                         <h2 class="section__title" id="xpTitle">Recent roles &amp; programmes</h2>
                         <a href="experience/" class="link-arrow">Full experience <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
@@ -320,7 +329,7 @@
         <section class="section" id="community" aria-labelledby="impactTitle">
             <div class="wrap">
                 <header class="section__head">
-                    <p class="eyebrow"><span>05</span> Community impact</p>
+                    <p class="eyebrow"><span>04</span> Community impact</p>
                     <h2 class="section__title" id="impactTitle">Skills put to work where they matter</h2>
                 </header>
                 <div class="impact">
@@ -342,7 +351,7 @@
         <section class="section section--alt" id="writing" aria-labelledby="writingTitle">
             <div class="wrap">
                 <header class="section__head">
-                    <p class="eyebrow"><span>06</span> Writing</p>
+                    <p class="eyebrow"><span>05</span> Writing</p>
                     <div class="section__head-row">
                         <h2 class="section__title" id="writingTitle">Notes from the journey</h2>
                         <a href="blog/" class="link-arrow">All articles <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
@@ -381,7 +390,7 @@
         <section class="section contact" id="contact" aria-labelledby="contactTitle">
             <div class="wrap contact__grid">
                 <div class="contact__intro">
-                    <p class="eyebrow"><span>07</span> Contact</p>
+                    <p class="eyebrow"><span>06</span> Contact</p>
                     <h2 class="section__title" id="contactTitle">Have a role or project in mind?</h2>
                     <p class="contact__lead">Whether it&rsquo;s a role, a project or a question about my work, send a message and I&rsquo;ll get back to you.</p>
                     <a href="mailto:s.leek@alustudent.com" class="contact__email">s.leek@alustudent.com</a>
@@ -428,33 +437,34 @@
 
     <footer class="site-footer">
         <div class="site-footer__inner">
-            <div class="site-footer__top">
-                <div class="site-footer__brand">
-                    <a href="#home" class="site-brand">
-                        <img src="images/photo.jpg" alt="" class="site-brand__photo" width="34" height="34">
-                        <span class="site-brand__name">Solomon Leek</span>
-                    </a>
-                    <p class="site-footer__bio">Software, design and community work from Kigali.</p>
-                </div>
-                <div class="site-footer__reach">
-                    <a class="site-footer__email" href="mailto:s.leek@alustudent.com">s.leek@alustudent.com</a>
-                    <div class="site-footer__social">
-                        <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://x.com/teeghee_4" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg></a>
-                        <a href="https://www.instagram.com/sleek_tg001" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    </div>
-                </div>
+            <a href="#home" class="site-sign" aria-label="Solomon Leek, home">
+                <span class="site-sign__name">Solomon Leek</span>
+                <span class="site-sign__role">Engineer <i>|</i> Designer <i>|</i> Leader</span>
+            </a>
+            <nav class="site-footer__nav" aria-label="Footer">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="portfolio/">Portfolio</a>
+                <a href="experience/">Experience</a>
+                <a href="blog/">Blog</a>
+                <a href="#contact" class="site-header__cta">Contact</a>
+            </nav>
+            <div class="site-footer__social">
+                <a href="https://www.linkedin.com/in/solomon-thiong-garang-leek-727b08345" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/solomon-211" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://x.com/teeghee_4" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25H21.5l-7.104 8.117L22.75 21.75h-6.54l-5.119-6.726-5.886 6.726H1.95l7.597-8.681L1.5 2.25h6.662l4.627 6.088 5.455-6.088Zm-1.146 17.544h1.804L7.184 4.112H5.25l11.848 15.682Z"/></svg></a>
+                <a href="https://www.instagram.com/sleek_tg001" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
             </div>
             <div class="site-footer__bottom">
                 <p>&copy; <span data-year>2026</span> Solomon Thiong Garang Leek</p>
+                <a href="mailto:s.leek@alustudent.com">s.leek@alustudent.com</a>
                 <a href="#" class="site-footer__totop" data-totop>Back to top <i class="fas fa-arrow-up" aria-hidden="true"></i></a>
             </div>
         </div>
     </footer>
 
-    <script src="js/site.js?v=20261101" defer></script>
-    <script src="js/home.js?v=20261101" defer></script>
-    <script src="js/analytics.js?v=20261101"></script>
+    <script src="js/site.js?v=20261101b" defer></script>
+    <script src="js/home.js?v=20261101b" defer></script>
+    <script src="js/analytics.js?v=20261101b"></script>
 </body>
 </html>
