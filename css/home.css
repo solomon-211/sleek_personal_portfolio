@@ -595,3 +595,29 @@ body.home {
   .impact-layout { grid-template-columns: 1fr; }
   .impact-photo { order: 0; min-height: 0; aspect-ratio: 4 / 3; }
 }
+
+/* About title on a single line, scaled to the available width */
+.about-split__head { max-width: var(--site-max); container-type: inline-size; }
+@media (min-width: 701px) {
+  .about-split__title { white-space: nowrap; font-size: min(2.7rem, 3.15cqi); text-wrap: nowrap; }
+}
+
+/* About: grey band, image and text share the page edges and the same top and bottom */
+@media (min-width: 701px) {
+  .about-split__title { font-size: min(2.7rem, 3.7cqi); }
+}
+.about-split__grid {
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem); align-items: stretch;
+  background: #f0f2f3;
+  padding-block: clamp(3rem, 6vw, 4.5rem);
+  padding-inline: max(var(--site-gutter), calc((100% - var(--site-max)) / 2 + var(--site-gutter)));
+}
+.about-split__photo { min-height: 0; border: var(--site-stroke); border-radius: 14px; }
+.about-split__photo img { object-position: center 42%; }
+.about-split__place { left: 0.9rem; bottom: 0.9rem; }
+.about-split__body { padding: 0; background: none; justify-content: space-between; gap: 1.5rem; }
+@media (max-width: 860px) {
+  .about-split__grid { grid-template-columns: 1fr; }
+  .about-split__photo { aspect-ratio: 3 / 3.4; }
+}

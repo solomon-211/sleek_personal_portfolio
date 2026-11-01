@@ -64,7 +64,7 @@ body.page-journal {
 .feature__title {
   margin-top: 1.1rem;
   font-family: var(--site-display); font-weight: 800;
-  font-size: clamp(1.75rem, 3.4vw, 2.75rem); line-height: 1.12; letter-spacing: -0.025em;
+  font-size: clamp(1.45rem, 2.3vw, 1.95rem); line-height: 1.2; letter-spacing: -0.02em;
   text-wrap: balance;
 }
 .feature__title a { color: #233D4D; text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat; transition: background-size 0.45s var(--site-ease); }
