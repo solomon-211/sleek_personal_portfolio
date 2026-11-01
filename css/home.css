@@ -557,3 +557,4 @@ body.home {
   animation: hero-caret 1s steps(2, start) infinite;
 }
 @keyframes hero-caret { to { visibility: hidden; } }
+.hero--video .hero__creds { align-items: center; }
