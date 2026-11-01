@@ -506,7 +506,8 @@ body.home {
 }
 
 /* Lead story keeps the wall text in frame; Aspire is a text card */
-.story--lead .story__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: left center; }
+.story--lead .story__media { background: #fff; border-bottom: 1px solid var(--site-line-2); }
+.story--lead .story__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .story--side .story__body { padding: 1.5rem; }
 @media (min-width: 701px) {
   .about-split__title { font-size: min(2.375rem, 3.7cqi); }
