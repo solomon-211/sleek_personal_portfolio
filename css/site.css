@@ -368,3 +368,6 @@ html, html body { background: var(--site-bg) !important; color: var(--site-text)
 .ar-byline__name { color: #fff !important; }
 .ar-byline__info { color: rgba(255, 255, 255, 0.72) !important; }
 .ar-hero img { border-color: rgba(255, 255, 255, 0.2) !important; }
+
+/* Article covers: tall enough that a portrait photo keeps the head in frame */
+.ar-hero img { aspect-ratio: 16 / 9; }

@@ -127,3 +127,12 @@ body { font-size: var(--fs-16); line-height: 1.7; }
 .stories .story--lead .story__title { font-size: var(--fs-20) !important; }
 .stories .story__pull { font-size: var(--fs-24); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
 .stories .story__meta { font-weight: 600; }
+
+/* Article titles: at most two lines; they may run across the contents rail */
+.ar-title { font-size: var(--fs-38) !important; line-height: 1.15 !important; letter-spacing: -0.015em !important; }
+@media (min-width: 901px) {
+  .ar-header__inner > .ar-title { max-width: none; width: calc(100% + 140px); margin-left: calc((100% - 700px) / 2); margin-right: 0; }
+}
+@media (max-width: 700px) {
+  .ar-title { font-size: 1.2rem !important; letter-spacing: 0 !important; }
+}
