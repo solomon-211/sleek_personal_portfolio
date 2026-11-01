@@ -12,6 +12,12 @@
 
     // ── Hero video: respect reduced-motion, keep the poster frame instead ─────
     const heroVideo = document.querySelector('.hero__video');
+    // Slow motion; re-applied on load because some browsers reset the rate then
+    if (heroVideo) {
+        const setSlowMotion = () => { heroVideo.defaultPlaybackRate = 0.5; heroVideo.playbackRate = 0.5; };
+        setSlowMotion();
+        heroVideo.addEventListener('loadedmetadata', setSlowMotion);
+    }
     if (heroVideo && prefersReducedMotion) {
         heroVideo.removeAttribute('autoplay');
         heroVideo.pause();
