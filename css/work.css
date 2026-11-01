@@ -33,13 +33,13 @@ body.page-work {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-template-areas:
-    "a a a a a a a a b b b b"
-    "c c c c c c d d d e e e"
-    "f f f f f f g g g g g g";
+    "h h h h h h h h b b b b"
+    "a a a a a a c c c c c c"
+    "d d d e e e f f f g g g";
   gap: clamp(1rem, 1.8vw, 1.5rem);
   align-items: stretch;
 }
-.tile--a { grid-area: a; } .tile--b { grid-area: b; } .tile--c { grid-area: c; }
+.tile--h { grid-area: h; } .tile--a { grid-area: a; } .tile--b { grid-area: b; } .tile--c { grid-area: c; }
 .tile--d { grid-area: d; } .tile--e { grid-area: e; } .tile--f { grid-area: f; } .tile--g { grid-area: g; }
 
 /* Filtered views drop the composition for an even grid */
@@ -80,7 +80,7 @@ body.page-work {
 .tile__media--site img { object-position: left top; }
 .tile__media--poster { aspect-ratio: 3 / 4; }
 .tile__media--product {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3.4;
   background: radial-gradient(circle at 50% 38%, #fbf8f4 0%, #ece4da 70%, #ddd2c4 100%);
 }
 /* Absolutely placed so the whole garment fits inside the frame */
@@ -154,10 +154,11 @@ body.has-lightbox { overflow: hidden; }
   .bento {
     grid-template-columns: repeat(6, minmax(0, 1fr));
     grid-template-areas:
-      "a a a a a a"
-      "b b b c c c"
-      "d d d e e e"
-      "f f f g g g";
+      "h h h h h h"
+      "a a a b b b"
+      "c c c d d d"
+      "e e e f f f"
+      "g g g g g g";
   }
 }
 @media (max-width: 640px) {

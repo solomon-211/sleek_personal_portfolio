@@ -1,0 +1,113 @@
+/* =====================================================
+   TYPE & RHYTHM — the single scale for the whole site.
+   Loaded last on every page, so a role's size is set here
+   and nowhere else.
+   Scale: 12 · 14 · 16 · 18 · 20 · 24 · 30 · 38 · 52
+   ===================================================== */
+
+:root {
+  --fs-12: 0.75rem;
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-18: clamp(1.0625rem, 1.3vw, 1.125rem);
+  --fs-20: clamp(1.125rem, 1.4vw, 1.25rem);
+  --fs-24: clamp(1.25rem, 1.7vw, 1.5rem);
+  --fs-30: clamp(1.4rem, 2.2vw, 1.875rem);
+  --fs-38: clamp(1.75rem, 3vw, 2.375rem);
+  --fs-52: clamp(2.25rem, 4.4vw, 3.25rem);
+  --radius-card: 14px;
+  --gap-card: 1.25rem;
+  --pad-card: 1.5rem;
+  --space-section: clamp(4rem, 8vw, 6rem);
+}
+
+body { font-size: var(--fs-16); line-height: 1.7; }
+
+/* ── 52: page titles ────────────────────────────────── */
+.page-hero__title, .xp-hero h1, .ar-title, .cs-hero h1 {
+  font-size: var(--fs-52) !important; line-height: 1.08 !important; letter-spacing: -0.025em !important;
+}
+
+/* ── 38: section titles and big numbers ─────────────── */
+.section__title, .xp-head h2, .cs-section h2 {
+  font-size: var(--fs-38) !important; line-height: 1.15 !important; letter-spacing: -0.02em !important;
+}
+.contact .section__title { max-width: 14ch; }
+.about-split__title { font-size: min(2.375rem, 3.7cqi); }
+@media (max-width: 700px) { .about-split__title { font-size: var(--fs-30); } }
+.impact-card__num, .story__pull { font-size: var(--fs-38); }
+
+/* ── 30: feature titles ─────────────────────────────── */
+.feature__title, .story--lead .story__title, .about-split__lead, .edu h3, .index__title, .cap-row__num {
+  font-size: var(--fs-30) !important; line-height: 1.2; letter-spacing: -0.02em;
+}
+
+/* ── 24: primary card titles ────────────────────────── */
+.work__title, .role__card h3, .cap-row__title, .ar-body__inner h2 {
+  font-size: var(--fs-24) !important; line-height: 1.25 !important; letter-spacing: -0.015em !important;
+}
+
+/* ── 20: secondary card titles ──────────────────────── */
+.program h3, .about-chapter h3, .impact-card h3, .skill h3, .tile__title, .tile--h .tile__title,
+.story__title, .entry__title, .post__title, .xp-row h3, .ar-next__title, .ar-body__inner h3,
+.story--quote .story__title, .lightbox__title, .cs-section h3 {
+  font-size: var(--fs-20) !important; line-height: 1.3 !important; letter-spacing: -0.01em !important;
+}
+
+/* ── 18: lead paragraphs and article reading text ───── */
+.hero__lead, .page-hero__lead, .xp-hero__lead, .ar-subtitle, .cs-hero-subtitle, .contact__lead,
+.feature__excerpt, .ar-lead, .ar-body__inner p, .ar-body__inner li {
+  font-size: var(--fs-18) !important; line-height: 1.75 !important;
+}
+
+/* ── 16: body text ──────────────────────────────────── */
+.work__desc, .about-split__body > p, .about-chapter p, .cap-row__body > p, .impact-card p:last-child,
+.role__desc, .role__points li, .edu__courses p, .edu__org, .tile__desc, .entry__excerpt, .lightbox__desc,
+.split__lead, .cs-section p, .field input, .field textarea, .contact__item, .site-footer__bio {
+  font-size: var(--fs-16) !important; line-height: 1.7 !important;
+}
+.about-split__lead { line-height: 1.25 !important; }
+
+/* ── 14: supporting text, controls, navigation ──────── */
+.site-nav__list a, .site-header__cta, .site-footer__nav a, .site-footer__bottom,
+.action-link, .seg__btn, .form__topics button, .field label, .form__topics legend, .field__hint,
+.work__meta dd, .about-facts dd, .role__when span, .role__org, .tags li, .chips li, .xp-row p, .xp-row__date,
+.entry__date, .entry__meta, .post__date, .post__meta, .work__hint, .index__count, .search__input,
+.ar-next__meta, .ar-byline__info, .ar-byline__name, .about-split__place, .impact-photo figcaption,
+.cs-overview-value, .cs-step-content p, .cs-tool-use, .cs-outcome-desc, .cs-poster-caption, .ar-toc__item a,
+.facts dd, .facts dt, .story__more, .form__status {
+  font-size: var(--fs-14) !important;
+}
+.btn { font-size: var(--fs-16); }
+.role__when strong { font-size: var(--fs-16); }
+.cs-step-content h4, .cs-tool-name, .cs-outcome-title { font-size: var(--fs-16) !important; }
+
+/* ── 12: labels ─────────────────────────────────────── */
+.eyebrow, .xp-eyebrow, .xp-hero__eyebrow, .page-hero__eyebrow, .ar-kicker, .cs-kicker, .kicker,
+.work__index, .work__meta dt, .about-facts dt, .xp-snapshot dt, .tile__kicker, .story__meta, .edu__when, .edu__courses h4,
+.program__when, .contact__item small, .ar-continue__title, .ar-next__label, .ar-toc__title, .ar-share-label,
+.cs-section-label, .cs-overview-label, .cs-share-label, .xp-row__tag {
+  font-size: var(--fs-12) !important; letter-spacing: 0.1em !important;
+}
+.xp-snapshot dd { font-size: var(--fs-16); }
+
+/* ── Rhythm: one section spacing, card radius and gap ── */
+.section, .xp-block { padding-block: var(--space-section); }
+.xp-block--alt { padding-inline: 0; }
+.about-split { padding-top: var(--space-section); }
+.section__head, .xp-head, .index__bar { margin-bottom: clamp(2rem, 4vw, 2.75rem); }
+
+.tile, .story, .work__media, .form, .impact-card, .impact-photo, .about-chapter, .about-split__photo,
+.role__card, .program, .skill, .edu, .contact__grid, .ar-next, .feature__media, .cs-tool, .cs-outcome, .ar-hero img {
+  border-radius: var(--radius-card) !important;
+}
+.form { border-radius: 0 !important; }
+
+.impact, .impact-layout, .stories, .programs, .skills, .ar-continue__grid, .about-split__chapters { gap: var(--gap-card); }
+.impact-card, .program, .skill, .about-chapter, .ar-next { padding: var(--pad-card); }
+
+/* Remaining roles */
+.year__label { font-size: var(--fs-30); }
+.cs-step-num { font-size: var(--fs-20) !important; }
+.ar-quote { font-size: var(--fs-18) !important; }
+.ar-quote cite { font-size: var(--fs-14) !important; }
