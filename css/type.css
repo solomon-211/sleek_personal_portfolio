@@ -176,3 +176,5 @@ a.work__media:hover, a.feature__media:hover {
 .show__type, .show__meta dd { font-size: var(--fs-14); }
 .show__desc { font-size: var(--fs-16); line-height: 1.7; }
 .show__meta dt { font-size: var(--fs-12); letter-spacing: 0.1em; }
+
+.about-split__body h3 { font-size: var(--fs-20); line-height: 1.3; letter-spacing: -0.01em; font-weight: 700; }

@@ -546,3 +546,9 @@ body.home {
   .caps-head, .cap-cards { grid-template-columns: 1fr; }
 }
 
+
+/* About: a written message rather than cards and fact lists */
+.about-split__body { gap: 0; }
+.about-split__body > p { max-width: 64ch; color: var(--site-text); }
+.about-split__body h3 { margin: 1.5rem 0 0.5rem; color: var(--site-ink); }
+.about-split__body .action-link { margin-top: 1.5rem; }
