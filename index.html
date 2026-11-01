@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/site.css?v=20261103">
-    <link rel="stylesheet" href="css/home.css?v=20261103q">
+    <link rel="stylesheet" href="css/home.css?v=20261103r">
 
     <!-- Optional overrides for a separately hosted API.
          If unset, the frontend uses same-origin /api routes. -->
@@ -392,31 +392,23 @@
                         <label for="website">Website</label>
                         <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
                     </div>
-                    <fieldset class="form__topics">
-                        <legend>What is this about?</legend>
-                        <button type="button" data-topic="Internship or role">Internship or role</button>
-                        <button type="button" data-topic="Project">Project</button>
-                        <button type="button" data-topic="Collaboration">Collaboration</button>
-                        <button type="button" data-topic="General question">Question</button>
-                    </fieldset>
                     <div class="form__row">
                         <div class="field">
                             <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required maxlength="80" autocomplete="name" placeholder="Your full name">
+                            <input type="text" id="name" name="name" required maxlength="80" autocomplete="name">
                         </div>
                         <div class="field">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required maxlength="120" autocomplete="email" placeholder="you@example.com">
+                            <input type="email" id="email" name="email" required maxlength="120" autocomplete="email">
                         </div>
                     </div>
                     <div class="field">
                         <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required maxlength="120" placeholder="What would you like to discuss?">
+                        <input type="text" id="subject" name="subject" required maxlength="120">
                     </div>
                     <div class="field">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required maxlength="2000" placeholder="A few details help me reply properly."></textarea>
-                        <span class="field__hint"><span id="msgCharLeft">2000</span> characters left</span>
+                        <textarea id="message" name="message" rows="5" required maxlength="2000"></textarea> characters left</span>
                     </div>
                     <div class="form__foot">
                         <button type="submit" class="btn btn--primary">Send message <i class="fas fa-paper-plane" aria-hidden="true"></i></button>
@@ -457,7 +449,7 @@
     </footer>
 
     <script src="js/site.js?v=20261103" defer></script>
-    <script src="js/home.js?v=20261103f" defer></script>
+    <script src="js/home.js?v=20261103r" defer></script>
     <script src="js/analytics.js?v=20261103"></script>
 </body>
 </html>

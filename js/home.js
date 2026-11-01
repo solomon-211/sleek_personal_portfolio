@@ -35,33 +35,6 @@
     // ── Contact form ──────────────────────────────────────────────────────────
     const form     = document.getElementById('contactForm');
     const statusEl = document.getElementById('formStatus');
-    const msgEl    = document.getElementById('message');
-    const leftEl   = document.getElementById('msgCharLeft');
-
-    if (msgEl && leftEl) {
-        const max = Number(msgEl.getAttribute('maxlength')) || 2000;
-        const update = () => { leftEl.textContent = max - msgEl.value.length; };
-        msgEl.addEventListener('input', update);
-        update();
-    }
-
-    // Topic buttons fill the subject; typing a different subject clears the selection
-    const subjectEl = document.getElementById('subject');
-    const topicBtns = Array.from(document.querySelectorAll('.form__topics button'));
-    function markTopic(active) {
-        topicBtns.forEach(b => b.setAttribute('aria-pressed', String(b === active)));
-    }
-    topicBtns.forEach(btn => btn.addEventListener('click', () => {
-        const on = btn.getAttribute('aria-pressed') !== 'true';
-        subjectEl.value = on ? btn.dataset.topic : '';
-        markTopic(on ? btn : null);
-    }));
-    if (subjectEl) {
-        subjectEl.addEventListener('input', () => {
-            markTopic(topicBtns.find(b => b.dataset.topic === subjectEl.value) || null);
-        });
-    }
-    markTopic(null);
 
     function setStatus(message, type) {
         if (!statusEl) return;
@@ -132,8 +105,6 @@
                 const data = await res.json().catch(() => ({}));
                 if (!res.ok) throw new Error(data.detail || `Server error (${res.status})`);
                 form.reset();
-                markTopic(null);
-                if (leftEl) leftEl.textContent = msgEl.getAttribute('maxlength') || '2000';
                 setStatus(data.message || 'Thanks — your message has been sent. I’ll reply soon.', 'success');
                 cooldown = true;
                 setTimeout(() => { cooldown = false; }, 60000);
