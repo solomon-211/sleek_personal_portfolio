@@ -10,9 +10,16 @@
 
     const CONTACT_API_URL   = getApiUrl('CONTACT_API_URL', '/api/contact', 'https://solomonleek.com/api/contact');
 
+    // ── Hero video: respect reduced-motion, keep the poster frame instead ─────
+    const heroVideo = document.querySelector('.hero__video');
+    if (heroVideo && prefersReducedMotion) {
+        heroVideo.removeAttribute('autoplay');
+        heroVideo.pause();
+    }
+
     // ── Reveal on scroll (content stays visible if JS or observers fail) ──────
     if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-        const targets = document.querySelectorAll('.section__head, .work, .about-split__head, .about-split__body, .split__aside, .cap-row, .xp-row, .impact-card, .post, .contact__grid');
+        const targets = document.querySelectorAll('.section__head, .work, .about-split__head, .about-split__lead, .about-chapter, .about-facts, .split__aside, .cap-row, .xp-row, .impact-card, .post, .contact__grid');
         document.documentElement.classList.add('js-reveal');
         targets.forEach(el => el.classList.add('reveal'));
         const io = new IntersectionObserver(entries => {

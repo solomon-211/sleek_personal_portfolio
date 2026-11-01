@@ -27,8 +27,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/site.css?v=20261101b">
-    <link rel="stylesheet" href="css/home.css?v=20261101e">
+    <link rel="stylesheet" href="css/site.css?v=20261101k">
+    <link rel="stylesheet" href="css/home.css?v=20261101k">
 
     <!-- Optional overrides for a separately hosted API.
          If unset, the frontend uses same-origin /api routes. -->
@@ -110,7 +110,6 @@
     </div>
     <header class="site-header" id="siteHeader">
         <div class="site-header__inner">
-            <a href="#home" class="site-header__mark" tabindex="-1" aria-hidden="true">Solomon Leek</a>
             <nav class="site-nav" id="siteNav" aria-label="Primary">
                 <ul class="site-nav__list">
                     <li><a href="#home" data-nav="home">Home</a></li>
@@ -130,7 +129,10 @@
     <main id="main-content">
 
         <!-- ── HERO ─────────────────────────────────────── -->
-        <section class="hero hero--photo" id="home" aria-labelledby="heroTitle">
+        <section class="hero hero--video" id="home" aria-labelledby="heroTitle">
+            <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="images/hero-video-poster.jpg" aria-hidden="true" tabindex="-1">
+                <source src="images/hero-section-video.mp4" type="video/mp4">
+            </video>
             <div class="wrap hero__grid">
                 <div class="hero__copy">
                     <p class="eyebrow">Software Engineer &middot; Graphic Designer</p>
@@ -224,18 +226,26 @@
             <div class="about-split__grid">
                 <figure class="about-split__photo">
                     <img src="images/solomon-hero-cut.png" alt="Solomon Thiong Garang Leek" width="260" height="495" loading="lazy">
+                    <figcaption class="about-split__place"><i class="fas fa-location-dot" aria-hidden="true"></i> Kigali, Rwanda &middot; from South Sudan</figcaption>
                 </figure>
                 <div class="about-split__body">
-                    <p>I began with graphic design, which taught me clarity, structure and storytelling.</p>
-                    <h3>Then I started building what I designed.</h3>
-                    <p>That foundation grew into full-stack development and Python, and now into machine learning and artificial intelligence &mdash; turning ideas into products people can actually use.</p>
-                    <h3>The work goes beyond the screen.</h3>
-                    <p>Alongside my degree I have taught primary school in South Sudan, recruited students for ALU across East Africa and served as Student Government President.</p>
-                    <dl class="facts">
+                    <p class="about-split__lead">I began with graphic design, which taught me clarity, structure and storytelling.</p>
+                    <div class="about-split__chapters">
+                        <article class="about-chapter">
+                            <h3>Then I started building what I designed.</h3>
+                            <p>That foundation grew into full-stack development and Python, and now into machine learning and artificial intelligence &mdash; turning ideas into products people can actually use.</p>
+                        </article>
+                        <article class="about-chapter">
+                            <h3>The work goes beyond the screen.</h3>
+                            <p>Alongside my degree I have taught primary school in South Sudan, recruited students for ALU across East Africa and served as Student Government President.</p>
+                        </article>
+                    </div>
+                    <dl class="about-facts">
                         <div><dt>Degree</dt><dd>BSc (Hons) Software Engineering, Class of 2028</dd></div>
-                        <div><dt>Focus</dt><dd>Machine learning &amp; AI, full-stack web engineering, visual design</dd></div>
-                        <div><dt>Languages</dt><dd>Dinka (native) &middot; English</dd></div>
+                        <div><dt>Focus</dt><dd>Machine learning &amp; AI, full-stack web, visual design</dd></div>
+                        <div><dt>Languages</dt><dd>Dinka (native), English</dd></div>
                     </dl>
+                    <a href="experience/" class="link-arrow">See my full experience <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </div>
         </section>
@@ -456,8 +466,8 @@
         </div>
     </footer>
 
-    <script src="js/site.js?v=20261101b" defer></script>
-    <script src="js/home.js?v=20261101b" defer></script>
-    <script src="js/analytics.js?v=20261101b"></script>
+    <script src="js/site.js?v=20261101k" defer></script>
+    <script src="js/home.js?v=20261101k" defer></script>
+    <script src="js/analytics.js?v=20261101k"></script>
 </body>
 </html>
