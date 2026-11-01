@@ -121,3 +121,9 @@ body { font-size: var(--fs-16); line-height: 1.7; }
   text-transform: uppercase; letter-spacing: -0.015em !important; max-width: 26ch;
 }
 .contact .section__title { max-width: 14ch; }
+
+/* Writing cards: quieter titles and pull-quote */
+.stories .story .story__title { font-size: var(--fs-18) !important; font-weight: 600; line-height: 1.35 !important; letter-spacing: -0.005em !important; }
+.stories .story--lead .story__title { font-size: var(--fs-20) !important; }
+.stories .story__pull { font-size: var(--fs-24); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+.stories .story__meta { font-weight: 600; }
