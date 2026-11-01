@@ -25,8 +25,6 @@
         tiles.forEach(tile => {
             const show = filter === 'all' || tile.dataset.cat === filter;
             tile.hidden = !show;
-            // A hidden video keeps playing its sound unless it is paused
-            if (!show) tile.querySelectorAll('video').forEach(v => v.pause());
             if (show) {
                 // Restart the entrance animation so the change reads clearly
                 tile.style.animation = 'none';
@@ -51,6 +49,26 @@
     moveIndicator(current());
     window.addEventListener('resize', () => moveIndicator(current()));
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => moveIndicator(current()));
+
+    // ── Video: plays muted while on screen, unless the visitor paused it ──────
+    const video = bento.querySelector('video');
+    if (video && 'IntersectionObserver' in window) {
+        let held = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let leaving = false;
+        video.addEventListener('pause', () => {
+            if (!leaving) held = true;
+            leaving = false;
+        });
+        video.addEventListener('play', () => { held = false; });
+        new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                if (!held) video.play().catch(() => {});
+            } else if (!video.paused) {
+                leaving = true;
+                video.pause();
+            }
+        }, { threshold: 0.35 }).observe(video);
+    }
 
     // ── Lightbox ──────────────────────────────────────────────────────────────
     const box = document.getElementById('lightbox');
