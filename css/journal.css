@@ -282,7 +282,7 @@ mark { background: rgba(254, 127, 45, 0.28); color: #233D4D; border-radius: 3px;
 
 /* Featured article uses the About layout: full-width split, picture panel beside a grey text panel */
 .journal .feature {
-  width: 100vw; margin: 0 0 clamp(3rem, 6vw, 4.5rem) calc(50% - 50vw);
+  width: 100%; margin: 0 0 clamp(3rem, 6vw, 4.5rem);
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   background: #f0f2f3;
   border: 0 !important; border-radius: 0 !important;
@@ -304,3 +304,7 @@ mark { background: rgba(254, 127, 45, 0.28); color: #233D4D; border-radius: 3px;
   .journal .feature { grid-template-columns: 1fr; }
   .journal .feature__media, .journal a.feature__media:hover { min-height: 0; aspect-ratio: 1400 / 948; }
 }
+
+/* The page wrapper is full width so the feature can bleed; the article index keeps the page margins */
+.journal { max-width: none; padding-left: 0; padding-right: 0; }
+.journal .index { max-width: var(--site-max); margin: 0 auto; padding: 0 var(--site-gutter); }
