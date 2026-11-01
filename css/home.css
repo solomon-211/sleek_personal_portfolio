@@ -110,6 +110,7 @@ body.home {
 .hero__creds img { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; }
 
 /* ── Selected work: a wall of pinned pieces, all on show ── */
+.section__lead { max-width: 68ch; margin-top: 0.75rem; font-size: var(--fs-18); line-height: 1.75; color: var(--site-text-2); }
 .wall {
   --wall-w: min(1400px, calc(100vw - 3rem));
   display: grid; grid-template-columns: minmax(0, 1.7fr) repeat(2, minmax(0, 1fr));
