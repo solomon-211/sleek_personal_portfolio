@@ -542,3 +542,14 @@ body.home {
 .about-split__body > p { max-width: 64ch; color: var(--site-text); }
 .about-split__body h3 { margin: 1.5rem 0 0.5rem; color: var(--site-ink); }
 .about-split__body .action-link { margin-top: 1.5rem; }
+
+/* Hero headline: each line slides in, one after the other */
+.hero__title-line { animation: hero-slide 0.8s var(--site-ease) both; }
+.hero__title-line:nth-child(1) { animation-delay: 0.15s; }
+.hero__title-line:nth-child(2) { animation-delay: 0.4s; }
+.hero__title-line:nth-child(3) { animation-delay: 0.65s; }
+@keyframes hero-slide {
+  from { opacity: 0; transform: translateX(-48px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .hero__title-line { animation: none; } }

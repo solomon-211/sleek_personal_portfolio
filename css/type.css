@@ -186,3 +186,19 @@ a.work__media:hover, a.feature__media:hover {
 .about-split__body > p + p { margin-top: 1rem; }
 
 .index__title { white-space: nowrap; }
+
+/* Articles: text runs the full width of the cover and the Continue reading cards */
+.ar-layout, .ar-continue { max-width: calc(1080px + 3rem); }
+.ar-layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "toc" "body"; }
+.ar-body__inner, .ar-footer__inner { max-width: none !important; }
+.ar-body__inner > *, .ar-body__inner p, .ar-body__inner li { max-width: none; }
+.ar-footer { padding-inline: 0; }
+.ar-footer__inner { max-width: calc(1080px + 3rem) !important; padding-inline: 1.5rem; }
+.ar-toc { position: static; max-height: none; overflow: visible; padding: 2rem 1.5rem 0; }
+.ar-toc__list { flex-direction: row; flex-wrap: wrap; gap: 0.4rem !important; }
+.ar-toc__item a {
+  border: 1px solid var(--site-line-2); border-radius: 6px;
+  padding: 0.3rem 0.75rem !important; background: none;
+}
+.ar-toc__item a:hover, .ar-toc__item a.ar-toc--active { border-color: var(--site-orange); background: none; }
+.ar-body { padding-top: 2rem; }
