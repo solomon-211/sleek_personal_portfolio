@@ -138,37 +138,6 @@ body.home {
 .hero__creds li { display: flex; align-items: center; gap: 0.65rem; }
 .hero__creds img { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; }
 
-.hero__portrait {
-  position: relative; margin: 0;
-  justify-self: end;
-  width: min(100%, 400px);
-  display: grid; gap: 1rem;
-}
-/* Circular portrait with an offset orange ring */
-.hero__frame {
-  position: relative;
-  aspect-ratio: 1;
-  padding: 18px;
-}
-.hero__frame::before {
-  content: ''; position: absolute; inset: 0;
-  border-radius: 50%;
-  border: 1.5px solid rgba(254, 127, 45, 0.55);
-}
-.hero__circle {
-  position: relative;
-  width: 100%; height: 100%;
-  border-radius: 50%;
-  overflow: hidden;
-  background: radial-gradient(circle at 50% 35%, #ffffff 0%, #f4efe9 70%, #eadfd3 100%);
-  border: 5px solid var(--site-orange);
-  box-shadow: 0 24px 60px rgba(35,61,77,0.16);
-}
-.hero__circle img {
-  position: absolute; left: 50%; bottom: -32%;
-  height: 125%; width: auto; max-width: none;
-  transform: translateX(-50%);
-}
 /* ── Selected work ──────────────────────────────────── */
 .work-list { display: grid; gap: clamp(3.5rem, 7vw, 6rem); }
 .work {
@@ -390,7 +359,6 @@ body.home {
 
 @media (max-width: 860px) {
   .hero__grid { grid-template-columns: 1fr; }
-  .hero__portrait { justify-self: center; width: min(86%, 340px); }
   .work, .about, .contact__grid, .initiatives, .split { grid-template-columns: 1fr; }
   .split__aside { position: static; }
   .work:nth-child(even) .work__media { order: 0; }
@@ -428,7 +396,7 @@ body.home {
 .hero--photo {
   border-bottom: 0;
   background:
-    linear-gradient(95deg, rgba(26, 45, 58, 0.95) 0%, rgba(26, 45, 58, 0.86) 52%, rgba(26, 45, 58, 0.62) 100%),
+    linear-gradient(95deg, rgba(26, 45, 58, 0.95) 0%, rgba(26, 45, 58, 0.84) 50%, rgba(26, 45, 58, 0.34) 100%),
     url('../images/hero-bg.jpg') center 35% / cover no-repeat;
 }
 .hero--photo .eyebrow { color: var(--site-orange); }
@@ -442,7 +410,6 @@ body.home {
 .hero--photo .btn--primary:hover { filter: brightness(1.07); background: linear-gradient(100deg, var(--site-orange), #ffb26b); }
 .hero--photo .btn--ghost { color: #fff; border-color: rgba(255, 255, 255, 0.45); }
 .hero--photo .btn--ghost:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
-.hero--photo .hero__frame::before { border-color: rgba(254, 127, 45, 0.8); }
 
 /* ── About: centred title, full-bleed photo + text panel ── */
 .about-split { padding-top: clamp(4rem, 8vw, 6.5rem); }
@@ -457,10 +424,21 @@ body.home {
   color: var(--site-ink); text-wrap: balance;
 }
 .about-split__grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
-.about-split__photo { position: relative; min-height: 620px; overflow: hidden; background: var(--site-surface); }
+/* Cut-out portrait stands on a teal panel, feet off the bottom edge */
+.about-split__photo {
+  position: relative; min-height: 620px; overflow: hidden; margin: 0;
+  background: linear-gradient(170deg, var(--site-ink) 0%, var(--site-ink-deep) 100%);
+}
+.about-split__photo::before {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: min(74%, 420px); aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%; background: var(--site-orange);
+}
 .about-split__photo img {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: center 12%;
+  position: absolute; left: 50%; bottom: 0;
+  width: auto; height: 94%; max-width: none;
+  transform: translateX(-50%);
 }
 .about-split__body {
   background: #f0f2f3;
@@ -478,7 +456,6 @@ body.home {
   .about-split__photo { min-height: 0; aspect-ratio: 4 / 4.4; }
 }
 
-/* Wide screens: enlarge the photo so the figure sits behind the round portrait, skyline behind the text */
-@media (min-width: 861px) {
-  .hero--photo { background-size: auto, 140% auto; background-position: 0 0, 0% 28%; }
-}
+/* Text-only hero: one column, skyline behind the words, figure on the right */
+.hero--photo .hero__grid { grid-template-columns: minmax(0, 1fr); }
+.hero--photo .hero__copy { max-width: 760px; }
