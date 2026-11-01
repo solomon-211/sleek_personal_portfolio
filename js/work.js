@@ -25,6 +25,8 @@
         tiles.forEach(tile => {
             const show = filter === 'all' || tile.dataset.cat === filter;
             tile.hidden = !show;
+            // A hidden video keeps playing its sound unless it is paused
+            if (!show) tile.querySelectorAll('video').forEach(v => v.pause());
             if (show) {
                 // Restart the entrance animation so the change reads clearly
                 tile.style.animation = 'none';

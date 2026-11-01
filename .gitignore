@@ -35,3 +35,6 @@ build/
 
 # ── Cloudflare Wrangler local cache ───────────────────
 .wrangler/
+
+# Original of images/falling-short-infographic.mp4, too large to serve
+images/Infographic Competition Dynamic Video.mp4

@@ -32,6 +32,7 @@ body.page-work {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-template-areas:
+    "i i i i i i i i i i i i"
     "h h h h h h h h b b b b"
     "a a a a a a d d d e e e"
     "f f f f f f g g g g g g";
@@ -40,6 +41,7 @@ body.page-work {
 }
 .tile--h { grid-area: h; } .tile--a { grid-area: a; } .tile--b { grid-area: b; } 
 .tile--d { grid-area: d; } .tile--e { grid-area: e; } .tile--f { grid-area: f; } .tile--g { grid-area: g; }
+.tile--i { grid-area: i; }
 
 /* Filtered views drop the composition for an even grid */
 .bento.is-filtered {
@@ -47,6 +49,7 @@ body.page-work {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
 }
 .bento.is-filtered .tile { grid-area: auto; }
+.bento.is-filtered .tile--i { grid-column: 1 / -1; }
 .tile[hidden] { display: none; }
 
 /* ── Tile: image on top, caption on white below ─────── */
@@ -88,7 +91,20 @@ body.page-work {
   object-fit: contain; filter: drop-shadow(0 14px 20px rgba(35, 61, 77, 0.18));
 }
 
+/* Video tile: player beside its caption */
+.tile--i { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); }
+.tile__media--video {
+  align-self: center; aspect-ratio: 1280 / 666;
+  background: var(--site-ink-deep);
+  border-bottom: 0;
+}
+.tile__media--video video { display: block; width: 100%; height: 100%; object-fit: contain; }
+
 .tile__info { padding: 1.1rem 1.25rem 1.3rem; }
+.tile--i .tile__info { align-self: center; padding: clamp(1.25rem, 2.5vw, 2rem); }
+.tile__meta { display: grid; gap: 0.6rem; margin: 1rem 0 1.1rem; }
+.tile__meta dt { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--site-text-3); }
+.tile__meta dd { margin: 0.1rem 0 0; font-size: 0.92rem; color: var(--site-ink); }
 .tile__kicker {
   display: flex; align-items: center; gap: 0.6rem; margin: 0;
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
@@ -153,11 +169,14 @@ body.has-lightbox { overflow: hidden; }
   .bento {
     grid-template-columns: repeat(6, minmax(0, 1fr));
     grid-template-areas:
+      "i i i i i i"
       "h h h h h h"
       "a a a a a a"
       "b b d d e e"
       "f f f g g g";
   }
+  .tile--i { grid-template-columns: minmax(0, 1fr); }
+  .tile__media--video { border-bottom: var(--site-stroke); }
 }
 @media (max-width: 640px) {
   .bento, .bento.is-filtered { grid-template-columns: 1fr; grid-template-areas: none; }
