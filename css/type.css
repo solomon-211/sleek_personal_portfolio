@@ -224,15 +224,3 @@ a.work__media:hover, a.feature__media:hover {
   font-weight: 400; font-size: 2.4rem; line-height: 1; letter-spacing: 0;
   padding: 0.2em 0.15em 0 0;
 }
-
-/* Font audit: one weight per title level, sizes on the scale, no fallback or synthetic faces */
-.section__title, .xp-head h2, .cs-section h2, .index__title, .show__name, .about-split__heading { font-weight: 800; }
-.stories .story .story__title, .stories .story__pull, .entry__title { font-weight: 700; }
-.site-sign__role, .seg__count, .tile__meta dt { font-size: var(--fs-12); }
-.hero__creds li, .tile__meta dd, .index__reset, .cs-btn-view, .cs-btn-back { font-size: var(--fs-14); }
-.cs-btn-view { font-family: var(--site-font); }
-.ar-quote, .ar-quote p {
-  font-family: 'Playfair Display', Georgia, serif; font-size: var(--fs-20) !important;
-  font-style: normal; font-weight: 700; line-height: 1.5 !important;
-}
-.ar-quote cite { font-family: var(--site-font); }
