@@ -184,3 +184,5 @@ a.work__media:hover, a.feature__media:hover {
   letter-spacing: -0.015em; text-transform: uppercase; color: var(--site-ink);
 }
 .about-split__body > p + p { margin-top: 1rem; }
+
+.index__title { white-space: nowrap; }
