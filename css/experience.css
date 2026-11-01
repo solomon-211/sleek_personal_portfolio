@@ -1,0 +1,169 @@
+/* =====================================================
+   EXPERIENCE — teal hero, dated role cards, programme
+   grid, education feature, skills. Uses site.css tokens.
+   ===================================================== */
+
+:where(.page-xp) :is(h1, h2, h3, h4, p, ul, ol, dl, dd) { margin: 0; padding: 0; }
+:where(.page-xp) :is(ul, ol) { list-style: none; }
+
+/* ── Hero band ──────────────────────────────────────── */
+.xp-hero { background: var(--site-ink-deep); color: #fff; }
+.xp-hero__inner {
+  max-width: var(--site-max); margin: 0 auto;
+  padding: clamp(3.5rem, 7vw, 5.5rem) var(--site-gutter) clamp(3rem, 6vw, 4.5rem);
+}
+.xp-hero__eyebrow {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--site-orange);
+}
+.xp-hero h1 {
+  margin-top: 1rem;
+  font-family: var(--site-display); font-weight: 800; text-transform: uppercase;
+  font-size: clamp(2.2rem, 5vw, 3.75rem); line-height: 1.05; letter-spacing: -0.02em;
+  color: #fff;
+}
+.xp-hero__lead {
+  margin-top: 1.25rem; max-width: 62ch;
+  font-size: clamp(1rem, 1.4vw, 1.12rem); line-height: 1.75;
+  color: rgba(255, 255, 255, 0.82);
+}
+.xp-snapshot {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(2.25rem, 4vw, 3rem);
+  border: 1.5px solid rgba(255, 255, 255, 0.28); border-radius: 14px;
+}
+.xp-snapshot > div { padding: 1.15rem 1.35rem; }
+.xp-snapshot > div + div { border-left: 1.5px solid rgba(255, 255, 255, 0.28); }
+.xp-snapshot dt { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--site-orange); }
+.xp-snapshot dd { margin-top: 0.35rem; font-family: var(--site-display); font-weight: 700; font-size: 1.05rem; line-height: 1.3; color: #fff; }
+
+/* ── Blocks ─────────────────────────────────────────── */
+.xp-block, .xp-inner { max-width: var(--site-max); margin: 0 auto; }
+.xp-block { padding: clamp(3.5rem, 7vw, 5.5rem) var(--site-gutter); }
+.xp-block--alt { max-width: none; background: var(--site-surface); padding-inline: 0; }
+.xp-inner { padding-inline: var(--site-gutter); }
+.xp-head { margin-bottom: clamp(2rem, 4vw, 3rem); }
+.xp-eyebrow {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--site-orange-ink);
+}
+.xp-eyebrow span { color: var(--site-text-3); font-variant-numeric: tabular-nums; }
+.xp-head h2 {
+  margin-top: 0.85rem;
+  font-family: var(--site-display); font-weight: 700;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem); line-height: 1.15; letter-spacing: -0.025em;
+  color: var(--site-ink);
+}
+
+/* Cards share one surface, stroke and hover */
+.role__card, .program, .skill {
+  background: #fff;
+  border: var(--site-stroke); border-radius: 14px;
+  transition: transform 0.25s var(--site-ease), box-shadow 0.25s var(--site-ease);
+}
+.role__card:hover, .program:hover, .skill:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--site-orange);
+}
+
+/* ── Roles: date rail + card ────────────────────────── */
+.roles { position: relative; display: grid; gap: 1.5rem; }
+.roles::before {
+  content: ''; position: absolute; top: 0.5rem; bottom: 0.5rem; left: 13rem;
+  width: 2px; background: var(--site-line-2);
+}
+.role { position: relative; display: grid; grid-template-columns: 11.5rem minmax(0, 1fr); gap: 3.5rem; align-items: start; }
+.role::before {
+  content: ''; position: absolute; left: calc(13rem - 6px); top: 0.55rem;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #fff; border: 3px solid var(--site-orange);
+}
+.role:first-child::before { background: var(--site-orange); }
+.role__when { padding-top: 0.15rem; text-align: right; }
+.role__when strong { display: block; font-family: var(--site-display); font-weight: 700; font-size: 1rem; line-height: 1.3; color: var(--site-ink); }
+.role__when span { display: block; margin-top: 0.25rem; font-size: 0.84rem; color: var(--site-text-3); }
+
+.role__card { padding: clamp(1.4rem, 2.6vw, 2rem); }
+.role__card h3, .program h3 {
+  font-family: var(--site-display); font-weight: 700; letter-spacing: -0.015em; line-height: 1.25;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem); color: var(--site-ink);
+}
+.role__org { margin-top: 0.3rem; font-size: 0.93rem; font-weight: 600; color: var(--site-orange-ink); }
+.role__desc { margin-top: 0.8rem; max-width: 68ch; font-size: 0.97rem; line-height: 1.75; color: var(--site-text-2); }
+.role__points { margin-top: 0.85rem; display: grid; gap: 0.55rem; max-width: 72ch; }
+.role__points li {
+  position: relative; padding-left: 1.1rem;
+  font-size: 0.97rem; line-height: 1.7; color: var(--site-text-2);
+}
+.role__points li::before {
+  content: ''; position: absolute; left: 0; top: 0.65em;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--site-orange);
+}
+
+.tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.1rem; }
+.tags li {
+  padding: 0.28rem 0.65rem; border-radius: 6px;
+  border: 1px solid var(--site-line-2);
+  font-size: 0.8rem; font-weight: 600; color: var(--site-text-2);
+}
+.role__card .action-link, .program .action-link, .edu .action-link { display: inline-block; margin-top: 1.1rem; font-size: 0.88rem; }
+
+/* ── Programmes ─────────────────────────────────────── */
+.programs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.program { display: flex; flex-direction: column; align-items: flex-start; padding: 1.5rem 1.6rem; }
+.program--wide { grid-column: 1 / -1; }
+.program__when { margin-bottom: 0.6rem; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--site-text-3); }
+.program .action-link { margin-top: auto; padding-top: 1.1rem; }
+
+/* ── Education: the teal feature ────────────────────── */
+.edu {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  border-radius: 16px; overflow: hidden;
+  background: var(--site-ink); color: #fff;
+}
+.edu__main { padding: clamp(1.75rem, 4vw, 3rem); }
+.edu__when { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--site-orange); }
+.edu h3 {
+  margin-top: 0.85rem;
+  font-family: var(--site-display); font-weight: 800; color: #fff;
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem); line-height: 1.15; letter-spacing: -0.02em;
+}
+.edu__org { margin-top: 0.7rem; color: rgba(255, 255, 255, 0.82); line-height: 1.6; }
+.edu .action-link { color: #fff !important; }
+.edu .action-link:hover { color: var(--site-orange) !important; }
+.edu__courses { padding: clamp(1.75rem, 4vw, 3rem); border-left: 1px solid rgba(255, 255, 255, 0.16); }
+.edu__courses h4 { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--site-orange); }
+.edu__courses p { margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.75; color: rgba(255, 255, 255, 0.84); }
+.edu__courses p + h4 { margin-top: 1.4rem; }
+
+/* ── Skills ─────────────────────────────────────────── */
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.skill { padding: 1.5rem 1.6rem; }
+.skill--wide { grid-column: span 2; }
+.skill h3 { font-family: var(--site-display); font-weight: 700; font-size: 1.1rem; color: var(--site-ink); }
+.skill .tags { margin-top: 0.9rem; }
+.langs { margin-top: 0.9rem; display: grid; }
+.langs > div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--site-line); }
+.langs > div:last-child { border-bottom: 0; }
+.langs dt { font-weight: 600; color: var(--site-ink); }
+.langs dd { color: var(--site-text-2); }
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 960px) {
+  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .edu { grid-template-columns: 1fr; }
+  .edu__courses { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.16); }
+}
+@media (max-width: 760px) {
+  .xp-snapshot, .programs, .skills { grid-template-columns: 1fr; }
+  .xp-snapshot > div + div { border-left: 0; border-top: 1.5px solid rgba(255, 255, 255, 0.28); }
+  .skill--wide { grid-column: auto; }
+  .roles::before { left: 6px; }
+  .role { grid-template-columns: 1fr; gap: 0.7rem; padding-left: 1.75rem; }
+  .role::before { left: 0; top: 0.3rem; }
+  .role__when { text-align: left; padding-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .role__card, .program, .skill { transition: none; }
+}
