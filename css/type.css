@@ -170,3 +170,9 @@ a.work__media:hover, a.feature__media:hover {
 
 /* Contact card sits on the same page edges as every other section */
 .contact__grid { width: min(calc(var(--site-max) - 2 * var(--site-gutter)), calc(100% - 2 * var(--site-gutter))); }
+
+/* Selected work showcase */
+.show__name { font-size: var(--fs-30); line-height: 1.15; }
+.show__type, .show__meta dd { font-size: var(--fs-14); }
+.show__desc { font-size: var(--fs-16); line-height: 1.7; }
+.show__meta dt { font-size: var(--fs-12); letter-spacing: 0.1em; }

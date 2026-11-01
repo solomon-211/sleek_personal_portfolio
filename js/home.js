@@ -17,6 +17,21 @@
         heroVideo.pause();
     }
 
+    // ── Selected work: choosing a project swaps the stage and opens its details ─
+    const shows  = Array.from(document.querySelectorAll('.show'));
+    const stages = Array.from(document.querySelectorAll('.stage__item'));
+    function selectShow(index) {
+        shows.forEach((show, i) => {
+            const on = i === index;
+            show.classList.toggle('is-active', on);
+            show.querySelector('.show__tab').setAttribute('aria-expanded', String(on));
+            show.querySelector('.show__panel').hidden = !on;
+            stages[i].classList.toggle('is-active', on);
+        });
+    }
+    shows.forEach((show, i) => show.querySelector('.show__tab').addEventListener('click', () => selectShow(i)));
+    if (shows.length) selectShow(0);
+
     // ── Contact form ──────────────────────────────────────────────────────────
     const form     = document.getElementById('contactForm');
     const statusEl = document.getElementById('formStatus');

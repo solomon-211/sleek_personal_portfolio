@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/site.css?v=20261103">
-    <link rel="stylesheet" href="css/home.css?v=20261103e">
+    <link rel="stylesheet" href="css/home.css?v=20261103f">
 
     <!-- Optional overrides for a separately hosted API.
          If unset, the frontend uses same-origin /api routes. -->
@@ -98,7 +98,7 @@
             }
         }
         </script>
-    <link rel="stylesheet" href="css/type.css?v=20261103b">
+    <link rel="stylesheet" href="css/type.css?v=20261103f">
 </head>
 <body class="home">
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -163,55 +163,48 @@
                     </div>
                 </header>
 
-                <ol class="work-list">
-                    <li class="work">
-                        <a href="https://sleeknexuscreative.com" target="_blank" rel="noopener noreferrer" class="work__media" aria-label="Visit the Sleek Nexus Creative website">
-                            <img src="images/work-sleek-nexus.jpg" alt="Sleek Nexus Creative website homepage" width="1200" height="750" loading="lazy">
-                        </a>
-                        <div class="work__body">
-                            <p class="work__index">Brand &amp; Web &middot; <span class="tag-live">Live</span></p>
-                            <h3 class="work__title">Sleek Nexus Creative</h3>
-                            <p class="work__desc">The website and brand identity for a technology studio in Juba. I designed and built both.</p>
-                            <dl class="work__meta">
-                                <div><dt>Role</dt><dd>Designer &amp; developer</dd></div>
-                                <div><dt>Stack</dt><dd>HTML, CSS, JavaScript</dd></div>
-                            </dl>
-                            <a href="https://sleeknexuscreative.com" target="_blank" rel="noopener noreferrer" class="action-link">Visit live site</a>
+                <div class="showcase">
+                <div class="stage">
+                    <a class="stage__item is-active" href="https://sleeknexuscreative.com" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"><img src="images/work-sleek-nexus.jpg" alt="Sleek Nexus Creative website homepage" width="1200" height="750" loading="lazy"></a>
+                    <a class="stage__item" href="case-study/" tabindex="-1" aria-hidden="true"><img src="images/Independence-day.jpg" alt="Independence Day campaign poster" width="1200" height="1600" loading="lazy"></a>
+                    <a class="stage__item" href="portfolio/" tabindex="-1" aria-hidden="true"><img src="images/VICTORY%20CELEBRATION%20FOR%20BCYA%20CHAIRMANSHIP%202025-2027.jpg" alt="BCYA chairmanship victory celebration poster" width="1200" height="1600" loading="lazy"></a>
+                </div>
+                <ol class="shows">
+                    <li class="show is-active">
+                        <button class="show__tab" type="button" aria-expanded="true" aria-controls="show0">
+                            <span class="show__type">Brand &amp; Web &middot; <span class="tag-live">Live</span></span>
+                            <span class="show__name">Sleek Nexus Creative</span>
+                        </button>
+                        <div class="show__panel" id="show0">
+                            <p class="show__desc">The website and brand identity for a technology studio in Juba. I designed and built both.</p>
+                            <dl class="show__meta"><div><dt>Role</dt><dd>Designer &amp; developer</dd></div><div><dt>Stack</dt><dd>HTML, CSS, JavaScript</dd></div></dl>
+                            <a class="action-link" href="https://sleeknexuscreative.com" target="_blank" rel="noopener noreferrer">Visit live site</a>
                         </div>
                     </li>
-
-                    <li class="work">
-                        <a href="case-study/" class="work__media work__media--poster" aria-label="Read the Independence Day campaign case study">
-                            <img src="images/Independence-day.jpg" alt="Independence Day campaign poster" width="1200" height="1600" loading="lazy">
-                        </a>
-                        <div class="work__body">
-                            <p class="work__index">Campaign design &middot; Case study</p>
-                            <h3 class="work__title">Independence Day Campaign</h3>
-                            <p class="work__desc">A poster for Uganda&rsquo;s Independence Day, made for print and social media.</p>
-                            <dl class="work__meta">
-                                <div><dt>Deliverable</dt><dd>Print &amp; digital</dd></div>
-                                <div><dt>Tools</dt><dd>Photoshop, Illustrator</dd></div>
-                            </dl>
-                            <a href="case-study/" class="action-link">Read the case study</a>
+                    <li class="show">
+                        <button class="show__tab" type="button" aria-expanded="false" aria-controls="show1">
+                            <span class="show__type">Campaign design &middot; Case study</span>
+                            <span class="show__name">Independence Day Campaign</span>
+                        </button>
+                        <div class="show__panel" id="show1">
+                            <p class="show__desc">A poster for Uganda&rsquo;s Independence Day, made for print and social media.</p>
+                            <dl class="show__meta"><div><dt>Deliverable</dt><dd>Print &amp; digital</dd></div><div><dt>Tools</dt><dd>Photoshop, Illustrator</dd></div></dl>
+                            <a class="action-link" href="case-study/">Read the case study</a>
                         </div>
                     </li>
-
-                    <li class="work">
-                        <a href="portfolio/#pf-design" class="work__media work__media--poster" aria-label="See more event and campaign posters">
-                            <img src="images/VICTORY%20CELEBRATION%20FOR%20BCYA%20CHAIRMANSHIP%202025-2027.jpg" alt="BCYA chairmanship victory celebration poster" loading="lazy">
-                        </a>
-                        <div class="work__body">
-                            <p class="work__index">Event poster &middot; Community</p>
-                            <h3 class="work__title">BCYA Chairmanship Victory</h3>
-                            <p class="work__desc">A poster announcing the BCYA chairmanship victory celebration for 2025&ndash;2027.</p>
-                            <dl class="work__meta">
-                                <div><dt>Format</dt><dd>Print &amp; social</dd></div>
-                                <div><dt>Tools</dt><dd>Photoshop</dd></div>
-                            </dl>
-                            <a href="portfolio/" class="action-link">More design work</a>
+                    <li class="show">
+                        <button class="show__tab" type="button" aria-expanded="false" aria-controls="show2">
+                            <span class="show__type">Event poster &middot; Community</span>
+                            <span class="show__name">BCYA Chairmanship Victory</span>
+                        </button>
+                        <div class="show__panel" id="show2">
+                            <p class="show__desc">A poster announcing the BCYA chairmanship victory celebration for 2025&ndash;2027.</p>
+                            <dl class="show__meta"><div><dt>Format</dt><dd>Print &amp; social</dd></div><div><dt>Tools</dt><dd>Photoshop</dd></div></dl>
+                            <a class="action-link" href="portfolio/">More design work</a>
                         </div>
                     </li>
                 </ol>
+            </div>
             </div>
         </section>
 
@@ -477,7 +470,7 @@
     </footer>
 
     <script src="js/site.js?v=20261103" defer></script>
-    <script src="js/home.js?v=20261103" defer></script>
+    <script src="js/home.js?v=20261103f" defer></script>
     <script src="js/analytics.js?v=20261103"></script>
 </body>
 </html>
