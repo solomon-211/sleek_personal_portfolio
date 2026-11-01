@@ -24,8 +24,8 @@
   --site-gutter:    clamp(16px, 4vw, 24px);
   --site-header-h:  64px;
   --site-radius:    12px;
-  --site-font:      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --site-display:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --site-font:      'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --site-display:   'Sora', 'Plus Jakarta Sans', -apple-system, sans-serif;
   --site-ease:      cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
@@ -270,7 +270,7 @@ body { background-color: var(--site-bg); }
 .ar-next--older { text-align: right; align-items: flex-end; }
 .ar-next:hover { border-color: rgba(254,127,45,.55); background: #ffffff; transform: translateY(-2px); }
 .ar-next__label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--site-orange-ink); }
-.ar-next__title { font-family: var(--site-display, 'Inter', sans-serif); font-weight: 700; font-size: clamp(1.02rem, 1.6vw, 1.2rem); line-height: 1.35; color: #233D4D; }
+.ar-next__title { font-family: var(--site-display, 'Sora', sans-serif); font-weight: 700; font-size: clamp(1.02rem, 1.6vw, 1.2rem); line-height: 1.35; color: #233D4D; }
 .ar-next__meta { font-size: 0.83rem; color: var(--site-text-3, #4a6473); }
 
 @media (max-width: 760px) {
