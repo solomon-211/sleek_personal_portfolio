@@ -14,7 +14,7 @@
     // Everything that can be searched or filtered, with its original text kept for highlighting
     const items = [feature, ...entries].filter(Boolean).map(el => {
         const fields = Array.from(el.querySelectorAll('.entry__title, .entry__excerpt, .feature__title a, .feature__excerpt'));
-        fields.forEach(f => { f.dataset.text = f.textContent; });
+        fields.forEach(f => { f.dataset.text = f.textContent; f.dataset.html = f.innerHTML; });
         return { el, fields, topics: (el.dataset.topics || '').split(' '), haystack: fields.map(f => f.textContent).join(' ').toLowerCase() };
     });
     const total = items.length;
@@ -42,7 +42,7 @@
     }
     function highlight(field, q) {
         const text = field.dataset.text;
-        if (!q) { field.textContent = text; return; }
+        if (!q) { field.innerHTML = field.dataset.html; return; }
         const re = new RegExp('\\b(' + escapeRe(q) + ')', 'ig');
         field.innerHTML = escapeHtml(text).replace(re, '<mark>$1</mark>');
     }

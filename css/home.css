@@ -621,3 +621,7 @@ body.home {
   .about-split__grid { grid-template-columns: 1fr; }
   .about-split__photo { aspect-ratio: 3 / 3.4; }
 }
+
+/* Lead story keeps the wall text in frame; Aspire is a text card */
+.story--lead .story__media img { object-position: left center; }
+.story--side .story__body { padding: 1.5rem; }

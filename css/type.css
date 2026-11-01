@@ -38,7 +38,7 @@ body { font-size: var(--fs-16); line-height: 1.7; }
 .impact-card__num, .story__pull { font-size: var(--fs-38); }
 
 /* ── 30: feature titles ─────────────────────────────── */
-.feature__title, .story--lead .story__title, .about-split__lead, .edu h3, .index__title, .cap-row__num {
+.feature__title, .story--lead .story__title, .edu h3, .index__title, .cap-row__num {
   font-size: var(--fs-30) !important; line-height: 1.2; letter-spacing: -0.02em;
 }
 
@@ -66,7 +66,7 @@ body { font-size: var(--fs-16); line-height: 1.7; }
 .split__lead, .cs-section p, .field input, .field textarea, .contact__item, .site-footer__bio {
   font-size: var(--fs-16) !important; line-height: 1.7 !important;
 }
-.about-split__lead { line-height: 1.25 !important; }
+
 
 /* ── 14: supporting text, controls, navigation ──────── */
 .site-nav__list a, .site-header__cta, .site-footer__nav a, .site-footer__bottom,
@@ -111,3 +111,13 @@ body { font-size: var(--fs-16); line-height: 1.7; }
 .cs-step-num { font-size: var(--fs-20) !important; }
 .ar-quote { font-size: var(--fs-18) !important; }
 .ar-quote cite { font-size: var(--fs-14) !important; }
+
+/* About opening line: sized to sit on two lines across the text column */
+.about-split__body { container-type: inline-size; }
+.about-split__body > .about-split__lead { max-width: none; width: 100%; font-size: clamp(1.2rem, 4.3cqi, 1.75rem) !important; line-height: 1.3 !important; letter-spacing: -0.015em; text-wrap: balance; }
+
+/* Section titles: capitals everywhere */
+.section__title, .xp-head h2, .cs-section h2, .index__title {
+  text-transform: uppercase; letter-spacing: -0.015em !important; max-width: 26ch;
+}
+.contact .section__title { max-width: 14ch; }
