@@ -268,3 +268,5 @@ mark { background: rgba(254, 127, 45, 0.28); color: #233D4D; border-radius: 3px;
   .feature .feature__title { font-size: var(--fs-20) !important; }
   .feature__title span { display: inline; white-space: normal; }
 }
+
+.feature__media { background: #fff; }
