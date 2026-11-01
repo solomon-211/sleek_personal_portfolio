@@ -142,3 +142,13 @@ body { font-size: var(--fs-16); line-height: 1.7; }
 .cap-card h3 { font-size: var(--fs-24); line-height: 1.25; letter-spacing: -0.015em; }
 .cap-card > p, .caps-head__lead { font-size: var(--fs-16); line-height: 1.7; }
 .cap-card__label { font-size: var(--fs-12); letter-spacing: 0.1em; }
+
+/* Article header text spans the cover image, edge to edge */
+.ar-header__inner { padding-right: 0 !important; container-type: inline-size; }
+.ar-header__inner > *, .ar-header__inner > .ar-title {
+  width: 100%; max-width: none; margin-left: 0; margin-right: 0;
+}
+.ar-title { text-wrap: wrap; }
+@media (min-width: 701px) {
+  .ar-title { font-size: min(2.1rem, 3.1cqi) !important; }
+}
