@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/article.css?v=20261105">
+    <link rel="stylesheet" href="css/article.css?v=20261105a">
     <!-- Article structured data -->
     <script type="application/ld+json">
     {
@@ -94,7 +94,7 @@
                     I come from South Sudan, where most students don&rsquo;t have access to higher-quality education. I chose African Leadership University because of the drive to cultivate African leaders to solve African problems, and I wanted to be educated to build in my home.
                 </p>
 
-                <ol class="ar-path" id="arPath">
+                <ol class="ar-path">
                     <li class="ar-path__step">
                         <p class="ar-path__label">First application</p>
                         <p>I applied to ALU twice. My first application got me a partial grant. Although that was promising, it showed me that though I had been seen, I hadn&rsquo;t been heard. My essays explained where I wanted to go, but not who I was. I didn&rsquo;t give up, though; I persevered and had the courage to write my story once more.</p>
@@ -171,17 +171,6 @@
             const h = document.documentElement.scrollHeight - window.innerHeight;
             if (progress && h > 0) progress.style.width = (window.scrollY / h * 100) + '%';
         }, { passive: true });
-        const path = document.getElementById('arPath');
-        function drawPath() {
-            const box = path.getBoundingClientRect();
-            const drawn = (window.innerHeight * 0.6 - box.top) / box.height;
-            path.style.setProperty('--drawn', Math.min(1, Math.max(0, drawn)));
-        }
-        if (path) {
-            window.addEventListener('scroll', drawPath, { passive: true });
-            window.addEventListener('resize', drawPath);
-            drawPath();
-        }
         const url   = encodeURIComponent(window.location.href);
         const title = encodeURIComponent(document.title);
         const shareBtn = document.getElementById('arShareBtn');
