@@ -178,3 +178,9 @@ a.work__media:hover, a.feature__media:hover {
 .show__meta dt { font-size: var(--fs-12); letter-spacing: 0.1em; }
 
 .about-split__body h3 { font-size: var(--fs-20); line-height: 1.3; letter-spacing: -0.01em; font-weight: 700; }
+
+.about-split__body .about-split__heading {
+  margin: 0 0 1rem; font-size: var(--fs-30); font-weight: 800; line-height: 1.15;
+  letter-spacing: -0.015em; text-transform: uppercase; color: var(--site-ink);
+}
+.about-split__body > p + p { margin-top: 1rem; }
