@@ -543,13 +543,17 @@ body.home {
 .about-split__body h3 { margin: 1.5rem 0 0.5rem; color: var(--site-ink); }
 .about-split__body .action-link { margin-top: 1.5rem; }
 
-/* Hero headline: each line slides in, one after the other */
-.hero__title-line { animation: hero-slide 0.8s var(--site-ease) both; }
-.hero__title-line:nth-child(1) { animation-delay: 0.15s; }
-.hero__title-line:nth-child(2) { animation-delay: 0.4s; }
-.hero__title-line:nth-child(3) { animation-delay: 0.65s; }
-@keyframes hero-slide {
-  from { opacity: 0; transform: translateX(-48px); }
-  to { opacity: 1; transform: none; }
+/* Hero: centred, headline typed in by js/home.js; hidden words keep their space */
+.hero--video .hero__grid { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+.hero--video .hero__copy { width: 100%; max-width: 760px; text-align: center; }
+.hero--video .hero__lead { margin-left: auto; margin-right: auto; }
+.hero--video .hero__actions, .hero--video .hero__creds { justify-content: center; }
+.hero--video::before { background: rgba(26, 45, 58, 0.84); }
+.hero__title.is-typing .hero__word { visibility: hidden; }
+.hero__title.is-typing .hero__word.is-on { visibility: visible; }
+.hero__caret {
+  display: inline-block; width: 0.07em; height: 0.92em; margin: 0 -0.07em 0 0.04em;
+  vertical-align: -0.08em; background: var(--site-orange);
+  animation: hero-caret 1s steps(2, start) infinite;
 }
-@media (prefers-reduced-motion: reduce) { .hero__title-line { animation: none; } }
+@keyframes hero-caret { to { visibility: hidden; } }

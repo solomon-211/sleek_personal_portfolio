@@ -17,6 +17,62 @@
         heroVideo.pause();
     }
 
+    // ── Hero headline: types in word by word, holds, deletes backwards, repeats ─
+    const heroTitle = document.getElementById('heroTitle');
+    if (heroTitle && !prefersReducedMotion) {
+        const steps = [];   // each step is the group of spans shown together
+        heroTitle.setAttribute('aria-label', heroTitle.textContent.replace(/\s+/g, ' ').trim());
+
+        function splitWords(node) {
+            Array.from(node.childNodes).forEach(child => {
+                if (child.nodeType !== Node.TEXT_NODE) { splitWords(child); return; }
+                const parts = child.textContent.split(/(\s+)/).filter(Boolean);
+                const frag = document.createDocumentFragment();
+                parts.forEach(part => {
+                    if (/^\s+$/.test(part)) { frag.append(' '); return; }
+                    const span = document.createElement('span');
+                    span.className = 'hero__word';
+                    span.textContent = part;
+                    span.setAttribute('aria-hidden', 'true');
+                    frag.append(span);
+                    // Punctuation appears with the word before it
+                    if (/^[.,]$/.test(part) && steps.length) steps[steps.length - 1].push(span);
+                    else steps.push([span]);
+                });
+                child.replaceWith(frag);
+            });
+        }
+        splitWords(heroTitle);
+
+        const caret = document.createElement('span');
+        caret.className = 'hero__caret';
+        caret.setAttribute('aria-hidden', 'true');
+
+        const TYPE = 280, DELETE = 130, HOLD = 2600, REST = 500;
+        let shown = 0, deleting = false;
+
+        function render() {
+            steps.forEach((group, i) => group.forEach(s => s.classList.toggle('is-on', i < shown)));
+            const anchor = shown ? steps[shown - 1] : steps[0];
+            const last = anchor[anchor.length - 1];
+            if (shown) last.after(caret); else last.before(caret);
+        }
+        function tick() {
+            if (!deleting && shown < steps.length) {
+                shown++; render();
+                setTimeout(tick, shown === steps.length ? HOLD : TYPE);
+                if (shown === steps.length) deleting = true;
+            } else if (deleting && shown > 0) {
+                shown--; render();
+                setTimeout(tick, shown === 0 ? REST : DELETE);
+                if (shown === 0) deleting = false;
+            }
+        }
+        heroTitle.classList.add('is-typing');
+        render();
+        setTimeout(tick, 300);
+    }
+
     // ── Selected work: choosing a project swaps the stage and opens its details ─
     const shows  = Array.from(document.querySelectorAll('.show'));
     const stages = Array.from(document.querySelectorAll('.stage__item'));
