@@ -394,11 +394,19 @@ body.home {
 
 /* ── Hero on the Nairobi skyline ────────────────────── */
 .hero--photo {
+  position: relative; overflow: hidden;
   border-bottom: 0;
-  background:
-    linear-gradient(95deg, rgba(26, 45, 58, 0.95) 0%, rgba(26, 45, 58, 0.84) 50%, rgba(26, 45, 58, 0.34) 100%),
-    url('../images/hero-bg.jpg') center 35% / cover no-repeat;
+  background: var(--site-ink-deep);
 }
+/* Whole photo sits on the right at hero height; its left edge melts into the teal */
+.hero--photo::after {
+  content: ''; position: absolute; top: 0; right: 0; bottom: 0;
+  aspect-ratio: 1; max-width: 62%;
+  background: url('../images/hero-bg.jpg') right center / cover no-repeat;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 32%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 32%);
+}
+.hero--photo .hero__grid { position: relative; z-index: 1; }
 .hero--photo .eyebrow { color: var(--site-orange); }
 .hero--photo .hero__title { color: #fff; }
 .hero--photo .hero__lead { color: rgba(255, 255, 255, 0.82); }
@@ -458,4 +466,16 @@ body.home {
 
 /* Text-only hero: one column, skyline behind the words, figure on the right */
 .hero--photo .hero__grid { grid-template-columns: minmax(0, 1fr); }
-.hero--photo .hero__copy { max-width: 760px; }
+.hero--photo .hero__copy { max-width: 640px; }
+
+/* Phones and tablets: photo sits below the text, fading up into the teal */
+@media (max-width: 860px) {
+  .hero--photo { padding-bottom: 320px; }
+  .hero--photo .hero__copy { max-width: none; }
+  .hero--photo::after {
+    top: auto; left: 0; height: 320px; width: 100%; max-width: none; aspect-ratio: auto;
+    background-position: center 8%;
+    -webkit-mask-image: linear-gradient(to top, #000 82%, transparent 100%);
+    mask-image: linear-gradient(to top, #000 82%, transparent 100%);
+  }
+}
