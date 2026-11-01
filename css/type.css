@@ -167,3 +167,6 @@ a.work__media:hover, a.feature__media:hover {
 .cap-card h3 { margin-top: 0; }
 .cap-cards { margin-top: 0; }
 .caps-head { display: block; }
+
+/* Contact card sits on the same page edges as every other section */
+.contact__grid { width: min(calc(var(--site-max) - 2 * var(--site-gutter)), calc(100% - 2 * var(--site-gutter))); }
