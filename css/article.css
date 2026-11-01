@@ -199,3 +199,59 @@ a:hover { color: var(--site-orange-ink); }
 .ar-header__inner { max-width: 1080px !important; padding-right: 220px; }
 .ar-header__inner > * { max-width: 700px; margin-left: auto; margin-right: auto; }
 @media (max-width: 900px) { .ar-header__inner { padding-right: 0; } }
+
+/* Scholarship story: path of applications, pocket note, result band, values */
+.ar-path { --drawn: 0; position: relative; margin: 2.5rem 0 0; padding-left: 3rem; list-style: none; }
+.ar-path::before, .ar-path::after {
+  content: ''; position: absolute; top: 0.4rem; bottom: 0; left: 0.6rem; width: 3px;
+  background: var(--site-line-2);
+}
+.ar-path::after { background: var(--site-orange); transform: scaleY(var(--drawn)); transform-origin: top; }
+.ar-path__step { position: relative; padding-bottom: 2.75rem; }
+.ar-path__step:not(.ar-path__step--won)::before {
+  content: ''; position: absolute; z-index: 1; top: 0.2rem; left: -2.95rem;
+  width: 1.25rem; height: 1.25rem; border-radius: 50%;
+  background: #fff; border: 3px solid var(--site-orange);
+}
+.ar-body__inner .ar-path__label {
+  margin-bottom: 0.5rem; font-size: var(--fs-14) !important; font-weight: 700; line-height: 1.5 !important;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--site-orange-ink);
+}
+.ar-pocket {
+  max-width: 34rem; margin: 1.75rem 0 0.5rem; padding: 1.5rem 1.75rem;
+  background: #fff; border: var(--site-stroke); border-top: 6px solid var(--site-orange); border-radius: 6px;
+  box-shadow: 6px 6px 0 rgba(35, 61, 77, 0.1); transform: rotate(-1.2deg);
+}
+.ar-body__inner .ar-pocket p {
+  margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: var(--fs-30) !important;
+  font-weight: 700; line-height: 1.25 !important; letter-spacing: 0; color: var(--site-ink);
+}
+.ar-pocket cite { display: block; margin-top: 0.75rem; font-size: var(--fs-14); font-weight: 600; font-style: normal; color: var(--site-orange-ink); }
+.ar-path__step--won {
+  z-index: 1; margin-left: -3rem; padding: clamp(1.75rem, 4vw, 2.75rem);
+  background: var(--site-ink-deep); border-radius: 14px;
+}
+.ar-body__inner .ar-path__step--won p {
+  margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: var(--fs-38) !important;
+  font-weight: 700; line-height: 1.2 !important; letter-spacing: 0; color: #fff;
+}
+.ar-body__inner .ar-path__step--won strong { color: var(--site-orange); font-weight: 800; }
+
+.ar-values { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.25rem 0 0; list-style: none; }
+.ar-values li { padding: clamp(1.25rem, 2.5vw, 1.75rem); border: var(--site-stroke); border-radius: 14px; }
+.ar-body__inner .ar-values h3 {
+  margin: 0 0 0.4rem; font-family: 'Playfair Display', Georgia, serif;
+  font-size: var(--fs-24) !important; font-weight: 700; color: var(--site-ink);
+}
+.ar-body__inner .ar-values p { margin: 0; font-size: var(--fs-16) !important; line-height: 1.65 !important; }
+.ar-close { margin-top: 2.75rem; }
+.ar-body__inner .ar-close strong { color: var(--site-orange-ink); }
+
+@media (max-width: 640px) {
+  .ar-path { padding-left: 2.25rem; }
+  .ar-path__step:not(.ar-path__step--won)::before { left: -2.2rem; }
+  .ar-path__step--won { margin-left: -2.25rem; }
+  .ar-body__inner .ar-pocket p { font-size: var(--fs-24) !important; }
+  .ar-body__inner .ar-path__step--won p { font-size: var(--fs-30) !important; }
+  .ar-values { grid-template-columns: minmax(0, 1fr); }
+}
