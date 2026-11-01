@@ -579,3 +579,10 @@ body.home {
 }
 
 .field input::placeholder, .field textarea::placeholder { color: var(--site-text-3); }
+
+/* Poster rows: column fits the poster so it lines up with the page edge, text sits beside it */
+@media (min-width: 861px) {
+  .work:has(.work__media--poster) { grid-template-columns: 440px minmax(0, 1fr); }
+  .work:nth-child(even):has(.work__media--poster) { grid-template-columns: minmax(0, 1fr) 440px; }
+  .work__media--poster { justify-self: stretch; max-width: none; }
+}
