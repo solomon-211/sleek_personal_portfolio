@@ -63,14 +63,6 @@ body.home {
 .btn--ghost:hover { border-color: rgba(35,61,77,0.35); background: rgba(35,61,77,0.04); }
 .btn:disabled { opacity: 0.6; cursor: progress; }
 
-.link-arrow {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-weight: 600; font-size: 0.95rem;
-  color: var(--site-orange-ink) !important; text-decoration: none;
-  white-space: nowrap;
-}
-.link-arrow i { font-size: 0.8em; transition: transform 0.2s var(--site-ease); }
-.link-arrow:hover i { transform: translateX(3px); }
 
 .home a:focus-visible, .home button:focus-visible,
 .home input:focus-visible, .home textarea:focus-visible {
@@ -127,8 +119,6 @@ body.home {
   display: flex; flex-wrap: wrap; align-items: center; gap: 0.85rem 1.25rem;
   margin-top: 2.25rem;
 }
-.hero__actions .link-arrow { color: var(--site-text-2) !important; margin-left: 0.25rem; }
-.hero__actions .link-arrow:hover { color: #233D4D !important; }
 .hero__creds {
   display: flex; flex-wrap: wrap; gap: 0.75rem 2rem;
   margin-top: 2.75rem; padding-top: 1.5rem;
@@ -479,7 +469,6 @@ body.home {
 }
 .about-facts dt { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--site-text-3); }
 .about-facts dd { margin-top: 0.3rem; font-size: 0.93rem; line-height: 1.5; color: var(--site-ink); }
-.about-split .link-arrow { color: var(--site-orange-ink) !important; }
 @media (max-width: 1100px) {
   .about-split__chapters, .about-facts { grid-template-columns: 1fr; }
 }
@@ -506,7 +495,6 @@ body.home {
 .stories-band .eyebrow span { color: rgba(255, 255, 255, 0.62); }
 .stories-band .eyebrow span::after { background: rgba(255, 255, 255, 0.28); }
 .stories-band .section__title { color: #fff; }
-.stories-band .link-arrow { color: var(--site-orange) !important; }
 
 .stories {
   display: grid; gap: 1.25rem;
@@ -538,9 +526,6 @@ body.home {
   font-family: var(--site-display); font-weight: 700;
   font-size: clamp(1.08rem, 1.5vw, 1.25rem); line-height: 1.3; letter-spacing: -0.015em;
 }
-.story__more { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.92rem; color: var(--site-orange-ink); }
-.story__more i { font-size: 0.8em; transition: transform 0.2s var(--site-ease); }
-.story:hover .story__more i { transform: translateX(4px); }
 
 /* Lead: tall photo story across both rows */
 .story--lead { grid-row: 1 / 3; }
