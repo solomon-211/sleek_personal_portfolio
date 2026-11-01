@@ -224,3 +224,5 @@ a.work__media:hover, a.feature__media:hover {
   font-weight: 400; font-size: 2.4rem; line-height: 1; letter-spacing: 0;
   padding: 0.2em 0.15em 0 0;
 }
+
+.about-split__photo, .about-split__photo img { border-radius: 0 !important; }
