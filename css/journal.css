@@ -279,3 +279,28 @@ mark { background: rgba(254, 127, 45, 0.28); color: #233D4D; border-radius: 3px;
 /* Blog hero matches Experience: full band, featured article sits below it */
 .page-journal .page-hero { padding-bottom: clamp(3rem, 6vw, 4.5rem); }
 .feature { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+
+/* Featured article uses the About layout: full-width split, picture panel beside a grey text panel */
+.journal .feature {
+  width: 100vw; margin: 0 0 clamp(3rem, 6vw, 4.5rem) calc(50% - 50vw);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  background: #f0f2f3;
+  border: 0 !important; border-radius: 0 !important;
+}
+.journal .feature__media, .journal a.feature__media:hover {
+  min-height: 480px; background: #fff;
+  border: 0 !important; border-radius: 0 !important;
+}
+.journal .feature__media img { object-position: center top; }
+.journal .feature__body { padding: clamp(2.5rem, 5vw, 4.25rem) clamp(1.5rem, 4.5vw, 4rem); }
+.journal .feature__text { width: 100%; }
+.journal .feature .feature__title {
+  font-size: var(--fs-30) !important; font-weight: 800; line-height: 1.15;
+  letter-spacing: -0.015em; text-transform: uppercase;
+}
+.journal .feature__title span { display: inline; white-space: normal; }
+.journal .feature__text .feature__excerpt { width: auto; min-width: 0; max-width: 64ch; }
+@media (max-width: 1100px) {
+  .journal .feature { grid-template-columns: 1fr; }
+  .journal .feature__media, .journal a.feature__media:hover { min-height: 0; aspect-ratio: 1400 / 948; }
+}
