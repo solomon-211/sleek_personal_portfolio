@@ -275,3 +275,7 @@ mark { background: rgba(254, 127, 45, 0.28); color: #233D4D; border-radius: 3px;
 .year { display: block; }
 .year + .year { border-top: 1px solid var(--site-line); }
 .entry__date { white-space: nowrap; }
+
+/* Blog hero matches Experience: full band, featured article sits below it */
+.page-journal .page-hero { padding-bottom: clamp(3rem, 6vw, 4.5rem); }
+.feature { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
