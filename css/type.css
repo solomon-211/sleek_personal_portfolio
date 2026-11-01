@@ -150,5 +150,5 @@ body { font-size: var(--fs-16); line-height: 1.7; }
 }
 .ar-title { text-wrap: wrap; }
 @media (min-width: 701px) {
-  .ar-title { font-size: min(2.1rem, 3.1cqi) !important; }
+  .ar-title { font-size: min(2.1rem, 3cqi) !important; }
 }
