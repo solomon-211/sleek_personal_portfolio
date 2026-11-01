@@ -29,12 +29,12 @@ body.page-journal {
 }
 .kicker__accent {
   padding: 0.25rem 0.55rem; border-radius: 6px;
-  background: var(--site-orange); color: #fff; letter-spacing: 0.1em;
+  background: var(--site-ink); color: #fff; letter-spacing: 0.1em;
 }
 
 .link-cta {
   display: inline-flex; align-items: center; gap: 0.55rem;
-  font-weight: 600; color: var(--site-orange); text-decoration: none;
+  font-weight: 600; color: var(--site-orange-ink); text-decoration: none;
 }
 .link-cta i { font-size: 0.8em; transition: transform 0.25s var(--site-ease); }
 .link-cta:hover i { transform: translateX(4px); }
@@ -55,7 +55,7 @@ body.page-journal {
   aspect-ratio: 5 / 4;
   border-radius: 18px; overflow: hidden;
   border: 1px solid var(--site-line-2);
-  background: #0f1a21;
+  background: #f5f7f8;
 }
 .feature__media img {
   width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
@@ -63,7 +63,7 @@ body.page-journal {
 }
 .feature__media::after {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(160deg, rgba(254, 127, 45, 0.12), rgba(19, 31, 39, 0) 45%);
+  background: linear-gradient(160deg, rgba(254, 127, 45, 0.12), rgba(255,255,255, 0) 45%);
   pointer-events: none;
 }
 .feature:hover .feature__media img { transform: scale(1.03); }
@@ -73,7 +73,7 @@ body.page-journal {
   font-size: clamp(1.75rem, 3.4vw, 2.75rem); line-height: 1.12; letter-spacing: -0.025em;
   text-wrap: balance;
 }
-.feature__title a { color: #fff; text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat; transition: background-size 0.45s var(--site-ease); }
+.feature__title a { color: #233D4D; text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat; transition: background-size 0.45s var(--site-ease); }
 .feature__title a:hover { background-size: 100% 2px; }
 .feature__excerpt { margin-top: 1.25rem; max-width: 52ch; font-size: 1.05rem; line-height: 1.75; color: var(--site-text-2); }
 .feature .link-cta { margin-top: 1.75rem; }
@@ -103,7 +103,7 @@ body.page-journal {
   font-family: var(--site-display); font-weight: 800;
   font-size: clamp(1.6rem, 2.6vw, 2.2rem); letter-spacing: -0.03em; line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.35);
+  -webkit-text-stroke: 1px rgba(35,61,77,0.35);
 }
 
 .entry[hidden] { display: none; }
@@ -134,7 +134,7 @@ body.page-journal {
 .entry__main { display: grid; gap: 0.45rem; }
 .entry__title {
   font-family: var(--site-display); font-weight: 600;
-  font-size: clamp(1.08rem, 1.7vw, 1.3rem); line-height: 1.35; color: #fff;
+  font-size: clamp(1.08rem, 1.7vw, 1.3rem); line-height: 1.35; color: #233D4D;
   transition: color 0.25s ease;
 }
 .entry__excerpt { font-size: 0.93rem; line-height: 1.65; color: var(--site-text-2); max-width: 62ch; }
@@ -144,16 +144,16 @@ body.page-journal {
   padding-top: 0.35rem; font-size: 0.85rem; color: var(--site-text-3);
   transition: transform 0.3s var(--site-ease), color 0.25s ease;
 }
-.entry__link:hover .entry__title { color: var(--site-orange); }
-.entry__link:hover .entry__arrow { color: var(--site-orange); transform: translateX(4px); }
+.entry__link:hover .entry__title { color: var(--site-orange-ink); }
+.entry__link:hover .entry__arrow { color: var(--site-orange-ink); transform: translateX(4px); }
 
 /* ── Cursor preview (pointer devices only) ──────────── */
 .peek {
   position: fixed; left: 0; top: 0; z-index: 50;
   width: 240px; aspect-ratio: 4 / 3;
   border-radius: 12px; overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(35,61,77,0.14);
+  box-shadow: 0 24px 50px rgba(35,61,77,0.16);
   pointer-events: none;
   opacity: 0;
   transform: translate3d(var(--peek-x, 0), var(--peek-y, 0), 0) scale(0.92) rotate(-3deg);
@@ -197,7 +197,7 @@ body.page-journal {
 .search {
   position: relative; display: flex; align-items: center;
   height: 46px; padding: 0 0.75rem 0 2.5rem;
-  border-radius: 12px; border: 1px solid var(--site-line-2); background: #172630;
+  border-radius: 12px; border: 1px solid var(--site-line-2); background: #f5f7f8;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .search:focus-within { border-color: var(--site-orange); box-shadow: 0 0 0 3px rgba(254, 127, 45, 0.16); }
@@ -205,7 +205,7 @@ body.page-journal {
 .search__input {
   flex: 1; min-width: 0; height: 100%;
   border: 0; outline: 0; background: transparent;
-  color: #fff; font: 500 0.92rem var(--site-font);
+  color: #233D4D; font: 500 0.92rem var(--site-font);
 }
 .search__input::placeholder { color: var(--site-text-3); }
 .search__input::-webkit-search-cancel-button { filter: invert(1) opacity(0.5); }
@@ -219,21 +219,21 @@ body.page-journal {
 .seg__count {
   display: inline-block; min-width: 1.3em; margin-left: 0.25rem;
   padding: 0.05rem 0.35rem; border-radius: 5px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(35,61,77,0.08);
   font-size: 0.72rem; font-variant-numeric: tabular-nums; text-align: center;
 }
-.seg__btn[aria-selected="true"] .seg__count { background: rgba(255, 255, 255, 0.22); }
+.seg__btn[aria-selected="true"] .seg__count { background: rgba(35,61,77,0.22); }
 
-mark { background: rgba(254, 127, 45, 0.28); color: #fff; border-radius: 3px; padding: 0 0.1em; }
+mark { background: rgba(254, 127, 45, 0.28); color: #233D4D; border-radius: 3px; padding: 0 0.1em; }
 
 .index__empty { padding: 2.5rem 0; border-top: 1px solid var(--site-line-2); color: var(--site-text-2); }
 .index__empty p { margin: 0 0 1rem; }
 .index__reset {
   height: 40px; padding: 0 1rem; border-radius: 10px;
-  border: 1px solid var(--site-line-2); background: transparent; color: #fff;
+  border: 1px solid var(--site-line-2); background: transparent; color: #233D4D;
   font: 600 0.88rem var(--site-font); cursor: pointer;
 }
-.index__reset:hover { border-color: var(--site-orange); color: var(--site-orange); }
+.index__reset:hover { border-color: var(--site-orange); color: var(--site-orange-ink); }
 
 @media (max-width: 1100px) {
   .index__bar { grid-template-columns: minmax(0, 1fr) minmax(200px, 320px); }

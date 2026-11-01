@@ -12,7 +12,7 @@
 
     // ── Reveal on scroll (content stays visible if JS or observers fail) ──────
     if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-        const targets = document.querySelectorAll('.section__head, .work, .about__body, .split__aside, .cap-row, .xp-row, .stats, .initiatives, .post, .contact__grid');
+        const targets = document.querySelectorAll('.section__head, .work, .about__body, .split__aside, .cap-row, .xp-row, .impact-card, .post, .contact__grid');
         document.documentElement.classList.add('js-reveal');
         targets.forEach(el => el.classList.add('reveal'));
         const io = new IntersectionObserver(entries => {
