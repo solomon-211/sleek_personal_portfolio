@@ -111,9 +111,11 @@ body.home {
 
 /* ── Selected work: a wall of pinned pieces, all on show ── */
 .wall {
-  display: grid; grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
-  gap: clamp(1.5rem, 3vw, 2.5rem); align-items: start;
-  margin: 0; padding: 0.75rem 0 0; list-style: none;
+  --wall-w: min(1400px, calc(100vw - 3rem));
+  display: grid; grid-template-columns: minmax(0, 1.7fr) repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 2.5vw, 2rem); align-items: start;
+  width: var(--wall-w); margin: 0 0 0 calc((100% - var(--wall-w)) / 2);
+  padding: 0.75rem 0 0; list-style: none;
 }
 .wall__piece--poster:last-child { margin-top: clamp(2rem, 5vw, 4rem); }
 .wall__frame {
@@ -147,7 +149,7 @@ body.home {
 .tag-live { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--site-orange-ink); }
 .tag-live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 @media (max-width: 860px) {
-  .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); width: auto; margin-left: 0; }
   .wall__piece--site { grid-column: 1 / -1; }
   .wall__piece--poster:last-child { margin-top: 0; }
 }
