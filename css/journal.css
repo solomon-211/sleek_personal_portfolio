@@ -231,7 +231,7 @@ mark { background: rgba(254, 127, 45, 0.28); color: #233D4D; border-radius: 3px;
   border-right: var(--site-stroke) !important;
   transform: none !important; box-shadow: none !important;
 }
-.feature__media img { position: absolute; inset: 0; object-position: left center; }
+.feature__media img { position: absolute; inset: 0; object-position: center top; }
 .feature__media::after { content: none; }
 .feature:hover .feature__media img { transform: none; }
 .feature__body {
