@@ -1,4 +1,4 @@
-// Homepage behaviour: contact form and gentle reveal.
+// Homepage behaviour: contact form and hero video.
 (function () {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -15,26 +15,6 @@
     if (heroVideo && prefersReducedMotion) {
         heroVideo.removeAttribute('autoplay');
         heroVideo.pause();
-    }
-
-    // ── Reveal on scroll (content stays visible if JS or observers fail) ──────
-    if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-        const targets = document.querySelectorAll('.section__head, .work, .about-split__head, .about-split__lead, .about-chapter, .about-facts, .caps-head, .cap-card, .xp-row, .impact-card, .story, .contact__grid');
-        document.documentElement.classList.add('js-reveal');
-        targets.forEach(el => el.classList.add('reveal'));
-        const io = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('is-in');
-                io.unobserve(entry.target);
-            });
-        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-        targets.forEach(el => io.observe(el));
-        // Failsafe for anchors / print / missed callbacks
-        setTimeout(() => targets.forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('is-in');
-        }), 1500);
-        window.addEventListener('beforeprint', () => targets.forEach(el => el.classList.add('is-in')));
     }
 
     // ── Contact form ──────────────────────────────────────────────────────────

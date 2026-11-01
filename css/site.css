@@ -196,11 +196,6 @@ body { background-color: var(--site-bg); }
   font-family: var(--site-font);
 }
 .page-hero__inner { max-width: var(--site-max); margin: 0 auto; padding: 0 var(--site-gutter); }
-.page-hero__eyebrow {
-  margin: 0 0 1rem;
-  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--site-orange-ink) !important;
-}
 .page-hero__title {
   margin: 0; max-width: 20ch;
   font-family: var(--site-display); font-weight: 800;
@@ -350,7 +345,6 @@ html, html body { background: var(--site-bg) !important; color: var(--site-text)
 
 /* ── Inner page heading: the same teal band on Portfolio, Blog and Experience ── */
 .page-hero { background: var(--site-ink-deep); border-bottom: 0; }
-.page-hero__eyebrow { color: var(--site-orange) !important; }
 .page-hero__title { color: #fff !important; text-transform: uppercase; max-width: none; }
 .page-hero__lead { color: rgba(255, 255, 255, 0.82) !important; }
 

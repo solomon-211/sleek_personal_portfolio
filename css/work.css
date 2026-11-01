@@ -26,7 +26,6 @@ body.page-work {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap;
   margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
 }
-.work__hint { font-size: 0.88rem; color: var(--site-text-3); }
 
 /* ── Bento grid ─────────────────────────────────────── */
 .bento {
@@ -163,7 +162,6 @@ body.has-lightbox { overflow: hidden; }
 @media (max-width: 640px) {
   .bento, .bento.is-filtered { grid-template-columns: 1fr; grid-template-areas: none; }
   .bento .tile { grid-area: auto; }
-  .work__hint { display: none; }
   .seg { width: 100%; }
   .seg__btn { flex: 1; padding: 0.6rem 0.5rem; }
   .lightbox__figure { grid-template-columns: 1fr; overflow-y: auto; }

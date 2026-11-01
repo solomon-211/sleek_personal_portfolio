@@ -180,12 +180,6 @@ body.page-journal {
 }
 .search__input::placeholder { color: var(--site-text-3); }
 .search__input::-webkit-search-cancel-button { filter: invert(1) opacity(0.5); }
-.search__key {
-  padding: 0.1rem 0.45rem; border-radius: 6px;
-  border: 1px solid var(--site-line-2); color: var(--site-text-3);
-  font: 600 0.75rem var(--site-font);
-}
-.search:focus-within .search__key { display: none; }
 
 .seg__count {
   display: inline-block; min-width: 1.3em; margin-left: 0.25rem;
@@ -212,7 +206,6 @@ mark { background: rgba(254, 127, 45, 0.28); color: #233D4D; border-radius: 3px;
 }
 @media (max-width: 640px) {
   .index__bar { grid-template-columns: 1fr; }
-  .search__key { display: none; }
 }
 .feature .action-link { margin-top: 1.75rem; }
 
