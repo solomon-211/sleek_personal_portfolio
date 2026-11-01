@@ -402,24 +402,15 @@ body.home {
   letter-spacing: -0.015em; line-height: 1.08; text-transform: uppercase;
   color: var(--site-ink); text-wrap: balance;
 }
-/* Full-width split: white picture panel beside the light grey text panel */
+/* Full-width split: portrait panel beside the light grey text panel */
 .about-split__grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
 .about-split__photo {
   position: relative; min-height: 620px; overflow: hidden; margin: 0;
-  background: #fff;
-}
-.about-split__photo::before {
-  content: ''; position: absolute; left: 50%; top: 50%;
-  width: min(84%, 430px); aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: #fff;
-  border: 5px solid var(--site-orange);
+  background: #e5f1fd;
 }
 .about-split__photo img {
-  position: absolute; left: 50%; bottom: 0;
-  width: auto; height: 94%; max-width: none;
-  transform: translateX(-50%);
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 35%;
 }
 .about-split__place {
   position: absolute; left: 1.25rem; bottom: 1.25rem; z-index: 1;
@@ -462,7 +453,7 @@ body.home {
 }
 @media (max-width: 860px) {
   .about-split__grid { grid-template-columns: 1fr; }
-  .about-split__photo { min-height: 0; aspect-ratio: 4 / 4.4; }
+  .about-split__photo { min-height: 0; aspect-ratio: 3 / 3.6; }
 }
 
 /* Text-only hero: one column, skyline behind the words, figure on the right */
