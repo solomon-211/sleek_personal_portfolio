@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <!-- ── Home / Main portfolio ─────────────────────── -->
   <url>
     <loc>https://solomonleek.com/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -21,7 +21,7 @@
   <!-- ── Experience page ───────────────────────────── -->
   <url>
     <loc>https://solomonleek.com/experience/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
@@ -29,7 +29,7 @@
   <!-- ── Full work portfolio ───────────────────────── -->
   <url>
     <loc>https://solomonleek.com/portfolio/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
     <image:image>
@@ -41,7 +41,7 @@
   <!-- ── Blog ──────────────────────────────────────── -->
   <url>
     <loc>https://solomonleek.com/blog/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
@@ -55,7 +55,7 @@
   <!-- ── Case Study ────────────────────────────────── -->
   <url>
     <loc>https://solomonleek.com/case-study/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -67,7 +67,7 @@
   <!-- ── Articles ──────────────────────────────────── -->
   <url>
     <loc>https://solomonleek.com/articles/alu-nairobi-nexus-light-academy/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -78,7 +78,7 @@
 
   <url>
     <loc>https://solomonleek.com/articles/alu-scholarship-journey/</loc>
-    <lastmod>2026-01-01</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -89,18 +89,14 @@
 
   <url>
     <loc>https://solomonleek.com/articles/aspire-leaders-program/</loc>
-    <lastmod>2025-05-01</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.75</priority>
-    <image:image>
-      <image:loc>https://solomonleek.com/images/1754355782432.jpg</image:loc>
-      <image:title>Aspire Leaders Program — Solomon Thiong Garang Leek</image:title>
-    </image:image>
   </url>
 
   <url>
     <loc>https://solomonleek.com/articles/alu-marketing-extern-nairobi/</loc>
-    <lastmod>2025-05-01</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -111,17 +107,11 @@
 
   <url>
     <loc>https://solomonleek.com/articles/financial-planning-young-adults/</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.65</priority>
   </url>
 
   <!-- ── 404 ───────────────────────────────────────── -->
-  <url>
-    <loc>https://solomonleek.com/404.html</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.10</priority>
-  </url>
 
 </urlset>
