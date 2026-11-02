@@ -248,3 +248,12 @@ a:hover { color: var(--site-orange-ink); }
   .ar-body__inner .ar-path__step--won p { font-size: var(--fs-30) !important; }
   .ar-values { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Plain callouts and quotes: no accent stripe, tint, icon or glow */
+.ar-progress { box-shadow: none; }
+.ar-callout {
+  display: block; padding: 1.25rem 1.5rem;
+  background: var(--site-surface, #f5f7f8); border: 0; border-radius: 6px;
+}
+.ar-quote, .ar-blockquote { padding: 0; background: none; border: 0; border-radius: 0; overflow: visible; }
+.ar-quote::before { content: none; }

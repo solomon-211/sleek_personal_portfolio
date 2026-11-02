@@ -55,11 +55,6 @@ body.page-journal {
   width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
   transition: transform 0.9s var(--site-ease);
 }
-.feature__media::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(160deg, rgba(254, 127, 45, 0.12), rgba(255,255,255, 0) 45%);
-  pointer-events: none;
-}
 .feature:hover .feature__media img { transform: scale(1.03); }
 .feature__title {
   margin-top: 1.1rem;

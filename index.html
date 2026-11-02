@@ -29,7 +29,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/site.css?v=20261108">
-    <link rel="stylesheet" href="css/home.css?v=20261108a">
+    <link rel="stylesheet" href="css/home.css?v=20261109b">
 
     <!-- Optional overrides for a separately hosted API.
          If unset, the frontend uses same-origin /api routes. -->
@@ -99,7 +99,7 @@
             }
         }
         </script>
-    <link rel="stylesheet" href="css/type.css?v=20261108a">
+    <link rel="stylesheet" href="css/type.css?v=20261109">
 </head>
 <body class="home">
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -140,19 +140,34 @@
                         <a href="#work" class="btn btn--primary">View my work</a>
                         <a href="#contact" class="btn btn--ghost">Get in touch</a>
                     </div>
-                    <ul class="hero__creds" aria-label="Credentials">
-                        <li><img src="images/ALU%20LOGO.jpg" alt="" width="28" height="28"> African Leadership University</li>
-                        <li><img src="images/MCF%20LOGO.jpg" alt="" width="28" height="28"> Mastercard Foundation Scholar</li>
-                    </ul>
                 </div>
 
             </div>
         </section>
 
+        <!-- ── RECOGNITION ────────────────────────────────── -->
+        <aside class="recognition" aria-label="Recognition">
+            <div class="recognition__track">
+                <ul class="recognition__list">
+                    <li>Mastercard Foundation Scholar</li>
+                    <li>Aspire Leaders Program</li>
+                    <li>ALU Marketing Extern</li>
+                    <li>NISR Infographic Competition 2026</li>
+                </ul>
+                <ul class="recognition__list" aria-hidden="true">
+                    <li>Mastercard Foundation Scholar</li>
+                    <li>Aspire Leaders Program</li>
+                    <li>ALU Marketing Extern</li>
+                    <li>NISR Infographic Competition 2026</li>
+                </ul>
+            </div>
+        </aside>
+
         <!-- ── ABOUT ────────────────────────────────────── -->
         <section class="about-split" id="about" aria-labelledby="aboutTitle">
             <header class="about-split__head">
                 <h2 class="about-split__title" id="aboutTitle">About me</h2>
+                <p class="about-now"><strong>Right now</strong> Studying Software Engineering at ALU in Kigali. Most recent role: Software Development Intern at Elevanda Ventures.</p>
             </header>
             <div class="about-split__grid">
                 <figure class="about-split__photo">
@@ -200,7 +215,7 @@
                         <p class="wall__desc">A data story on child stunting in Rwanda, told as a poster, a short video and an interactive website. Co-created with Saad Byiringiro.</p>
                         <a class="action-link" href="https://solomon-211.github.io/Infographic-competition_dynamic/" target="_blank" rel="noopener noreferrer">View the live infographic</a>
                     </li>
-                    <li class="wall__piece wall__piece--poster">
+                    <li class="wall__piece wall__piece--poster wall__piece--tall">
                         <a class="wall__frame" href="case-study/" tabindex="-1">
                             <img src="images/Independence-day.jpg" alt="Independence Day campaign poster" width="1200" height="1600" loading="lazy">
                         </a>
@@ -209,7 +224,29 @@
                         <p class="wall__desc">A poster for Uganda&rsquo;s Independence Day, made for print and social media.</p>
                         <a class="action-link" href="case-study/">Read the case study</a>
                     </li>
+                    <li class="wall__piece wall__piece--poster wall__piece--apparel">
+                        <a class="wall__frame" href="portfolio/" tabindex="-1">
+                            <img src="images/apparel-hoodie.png" alt="Black hoodie with South Sudan map and gold chain graphic" width="724" height="900" loading="lazy">
+                        </a>
+                        <div>
+                            <p class="wall__type">Apparel</p>
+                            <h3 class="wall__name">Vision Hoodie</h3>
+                            <p class="wall__desc">Hoodie artwork with a gold-chain South Sudan map.</p>
+                            <a class="action-link" href="portfolio/">See more apparel</a>
+                        </div>
+                    </li>
                 </ul>
+            </div>
+        </section>
+
+        <!-- ── QUOTE ────────────────────────────────────── -->
+        <section class="quote-band" aria-label="A line I carry">
+            <div class="wrap">
+                <blockquote class="quote-note">
+                    <p>&ldquo;One minute on a book does not lie.&rdquo;</p>
+                    <cite>Noble Arem Riak</cite>
+                </blockquote>
+                <a class="action-link" href="articles/alu-scholarship-journey/">Read how I got the scholarship</a>
             </div>
         </section>
 
@@ -225,7 +262,7 @@
                 <ul class="xp-list">
                     <li class="xp-row">
                         <span class="xp-row__date">Aug 2026</span>
-                        <div class="xp-row__main"><h3>ALU Recruitment Team &mdash; Nairobi Nexus</h3><p>African Leadership University &middot; Nairobi</p></div>
+                        <div class="xp-row__main"><h3>ALU Recruitment Team, Nairobi Nexus</h3><p>African Leadership University &middot; Nairobi</p></div>
                         <span class="xp-row__tag">Outreach</span>
                     </li>
                     <li class="xp-row">
@@ -242,6 +279,33 @@
                         <span class="xp-row__date">May&ndash;Aug 2025</span>
                         <div class="xp-row__main"><h3>Marketing &amp; Outreach Extern</h3><p>African Leadership University &middot; Nairobi</p></div>
                         <span class="xp-row__tag">Outreach</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ── MOMENTS ──────────────────────────────────── -->
+        <section class="section" id="moments" aria-labelledby="momentsTitle">
+            <div class="wrap">
+                <header class="section__head">
+                    <h2 class="section__title" id="momentsTitle">In the room</h2>
+                </header>
+                <ul class="moments">
+                    <li class="moment">
+                        <span class="moment__frame"><img src="images/1747700819023.jpg" alt="Solomon at the ALU Nairobi Nexus" width="1280" height="1706" loading="lazy"></span>
+                        <p class="moment__cap">At the ALU Nairobi Nexus</p>
+                    </li>
+                    <li class="moment">
+                        <span class="moment__frame"><img src="images/1747700820321.jpg" alt="Looking out over Nairobi from Light Academy" width="1280" height="1706" loading="lazy"></span>
+                        <p class="moment__cap">Looking out over Nairobi from Light Academy</p>
+                    </li>
+                    <li class="moment">
+                        <span class="moment__frame"><img src="images/moment-do-hard-things.jpg" alt="Solomon standing in front of a Do Hard Things wall" width="900" height="1200" loading="lazy"></span>
+                        <p class="moment__cap">#DoHardThings</p>
+                    </li>
+                    <li class="moment">
+                        <span class="moment__frame"><img src="images/1754355782438.jpg" alt="Solomon&rsquo;s 2025 Aspire Leaders Program certificate" width="1241" height="949" loading="lazy"></span>
+                        <p class="moment__cap">Completing the 2025 Aspire Leaders Program</p>
                     </li>
                 </ul>
             </div>
@@ -287,19 +351,19 @@
                         <span class="story__media"><img src="images/feature-solomon.jpg" alt="Portrait of Solomon Thiong Garang Leek" width="1400" height="948" loading="lazy"></span>
                         <span class="story__body">
                             <span class="story__meta"><b>Latest</b> Community &middot; Aug 2026 &middot; 6 min</span>
-                            <span class="story__title">What I Saw at Light Academy Nairobi &mdash; College Transition &amp; Why It Matters</span>
+                            <span class="story__title">What I Saw at Light Academy Nairobi</span>
                             <span class="action-link">Read the article</span>
                         </span>
                     </a>
                     <a class="story story--quote" href="articles/alu-scholarship-journey/">
                         <span class="story__pull">&ldquo;I applied twice.&rdquo;</span>
-                        <span class="story__title">How I Got a Full Scholarship to ALU &mdash; My Application Journey</span>
+                        <span class="story__title">How I Got a Full-Ride Scholarship to ALU</span>
                         <span class="story__meta">Student life &middot; Jan 2026 &middot; 2 min</span>
                     </a>
                     <a class="story story--side" href="articles/aspire-leaders-program/">
                         <span class="story__body">
                             <span class="story__meta">Leadership &middot; May 2025 &middot; 5 min</span>
-                            <span class="story__title">Aspire Leaders Program &mdash; What I Learned and Why It Matters</span>
+                            <span class="story__title">What the Aspire Leaders Program Taught Me</span>
                         </span>
                     </a>
                 </div>

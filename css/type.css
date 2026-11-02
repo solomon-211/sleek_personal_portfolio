@@ -219,3 +219,7 @@ a.work__media:hover, a.feature__media:hover {
 }
 
 .about-split__photo, .about-split__photo img { border-radius: 0 !important; }
+
+/* Recognition, Right now, moments */
+.recognition__list, .moment__cap { font-size: var(--fs-14); }
+.about-now { font-size: var(--fs-16); line-height: 1.6; }
