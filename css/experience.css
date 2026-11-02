@@ -7,9 +7,19 @@
 :where(.page-xp) :is(ul, ol) { list-style: none; }
 
 /* ── Hero band ──────────────────────────────────────── */
-.xp-hero { background: var(--site-ink-deep); color: #fff; }
+.xp-hero {
+  position: relative; isolation: isolate; display: flex; align-items: flex-end;
+  min-height: min(40vw, 640px); color: #fff;
+  background: var(--site-ink-deep) url('../images/experience-hero.jpg') center 50% / cover no-repeat;
+}
+/* Dark overlay as on the home hero: heavier behind the text, lighter over the photo */
+.xp-hero::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(95deg, rgba(26, 45, 58, 0.9) 0%, rgba(26, 45, 58, 0.82) 50%, rgba(26, 45, 58, 0.66) 100%);
+}
+@media (max-width: 700px) { .xp-hero::before { background: rgba(26, 45, 58, 0.84); } }
 .xp-hero__inner {
-  max-width: var(--site-max); margin: 0 auto;
+  width: 100%; max-width: var(--site-max); margin: 0 auto;
   padding: clamp(3.5rem, 7vw, 5.5rem) var(--site-gutter) clamp(3rem, 6vw, 4.5rem);
 }
 .xp-hero h1 {
